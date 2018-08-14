@@ -4,32 +4,43 @@
 <head>
     <meta charset="utf-8">
 
-    <title>OneUI - Admin Dashboard Template &amp; UI Framework</title>
+    <title>Examenplanning - Landingspage</title>
 
     <meta name="description" content="OneUI - Admin Dashboard Template & UI Framework created by pixelcave and published on Themeforest">
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
 
-    <!-- Icons -->
+    <!-- original oneUO Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="assets/img/favicons/favicon.png">
+    {{--<link rel="shortcut icon" href="assets/img/favicons/favicon.png">--}}
 
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-160x160.png" sizes="160x160">
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-192x192.png" sizes="192x192">
+    {{--<link rel="icon" type="image/png" href="assets/img/favicons/favicon-16x16.png" sizes="16x16">--}}
+    {{--<link rel="icon" type="image/png" href="assets/img/favicons/favicon-32x32.png" sizes="32x32">--}}
+    {{--<link rel="icon" type="image/png" href="assets/img/favicons/favicon-96x96.png" sizes="96x96">--}}
+    {{--<link rel="icon" type="image/png" href="assets/img/favicons/favicon-160x160.png" sizes="160x160">--}}
+    {{--<link rel="icon" type="image/png" href="assets/img/favicons/favicon-192x192.png" sizes="192x192">--}}
 
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/img/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="assets/img/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon-180x180.png">
+    {{--<link rel="apple-touch-icon" sizes="57x57" href="assets/img/favicons/apple-touch-icon-57x57.png">--}}
+    {{--<link rel="apple-touch-icon" sizes="60x60" href="assets/img/favicons/apple-touch-icon-60x60.png">--}}
+    {{--<link rel="apple-touch-icon" sizes="72x72" href="assets/img/favicons/apple-touch-icon-72x72.png">--}}
+    {{--<link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicons/apple-touch-icon-76x76.png">--}}
+    {{--<link rel="apple-touch-icon" sizes="114x114" href="assets/img/favicons/apple-touch-icon-114x114.png">--}}
+    {{--<link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicons/apple-touch-icon-120x120.png">--}}
+    {{--<link rel="apple-touch-icon" sizes="144x144" href="assets/img/favicons/apple-touch-icon-144x144.png">--}}
+    {{--<link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicons/apple-touch-icon-152x152.png">--}}
+    {{--<link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon-180x180.png">--}}
+
+    <!-- END original oneUO Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/examenplanning/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/examenplanning/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/examenplanning/favicon-16x16.png">
+    <link rel="manifest" href="assets/img/favicons/examenplanning/site.webmanifest">
+    <link rel="mask-icon" href="assets/img/favicons/examenplanning/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+
     <!-- END Icons -->
 
     <!-- Stylesheets -->
@@ -118,11 +129,11 @@
 -->
 <div id="page-container" class="sidebar-l sidebar-mini sidebar-o side-scroll header-navbar-fixed header-navbar-transparent">
     <!-- Sidebar -->
-    @include('layouts.nav')
+    @include('layouts.landing.nav')
     <!-- END Sidebar -->
 
     <!-- Header -->
-    @include('layouts.header')
+    @include('layouts.landing.header')
     <!-- END Header -->
 
     <!-- Main Container -->
@@ -134,7 +145,7 @@
     <!-- END Main Container -->
 
     <!-- Footer -->
-    @include('layouts.footer')
+    @include('layouts.landing.footer')
     <!-- END Footer -->
 </div>
 <!-- END Page Container -->

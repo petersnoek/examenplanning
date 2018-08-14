@@ -48,8 +48,8 @@
                         </li>
                     </ul>
                 </div>
-                <a class="h5 text-white" href="start_landing.html">
-                    <i class="fa fa-circle-o-notch text-primary"></i> <span class="h4 font-w600 sidebar-mini-hide">ne</span>
+                <a class="h5 text-white" href="/home">
+                    <img class="fa" src="/images/examenplanning_placeholder_16x16.png"> <span class="h4 font-w600 sidebar-mini-hide">Examenplanning</span>
                 </a>
             </div>
             <!-- END Side Header -->
@@ -58,17 +58,20 @@
             <div class="side-content side-content-full">
                 <ul class="nav-main">
                     <li>
-                        <a class="active" href="start_landing.html"><i class="si si-home"></i><span class="sidebar-mini-hide">Home</span></a>
+                        <a class="active" href="/home"><i class="si si-home"></i><span class="sidebar-mini-hide">Home</span></a>
                     </li>
-                    <li class="nav-main-heading"><span class="sidebar-mini-hide">Header</span></li>
+                    <li class="nav-main-heading"><span class="sidebar-mini-hide">Pages</span></li>
                     <li>
-                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-wrench"></i><span class="sidebar-mini-hide">Dropdown</span></a>
+                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-wrench"></i><span class="sidebar-mini-hide">Manage</span></a>
                         <ul>
                             <li>
-                                <a href="start_landing.html">Link #1</a>
+                                <a href="/home">Examen inplannen</a>
                             </li>
                             <li>
-                                <a href="start_landing.html">Link #2</a>
+                                <a href="/home">Examen wijzigen</a>
+                            </li>
+                            <li>
+                                <a href="/home">Kalender inzien</a>
                             </li>
                         </ul>
                     </li>

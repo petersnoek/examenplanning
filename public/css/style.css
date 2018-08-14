@@ -1,10 +1,16 @@
-.landing-image-left{
+.landing-image{
     width:400px;
     height:400px;
-    vertical-align: top;
-    float:left;
+}
+.landing-image-left{
     margin-right:15px;
 }
-.height-fix{
-    min-height:400px;
+.landing-image-right{
+    margin-left:15px;
+}
+.flexbox{
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+    margin-bottom:30px;
 }
