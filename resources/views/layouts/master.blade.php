@@ -4,15 +4,17 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Examenplanning - Landingspage</title>
+    <title>Examenplanning - Dashboard</title>
 
     <meta name="description" content="OneUI - Admin Dashboard Template & UI Framework created by pixelcave and published on Themeforest">
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
 
-    <!-- original oneUO Icons -->
+    <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+
+    <!-- original oneUO Icons -->
     {{--<link rel="shortcut icon" href="assets/img/favicons/favicon.png">--}}
 
     {{--<link rel="icon" type="image/png" href="assets/img/favicons/favicon-16x16.png" sizes="16x16">--}}
@@ -40,73 +42,24 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-
     <!-- END Icons -->
 
     <!-- Stylesheets -->
     <!-- Web fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+
     <!-- Page JS Plugins CSS go here -->
 
     <!-- Bootstrap and OneUI CSS framework -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
-    <link href="{{ asset('css/landing_style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
     <!-- END Stylesheets -->
 </head>
 <body>
-
-<!-- default Login & register links -->
-{{--@if (Route::has('login'))--}}
-    {{--<div class="top-right links">--}}
-        {{--@auth--}}
-            {{--<a href="{{ url('/home') }}">Home</a>--}}
-        {{--@else--}}
-            {{--<a href="{{ route('login') }}">Login</a>--}}
-            {{--<a href="{{ route('register') }}">Register</a>--}}
-        {{--@endauth--}}
-    {{--</div>--}}
-{{--@endif--}}
-
-<!-- Right Side Of Navbar -->
-{{--<ul class="top-right navbar-nav ml-auto">--}}
-    {{--<!-- Authentication Links -->--}}
-    {{--@guest--}}
-        {{--<li class="nav-item">--}}
-            {{--<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>--}}
-        {{--</li>--}}
-        {{--<li class="nav-item">--}}
-            {{--<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>--}}
-        {{--</li>--}}
-    {{--@else--}}
-        {{--<li class="nav-item dropdown">--}}
-            {{--<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>--}}
-                {{--{{ Auth::user()->name }}--}}
-            {{--</a>--}}
-
-            {{--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">--}}
-                {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
-                   {{--onclick="event.preventDefault();--}}
-                                                     {{--document.getElementById('logout-form').submit();">--}}
-                    {{--{{ __('Logout') }}--}}
-                {{--</a>--}}
-
-                {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-                    {{--@csrf--}}
-                {{--</form>--}}
-            {{--</div>--}}
-        {{--</li>--}}
-    {{--@endguest--}}
-{{--</ul>--}}
-
-
-
-<!-- END default Login & register links -->
-
-
 <!-- Page Container -->
 <!--
     Available Classes:
@@ -125,27 +78,28 @@
     'side-scroll'                Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (> 991px)
 
     'header-navbar-fixed'        Enables fixed header
-    'header-navbar-transparent'  Enables a transparent header (if also fixed, it will get a solid dark background color on scrolling)
 -->
-<div id="page-container" class="sidebar-l sidebar-mini sidebar-o side-scroll header-navbar-fixed header-navbar-transparent">
+<div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
+    <!-- Side Overlay-->
+    @include('layouts.aside')
+    <!-- END Side Overlay -->
+
     <!-- Sidebar -->
-    @include('layouts.landing.nav')
+    @include('layouts.nav')
     <!-- END Sidebar -->
 
     <!-- Header -->
-    @include('layouts.landing.header')
+    @include('layouts.header')
     <!-- END Header -->
 
     <!-- Main Container -->
     <main id="main-container">
-        @include('layouts.auth')
-        <!-- Hero Content -->
         @yield('content')
     </main>
     <!-- END Main Container -->
 
     <!-- Footer -->
-    @include('layouts.landing.footer')
+    @include('layouts.footer')
     <!-- END Footer -->
 </div>
 <!-- END Page Container -->

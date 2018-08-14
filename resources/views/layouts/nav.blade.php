@@ -5,13 +5,13 @@
         <!-- Adding .sidebar-mini-hide to an element will hide it when the sidebar is in mini mode -->
         <div class="sidebar-content">
             <!-- Side Header -->
-            <div class="side-header side-content">
+            <div class="side-header side-content bg-white-op">
                 <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
-                <button class="btn btn-link text-gray pull-right visible-xs visible-sm" type="button" data-toggle="layout" data-action="sidebar_close">
+                <button class="btn btn-link text-gray pull-right hidden-md hidden-lg" type="button" data-toggle="layout" data-action="sidebar_close">
                     <i class="fa fa-times"></i>
                 </button>
                 <!-- Themes functionality initialized in App() -> uiHandleTheme() -->
-                <div class="btn-group pull-right visible-md visible-lg">
+                <div class="btn-group pull-right">
                     <button class="btn btn-link text-gray dropdown-toggle" data-toggle="dropdown" type="button">
                         <i class="si si-drop"></i>
                     </button>
@@ -48,7 +48,7 @@
                         </li>
                     </ul>
                 </div>
-                <a class="h5 text-white" href="/home">
+                <a class="h5 text-white" href="start_backend.html">
                     <img class="fa" src="/images/examenplanning_placeholder_16x16.png"> <span class="h6 font-w600 sidebar-mini-hide">Examenplanning</span>
                 </a>
             </div>
@@ -58,7 +58,7 @@
             <div class="side-content side-content-full">
                 <ul class="nav-main">
                     <li>
-                        <a class="active" href="/home"><i class="si si-home"></i><span class="sidebar-mini-hide">Home</span></a>
+                        <a class="active" href="/home"><i class="si si-speedometer"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                     </li>
                     <li class="nav-main-heading"><span class="sidebar-mini-hide">Pages</span></li>
                     <li>
