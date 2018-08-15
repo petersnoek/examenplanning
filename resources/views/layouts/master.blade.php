@@ -34,11 +34,11 @@
     {{--<link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon-180x180.png">--}}
 
     <!-- END original oneUO Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/examenplanning/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/examenplanning/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/examenplanning/favicon-16x16.png">
-    <link rel="manifest" href="assets/img/favicons/examenplanning/site.webmanifest">
-    <link rel="mask-icon" href="assets/img/favicons/examenplanning/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/img/favicons/examenplanning/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/img/favicons/examenplanning/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/img/favicons/examenplanning/favicon-16x16.png')}}">
+    <link rel="manifest" href="{{asset('assets/img/favicons/examenplanning/site.webmanifest')}}">
+    <link rel="mask-icon" href="{{asset('assets/img/favicons/examenplanning/safari-pinned-tab.svg')}}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
@@ -51,10 +51,9 @@
     <!-- Page JS Plugins CSS go here -->
 
     <!-- Bootstrap and OneUI CSS framework -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" id="css-main" href="{{asset('assets/css/oneui.min.css')}}">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
@@ -112,7 +111,7 @@
 <!-- END Page Container -->
 
 <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
-<script src="assets/js/oneui.min.js"></script>
+<script src="{{asset('assets/js/oneui.min.js')}}"></script>
 
 <!-- Page JS Plugins + Page JS Code -->
 <script>

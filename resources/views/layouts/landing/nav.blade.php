@@ -60,21 +60,6 @@
                     <li>
                         <a class="active" href="/home"><i class="si si-home"></i><span class="sidebar-mini-hide">Home</span></a>
                     </li>
-                    <li class="nav-main-heading"><span class="sidebar-mini-hide">Pages</span></li>
-                    <li>
-                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-wrench"></i><span class="sidebar-mini-hide">Manage</span></a>
-                        <ul>
-                            <li>
-                                <a href="/home">Examen inplannen</a>
-                            </li>
-                            <li>
-                                <a href="/home">Examen wijzigen</a>
-                            </li>
-                            <li>
-                                <a href="/home">Kalender inzien</a>
-                            </li>
-                        </ul>
-                    </li>
                 </ul>
             </div>
             <!-- END Side Content -->
