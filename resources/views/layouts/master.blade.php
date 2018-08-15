@@ -54,6 +54,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
@@ -87,6 +88,12 @@
     <!-- Sidebar -->
     @include('layouts.nav')
     <!-- END Sidebar -->
+    <!-- Flash message -->
+    @if($flash = session('message'))
+        <div id="flash-message" class="alert alert-success" role="alert">{{$flash}}</div>
+    @endif
+    {{--@include('flash::message')--}}
+    <!-- END Flash message -->
 
     <!-- Header -->
     @include('layouts.header')
@@ -108,5 +115,9 @@
 <script src="assets/js/oneui.min.js"></script>
 
 <!-- Page JS Plugins + Page JS Code -->
+<script>
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
+
 </body>
 </html>
