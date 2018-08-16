@@ -139,7 +139,11 @@
     <!-- Main Container -->
     <main id="main-container">
         @include('layouts.auth')
+
         <!-- Hero Content -->
+        @include('layouts.landing.banner')
+        <!-- END Hero Content -->
+
         @yield('content')
     </main>
     <!-- END Main Container -->
