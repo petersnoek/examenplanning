@@ -89,7 +89,7 @@
     <!-- END Sidebar -->
     <!-- Flash message -->
     @if($flash = session('message'))
-        <div id="flash-message" class="alert alert-success" role="alert">{{$flash}}</div>
+        <div id="flash-message" class="alert alert-success js-animation-object animated bounce" role="alert">{{$flash}}</div>
     @endif
     {{--@include('flash::message')--}}
     <!-- END Flash message -->

@@ -1,7 +1,7 @@
 @extends('layouts.landing.master')
 
 @section('content')
-    <div class="col-lg-4 push-30-t col-lg-push-4">
+    <div class="col-lg-4 push-30-t col-lg-push-4 js-animation-object animated bounceInLeft">
         <!-- Material Register -->
         <div class="block block-themed">
             <div class="block-header bg-success">
