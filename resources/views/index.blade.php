@@ -5,7 +5,7 @@
     <div class="bg-white">
         <section class="content content-boxed">
             <!-- Section Content -->
-            <div class="flexbox">
+            <div class="flexbox animated fadeInLeft" data-class="animated fadeInLeft">
                 <img src="images/Full_image_placeholder.jpg" class="landing-image-left landing-image" alt="placeholder">
                 <div class="">
                     <h2>Afspraken maken</h2>
@@ -23,7 +23,7 @@
     <div class="bg-gray-lighter">
         <section class="content content-boxed">
             <!-- Section Content -->
-            <div class="flexbox">
+            <div class="flexbox animated fadeInRight" data-class="animated fadeInRight">
                 <div class="text">
                     <h2>Afspraken wijzigen</h2>
                     <p>
@@ -41,7 +41,7 @@
     <div class="bg-white">
         <section class="content content-boxed">
             <!-- Section Content -->
-            <div class="flexbox">
+            <div class="flexbox animated fadeInLeft" data-class="animated fadeInLeft">
                 <img src="images/Full_image_placeholder.jpg" class="landing-image-left landing-image" alt="placeholder">
                 <div class="text">
                     <h2>Afspraken inzien</h2>
@@ -59,7 +59,7 @@
     <div class="bg-gray-lighter">
         <section class="content content-boxed">
             <!-- Section Content -->
-            <div class="flexbox">
+            <div class="flexbox animated fadeInRight" data-class="animated fadeInRight">
                 <div class="text">
                     <h2>Persoonlijke agenda</h2>
                     <p>

@@ -1,47 +1,42 @@
-@extends('layouts.app')
+@extends('layouts.landing.master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}" aria-label="{{ __('Reset Password') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
+    <div class="col-lg-4 col-lg-push-4 push-30-t">
+        <!-- Material Lock -->
+        <div class="block block-themed">
+            <div class="block-header bg-danger">
+                <h3 class="block-title">Reset wachtwoord</h3>
+            </div>
+            <div class="block-content">
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                <form class="form-horizontal push-10" method="POST" action="{{ route('password.email') }}" aria-label="{{ __('Reset Password') }}">
+                    @csrf
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="form-material input-group">
+                                <input class="form-control" type="email" id="email" name="email" {{ $errors->has('email') ? ' is-invalid' : '' }} placeholder="Vul je email in..." required autofocus>
+                                <label for="email">Email</label>
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                            </div>
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @endif
-                            </div>
+                            @endif
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-send push-5-r"></i>Stuur wachtwoord reset link</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
+        <!-- END Material Lock -->
     </div>
-</div>
 @endsection
