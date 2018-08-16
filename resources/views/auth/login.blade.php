@@ -13,7 +13,7 @@
                      <div class="col-xs-12">
                              <div class="input-group form-material">
                                  <label for="email">Email</label>
-                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Enter your email..." required autofocus>
+                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Vul je email in..." required autofocus>
                                  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                              </div>
                              @if ($errors->has('email'))
@@ -26,8 +26,8 @@
                  <div class="form-group">
                      <div class="col-xs-12">
                          <div class="form-material input-group">
-                             <label for="password">Password</label>
-                             <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password.." {{ $errors->has('password') ? ' is-invalid' : '' }} required>
+                             <label for="password">Wachtwoord</label>
+                             <input class="form-control" type="password" id="password" name="password" placeholder="Vul je wachtwoord in." {{ $errors->has('password') ? ' is-invalid' : '' }} required>
                              <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
                          </div>
                          @if ($errors->has('password'))
