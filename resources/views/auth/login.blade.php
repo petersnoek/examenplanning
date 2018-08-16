@@ -1,7 +1,11 @@
 @extends('layouts.landing.master')
 @include('layouts.landing.header')
 @section('content')
- <div class="col-lg-4 push-30-t col-lg-push-4 js-animation-object animated bounceInRight">
+    @if ($errors->has('password') || $errors->has('email'))
+        <div class="col-lg-4 push-30-t col-lg-push-4 js-animation-object animated shake">
+    @else
+        <div class="col-lg-4 push-30-t col-lg-push-4 js-animation-object animated bounceInRight">
+     @endif
      <div class="block block-themed">
          <div class="block-header bg-primary">
              <h3 class="block-title">Login</h3>

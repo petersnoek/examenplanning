@@ -1,7 +1,11 @@
 @extends('layouts.landing.master')
 
 @section('content')
-    <div class="col-lg-4 push-30-t col-lg-push-4 js-animation-object animated bounceInLeft">
+    @if ($errors->has('name') || $errors->has('email') || $errors->has('password'))
+        <div class="col-lg-4 push-30-t col-lg-push-4 js-animation-object animated shake">
+    @else
+        <div class="col-lg-4 push-30-t col-lg-push-4 js-animation-object animated bounceInLeft">
+    @endif
         <!-- Material Register -->
         <div class="block block-themed">
             <div class="block-header bg-success">
