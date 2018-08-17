@@ -20,7 +20,7 @@
     <!-- END Page Header -->
 
     <!-- Page Content -->
-    <div class="content">
+    <div class="content col-lg-10 col-lg-push-1">
         <!-- Creation -->
         <div class="block block-themed animated @if($errors->isEmpty()) bounceInLeft @else shake @endif">
             <div class="block-header bg-success">
@@ -31,7 +31,7 @@
                       onsubmit="">
                     @csrf
                     <div class="form-group">
-                        <div class="col-xs-2">
+                        <div class="col-lg-4">
                             <div class="form-material input-group">
                                 <input class="form-control" type="text" id="voornaam" name="voornaam"
                                        placeholder="Vul de voornaam in..." required>
@@ -43,14 +43,14 @@
                                     </span>
                             @endif
                         </div>
-                        <div class="col-xs-2">
+                        <div class="col-lg-4">
                             <div class="form-material input-group">
                                 <input class="form-control" type="text" id="tussenvoegsel" name="tussenvoegsel"
                                        placeholder="Vul het tussenvoegsel in...">
                                 <label for="tussenvoegsel">Tussenvoegsel</label>
                             </div>
                         </div>
-                        <div class="col-xs-2">
+                        <div class="col-lg-4">
                             <div class="form-material input-group">
                                 <input class="form-control" type="text" id="achternaam" name="achternaam"
                                        placeholder="Vul de achternaam in..." required>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-6">
+                        <div class="col-lg-7">
                             <div class="form-material input-group">
                                 <input class="form-control" type="email" id="email" name="email"
                                        placeholder="Vul het email-adres in..." required>
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-6">
+                        <div class="col-lg-12">
                             <div class="form-material input-group">
                                 <input class="form-control" type="text" id="adres" name="adres"
                                        placeholder="Vul het adres in..." required>
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-6">
+                        <div class="col-lg-12">
                             <div class="form-material input-group">
                                 <input class="form-control" type="text" id="ovnummer" name="ovnummer"
                                        placeholder="Vul het OV-nummer in..." required>
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-6">
+                        <div class="col-lg-12">
                             <div class="form-material">
                                 <label>Geslacht</label>
                             </div>
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-6">
+                        <div class="col-lg-12">
                             <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-plus push-5-r"></i>Maak
                                 aan
                             </button>
