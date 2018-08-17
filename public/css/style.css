@@ -15,3 +15,7 @@
 .dropdown-toggle:focus{
     color: rgb(82, 82, 82);
 }
+
+.text-wrap {
+    word-wrap: break-word;
+}

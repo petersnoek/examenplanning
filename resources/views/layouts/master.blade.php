@@ -112,6 +112,8 @@
 
 <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
 <script src="{{asset('assets/js/oneui.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('assets/js/datatables/base_tables_datatables.js')}}"></script>
 
 <!-- Page JS Plugins + Page JS Code -->
 <script>

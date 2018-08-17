@@ -20,9 +20,9 @@
     <!-- END Page Header -->
 
     <!-- Page Content -->
-    <div class="content col-lg-10 col-lg-push-1">
+    <div class="content col-lg-12">
         <!-- Creation -->
-        <div class="block block-themed animated @if($errors->isEmpty()) bounceInLeft @else shake @endif">
+        <div class="block block-themed col-lg-8 remove-padding animated @if($errors->isEmpty()) bounceInLeft @else shake @endif">
             <div class="block-header bg-success">
                 <h3 class="block-title">Student aanmaken</h3>
             </div>
@@ -32,10 +32,14 @@
                     @csrf
                     <div class="form-group">
                         <div class="col-lg-4">
-                            <div class="form-material input-group">
-                                <input class="form-control" type="text" id="voornaam" name="voornaam"
-                                       placeholder="Vul de voornaam in..." required>
+                            <div class="form-material">
                                 <label for="voornaam">Voornaam</label>
+                                <div class="input-group form-material">
+                                    <input class="form-control" type="text" id="voornaam" name="voornaam"
+                                           placeholder="Vul de voornaam in..." required>
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                </div>
+
                             </div>
                             @if ($errors->has('voornaam'))
                                 <span class="invalid-feedback" role="alert">
@@ -43,18 +47,24 @@
                                     </span>
                             @endif
                         </div>
-                        <div class="col-lg-4">
-                            <div class="form-material input-group">
-                                <input class="form-control" type="text" id="tussenvoegsel" name="tussenvoegsel"
-                                       placeholder="Vul het tussenvoegsel in...">
+                        <div class="col-lg-3">
+                            <div class="form-material">
                                 <label for="tussenvoegsel">Tussenvoegsel</label>
+                                <div class="form-material input-group">
+                                    <input class="form-control" type="text" id="tussenvoegsel" name="tussenvoegsel"
+                                           placeholder="Vul tussenvoegsel in...">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="form-material input-group">
-                                <input class="form-control" type="text" id="achternaam" name="achternaam"
-                                       placeholder="Vul de achternaam in..." required>
+                        <div class="col-lg-5">
+                            <div class="form-material">
                                 <label for="achternaam">Achternaam</label>
+                                <div class="input-group form-material">
+                                    <input class="form-control" type="text" id="achternaam" name="achternaam"
+                                           placeholder="Vul de achternaam in..." required>
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                </div>
                             </div>
                             @if ($errors->has('achternaam'))
                                 <span class="invalid-feedback" role="alert">
@@ -64,12 +74,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-lg-7">
+                        <div class="col-lg-12">
                             <div class="form-material input-group">
                                 <input class="form-control" type="email" id="email" name="email"
                                        placeholder="Vul het email-adres in..." required>
                                 <label for="email">Email</label>
-                                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                             </div>
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
@@ -80,10 +90,13 @@
                     </div>
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <div class="form-material input-group">
-                                <input class="form-control" type="text" id="adres" name="adres"
-                                       placeholder="Vul het adres in..." required>
+                            <div class="form-material">
                                 <label for="adres">Adres</label>
+                                <div class="form-material input-group">
+                                    <input class="form-control" type="text" id="adres" name="adres"
+                                           placeholder="Vul het adres in..." required>
+                                    <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                </div>
                             </div>
                             @if ($errors->has('adres'))
                                 <span class="invalid-feedback" role="alert">
@@ -94,10 +107,14 @@
                     </div>
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <div class="form-material input-group">
-                                <input class="form-control" type="text" id="ovnummer" name="ovnummer"
-                                       placeholder="Vul het OV-nummer in..." required>
+                            <div class="form-material">
                                 <label for="ovnummer">OV-nummer</label>
+                                <div class="form-material input-group">
+                                    <input class="form-control" type="text" id="ovnummer" name="ovnummer"
+                                           placeholder="Vul het OV-nummer in..." required>
+                                    <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
+                                </div>
+
                             </div>
                             @if ($errors->has('ovnummer'))
                                 <span class="invalid-feedback" role="alert">
@@ -113,7 +130,8 @@
                             </div>
                             <div>
                                 <label class="css-input css-radio css-radio-warning push-10-r">
-                                    <input type="radio" checked="checked" value="vrouw" name="geslacht" required><span></span>
+                                    <input type="radio" checked="checked" value="vrouw" name="geslacht"
+                                           required><span></span>
                                     Vrouw
                                 </label>
                                 <label class="css-input css-radio css-radio-warning">
@@ -130,7 +148,7 @@
                     <div class="form-group">
                         <div class="col-lg-12">
                             <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-plus push-5-r"></i>Maak
-                                aan
+                                student aan
                             </button>
                         </div>
                     </div>
@@ -138,6 +156,10 @@
             </div>
         </div>
         <!-- END creation -->
+
+        <div class="col-lg-4 animated bounceInRight">
+            @include('students.all_students', ['students' => $students])
+        </div>
     </div>
     <!-- END Page Content -->
 @endsection
