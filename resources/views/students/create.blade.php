@@ -22,7 +22,7 @@
     <!-- Page Content -->
     <div class="content">
         <!-- Creation -->
-        <div class="block block-themed">
+        <div class="block block-themed animated bounceInLeft">
             <div class="block-header bg-success">
                 <h3 class="block-title">Student aanmaken</h3>
             </div>
@@ -34,7 +34,7 @@
                         <div class="col-xs-2">
                             <div class="form-material">
                                 <input class="form-control" type="text" id="voornaam" name="voornaam"
-                                       placeholder="Vul de voornaam in...">
+                                       placeholder="Vul de voornaam in..." required>
                                 <label for="voornaam">Voornaam</label>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                         <div class="col-xs-2">
                             <div class="form-material">
                                 <input class="form-control" type="text" id="achternaam" name="achternaam"
-                                       placeholder="Vul de achternaam in...">
+                                       placeholder="Vul de achternaam in..." required>
                                 <label for="achternaam">Achternaam</label>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                         <div class="col-xs-6">
                             <div class="form-material input-group">
                                 <input class="form-control" type="email" id="email" name="email"
-                                       placeholder="Vul het email-adres in...">
+                                       placeholder="Vul het email-adres in..." required>
                                 <label for="email">Email</label>
                                 <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
                             </div>
@@ -67,7 +67,7 @@
                         <div class="col-xs-6">
                             <div class="form-material">
                                 <input class="form-control" type="text" id="adres" name="adres"
-                                       placeholder="Vul het adres in...">
+                                       placeholder="Vul het adres in..." required>
                                 <label for="adres">Adres</label>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                         <div class="col-xs-6">
                             <div class="form-material">
                                 <input class="form-control" type="text" id="ovnummer" name="ovnummer"
-                                       placeholder="Vul het OV-nummer in...">
+                                       placeholder="Vul het OV-nummer in..." required>
                                 <label for="ovnummer">OV-nummer</label>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                                 <label>Geslacht</label>
                             </div>
                             <label class="css-input css-radio css-radio-warning push-10-r">
-                                <input type="radio" value="vrouw" name="geslacht"><span></span> Vrouw
+                                <input type="radio" checked="checked" value="vrouw" name="geslacht" required><span></span> Vrouw
                             </label>
                             <label class="css-input css-radio css-radio-warning">
                                 <input type="radio" value="man" name="geslacht"><span></span> Man
