@@ -39,7 +39,7 @@ class StudentController extends Controller
     {
         $form->persist();
         session()->flash('message', 'Student succesvol aangemaakt.');
-        return redirect()->home();
+        return redirect("/students/create");
     }
 
     /**
