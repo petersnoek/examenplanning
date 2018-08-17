@@ -7,16 +7,16 @@
                 <h3 class="h5 font-w600 text-uppercase push-20">Wij</h3>
                 <ul class="list list-simple-mini font-s13">
                     <li>
-                        <a class="font-w600" href="https://www.davinci.nl/">Da Vinci College</a>
+                        <a class="font-w600" href="https://www.davinci.nl/" target="_blank">Da Vinci College</a>
                     </li>
                     <li>
-                        <a class="font-w600" href="https://www.davinci.nl/mbo/mbo-opleidingen/applicatieontwikkelaar">Applicatieontwikkelaar</a>
+                        <a class="font-w600" href="https://www.davinci.nl/mbo/mbo-opleidingen/applicatieontwikkelaar" target="_blank">Applicatieontwikkelaar</a>
                     </li>
                     <li>
-                        <a class="font-w600" href="https://www.davinci.nl/locaties/gorinchem">Locatie Gorinchem</a>
+                        <a class="font-w600" href="https://www.davinci.nl/locaties/gorinchem" target="_blank">Locatie Gorinchem</a>
                     </li>
                     <li>
-                        <a class="font-w600" href="https://www.davinci.nl/locaties/dordrecht-azzurro">Locatie Dordrecht</a>
+                        <a class="font-w600" href="https://www.davinci.nl/locaties/dordrecht-azzurro" target="_blank">Locatie Dordrecht</a>
                     </li>
                 </ul>
             </div>
@@ -24,16 +24,16 @@
                 <h3 class="h5 font-w600 text-uppercase push-20">Sources</h3>
                 <ul class="list list-simple-mini font-s13">
                     <li>
-                        <a class="font-w600" href="https://laravel.com/">Laravel</a>
+                        <a class="font-w600" href="https://laravel.com/" target="_blank">Laravel</a>
                     </li>
                     <li>
-                        <a class="font-w600" href="https://www.laracasts.com/">Laracasts</a>
+                        <a class="font-w600" href="https://www.laracasts.com/" target="_blank">Laracasts</a>
                     </li>
                     <li>
-                        <a class="font-w600" href="https://pixelcave.com/oneui">oneUI</a>
+                        <a class="font-w600" href="https://pixelcave.com/oneui" target="_blank">oneUI</a>
                     </li>
                     <li>
-                        <a class="font-w600" href="https://themeforest.net/user/pixelcave/portfolio?ref=pixelcave">Pixelcave</a>
+                        <a class="font-w600" href="https://themeforest.net/user/pixelcave/portfolio?ref=pixelcave" target="_blank">Pixelcave</a>
                     </li>
                 </ul>
             </div>
