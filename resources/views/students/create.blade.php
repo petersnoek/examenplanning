@@ -12,7 +12,7 @@
             <div class="col-sm-5 text-right hidden-xs">
                 <ol class="breadcrumb push-10-t">
                     <li>Student</li>
-                    <li><a class="link-effect" href="">Aanmaken</a></li>
+                    <li><a class="link-effect" href="">Student aanmaken</a></li>
                 </ol>
             </div>
         </div>
@@ -22,7 +22,7 @@
     <!-- Page Content -->
     <div class="content">
         <!-- Creation -->
-        <div class="block block-themed animated bounceInLeft">
+        <div class="block block-themed animated @if($errors->isEmpty()) bounceInLeft @else shake @endif">
             <div class="block-header bg-success">
                 <h3 class="block-title">Student aanmaken</h3>
             </div>
@@ -32,25 +32,35 @@
                     @csrf
                     <div class="form-group">
                         <div class="col-xs-2">
-                            <div class="form-material">
+                            <div class="form-material input-group">
                                 <input class="form-control" type="text" id="voornaam" name="voornaam"
                                        placeholder="Vul de voornaam in..." required>
                                 <label for="voornaam">Voornaam</label>
                             </div>
+                            @if ($errors->has('voornaam'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('voornaam') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                         <div class="col-xs-2">
-                            <div class="form-material">
+                            <div class="form-material input-group">
                                 <input class="form-control" type="text" id="tussenvoegsel" name="tussenvoegsel"
                                        placeholder="Vul het tussenvoegsel in...">
                                 <label for="tussenvoegsel">Tussenvoegsel</label>
                             </div>
                         </div>
                         <div class="col-xs-2">
-                            <div class="form-material">
+                            <div class="form-material input-group">
                                 <input class="form-control" type="text" id="achternaam" name="achternaam"
                                        placeholder="Vul de achternaam in..." required>
                                 <label for="achternaam">Achternaam</label>
                             </div>
+                            @if ($errors->has('achternaam'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('achternaam') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
@@ -61,24 +71,39 @@
                                 <label for="email">Email</label>
                                 <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
                             </div>
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
-                            <div class="form-material">
+                            <div class="form-material input-group">
                                 <input class="form-control" type="text" id="adres" name="adres"
                                        placeholder="Vul het adres in..." required>
                                 <label for="adres">Adres</label>
                             </div>
+                            @if ($errors->has('adres'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('adres') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
-                            <div class="form-material">
+                            <div class="form-material input-group">
                                 <input class="form-control" type="text" id="ovnummer" name="ovnummer"
                                        placeholder="Vul het OV-nummer in..." required>
                                 <label for="ovnummer">OV-nummer</label>
                             </div>
+                            @if ($errors->has('ovnummer'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('ovnummer') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
@@ -86,18 +111,27 @@
                             <div class="form-material">
                                 <label>Geslacht</label>
                             </div>
-                            <label class="css-input css-radio css-radio-warning push-10-r">
-                                <input type="radio" checked="checked" value="vrouw" name="geslacht" required><span></span> Vrouw
-                            </label>
-                            <label class="css-input css-radio css-radio-warning">
-                                <input type="radio" value="man" name="geslacht"><span></span> Man
-                            </label>
-
+                            <div>
+                                <label class="css-input css-radio css-radio-warning push-10-r">
+                                    <input type="radio" checked="checked" value="vrouw" name="geslacht" required><span></span>
+                                    Vrouw
+                                </label>
+                                <label class="css-input css-radio css-radio-warning">
+                                    <input type="radio" value="man" name="geslacht"><span></span> Man
+                                </label>
+                            </div>
+                            @if ($errors->has('geslacht'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('geslacht') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
-                            <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-plus push-5-r"></i>Maak aan</button>
+                            <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-plus push-5-r"></i>Maak
+                                aan
+                            </button>
                         </div>
                     </div>
                 </form>

@@ -29,9 +29,9 @@ class CreateStudentForm extends FormRequest
         return [
             'voornaam' => 'required',
             'achternaam' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:students,email',
             'adres' => 'required',
-            'ovnummer' => 'required|numeric',
+            'ovnummer' => 'required|numeric|unique:students,ovnummer',
             'geslacht' => 'required',
         ];
     }
