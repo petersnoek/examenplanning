@@ -20,3 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/students/create', 'StudentController@create');
 Route::post('/students', 'StudentController@store');
+
+Route::get('/students/{student}/edit', 'StudentController@edit');
+Route::get('/students/{student}/remove', 'StudentController@destroy');
+Route::put('/students/{student}', 'StudentController@update');
+
+
+

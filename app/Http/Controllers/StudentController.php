@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateStudentForm;
+use App\Http\Requests\EditStudentForm;
 use App\Student;
 use Illuminate\Http\Request;
 
@@ -61,7 +62,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return view('students.edit', compact('student'));
     }
 
     /**
@@ -71,9 +72,11 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(EditStudentForm $form, Student $student)
     {
-        //
+        $form->patch($student);
+        session()->flash('message', 'Student succesvol aangepast.');
+        return redirect("/students/create");
     }
 
     /**
@@ -84,6 +87,8 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        Student::destroy($student->id);
+        session()->flash('message', 'Student succesvol verwijderd.');
+        return redirect("/students/create");
     }
 }

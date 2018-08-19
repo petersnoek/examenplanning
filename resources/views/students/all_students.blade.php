@@ -43,14 +43,14 @@
                             <td class="hidden-xs col-lg-2">{{$student->ovnummer}}</td>
                             <td class="text-center col-lg-1">
                                 <div class="btn-group">
-                                    <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip"
+                                    <a class="btn btn-xs btn-default" href="/students/{{$student->id}}/edit" data-toggle="tooltip"
                                             title=""
-                                            data-original-title="Edit Client"><i class="fa fa-pencil"></i>
-                                    </button>
-                                    <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip"
+                                            data-original-title="Bewerk student"><i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a class="btn btn-xs btn-default" href="/students/{{$student->id}}/remove" data-toggle="tooltip"
                                             title=""
-                                            data-original-title="Remove Client"><i class="fa fa-times"></i>
-                                    </button>
+                                            data-original-title="Verwijder student"><i class="fa fa-times"></i>
+                                    </a>
                                 </div>
                             </td>
                         </tr>
