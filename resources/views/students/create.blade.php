@@ -158,7 +158,7 @@
         <!-- END creation -->
 
         <div class="col-lg-5 animated bounceInRight">
-            @include('students.all_students', ['students' => $students])
+            @include('students.show', ['students' => $students])
         </div>
     </div>
     <!-- END Page Content -->

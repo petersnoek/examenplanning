@@ -25,5 +25,10 @@ Route::get('/students/{student}/edit', 'StudentController@edit');
 Route::get('/students/{student}/remove', 'StudentController@destroy');
 Route::put('/students/{student}', 'StudentController@update');
 
+Route::get('/students/contact', 'StudentController@mail');
+
+Route::get('/appointments', 'AppointmentController@index');
+
+
 
 

@@ -1,3 +1,7 @@
+@section('head_links')
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.css')}}">
+@endsection
+
 <div class="block block-themed">
     <div class="block-header bg-success">
         <h3 class="block-title">Studenten beheren</h3>
@@ -61,3 +65,8 @@
         </div>
     </div>
 </div>
+
+@section('page_plugins')
+    <script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/js/datatables/base_tables_datatables.js')}}"></script>
+@endsection

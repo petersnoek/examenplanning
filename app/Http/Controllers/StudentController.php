@@ -33,7 +33,7 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateStudentForm $form)
@@ -46,7 +46,7 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Student  $student
+     * @param  \App\Student $student
      * @return \Illuminate\Http\Response
      */
     public function show(Student $student)
@@ -57,7 +57,7 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Student  $student
+     * @param  \App\Student $student
      * @return \Illuminate\Http\Response
      */
     public function edit(Student $student)
@@ -68,8 +68,8 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Student  $student
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Student $student
      * @return \Illuminate\Http\Response
      */
     public function update(EditStudentForm $form, Student $student)
@@ -82,7 +82,7 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Student  $student
+     * @param  \App\Student $student
      * @return \Illuminate\Http\Response
      */
     public function destroy(Student $student)
@@ -90,5 +90,10 @@ class StudentController extends Controller
         Student::destroy($student->id);
         session()->flash('message', 'Student succesvol verwijderd.');
         return redirect("/students/create");
+    }
+
+    public function mail()
+    {
+        return abort(404);
     }
 }

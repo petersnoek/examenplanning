@@ -77,13 +77,13 @@
                                     class="sidebar-mini-hide">Manage examens</span></a>
                         <ul>
                             <li>
+                                <a href="/appointments">Kalender inzien</a>
+                            </li>
+                            <li>
                                 <a href="/home">Examen inplannen</a>
                             </li>
                             <li>
                                 <a href="/home">Examen wijzigen</a>
-                            </li>
-                            <li>
-                                <a href="/home">Kalender inzien</a>
                             </li>
                         </ul>
                     </li>
@@ -95,7 +95,7 @@
                                 <a href="/students/create">Student aanmaken</a>
                             </li>
                             <li>
-                                <a href="/students/edit">Student wijzigen</a>
+                                <a href="/students/contact">Mail studenten</a>
                             </li>
                         </ul>
                     </li>
