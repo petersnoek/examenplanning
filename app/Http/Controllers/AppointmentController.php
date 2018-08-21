@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\Http\Requests\CreateAppointmentForm;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -14,7 +15,8 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        return view('appointments.show');
+        $appointments = Appointment::all();
+        return view('appointments.show', compact('appointments'));
     }
 
     /**
@@ -33,9 +35,11 @@ class AppointmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateAppointmentForm $form)
     {
-        //
+        $form->persist();
+        session()->flash('message', 'Afspraak succesvol aangemaakt');
+        return redirect("/appointments");
     }
 
     /**
@@ -80,6 +84,8 @@ class AppointmentController extends Controller
      */
     public function destroy(Appointment $appointment)
     {
-        //
+        Appointment::destroy($appointment->id);
+        session()->flash('message', 'Afspraak succesvol verwijderd.');
+        return redirect("/appointments");
     }
 }

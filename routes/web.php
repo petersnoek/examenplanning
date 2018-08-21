@@ -28,6 +28,8 @@ Route::put('/students/{student}', 'StudentController@update');
 Route::get('/students/contact', 'StudentController@mail');
 
 Route::get('/appointments', 'AppointmentController@index');
+Route::post('/appointments', 'AppointmentController@store');
+Route::get('/appointments/{appointment}/remove', 'AppointmentController@destroy');
 
 
 

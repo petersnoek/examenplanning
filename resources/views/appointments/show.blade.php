@@ -1,6 +1,11 @@
 @extends('layouts.master')
 @section('head_links')
     <link rel="stylesheet" href="{{asset('assets/js/plugins/fullcalendar/fullcalendar.min.css')}}">
+
+    <link rel="stylesheet"
+          href="{{asset('assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css')}}">
+
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
 @endsection
 
 @section('content')
@@ -25,29 +30,91 @@
 
     <div class="col-md-4 col-md-push-8 col-lg-4 col-lg-push-8 push-15-t">
         <!-- Add Event Form -->
-        <form class="js-form-add-event push-30" action="base_comp_calendar.html" method="post">
-            <div class="input-group">
-                <input class="js-add-event form-control" type="text" placeholder="Add event..">
-                <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><i class="fa fa-plus"></i></button>
-                </div>
+        {{--class=js-form-add-event--}}
+        <div class="block block-bordered">
+            <div class="block-header bg-gray-lighter">
+                <h3 class="block-title">Afspraken maken</h3>
             </div>
-        </form>
+            <div class="block-content">
+                <form class="form-horizontal push-10-t push-10" action="/appointments" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group form-material col-lg-12">
+                                <label for="titel">Titel</label>
+                                <input id="titel" type="text"
+                                       class="form-control{{ $errors->has('titel') ? ' is-invalid' : '' }}" name="titel"
+                                       placeholder="Vul afspraaktitel in..." required autofocus>
+                            </div>
+                            @if ($errors->has('titel'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('titel') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-material col-lg-6">
+                            <div class="js-datetimepicker form-material input-group date" data-show-today-button="true"
+                                 data-show-clear="true" data-show-close="true" data-side-by-side="true">
+                                <label for="example-datetimepicker8">Startdatum</label>
+                                <input class="form-control" type="text" id="example-datetimepicker8"
+                                       name="start" placeholder="Kies een startdatum...">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-material col-lg-6">
+                            <div class="js-datetimepicker form-material input-group date" data-show-today-button="true"
+                                 data-show-clear="true" data-show-close="true" data-side-by-side="true">
+                                <label for="example-datetimepicker8">Einddatum</label>
+                                <input class="form-control" type="text" id="example-datetimepicker8"
+                                       name="eind" placeholder="Kies een einddatum...">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <label class="css-input switch switch-sm switch-primary">
+                            <input name="hele_dag" type="checkbox"><span></span> Gehele dag?
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <div class="form-material">
+                                <input class="js-colorpicker form-control colorpicker-element" type="text" id="example-colorpicker5" name="hex_color" value="#5c90d2">
+                                <label for="example-colorpicker5">Kies een kleur</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-material">
+                        <button class="btn btn-default" type="submit"><i class="fa fa-plus"></i></button>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+
         <!-- END Add Event Form -->
 
         <!-- Event List -->
-        <ul class="js-events list list-events">
-            <li style="background-color: #fac5a5;" class="ui-draggable ui-draggable-handle">Work</li>
-            <li style="background-color: #b5d0eb;" class="ui-draggable ui-draggable-handle">Relax</li>
-            <li style="background-color: #faeab9;" class="ui-draggable ui-draggable-handle">Gym</li>
-            <li style="background-color: #fac5a5;" class="ui-draggable ui-draggable-handle">Secret Project</li>
-            <li style="background-color: #c8e2b3;" class="ui-draggable ui-draggable-handle">Cinema</li>
-            <li style="background-color: #b6d1ec;" class="ui-draggable ui-draggable-handle">Biking</li>
-            <li style="background-color: #c8e2b3;" class="ui-draggable ui-draggable-handle">Trip</li>
-            <li style="background-color: #faeab9;" class="ui-draggable ui-draggable-handle">Swimming</li>
+        <ul class="js-events list events list-events">
+            @foreach($appointments as $appointment)
+                <li class="animated fadeInDown ui-draggable ui-draggable-handle input-group">
+                    <span class="js-add-event" type="text" name="titel"
+                          placeholder="Afspraak aanmaken...">{{$appointment->titel}}</span>
+                    <div class="input-group-btn">
+                        <a class="btn" type="submit" href="/appointments/{{ $appointment->id }}/remove"><i
+                                    class="fa fa-times"></i></a>
+                    </div>
+                </li>
+            @endforeach
         </ul>
         <div class="text-center text-muted">
-            <small><em><i class="fa fa-arrows"></i> Drag and drop events on the calendar</em></small>
+            <small><em><i class="fa fa-arrows"></i>Sleep de afspraken op de kalender en laat ze los</em></small>
         </div>
         <!-- END Event List -->
     </div>
@@ -58,6 +125,9 @@
 
         </div>
     </div>
+
+    <div class="colorpicker dropdown-menu colorpicker-right colorpicker-hidden" style="top: 1794px; left: 1416.45px;"><div class="colorpicker-saturation" style="background-color: rgb(0, 112, 255);"><i style="top: 17.6471px; left: 56.1905px;"><b></b></i></div><div class="colorpicker-hue"><i style="top: 40.678px;"></i></div><div class="colorpicker-alpha" style="background-color: rgb(92, 144, 210);"><i style="top: 0px;"></i></div><div class="colorpicker-color" style="background-color: rgb(92, 144, 210);"><div style="background-color: rgb(92, 144, 210);"></div></div><div class="colorpicker-selectors"></div></div>
+
 @endsection
 
 @section('page_plugins')
@@ -67,4 +137,20 @@
     <script src="{{asset('assets/js/plugins/fullcalendar/gcal.min.js')}}"></script>
 
     <script src="{{asset('assets/js/calenders/base_comp_calendar.js')}}"></script>
+
+    {{--datetimepicker--}}
+    <script src="{{asset('assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js')}}"></script>
+
+    {{--colorpicker--}}
+    <script src="{{asset('assets/js/plugins/bootstrap-colorpicker/bootstrap-colorpicker.min.js')}}"></script>
+
+    {{--<script src="{{asset('assets/js/pickers/base_forms_pickers_more.js')}}"></script>--}}
+
+    <script>
+        jQuery(function () {
+            // Init page helpers (BS Datepicker + BS Datetimepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Input + Range Sliders + Tags Inputs + AutoNumeric plugins)
+            // 'tags-inputs'
+            App.initHelpers(['datetimepicker', 'colorpicker']);
+        });
+    </script>
 @endsection

@@ -15,6 +15,11 @@ class CreateAppointmentsTable extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('titel');
+            $table->dateTime('start')->nullable();
+            $table->dateTime('eind')->nullable();
+            $table->boolean('hele_dag')->nullable();
+            $table->string('hex_color')->nullable();
             $table->timestamps();
         });
     }
