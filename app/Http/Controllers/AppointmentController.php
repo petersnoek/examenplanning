@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Appointment;
 use App\Http\Requests\CreateAppointmentForm;
+use App\Student;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -16,7 +17,8 @@ class AppointmentController extends Controller
     public function index()
     {
         $appointments = Appointment::all();
-        return view('appointments.show', compact('appointments'));
+        $contacts = Student::all();
+        return view('appointments.show', compact('appointments', 'contacts'));
     }
 
     /**

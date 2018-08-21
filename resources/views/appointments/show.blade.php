@@ -5,7 +5,14 @@
     <link rel="stylesheet"
           href="{{asset('assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css')}}">
 
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
+    <link rel="stylesheet"
+          href="{{asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
+
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2-bootstrap.min.css')}}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+
 @endsection
 
 @section('content')
@@ -80,19 +87,27 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="form-material">
-                                <input class="js-colorpicker form-control colorpicker-element" type="text" id="example-colorpicker5" name="hex_color" value="#5c90d2">
+                                <input class="js-colorpicker form-control colorpicker-element" type="text"
+                                       id="example-colorpicker5" name="hex_color" value="#5c90d2">
                                 <label for="example-colorpicker5">Kies een kleur</label>
                             </div>
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label for="tag_list">Genodigden</label>
+                        <select id="tag_list" name="genodigden" class="form-control col-lg-12" multiple>
+                            @foreach($contacts as $contact)
+                                <option value="{{$contact->email}}">{{$contact->voornaam}}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <div class="form-material">
                         <button class="btn btn-default" type="submit"><i class="fa fa-plus"></i></button>
                     </div>
-
 
                 </form>
             </div>
@@ -126,7 +141,16 @@
         </div>
     </div>
 
-    <div class="colorpicker dropdown-menu colorpicker-right colorpicker-hidden" style="top: 1794px; left: 1416.45px;"><div class="colorpicker-saturation" style="background-color: rgb(0, 112, 255);"><i style="top: 17.6471px; left: 56.1905px;"><b></b></i></div><div class="colorpicker-hue"><i style="top: 40.678px;"></i></div><div class="colorpicker-alpha" style="background-color: rgb(92, 144, 210);"><i style="top: 0px;"></i></div><div class="colorpicker-color" style="background-color: rgb(92, 144, 210);"><div style="background-color: rgb(92, 144, 210);"></div></div><div class="colorpicker-selectors"></div></div>
+    <div class="colorpicker dropdown-menu colorpicker-right colorpicker-hidden" style="top: 1794px; left: 1416.45px;">
+        <div class="colorpicker-saturation" style="background-color: rgb(0, 112, 255);"><i
+                    style="top: 17.6471px; left: 56.1905px;"><b></b></i></div>
+        <div class="colorpicker-hue"><i style="top: 40.678px;"></i></div>
+        <div class="colorpicker-alpha" style="background-color: rgb(92, 144, 210);"><i style="top: 0px;"></i></div>
+        <div class="colorpicker-color" style="background-color: rgb(92, 144, 210);">
+            <div style="background-color: rgb(92, 144, 210);"></div>
+        </div>
+        <div class="colorpicker-selectors"></div>
+    </div>
 
 @endsection
 
@@ -144,13 +168,20 @@
     {{--colorpicker--}}
     <script src="{{asset('assets/js/plugins/bootstrap-colorpicker/bootstrap-colorpicker.min.js')}}"></script>
 
-    {{--<script src="{{asset('assets/js/pickers/base_forms_pickers_more.js')}}"></script>--}}
+    {{--pick many--}}
+    <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
 
     <script>
         jQuery(function () {
             // Init page helpers (BS Datepicker + BS Datetimepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Input + Range Sliders + Tags Inputs + AutoNumeric plugins)
-            // 'tags-inputs'
-            App.initHelpers(['datetimepicker', 'colorpicker']);
+            App.initHelpers(['datetimepicker', 'colorpicker', 'select2 ' ]);
+        });
+    </script>
+
+    <script>
+        $('#tag_list').select2({
+            placeholder: "Typ een naam...",
+            minimumInputLength: 1,
         });
     </script>
 @endsection
