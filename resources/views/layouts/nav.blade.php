@@ -77,6 +77,9 @@
                                     class="sidebar-mini-hide">Manage examens</span></a>
                         <ul>
                             <li>
+                                <a href="/periods/create">Examenperioden aanmaken</a>
+                            </li>
+                            <li>
                                 <a href="/appointments">Kalender inzien</a>
                             </li>
                             <li>
