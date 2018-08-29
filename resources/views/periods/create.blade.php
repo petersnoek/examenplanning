@@ -31,7 +31,7 @@
     <div class="content col-lg-12">
         <div class="col-lg-7">
             <!-- Material Register -->
-            <div class="block block-themed animated @if($errors->isEmpty()) bounceInLeft @else shake @endif">
+            <div class="block block-themed animated @if(!$errors->isEmpty()) shake @endif">
                 <div class="block-header bg-success">
                     <h3 class="block-title">Examenperioden beheren</h3>
                 </div>
@@ -70,7 +70,7 @@
                             <div class="col-lg-4">
                                 <div class="form-material">
                                     <div class="input-daterange input-group input-group-sm"
-                                         data-date-format="mm-dd-yyyy">
+                                         data-date-format="dd-mm-yyyy">
                                         <input class="form-control" type="text" id="example-daterange1"
                                                name="startdatum"
                                                placeholder="Startdatum">

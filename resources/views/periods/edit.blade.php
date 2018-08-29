@@ -31,7 +31,7 @@
     <div class="content col-lg-12">
         <div class="col-lg-12">
             <!-- Material Register -->
-            <div class="block block-themed animated @if($errors->isEmpty()) bounceInLeft @else shake @endif">
+            <div class="block block-themed animated @if(!$errors->isEmpty()) shake @endif">
                 <div class="block-header bg-success">
                     <h3 class="block-title">Examenperioden beheren</h3>
                 </div>

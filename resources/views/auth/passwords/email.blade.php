@@ -1,7 +1,7 @@
 @extends('layouts.landing.master')
 
 @section('content')
-    <div class="col-lg-4 col-lg-push-4 push-30-t animated @if ($errors->has('email')) shake @else bounceInLeft @endif">
+    <div class="col-lg-4 col-lg-push-4 push-30-t animated @if ($errors->has('email')) shake @endif">
         <!-- Material Lock -->
         <div class="block block-themed">
             <div class="block-header bg-danger">

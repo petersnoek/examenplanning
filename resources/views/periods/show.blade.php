@@ -1,4 +1,4 @@
-<div class="block block-themed animated bounceInRight">
+<div class="block block-themed animated">
     <div class="block-header bg-success">
         <h3 class="block-title">Studenten beheren</h3>
     </div>

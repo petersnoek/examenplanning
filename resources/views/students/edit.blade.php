@@ -22,7 +22,7 @@
     <!-- Page Content -->
     <div class="content col-lg-12">
         <!-- Creation -->
-        <div class="block block-themed  remove-padding animated @if($errors->isEmpty()) bounceInLeft @else shake @endif">
+        <div class="block block-themed  remove-padding animated @if(!$errors->isEmpty()) shake @endif">
             <div class="block-header bg-success">
                 <h3 class="block-title">Student aanmaken</h3>
             </div>

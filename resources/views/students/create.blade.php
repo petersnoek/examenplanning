@@ -22,7 +22,7 @@
     <!-- Page Content -->
     <div class="content col-lg-12">
         <!-- Creation -->
-        <div class="block block-themed col-lg-7 remove-padding animated @if($errors->isEmpty()) bounceInLeft @else shake @endif">
+        <div class="block block-themed col-lg-7 remove-padding animated @if(!$errors->isEmpty()) shake @endif">
             <div class="block-header bg-success">
                 <h3 class="block-title">Student aanmaken</h3>
             </div>
@@ -157,7 +157,7 @@
         </div>
         <!-- END creation -->
 
-        <div class="col-lg-5 animated bounceInRight">
+        <div class="col-lg-5">
             @include('students.show', ['students' => $students])
         </div>
     </div>
