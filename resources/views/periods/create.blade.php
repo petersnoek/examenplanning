@@ -71,7 +71,7 @@
                                 <div class="form-material">
                                     <div class="input-daterange input-group input-group-sm"
                                          data-date-format="dd-mm-yyyy">
-                                        <input class="form-control" type="text" id="example-daterange1"
+                                        <input autocomplete="false" class="form-control" type="text" id="example-daterange1"
                                                name="startdatum"
                                                placeholder="Startdatum">
                                         @if ($errors->has('startdatum'))
@@ -80,7 +80,7 @@
                                             </span>
                                         @endif
                                         <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
-                                        <input class="form-control" type="text" id="example-daterange2" name="einddatum"
+                                        <input autocomplete="false" class="form-control" type="text" id="example-daterange2" name="einddatum"
                                                placeholder="Einddatum">
                                         @if ($errors->has('einddatum'))
                                             <span class="invalid-feedback" role="alert">
@@ -131,10 +131,17 @@
 
     <script src="{{asset('assets/js/datatables/base_tables_datatables.js')}}"></script>
     <script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/js/datepickers/change_startdate.min.js')}}"></script>
     <script>
         jQuery(function () {
             // Init page helpers (BS Datepicker + BS Datetimepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Input + Range Sliders + Tags Inputs + AutoNumeric plugins)
             App.initHelpers(['select2', 'datepicker']);
         });
+
+
+    jQuery(document).ready(function(){
+
+
+    });
     </script>
 @endsection
