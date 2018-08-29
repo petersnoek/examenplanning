@@ -43,14 +43,20 @@ class PeriodController extends Controller
     public function store(CreatePeriodForm $form)
     {
         try{
-            $form->persist();
-            session()->flash('message', 'Periode succesvol aangemaakt.');
-            return redirect("/periods/create");
-        }catch(Exception $e){
+            $schooljaar = Carbon::parse("01-01-" . explode("-", request('schooljaar'))[0]);
+            if(request('startdatum') >= $schooljaar)
+            {
+                return redirect()->back()->withErrors(array('startdatum' => 'Deze startdatum ligt voor het geselecteerde schooljaar'));
+            }
+            else{
+                $form->persist();
+                session()->flash('message', 'Periode succesvol aangemaakt.');
+                return redirect("/periods/create");
+            }
+        }
+        catch(Exception $e){
             return redirect()->back()->withErrors(array('periodenaam' => 'Deze periodenaam is al in gebruik voor dit schooljaar'));
         }
-
-
     }
 
     /**
@@ -85,10 +91,17 @@ class PeriodController extends Controller
      */
     public function update(EditPeriodForm $form, period $period)
     {
-        try{    //here trying to update email and phone in db which are unique values
-            $form->patch($period);
-            session()->flash('message', 'Periode succesvol aangepast.');
-            return redirect("/periods/create");
+        try{
+            $schooljaar = Carbon::parse("01-01-" . explode("-", $period->schooljaar)[0]);
+            if(Carbon::parse($period->startdatum) <= $schooljaar)
+            {
+                return redirect()->back()->withErrors(array('startdatum' => 'Deze startdatum ligt voor het geselecteerde schooljaar'));
+            }
+            else{
+                $form->patch($period);
+                session()->flash('message', 'Periode succesvol aangepast.');
+                return redirect("/periods/create");
+            }
         }catch(Exception $e){
             return redirect()->back()->withErrors(array('periodenaam' => 'Deze periodenaam is al in gebruik voor dit schooljaar'));
         }

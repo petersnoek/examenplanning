@@ -1,7 +1,7 @@
 @extends('layouts.landing.master')
 
 @section('content')
-    <div class="col-lg-4 push-30-t col-lg-push-4 js-animation-object animated @if($errors->has('password') || $errors->has('email')) shake @endif">
+    <div class="col-lg-4 push-30-t col-lg-push-4 js-animation-object animated @if(!$errors->isEmpty()) shake @endif">
         <div class="block block-themed">
             <div class="block-header bg-primary">
                 <h3 class="block-title">Reset wachtwoord</h3>

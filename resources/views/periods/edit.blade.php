@@ -74,20 +74,20 @@
                                         <input class="form-control" type="text" id="example-daterange1"
                                                name="startdatum"
                                                placeholder="Startdatum" value="{{Carbon\Carbon::parse($period->startdatum)->format('d-m-Y')}}">
-                                        @if ($errors->has('startdatum'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('startdatum') }}</strong>
-                                            </span>
-                                        @endif
                                         <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
                                         <input class="form-control" type="text" id="example-daterange2" name="einddatum"
                                                placeholder="Einddatum"  value="{{Carbon\Carbon::parse($period->einddatum)->format('d-m-Y')}}">
-                                        @if ($errors->has('einddatum'))
-                                            <span class="invalid-feedback" role="alert">
+                                    </div>
+                                    @if ($errors->has('startdatum'))
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('startdatum') }}</strong>
+                                            </span>
+                                    @endif
+                                    @if ($errors->has('einddatum'))
+                                        <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('einddatum') }}</strong>
                                             </span>
-                                        @endif
-                                    </div>
+                                    @endif
                                     <label for="example-daterange1">Periode</label>
                                 </div>
                             </div>
