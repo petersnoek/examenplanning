@@ -42,11 +42,16 @@ class PeriodController extends Controller
      */
     public function store(CreatePeriodForm $form)
     {
+//        dd(Carbon::parse(request('einddatum')), Carbon::parse(request('startdatum')), request('startdatum'));
         try{
-            $schooljaar = Carbon::parse("01-01-" . explode("-", request('schooljaar'))[0]);
-            if(request('startdatum') >= $schooljaar)
+            $schooljaar = "01-01-" . explode("-", request('schooljaar'))[0];
+            if(Carbon::parse(request('startdatum')) < Carbon::parse($schooljaar))
             {
                 return redirect()->back()->withErrors(array('startdatum' => 'Deze startdatum ligt voor het geselecteerde schooljaar'));
+            }
+            elseif(Carbon::parse(request('einddatum')) < Carbon::parse(request('startdatum')))
+            {
+                return redirect()->back()->withErrors(array('einddatum' => 'Deze einddatum ligt voor de startdatum'));
             }
             else{
                 $form->persist();
@@ -92,10 +97,15 @@ class PeriodController extends Controller
     public function update(EditPeriodForm $form, period $period)
     {
         try{
-            $schooljaar = Carbon::parse("01-01-" . explode("-", $period->schooljaar)[0]);
-            if(Carbon::parse($period->startdatum) <= $schooljaar)
+            $schooljaar = "01-01-" . explode("-", request('schooljaar'))[0];
+//            dd(Carbon::parse($schooljaar), Carbon::parse($period->startdatum), Carbon::parse($period->startdatum) < Carbon::parse($schooljaar));
+            if(Carbon::parse(request('startdatum')) < Carbon::parse($schooljaar))
             {
                 return redirect()->back()->withErrors(array('startdatum' => 'Deze startdatum ligt voor het geselecteerde schooljaar'));
+            }
+            elseif(Carbon::parse(request('einddatum')) < Carbon::parse(request('startdatum')))
+            {
+                return redirect()->back()->withErrors(array('einddatum' => 'Deze einddatum ligt voor de startdatum'));
             }
             else{
                 $form->patch($period);
