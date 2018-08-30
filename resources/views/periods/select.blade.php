@@ -26,13 +26,13 @@
     <div class="content col-lg-12">
         <div class="block">
             <div class="block-header">
-                <h3 class="block-title">Dynamic Table
+                <h3 class="block-title">
                     <small>Full pagination</small>
                 </h3>
             </div>
             <div class="block-content">
                 <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality initialized in js/pages/base_tables_datatables.js -->
-                <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer table-vcenter">
                     <div class="row">
                         <div class="col-sm-12">
                             <table class="table table-hover js-dataTable-full-pagination dataTable no-footer"
@@ -46,8 +46,6 @@
                                 </tr>
                                 </thead>
                             </table>
-
-
                         </div>
                     </div>
                 </div>
@@ -62,10 +60,25 @@
 @push('scripts')
     <script>
         $(function () {
+
             $('#DataTables_Table_2').DataTable({
-                processing: true,
-                serverSide: false,
                 ajax: '{!! route('periods:dt') !!}',
+                // "pageLength": 1,
+                "renderer": "bootstrap",
+                "language": { // language settings
+                    "infoEmpty": "Geen gegevens gevonden om weer te geven",
+                    "emptyTable": "Geen gegevens beschikbaar in de database",
+                    "zeroRecords": "Geen overeenkomstige gegevens beschikbaar",
+                    "search": "<i class='fa fa-search'></i>",
+                    "paginate": {
+                        "previous": "Vorige",
+                        "next": "Volgende",
+                        "last": "Laatste",
+                        "first": "Eerste",
+                        "page": "Pagina",
+                        "pageOf": "Van",
+                    }
+                },
                 columns: [
                     {data: 'schooljaar', name: 'schooljaar'},
                     {data: 'periodenaam', name: 'periodenaam'},
@@ -73,6 +86,11 @@
                     {data: 'einddatum', name: 'einddatum'}
                 ]
             });
+        });
+
+        $(document).ready(function () {
+            $('input').addClass('form-control');
+            $('select').addClass('form-control');
         });
     </script>
     <script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>

@@ -131,7 +131,7 @@ class PeriodController extends Controller
         return redirect("/periods/create");
     }
 
-    public function anyData(){
+    public function showAll(){
         $periods = Period::all();
         return Datatables::of($periods)->make(true);
     }

@@ -42,12 +42,11 @@ Route::get('/periods/{period}/edit', 'PeriodController@edit');
 Route::put('/periods/{period}', 'PeriodController@update');
 
 //CRUD slots
-Route::get('/slots', 'PeriodController@getIndex');
+Route::get('/slots', 'PeriodController@Index');
 Route::post('/slots', 'SlotController@store');
 
-
-Route::get('periods', 'PeriodController@index');
-Route::get('periods-dt', 'PeriodController@anyData')->name('periods:dt');
+Route::get('periods', 'PeriodController@getIndex');
+Route::get('periods-dt', 'PeriodController@showAll')->name('periods:dt');
 
 
 
