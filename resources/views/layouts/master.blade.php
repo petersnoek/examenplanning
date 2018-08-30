@@ -54,7 +54,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" id="css-main" href="{{asset('assets/css/oneui.min.css')}}">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    @yield('head_links')
+    @stack('style')
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
@@ -114,7 +114,7 @@
 <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
 <script src="{{asset('assets/js/oneui.min.js')}}"></script>
 
-@yield('page_plugins')
+@stack('scripts')
 
 <!-- Page JS Plugins + Page JS Code -->
 <script>

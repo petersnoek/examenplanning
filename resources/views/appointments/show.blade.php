@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('head_links')
+@push('style')
     <link rel="stylesheet" href="{{asset('assets/js/plugins/fullcalendar/fullcalendar.min.css')}}">
 
     <link rel="stylesheet"
@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
 
-@endsection
+@endpush
 
 @section('content')
     <!-- Page Header -->
@@ -154,7 +154,7 @@
 
 @endsection
 
-@section('page_plugins')
+@push('scripts')
     <script src="{{asset('assets/js/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/fullcalendar/moment.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/fullcalendar/fullcalendar.min.js')}}"></script>
@@ -184,4 +184,4 @@
             minimumInputLength: 1,
         });
     </script>
-@endsection
+@endpush

@@ -80,6 +80,9 @@
                                 <a href="/periods/create">Examenperioden aanmaken</a>
                             </li>
                             <li>
+                                <a href="/slots">Slots aanmaken</a>
+                            </li>
+                            <li>
                                 <a href="/appointments">Kalender inzien</a>
                             </li>
                             <li>

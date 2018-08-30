@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
-@section('head_links')
+@push('style')
     <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker3.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.css')}}">
 
-@endsection
+@endpush
 
 @section('content')
     <!-- Page Header -->
@@ -50,7 +50,8 @@
                                         <option></option>
                                         <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         @for ($i = 0; $i < 3; $i++)
-                                            <option value="{{$value = $now->year . "-" . $now->addyear()->year}}" @if($value == $period->schooljaar) selected="selected" @endif>{{$value}}</option>
+                                            <option value="{{$value = $now->year . "-" . $now->addyear()->year}}"
+                                                    @if($value == $period->schooljaar) selected="selected" @endif>{{$value}}</option>
                                         @endfor
                                     </select>
                                     <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"
@@ -70,13 +71,16 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-material">
-                                    <div class="input-daterange input-group input-group-sm" data-date-format="dd-mm-yyyy">
+                                    <div class="input-daterange input-group input-group-sm"
+                                         data-date-format="dd-mm-yyyy">
                                         <input class="form-control" type="text" id="example-daterange1"
                                                name="startdatum"
-                                               placeholder="Startdatum" value="{{Carbon\Carbon::parse($period->startdatum)->format('d-m-Y')}}">
+                                               placeholder="Startdatum"
+                                               value="{{Carbon\Carbon::parse($period->startdatum)->format('d-m-Y')}}">
                                         <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
                                         <input class="form-control" type="text" id="example-daterange2" name="einddatum"
-                                               placeholder="Einddatum"  value="{{Carbon\Carbon::parse($period->einddatum)->format('d-m-Y')}}">
+                                               placeholder="Einddatum"
+                                               value="{{Carbon\Carbon::parse($period->einddatum)->format('d-m-Y')}}">
                                     </div>
                                     @if ($errors->has('startdatum'))
                                         <span class="invalid-feedback" role="alert">
@@ -106,7 +110,8 @@
                         </div>
                         <div class="form-group">
                             <div class="col-lg-12">
-                                <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-plus push-5-r"></i>Pas examenperiode aan
+                                <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-plus push-5-r"></i>Pas
+                                    examenperiode aan
                                 </button>
                             </div>
                         </div>
@@ -119,7 +124,7 @@
 
 @endsection
 
-@section('page_plugins')
+@push('scripts')
 
     <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
@@ -130,4 +135,4 @@
             App.initHelpers(['select2', 'datepicker']);
         });
     </script>
-@endsection
+@endpush

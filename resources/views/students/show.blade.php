@@ -1,6 +1,6 @@
-@section('head_links')
+@push('style')
     <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.css')}}">
-@endsection
+@endpush
 
 <div class="block block-themed">
     <div class="block-header bg-success">
@@ -47,13 +47,15 @@
                             <td class="hidden-xs col-lg-2">{{$student->ovnummer}}</td>
                             <td class="text-center col-lg-1">
                                 <div class="btn-group">
-                                    <a class="btn btn-xs btn-default" href="/students/{{$student->id}}/edit" data-toggle="tooltip"
-                                            title=""
-                                            data-original-title="Bewerk student"><i class="fa fa-pencil"></i>
+                                    <a class="btn btn-xs btn-default" href="/students/{{$student->id}}/edit"
+                                       data-toggle="tooltip"
+                                       title=""
+                                       data-original-title="Bewerk student"><i class="fa fa-pencil"></i>
                                     </a>
-                                    <a class="btn btn-xs btn-default" href="/students/{{$student->id}}/remove" data-toggle="tooltip"
-                                            title=""
-                                            data-original-title="Verwijder student"><i class="fa fa-times"></i>
+                                    <a class="btn btn-xs btn-default" href="/students/{{$student->id}}/remove"
+                                       data-toggle="tooltip"
+                                       title=""
+                                       data-original-title="Verwijder student"><i class="fa fa-times"></i>
                                     </a>
                                 </div>
                             </td>
@@ -66,7 +68,7 @@
     </div>
 </div>
 
-@section('page_plugins')
+@push('scripts')
     <script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('assets/js/datatables/base_tables_datatables.js')}}"></script>
-@endsection
+@endpush

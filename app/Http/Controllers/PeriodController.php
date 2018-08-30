@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Redirect;
+use Yajra\DataTables\DataTables;
 
 class PeriodController extends Controller
 {
@@ -19,7 +20,7 @@ class PeriodController extends Controller
      */
     public function index()
     {
-        //
+        return view('periods.select');
     }
 
     /**
@@ -72,7 +73,7 @@ class PeriodController extends Controller
      */
     public function show(period $period)
     {
-        //
+
     }
 
     /**
@@ -128,5 +129,14 @@ class PeriodController extends Controller
         Period::destroy($period->id);
         session()->flash('message', 'Periode succesvol verwijderd.');
         return redirect("/periods/create");
+    }
+
+    public function anyData(){
+        $periods = Period::all();
+        return Datatables::of($periods)->make(true);
+    }
+    public function getIndex()
+    {
+        return view('periods.select');
     }
 }

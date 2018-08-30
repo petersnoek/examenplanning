@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
-@section('head_links')
+@push('style')
     <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker3.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.css')}}">
 
-@endsection
+@endpush
 
 @section('content')
     <!-- Page Header -->
@@ -124,7 +124,7 @@
 
 @endsection
 
-@section('page_plugins')
+@push('scripts')
 
     <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
@@ -144,4 +144,4 @@
 
     });
     </script>
-@endsection
+@endpush
