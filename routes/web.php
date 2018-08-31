@@ -45,8 +45,6 @@ Route::put('/periods/{period}', 'PeriodController@update');
 Route::get('/slots', 'PeriodController@Index');
 Route::post('/slots', 'SlotController@store');
 
-Route::get('periods', 'PeriodController@getIndex');
-Route::get('periods-dt', 'PeriodController@showAll')->name('periods:dt');
 
 
 

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @push('style')
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.css')}}">
+
 @endpush
 
 @section('content')
@@ -23,75 +23,52 @@
         </div>
     </div>
     <!-- END Page Header -->
-    <div class="content col-lg-12">
-        <div class="block">
-            <div class="block-header">
-                <h3 class="block-title">
-                    <small>Full pagination</small>
-                </h3>
+    <div class="content col-lg-3">
+        <div class="block block-bordered">
+            <div class="block-header bg-gray-lighter">
+                <h3 class="block-title">Selecteer een periode</h3>
             </div>
             <div class="block-content">
-                <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality initialized in js/pages/base_tables_datatables.js -->
-                <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer table-vcenter">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table class="table table-hover js-dataTable-full-pagination dataTable no-footer"
-                                   id="DataTables_Table_2" role="grid" aria-describedby="DataTables_Table_2_info">
-                                <thead>
-                                <tr>
-                                    <th>Schooljaar</th>
-                                    <th>Periodenaam</th>
-                                    <th>Startdatum</th>
-                                    <th>Einddatum</th>
-                                </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
+                <div class="table-responsive">
+                    <table class="js-table-sections table table-hover">
+                        <thead>
+                        <tr>
+                            <th style="width: 30px;"></th>
+                            <th>Maak een keuze</th>
+                        </tr>
+                        </thead>
+                        <tbody class="js-table-sections-header">
+                        <tr>
+                            <td class="text-center">
+                                <i class="fa fa-angle-right"></i>
+                            </td>
+                            <td class="font-w600" colspan="3">schooljaar</td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <tr>
+                            <td class="text-center"></td>
+                            <td class="font-w600">Periodenaam</td>
+                            <td>
+                                <small>Paypal</small>
+                            </td>
+                            <td class="hidden-xs">
+                                <small class="text-muted">June 16, 2015 12:16</small>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-
-
     </div>
-
 @endsection
 
 @push('scripts')
     <script>
-        $(function () {
-
-            $('#DataTables_Table_2').DataTable({
-                ajax: '{!! route('periods:dt') !!}',
-                // "pageLength": 1,
-                "renderer": "bootstrap",
-                "language": { // language settings
-                    "infoEmpty": "Geen gegevens gevonden om weer te geven",
-                    "emptyTable": "Geen gegevens beschikbaar in de database",
-                    "zeroRecords": "Geen overeenkomstige gegevens beschikbaar",
-                    "search": "<i class='fa fa-search'></i>",
-                    "paginate": {
-                        "previous": "Vorige",
-                        "next": "Volgende",
-                        "last": "Laatste",
-                        "first": "Eerste",
-                        "page": "Pagina",
-                        "pageOf": "Van",
-                    }
-                },
-                columns: [
-                    {data: 'schooljaar', name: 'schooljaar'},
-                    {data: 'periodenaam', name: 'periodenaam'},
-                    {data: 'startdatum', name: 'startdatum'},
-                    {data: 'einddatum', name: 'einddatum'}
-                ]
-            });
-        });
-
-        $(document).ready(function () {
-            $('input').addClass('form-control');
-            $('select').addClass('form-control');
+        jQuery(function () {
+            // Init page helpers (Table Tools helper)
+            App.initHelpers('table-tools');
         });
     </script>
-    <script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 @endpush
