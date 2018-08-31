@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePeriodForm;
 use App\Http\Requests\EditPeriodForm;
 use App\period;
+use App\Schoolyear;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Exception;
@@ -31,8 +32,8 @@ class PeriodController extends Controller
     public function create()
     {
         $periods = Period::all();
-        $now = Carbon::now();
-        return view('periods.create', compact('periods', 'now'));
+        $schoolyears = Schoolyear::all();
+        return view('periods.create', compact('periods', 'schoolyears'));
     }
 
     /**

@@ -1,6 +1,6 @@
 <div class="block block-themed animated">
     <div class="block-header bg-success">
-        <h3 class="block-title">Perioden beheren</h3>
+        <h3 class="block-title">Schooljaren beheren</h3>
     </div>
     <div class="table-responsive">
         <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer block-content">
@@ -23,12 +23,6 @@
                                 style="width: 551px;">
                                 Periode
                             </th>
-                            <th class=" sorting" tabindex="0" aria-controls="DataTables_Table_2"
-                                rowspan="1"
-                                colspan="1" aria-label="OV-nummer: activate to sort column ascending"
-                                style="width: 551px;">
-                                Periodenaam
-                            </th>
                             <th class="text-center sorting_disabled" style="width: 137px;" rowspan="1"
                                 colspan="1"
                                 aria-label="Actions">Actions
@@ -36,21 +30,20 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($periods as $period)
+                        @foreach($schoolyears as $schoolyear)
                             <tr role="row" class="odd">
-                                <td class="hidden-xs text-center sorting_1 col-xs-1">{{$period->id}}</td>
-                                <td class="font-w600 col-xs-3">schooljaar</td>
-                                <td class="hidden-xs text-wrap col-xs-5">{{Carbon\Carbon::parse($period->startdatum)->format('d-m-Y')}} tot {{Carbon\Carbon::parse($period->einddatum)->format('d-m-Y')}}</td>
-                                <td class="col-xs-2">{{$period->periodenaam}}</td>
+                                <td class="hidden-xs text-center sorting_1 col-xs-1">{{$schoolyear->id}}</td>
+                                <td class="font-w600 col-xs-3">{{$schoolyear->schooljaar}}</td>
+                                <td class="hidden-xs text-wrap col-xs-5">{{Carbon\Carbon::parse($schoolyear->startdatum)->format('d-m-Y')}} tot {{Carbon\Carbon::parse($schoolyear->einddatum)->format('d-m-Y')}}</td>
                                 <td class="text-center col-xs-1">
                                     <div class="btn-group">
-                                        <a class="btn btn-xs btn-default" href="/periods/{{$period->id}}/edit" data-toggle="tooltip"
+                                        <a class="btn btn-xs btn-default" href="/schoolyears/{{$schoolyear->id}}/edit" data-toggle="tooltip"
                                            title=""
-                                           data-original-title="Bewerk periode"><i class="fa fa-pencil"></i>
+                                           data-original-title="Bewerk schooljaar"><i class="fa fa-pencil"></i>
                                         </a>
-                                        <a class="btn btn-xs btn-default" href="/periods/{{$period->id}}/remove" data-toggle="tooltip"
+                                        <a class="btn btn-xs btn-default" href="/schoolyears/{{$schoolyear->id}}/remove" data-toggle="tooltip"
                                            title=""
-                                           data-original-title="Verwijder periode"><i class="fa fa-times"></i>
+                                           data-original-title="Verwijder schooljaar"><i class="fa fa-times"></i>
                                         </a>
                                     </div>
                                 </td>

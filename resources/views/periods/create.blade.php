@@ -48,9 +48,9 @@
                                             data-placeholder="Kies een schooljaar..." tabindex="-1" aria-hidden="true">
                                         <option></option>
                                         <!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                        @for ($i = 0; $i < 3; $i++)
-                                            <option value="{{$value = $now->year . "-" . $now->addyear()->year}}">{{$value}}</option>
-                                        @endfor
+                                        @foreach ($schoolyears as $schoolyear)
+                                            <option value="{{$value = $schoolyear->schooljaar}}">{{$schoolyear->schooljaar}}</option>
+                                        @endforeach
                                     </select>
                                     <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"
                                           dir="ltr" style="width: 100%;">
