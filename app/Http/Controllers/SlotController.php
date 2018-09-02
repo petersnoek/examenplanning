@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\period;
+use App\Schoolyear;
 use App\Slot;
 use Illuminate\Http\Request;
 
@@ -22,9 +24,10 @@ class SlotController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(period $period)
     {
-        //
+        $schoolyears = Schoolyear::all();
+        return view('periods.select', compact('schoolyears', 'period'));
     }
 
     /**

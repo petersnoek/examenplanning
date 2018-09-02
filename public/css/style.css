@@ -27,3 +27,7 @@
     /*-moz-hyphens: auto;*/
     /*hyphens: auto;*/
 }
+
+.cursor_hand{
+    cursor:pointer;
+}
