@@ -21,7 +21,7 @@ class PeriodController extends Controller
      */
     public function index()
     {
-        return view('periods.select');
+        //
     }
 
     /**
@@ -45,7 +45,7 @@ class PeriodController extends Controller
     public function store(CreatePeriodForm $form)
     {
 //        dd(Carbon::parse(request('einddatum')), Carbon::parse(request('startdatum')), request('startdatum'));
-        try {
+//        try {
             $schooljaar = "01-01-" . explode("-", request('schooljaar'))[0];
             if (Carbon::parse(request('startdatum')) < Carbon::parse($schooljaar)) {
                 return redirect()->back()->withErrors(array('startdatum' => 'Deze startdatum ligt voor het geselecteerde schooljaar'));
@@ -56,9 +56,9 @@ class PeriodController extends Controller
                 session()->flash('message', 'Periode succesvol aangemaakt.');
                 return redirect("/periods/create");
             }
-        } catch (Exception $e) {
-            return redirect()->back()->withErrors(array('periodenaam' => 'Deze periodenaam is al in gebruik voor dit schooljaar'));
-        }
+//        } catch (Exception $e) {
+//            return redirect()->back()->withErrors(array('periodenaam' => 'Deze periodenaam is al in gebruik voor dit schooljaar'));
+//        }
     }
 
     /**

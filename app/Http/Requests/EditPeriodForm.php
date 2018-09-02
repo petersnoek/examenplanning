@@ -35,7 +35,7 @@ class EditPeriodForm extends FormRequest
 
     public function patch(Period $period){
         $period = Period::find($period->id);
-        $period->schooljaar = request('schooljaar');
+        $period->schoolyear_id = request('schooljaar');
         $period->startdatum = Carbon::parse(request('startdatum'));
         $period->einddatum = Carbon::parse(request('einddatum'));
         $period->periodenaam = request('periodenaam');

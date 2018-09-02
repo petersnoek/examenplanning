@@ -18,6 +18,7 @@ class CreatePeriodsTable extends Migration
             $table->string('periodenaam');
             $table->date('startdatum');
             $table->date('einddatum');
+            $table->integer('schoolyear_id');
             $table->timestamps();
         });
     }

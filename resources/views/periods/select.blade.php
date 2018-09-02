@@ -37,25 +37,27 @@
                             <th>Maak een keuze</th>
                         </tr>
                         </thead>
+                        @foreach($schoolyears as $schoolyear)
                         <tbody class="js-table-sections-header">
-                        <tr>
-                            <td class="text-center">
-                                <i class="fa fa-angle-right"></i>
-                            </td>
-                            <td class="font-w600" colspan="3">schooljaar</td>
-                        </tr>
+
+                            <tr>
+                                <td class="text-center">
+                                    <i class="fa fa-angle-right"></i>
+                                </td>
+                                <td class="font-w600" colspan="3">{{$schoolyear->schooljaar}}</td>
+                            </tr>
                         </tbody>
                         <tbody>
-                        <tr>
-                            <td class="text-center"></td>
-                            <td class="font-w600">Periodenaam</td>
-                            <td>
-                                <small>Paypal</small>
-                            </td>
-                            <td class="hidden-xs">
-                                <small class="text-muted">June 16, 2015 12:16</small>
-                            </td>
-                        </tr>
+                            @foreach($schoolyear->periods as $period)
+                                <tr>
+                                    <td class="text-center"></td>
+                                    <td class="font-w600">{{$period->periodenaam}}</td>
+                                    <td class="hidden-xs">
+                                        <small class="text-muted">{{Carbon\Carbon::parse($period->startdatum)->format('d-m-Y')}} tot {{Carbon\Carbon::parse($period->einddatum)->format('d-m-Y')}}</small>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

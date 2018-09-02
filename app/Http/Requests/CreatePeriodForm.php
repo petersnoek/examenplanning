@@ -27,15 +27,16 @@ class CreatePeriodForm extends FormRequest
     {
         return [
             'schooljaar' => 'required',
-            'periodenaam' => 'required',
+            'periodenaam' => 'required', //make unique in combination with selected schoolyear
             'startdatum' => 'required',
             'einddatum' => 'required',
         ];
     }
 
     public function persist(){
+//        dd(request('schooljaar'));
         $period = Period::create([
-            'schooljaar' => request('schooljaar'),
+            'schoolyear_id' => request('schooljaar'),
             'periodenaam' => request('periodenaam'),
             'startdatum' => Carbon::createFromFormat('d-m-Y', request('startdatum')),
             'einddatum' => Carbon::createFromFormat('d-m-Y', request('einddatum')),

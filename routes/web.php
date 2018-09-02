@@ -42,7 +42,7 @@ Route::get('/periods/{period}/edit', 'PeriodController@edit');
 Route::put('/periods/{period}', 'PeriodController@update');
 
 //CRUD slots
-Route::get('/slots', 'PeriodController@Index');
+Route::get('/slots', 'SchoolyearController@Index');
 Route::post('/slots', 'SlotController@store');
 
 //CRUD schoolyears
