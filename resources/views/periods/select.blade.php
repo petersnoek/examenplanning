@@ -28,13 +28,13 @@
             <div class="block-header bg-gray-lighter">
                 <h3 class="block-title">Selecteer een periode</h3>
             </div>
-            <div class="block-content">
+            <div class="block-content remove-padding-t">
                 <div class="table-responsive">
                     <table class="js-table-sections table table-hover">
                         <thead>
                         <tr>
                             <th style="width: 30px;"></th>
-                            <th>Maak een keuze</th>
+                            <th colspan="3">Maak een keuze</th>
                         </tr>
                         </thead>
                         @foreach($schoolyears as $schoolyear)
@@ -49,7 +49,8 @@
                             </tbody>
                             <tbody>
                             @foreach($schoolyear->periods as $schoolyearPeriod)
-                                <tr class="cursor_hand" onclick="window.location.href='/slots/{{$schoolyearPeriod->id}}';">
+                                <tr class="cursor_hand"
+                                    onclick="window.location.href='/slots/{{$schoolyearPeriod->id}}';">
                                     <td class="text-center"></td>
                                     <td class="font-w600">{{$schoolyearPeriod->periodenaam}}</td>
                                     <td class="hidden-xs">
@@ -66,28 +67,15 @@
             </div>
         </div>
     </div>
-    <div class="content col-lg-9">
-        <div class="block block-bordered">
-            <div class="block-header bg-gray-lighter">
-                @if(isset($period))
-                    <h3 class="block-title">Je maakt slots aan voor {{$period->periodenaam}}</h3>
-                @else
-                    <h3 class="block-title">Nog geen period geselecteerd</h3>
-                @endif
+    @include('slots.create')
 
-            </div>
-            <div class="block-content">
-
-            </div>
-        </div>
-    </div>
 @endsection
 
 @push('scripts')
     <script>
         jQuery(function () {
             // Init page helpers (Table Tools helper)
-            App.initHelpers('table-tools');
+            App.initHelpers(['table-tools']);
         });
     </script>
 @endpush
