@@ -1,5 +1,5 @@
 var hasOptions = false;
-$("#gehele_dag").on('change', function(){
+$("#herhaal").on('change', function(){
     if(!hasOptions){
         $( "#moreOptions" ).append("<div class=\"form-group\">\n" +
             "                                    <div class=\"col-lg-6\">\n" +

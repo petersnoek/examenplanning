@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\period;
 use App\Schoolyear;
 use App\Slot;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SlotController extends Controller
@@ -52,6 +53,11 @@ class SlotController extends Controller
         //
     }
 
+    public function showAll(Period $period)
+    {
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -83,6 +89,8 @@ class SlotController extends Controller
      */
     public function destroy(Slot $slot)
     {
-        //
+        Slot::destroy($slot->id);
+        session()->flash('message', 'Slot succesvol verwijderd.');
+        return redirect("/slots");
     }
 }
