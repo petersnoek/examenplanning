@@ -18,7 +18,7 @@
             </div>
             <div class="block-content">
                 @if(isset($period))
-                    <form class="form-horizontal push-10-t push-10 form-material" action="/slots"
+                    <form class="form-horizontal push-10-t push-10 form-material" action="/slots/addtoperiod/{{$period->id}}"
                           method="post">
                         @csrf
                         <div class="row">
@@ -27,7 +27,7 @@
                                     <div class="col-xs-4">
                                         <label for="dagen">Selecteer dagen</label>
                                         <select class="js-select2 form-control select2-hidden-accessible"
-                                                id="dagen" name="dagen"
+                                                id="dagen" name="dagen[]"
                                                 style="width: 100%;" data-placeholder="Kies dag(en)" multiple=""
                                                 tabindex="-1" aria-hidden="true">
                                             <option></option>
@@ -44,7 +44,7 @@
                                             <label for="starttijd">Selecteer starttijd</label>
                                             <div class="input-group bootstrap-timepicker timepicker">
                                                 <input class="form-control input-lg" type="text" id="starttijd"
-                                                       name="startijd" placeholder="">
+                                                       name="starttijd" placeholder="">
                                                 <span class="input-group-addon"><i
                                                             class="glyphicon glyphicon-time"></i></span>
                                             </div>
@@ -66,7 +66,7 @@
                                     <div class="col-xs-12">
                                         <label class="css-input switch switch-success">
                                             <input type="checkbox" checked="checked" id="herhaal"
-                                                   name="herhaal"><span></span> Herhaal over de gehele periode?
+                                                   name="gehele_periode"><span></span> Herhaal over de gehele periode?
                                         </label>
                                     </div>
                                 </div>

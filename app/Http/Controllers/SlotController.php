@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateSlotRequest;
 use App\period;
 use App\Schoolyear;
 use App\Slot;
@@ -37,9 +38,32 @@ class SlotController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateSlotRequest $form, period $period)
     {
-        //
+        if(request('gehele_periode') == "on")
+        {
+            $checkdate = Carbon::parse($period->startdatum);
+            if(request('dagen') != null)
+            {
+                foreach(request('dagen') as $dag)
+                {
+                    while($checkdate < $period->einddatum){
+                        if($checkdate->dayOfWeek == $dag){
+                            $form->persistWholePeriod($checkdate, request('starttijd'), request('eindtijd'), $period);
+                        }
+                        $checkdate->addDay();
+                    }
+                }
+            }
+            else{
+                return redirect()->back()->withErrors(array('dagen' => 'Deze einddatum ligt voor de startdatum'));
+            }
+
+
+        }
+
+        session()->flash('message', 'Slot succesvol aangemaakt.');
+        return redirect("/slots");
     }
 
     /**
