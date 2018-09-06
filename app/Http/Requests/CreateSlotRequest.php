@@ -35,7 +35,7 @@ class CreateSlotRequest extends FormRequest
             'starttijd' => Carbon::parse($starttijd)->format('H:i'),
             'eindtijd' => Carbon::parse($eindtijd)->format('H:i'),
             'period_id' => $period->id,
-            'datum' => $datum,
+            'datum' => Carbon::parse($datum),
         ]);
     }
 

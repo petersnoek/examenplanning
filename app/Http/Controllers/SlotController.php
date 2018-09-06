@@ -42,11 +42,12 @@ class SlotController extends Controller
     {
         if(request('gehele_periode') == "on")
         {
-            $checkdate = Carbon::parse($period->startdatum);
+
             if(request('dagen') != null)
             {
                 foreach(request('dagen') as $dag)
                 {
+                    $checkdate = Carbon::parse($period->startdatum);
                     while($checkdate < $period->einddatum){
                         if($checkdate->dayOfWeek == $dag){
                             $form->persistWholePeriod($checkdate, request('starttijd'), request('eindtijd'), $period);

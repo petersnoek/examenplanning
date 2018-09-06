@@ -14,8 +14,8 @@
             <tr>
                 <td class="text-center hidden-xs">{{$slot->id}}</td>
                 <td class="hidden-xs">{{\Carbon\Carbon::parse($slot->datum)->format('l')}}</td>
-                <td class="">{{$slot->datum}}</td>
-                <td class="hidden-xs">{{$slot->starttijd . " tot " . $slot->eindtijd}}</td>
+                <td class="">{{\Carbon\Carbon::parse($slot->datum)->format('d-m-Y')}}</td>
+                <td class="hidden-xs">{{\Carbon\Carbon::parse($slot->starttijd)->format('H:i') . " tot " . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}</td>
                 <td class="text-center">
                     <div class="btn-group">
                         <a class="btn btn-xs btn-default" href="/slots/{{$slot->id}}/remove"
