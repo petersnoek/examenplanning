@@ -30,18 +30,12 @@ class CreateSlotRequest extends FormRequest
         ];
     }
 
-    public function persistWholePeriod($datum, $starttijd, $eindtijd, $period){
+    public function persist($datum, $starttijd, $eindtijd, $period){
         $slot = Slot::create([
             'starttijd' => Carbon::parse($starttijd)->format('H:i'),
             'eindtijd' => Carbon::parse($eindtijd)->format('H:i'),
             'period_id' => $period->id,
             'datum' => Carbon::parse($datum),
-        ]);
-    }
-
-    public function persistSubperiod(){
-        $student = Student::create([
-            'voornaam' => request('voornaam'),
         ]);
     }
 }

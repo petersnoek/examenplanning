@@ -35,42 +35,44 @@ class SlotController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateSlotRequest $form, period $period)
     {
-        if(request('gehele_periode') == "on")
-        {
-
-            if(request('dagen') != null)
-            {
-                foreach(request('dagen') as $dag)
-                {
+        if (request('dagen') != null) {
+            if (request('gehele_periode') == "on") {
+                foreach (request('dagen') as $dag) {
                     $checkdate = Carbon::parse($period->startdatum);
-                    while($checkdate < $period->einddatum){
-                        if($checkdate->dayOfWeek == $dag){
-                            $form->persistWholePeriod($checkdate, request('starttijd'), request('eindtijd'), $period);
+                    while ($checkdate <= $period->einddatum) {
+                        if ($checkdate->dayOfWeek == $dag) {
+                            $form->persist($checkdate, request('starttijd'), request('eindtijd'), $period);
+                        }
+                        $checkdate->addDay();
+                    }
+                }
+            } else {
+                foreach (request('dagen') as $dag) {
+                    $checkdate = Carbon::parse(request('startdatum'));
+                    while ($checkdate <= Carbon::parse(request('einddatum'))) {
+                        if ($checkdate->dayOfWeek == $dag) {
+                            $form->persist($checkdate, request('starttijd'), request('eindtijd'), $period);
                         }
                         $checkdate->addDay();
                     }
                 }
             }
-            else{
-                return redirect()->back()->withErrors(array('dagen' => 'Deze einddatum ligt voor de startdatum'));
-            }
-
-
+        } else {
+            return redirect()->back()->withErrors(array('dagen' => 'Selecteer ten minste één dag'));
         }
-
-        session()->flash('message', 'Slot succesvol aangemaakt.');
-        return redirect("/slots");
+        session()->flash('message', 'Slot(s) succesvol aangemaakt.');
+        return redirect("/slots/" . $period->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Slot  $slot
+     * @param  \App\Slot $slot
      * @return \Illuminate\Http\Response
      */
     public function show(Slot $slot)
@@ -86,7 +88,7 @@ class SlotController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Slot  $slot
+     * @param  \App\Slot $slot
      * @return \Illuminate\Http\Response
      */
     public function edit(Slot $slot)
@@ -97,8 +99,8 @@ class SlotController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Slot  $slot
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Slot $slot
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Slot $slot)
@@ -109,13 +111,13 @@ class SlotController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Slot  $slot
+     * @param  \App\Slot $slot
      * @return \Illuminate\Http\Response
      */
     public function destroy(Slot $slot)
     {
         Slot::destroy($slot->id);
         session()->flash('message', 'Slot succesvol verwijderd.');
-        return redirect("/slots");
+        return redirect("/slots/" . $slot->period->id);
     }
 }
