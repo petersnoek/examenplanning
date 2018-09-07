@@ -40,32 +40,53 @@ class SlotController extends Controller
      */
     public function store(CreateSlotRequest $form, period $period)
     {
+        $persisted = false;
         if (request('dagen') != null) {
-            if (request('gehele_periode') == "on") {
-                foreach (request('dagen') as $dag) {
-                    $checkdate = Carbon::parse($period->startdatum);
-                    while ($checkdate <= $period->einddatum) {
-                        if ($checkdate->dayOfWeek == $dag) {
-                            $form->persist($checkdate, request('starttijd'), request('eindtijd'), $period);
+            if (Carbon::parse(request('starttijd')) < Carbon::parse(request('eindtijd'))) {
+                if (request('gehele_periode') == "on") {
+                    foreach (request('dagen') as $dag) {
+                        $checkdate = Carbon::parse($period->startdatum);
+                        while ($checkdate <= $period->einddatum) {
+                            if ($checkdate->dayOfWeek == $dag) {
+                                $form->persist($checkdate, request('starttijd'), request('eindtijd'), $period);
+                                $persisted = true;
+                            }
+                            $checkdate->addDay();
                         }
-                        $checkdate->addDay();
                     }
+                } else {
+                    if (Carbon::parse(request('startdatum')) < Carbon::parse(request('einddatum'))) {
+                        if (Carbon::parse(request('startdatum')) >= Carbon::parse($period->startdatum) && Carbon::parse(request('einddatum')) <= Carbon::parse($period->einddatum)) {
+                            foreach (request('dagen') as $dag) {
+                                $checkdate = Carbon::parse(request('startdatum'));
+                                while ($checkdate <= Carbon::parse(request('einddatum'))) {
+                                    if ($checkdate->dayOfWeek == $dag) {
+                                        $form->persist($checkdate, request('starttijd'), request('eindtijd'), $period);
+                                        $persisted = false;
+                                    }
+                                    $checkdate->addDay();
+                                }
+                            }
+                        } else {
+                            return redirect()->back()->withErrors(array('datum' => 'De subperiod ligt niet geheel binnen de periode'));
+                        }
+                    }
+
                 }
             } else {
-                foreach (request('dagen') as $dag) {
-                    $checkdate = Carbon::parse(request('startdatum'));
-                    while ($checkdate <= Carbon::parse(request('einddatum'))) {
-                        if ($checkdate->dayOfWeek == $dag) {
-                            $form->persist($checkdate, request('starttijd'), request('eindtijd'), $period);
-                        }
-                        $checkdate->addDay();
-                    }
-                }
+                return redirect()->back()->withErrors(array('starttijd' => 'De starttijd ligt na of is gelijk aan de eindtijd'));
             }
+
         } else {
             return redirect()->back()->withErrors(array('dagen' => 'Selecteer ten minste één dag'));
         }
-        session()->flash('message', 'Slot(s) succesvol aangemaakt.');
+        if ($persisted) {
+            session()->flash('message', 'Slot(s) succesvol aangemaakt.');
+        } else {
+            return redirect()->back()->withErrors(array('dagen' => 'Er bestonden geen geselecteerde dagen in de (sub)periode'));
+
+        }
+
         return redirect("/slots/" . $period->id);
     }
 

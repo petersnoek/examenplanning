@@ -10,15 +10,18 @@
         <div class="block block-bordered">
             <div class="block-header bg-gray-lighter">
                 @if(isset($period))
-                    <h3 class="block-title">Je maakt slots aan voor periode "{{$period->periodenaam}}" <small class="pull-right">{{Carbon\Carbon::parse($period->startdatum)->format('d-m-Y')}}
-                            tot {{Carbon\Carbon::parse($period->einddatum)->format('d-m-Y')}}</small></h3>
+                    <h3 class="block-title">Je maakt slots aan voor periode "{{$period->periodenaam}}"
+                        <small class="pull-right">{{Carbon\Carbon::parse($period->startdatum)->format('d-m-Y')}}
+                            tot {{Carbon\Carbon::parse($period->einddatum)->format('d-m-Y')}}</small>
+                    </h3>
                 @else
                     <h3 class="block-title">Nog geen period geselecteerd</h3>
                 @endif
             </div>
             <div class="block-content">
                 @if(isset($period))
-                    <form class="form-horizontal push-10-t push-10 form-material" action="/slots/addtoperiod/{{$period->id}}"
+                    <form class="form-horizontal push-10-t push-10 form-material"
+                          action="/slots/addtoperiod/{{$period->id}}"
                           method="post">
                         @csrf
                         <div class="row">
@@ -38,6 +41,11 @@
                                             <option value="{{Carbon\Carbon::THURSDAY}}">Donderdag</option>
                                             <option value="{{Carbon\Carbon::FRIDAY}}">Vrijdag</option>
                                         </select>
+                                        @if ($errors->has('dagen'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('dagen') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                     <div class="col-xs-8">
                                         <div class="col-xs-6">
@@ -48,6 +56,11 @@
                                                 <span class="input-group-addon"><i
                                                             class="glyphicon glyphicon-time"></i></span>
                                             </div>
+                                            @if ($errors->has('starttijd'))
+                                                <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('starttijd') }}</strong>
+                                            </span>
+                                            @endif
                                         </div>
                                         <div class="col-xs-6">
                                             <label for="eindtijd">Selecteer eindtijd</label>
@@ -76,6 +89,11 @@
                             <div class="col-sm-12" id="moreOptions">
 
                             </div>
+                            @if ($errors->has('datum'))
+                                <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('datum') }}</strong>
+                                            </span>
+                            @endif
                             @if ($errors->has('startdatum'))
                                 <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('startdatum') }}</strong>
