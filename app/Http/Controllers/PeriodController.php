@@ -44,10 +44,8 @@ class PeriodController extends Controller
      */
     public function store(CreatePeriodForm $form)
     {
-//        dd(Carbon::parse(request('einddatum')), Carbon::parse(request('startdatum')), request('startdatum'));
 //        try {
-            $schooljaar = "01-01-" . explode("-", request('schooljaar'))[0];
-            if (Carbon::parse(request('startdatum')) < Carbon::parse($schooljaar)) {
+            if (Carbon::parse(request('startdatum')) < Carbon::parse(Schoolyear::find(request('schooljaar'))->startdatum)) {
                 return redirect()->back()->withErrors(array('startdatum' => 'Deze startdatum ligt voor het geselecteerde schooljaar'));
             } elseif (Carbon::parse(request('einddatum')) < Carbon::parse(request('startdatum'))) {
                 return redirect()->back()->withErrors(array('einddatum' => 'Deze einddatum ligt voor de startdatum'));
