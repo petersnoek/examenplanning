@@ -29,7 +29,7 @@ class SlotController extends Controller
     public function create(period $period)
     {
         $schoolyears = Schoolyear::all();
-        return view('periods.select', compact('schoolyears', 'period'));
+        return view('slots.create', compact('schoolyears', 'period'));
     }
 
     /**
@@ -140,5 +140,19 @@ class SlotController extends Controller
         Slot::destroy($slot->id);
         session()->flash('message', 'Slot succesvol verwijderd.');
         return redirect("/slots/" . $slot->period->id);
+    }
+
+    public function showAssignables(){
+        $schoolyears = Schoolyear::all();
+        return view('slots.show_assignable', compact('schoolyears'));
+    }
+
+    public function showAssignable(period $period){
+        $schoolyears = Schoolyear::all();
+        return view('slots.show_assignable', compact('period', 'schoolyears'));
+    }
+
+    public function assign(){
+
     }
 }

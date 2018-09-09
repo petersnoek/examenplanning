@@ -18,7 +18,7 @@ class SchoolyearController extends Controller
     public function index()
     {
         $schoolyears = Schoolyear::all();
-        return view('periods.select', compact('schoolyears'));
+        return view('slots.create', compact('schoolyears'));
     }
 
     /**
