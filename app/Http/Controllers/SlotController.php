@@ -7,6 +7,9 @@ use App\period;
 use App\Schoolyear;
 use App\Slot;
 use Carbon\Carbon;
+use DateInterval;
+use DatePeriod;
+use DateTime;
 use Illuminate\Http\Request;
 
 class SlotController extends Controller
@@ -142,17 +145,37 @@ class SlotController extends Controller
         return redirect("/slots/" . $slot->period->id);
     }
 
-    public function showAssignables(){
+    public function showAssignables()
+    {
         $schoolyears = Schoolyear::all();
         return view('slots.show_assignable', compact('schoolyears'));
     }
 
-    public function showAssignable(period $period){
+    public function showAssignable(period $period)
+    {
         $schoolyears = Schoolyear::all();
-        return view('slots.show_assignable', compact('period', 'schoolyears'));
+        $interval = DateInterval::createFromDateString('1 day');
+        $periods = new DatePeriod(new DateTime($period->startdatum), $interval, new DateTime(\Carbon\Carbon::parse($period->einddatum)->addDay()));
+        $daycount = 0;
+        $weekcount = 1;
+        $daystart = \Carbon\Carbon::parse($period->startdatum)->dayOfWeek;
+        $firstdone = false;
+        return view('slots.show_assignable', compact('period', 'schoolyears', 'periods', 'daycount', 'weekcount', 'daystart', 'firstdone'));
     }
 
-    public function assign(){
+    public function assign()
+    {
 
+    }
+
+    public static function addDay()
+    {
+        $daycount++;
+    }
+
+    public static function resetWeek()
+    {
+        $weekcount++;
+        $daycount = 0;
     }
 }

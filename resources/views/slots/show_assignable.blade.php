@@ -97,14 +97,6 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php
-                            $interval = DateInterval::createFromDateString('1 day');
-                            $periods = new DatePeriod(new DateTime($period->startdatum), $interval, new DateTime(\Carbon\Carbon::parse($period->einddatum)->addDay()));
-                            $daycount = 0;
-                            $weekcount = 1;
-                            $daystart = \Carbon\Carbon::parse($period->startdatum)->dayOfWeek;
-                            $firstdone = false;
-                            ?>
 
                             @for($i = 1; $i < $daystart; $i++)
                                 @if($daycount == 0)
@@ -112,22 +104,23 @@
                                         <td>{{$weekcount}}</td>
                                         <td></td>
                                         <?php
-                                        $daycount++;
+                                            $daycount++;
                                         ?>
-                                        @elseif($daycount == 6)
-                                            <td></td>
+                                @elseif($daycount == 6)
+                                        <td></td>
                                     </tr>
                                     <?php
-                                    $daycount = 0;
-                                    $weekcount++;
+                                        $daycount = 0;
+                                        $weekcount++;
                                     ?>
                                 @else
                                     <td></td>
                                     <?php
-                                    $daycount++;
+                                        $daycount++;
                                     ?>
                                 @endif
                             @endfor
+
                             <?php
                             $firstdone = true;
                             ?>
