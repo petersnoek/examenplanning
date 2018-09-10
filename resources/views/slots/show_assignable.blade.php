@@ -98,55 +98,24 @@
                             </thead>
                             <tbody>
 
-                            @for($i = 1; $i < $daystart; $i++)
-                                @if($daycount == 0)
-                                    <tr>
-                                        <td>{{$weekcount}}</td>
-                                        <td></td>
-                                        <?php
-                                            $daycount++;
-                                        ?>
-                                @elseif($daycount == 6)
-                                        <td></td>
-                                    </tr>
-                                    <?php
-                                        $daycount = 0;
-                                        $weekcount++;
-                                    ?>
-                                @else
-                                    <td></td>
-                                    <?php
-                                        $daycount++;
-                                    ?>
-                                @endif
-                            @endfor
+                            @foreach($calendarweeks as $wk)
+                            <tr>
+                                <td>{{$wk}}</td>
 
-                            <?php
-                            $firstdone = true;
-                            ?>
+                                @foreach($weekdays as $wd)
+                                    <td>{{ $wk }}.{{ $wd }}
 
-                            @foreach($periods as $dag)
-                                    @if($daycount == 0)
-                                        <tr>
-                                        <td>{{$weekcount}}</td>
-                                        <td>{{$dag->format('l d-m-Y')}}</td>
-                                        <?php
-                                            $daycount++;
-                                        ?>
-                                    @elseif($daycount == 6)
-                                        <td>{{$dag->format('l d-m-Y')}}</td>
-                                        </tr>
-                                        <?php
-                                        $daycount = 0;
-                                        $weekcount++;
-                                        ?>
-                                    @else
-                                        <td>{{$dag->format('l d-m-Y')}}</td>
-                                        <?php
-                                            $daycount++;
-                                        ?>
-                                    @endif
+                                    @foreach($slots as $slot)
+                                        @if( $slot->Weeknumber==$wk && $slot->Daynumber==$wd)
+                                            <li>{{ Carbon\Carbon::parse($slot->datum)->format('d') }}</li>
+                                        @endif
+                                    @endforeach
+                                    </td>
+                                @endforeach()
+                            </tr>
                             @endforeach
+
+
                             </tbody>
                         </table>
                     @else
