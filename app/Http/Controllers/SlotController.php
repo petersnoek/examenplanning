@@ -170,7 +170,9 @@ class SlotController extends Controller
         $endTime = strtotime($period->einddatum);
         $calendarweeks = array();
         while ($startTime < $endTime) {
-            $calendarweeks[] = date('W', $startTime);   // Monday=1 as stated on http://php.net/manual/en/function.date.php
+            $w = date('W', $startTime);
+            $y = date('Y', $startTime);
+            $calendarweeks[] = [$y."-".$w, $y, $w];   // Monday=1 as stated on http://php.net/manual/en/function.date.php
             $startTime += strtotime('+1 week', 0);
         }
 

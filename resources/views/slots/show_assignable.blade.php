@@ -100,13 +100,13 @@
 
                             @foreach($calendarweeks as $wk)
                             <tr>
-                                <td>{{$wk}}</td>
+                                <td>{{$wk[0]}}</td>
 
                                 @foreach($weekdays as $wd)
-                                    <td>{{ $wk }}.{{ $wd }}
+                                    <td>{{ $wk[0] }}.{{ $wd }}
 
                                     @foreach($slots as $slot)
-                                        @if( $slot->Weeknumber==$wk && $slot->Daynumber==$wd)
+                                        @if( $slot->Weeknumber==$wk[2] && $slot->Daynumber==$wd)
                                             <li>{{ Carbon\Carbon::parse($slot->datum)->format('d') }}</li>
                                         @endif
                                     @endforeach
