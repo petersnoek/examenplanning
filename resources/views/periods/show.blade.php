@@ -40,7 +40,7 @@
                             <tr role="row" class="odd">
                                 <td class="hidden-xs text-center sorting_1 col-xs-1">{{$period->id}}</td>
                                 <td class="font-w600 col-xs-3">schooljaar</td>
-                                <td class="hidden-xs text-wrap col-xs-5">{{Carbon\Carbon::parse($period->startdatum)->format('d-m-Y')}} tot {{Carbon\Carbon::parse($period->einddatum)->format('d-m-Y')}}</td>
+                                <td class="hidden-xs text-wrap col-xs-5">{{$period->startdatum->format('d-m-Y')}} tot {{$period->einddatum->format('d-m-Y')}}</td>
                                 <td class="col-xs-2">{{$period->periodenaam}}</td>
                                 <td class="text-center col-xs-1">
                                     <div class="btn-group">

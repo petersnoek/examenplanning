@@ -154,36 +154,18 @@ class SlotController extends Controller
     public function showAssignable(period $period)
     {
         $schoolyears = Schoolyear::all();
-        $interval = DateInterval::createFromDateString('1 day');
-        $periods = new DatePeriod(new DateTime($period->startdatum), $interval, new DateTime(\Carbon\Carbon::parse($period->einddatum)->addDay()));
-
-        $daycount = 0;
-        $weekcount = 1;
-        $daystart = \Carbon\Carbon::parse($period->startdatum)->dayOfWeek;
-        $firstdone = false;
-
-        // create date range
-
-
         // calculate all weeks between period startdate and enddate
-        $startTime = strtotime($period->startdatum);
-        $endTime = strtotime($period->einddatum);
-        $calendarweeks = array();
+        $startTime = $period->startdatum;
+        $endTime = $period->einddatum;
+        $calendarweeks = [];
         while ($startTime < $endTime) {
-            $w = date('W', $startTime);
-            $y = date('Y', $startTime);
-            $calendarweeks[] = [$y."-".$w, $y, $w];   // Monday=1 as stated on http://php.net/manual/en/function.date.php
-            $startTime += strtotime('+1 week', 0);
+            array_push($calendarweeks, [$startTime->format('Y'), $startTime->weekOfYear]);
+            $startTime->addWeeks(1);
         }
-
-        //dd($calendarweeks);
-
-        //$calendarweeks = [43,44,45,46,47,48, 2, 3, 4];
-        $weekdays = [1,2,3,4,5]; // monday = 0;
-
+        $weekdays = [1,2,3,4,5]; // monday = 1;
         $slots = $period->slots;
-
-        return view('slots.show_assignable', compact('calendarweeks', 'weekdays', 'slots', 'period', 'schoolyears', 'periods', 'daycount', 'weekcount', 'daystart', 'firstdone'));
+        $date = Carbon::now();
+        return view('slots.show_assignable', compact('calendarweeks', 'weekdays', 'slots', 'period', 'schoolyears', 'date'));
     }
 
     public function assign()

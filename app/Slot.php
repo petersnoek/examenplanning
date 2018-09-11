@@ -12,7 +12,7 @@ class Slot extends Model
     protected $dates = [
         'created_at',
         'updated_at',
-        'datum'
+        'datum',
     ];
 
     public function getWeeknumberAttribute()

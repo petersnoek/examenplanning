@@ -83,41 +83,89 @@
                 </div>
                 <div class="block-content">
                     @if(isset($period))
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Week</th>
-                                <th>Maandag</th>
-                                <th>Dinsdag</th>
-                                <th>Woensdag</th>
-                                <th>Donderdag</th>
-                                <th>Vrijdag</th>
-                                <th>Zaterdag</th>
-                                <th>Zondag</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            @foreach($calendarweeks as $wk)
-                            <tr>
-                                <td>{{$wk[0]}}</td>
-
-                                @foreach($weekdays as $wd)
-                                    <td>{{ $wk[0] }}.{{ $wd }}
-
-                                    @foreach($slots as $slot)
-                                        @if( $slot->Weeknumber==$wk[2] && $slot->Daynumber==$wd)
-                                            <li>{{ Carbon\Carbon::parse($slot->datum)->format('d') }}</li>
-                                        @endif
-                                    @endforeach
-                                    </td>
-                                @endforeach()
-                            </tr>
-                            @endforeach
-
-
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10%">Week</th>
+                                    <th style="width: 18%">Maandag</th>
+                                    <th style="width: 18%">Dinsdag</th>
+                                    <th style="width: 18%">Woensdag</th>
+                                    <th style="width: 18%">Donderdag</th>
+                                    <th style="width: 18%">Vrijdag</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($calendarweeks as $wk)
+                                    <tr>
+                                        <td>{{$wk[0] . "- Week " . $wk[1]}}</td>
+                                        @foreach($weekdays as $wd)
+                                            <td>
+                                                <b>{{$date->setISODate($wk[0], $wk[1], $wd)->format('d M')}}</b>
+                                                <div class=" col-lg-12">
+                                                    @foreach($slots as $slot)
+                                                        @if( $slot->Weeknumber==$wk[1] && $slot->Daynumber==$wd && $slot->datum->format('Y')==$wk[0])
+                                                            {{--create the slot viasually--}}
+                                                            <div class="bg-gray-light col-lg-12 text-wrap slot text-center rounded cursor_hand">
+                                                                <span class="font-w700" data-toggle="modal"
+                                                                      data-target="#{{$slot->id}}">{{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i') . "-" . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}</span>
+                                                            </div>
+                                                            {{--creating the hidden modal--}}
+                                                            <div class="modal fade" id="{{$slot->id}}" tabindex="-1"
+                                                                 role="dialog" aria-hidden="true"
+                                                                 style="display: none;">
+                                                                <div class="modal-dialog modal-dialog-popout">
+                                                                    <div class="modal-content">
+                                                                        <div class="block block-themed block-transparent remove-margin-b">
+                                                                            <div class="block-header bg-primary-dark">
+                                                                                <h3 class="block-title">{{$date->setISODate($wk[0], $wk[1], $wd)->format('d-M-Y') ." van ".\Carbon\Carbon::parse($slot->starttijd)->format('H:i') . " tot " . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}</h3>
+                                                                            </div>
+                                                                            <div class="block-content">
+                                                                                <div class="block">
+                                                                                    <div class="block-content block-content-full">
+                                                                                        <span class="font-w600">Naam bedrijf hier - <i class="si si-envelope-open"></i> <a href="mailto:bedrijfsbegeleider@mail.com">Naam bedrijfsbegeleider</a> - <i class="si si-call-out"></i> <a href="tel:telnrbedrijfsbegeleider">Bedrijfsbegeleidertelnr</a> <br></span>
+                                                                                    </div>
+                                                                                    {{--creation oof map--}}
+                                                                                        {{--@include('slots.location')--}}
+                                                                                    <img class="img-responsive" src="{{asset('images/Full_image_placeholder.jpg')}}">
+                                                                                    {{--end creation of map--}}
+                                                                                    <div class="block-content block-content-full">
+                                                                                        <h2 class="h4 push-10">Proeve van bekwaamheidnr/Examencode</h2>
+                                                                                        <span>Genodigden</span>
+                                                                                        <ul>
+                                                                                            <li>Student</li>
+                                                                                            <li>Bedrijfbegeleider</li>
+                                                                                            <li>Examinator 1</li>
+                                                                                            <li>Examinator 2</li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button class="btn btn-sm btn-default"
+                                                                                    type="button" data-dismiss="modal">
+                                                                                Close
+                                                                            </button>
+                                                                            <button class="btn btn-sm btn-primary"
+                                                                                    type="button" data-dismiss="modal">
+                                                                                <i class="fa fa-check"></i> Ok
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            {{--{{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i') . "-" . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}--}}
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </td>
+                                        @endforeach()
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     @else
                         <h3 class="block-title">Selecteer eerst links een periode</h3>
                     @endif

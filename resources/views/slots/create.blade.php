@@ -34,8 +34,8 @@
                 <div class="block-header bg-gray-lighter">
                     @if(isset($period))
                         <h3 class="block-title">Je maakt slots aan voor periode "{{$period->periodenaam}}"
-                            <small class="pull-right">{{Carbon\Carbon::parse($period->startdatum)->format('d-m-Y')}}
-                                tot {{Carbon\Carbon::parse($period->einddatum)->format('d-m-Y')}}</small>
+                            <small class="pull-right">{{$period->startdatum->format('d-m-Y')}}
+                                tot {{$period->einddatum->format('d-m-Y')}}</small>
                         </h3>
                     @else
                         <h3 class="block-title">Nog geen periode geselecteerd</h3>

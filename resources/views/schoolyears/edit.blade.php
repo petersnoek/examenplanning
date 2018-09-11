@@ -61,11 +61,11 @@
                                         <input class="form-control" type="text" id="example-daterange1"
                                                name="startdatum"
                                                placeholder="Startdatum"
-                                               value="{{Carbon\Carbon::parse($schoolyear->startdatum)->format('d-m-Y')}}">
+                                               value="{{$schoolyear->startdatum->format('d-m-Y')}}">
                                         <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
                                         <input class="form-control" type="text" id="example-daterange2" name="einddatum"
                                                placeholder="Einddatum"
-                                               value="{{Carbon\Carbon::parse($schoolyear->einddatum)->format('d-m-Y')}}">
+                                               value="{{$schoolyear->einddatum->format('d-m-Y')}}">
                                     </div>
                                     @if ($errors->has('startdatum'))
                                         <span class="invalid-feedback" role="alert">
