@@ -92,27 +92,29 @@
                                 <th>Woensdag</th>
                                 <th>Donderdag</th>
                                 <th>Vrijdag</th>
-                                <th>Zaterdag</th>
-                                <th>Zondag</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             @foreach($calendarweeks as $wk)
-                            <tr>
-                                <td>{{$wk}}</td>
+                                <tr class="">
+                                    <td>{{$wk}}</td>
+                                    @foreach($weekdays as $wd)
+                                        <td>
+                                            <div class="flexbox column">
+                                                <small>{{$date->setISODate(2018, $wk, $wd)->format('d-m-Y')}}</small>
+                                                <div>
+                                                    @foreach($slots as $slot)
+                                                        @if( $slot->Weeknumber==$wk && $slot->Daynumber==$wd)
+                                                            <div>{{ $slot->datum->format('d-m-Y') }}</div>
 
-                                @foreach($weekdays as $wd)
-                                    <td>
-
-                                    @foreach($slots as $slot)
-                                        @if( $slot->Weeknumber==$wk && $slot->Daynumber==$wd)
-                                            <li>{{ $slot->datum->format('d-m-Y') }}</li>
-                                        @endif
-                                    @endforeach
-                                    </td>
-                                @endforeach()
-                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </td>
+                                    @endforeach()
+                                </tr>
                             @endforeach
 
 

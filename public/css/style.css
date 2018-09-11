@@ -31,3 +31,25 @@
 .cursor_hand{
     cursor:pointer;
 }
+
+.flexbox{
+    display:flex
+}
+.row{
+    flex-direction: row;
+}
+.column{
+    flex-direction:column;
+}
+
+.wrap{
+    flex-wrap: wrap;
+}
+.relative{
+    position:relative;
+}
+.place-bottom-left{
+    bottom:5px;
+    left:5px;
+    position: absolute;
+}

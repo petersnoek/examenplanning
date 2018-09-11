@@ -163,7 +163,8 @@ class SlotController extends Controller
         }
         $weekdays = [1,2,3,4,5]; // monday = 1;
         $slots = $period->slots;
-        return view('slots.show_assignable', compact('calendarweeks', 'weekdays', 'slots', 'period', 'schoolyears'));
+        $date = Carbon::now();
+        return view('slots.show_assignable', compact('calendarweeks', 'weekdays', 'slots', 'period', 'schoolyears', 'date'));
     }
 
     public function assign()
