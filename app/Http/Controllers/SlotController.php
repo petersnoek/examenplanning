@@ -51,7 +51,10 @@ class SlotController extends Controller
                         $checkdate = Carbon::parse($period->startdatum);
                         while ($checkdate <= $period->einddatum) {
                             if ($checkdate->dayOfWeek == $dag) {
-                                $form->persist($checkdate, request('starttijd'), request('eindtijd'), $period);
+                                for($aantal =  0; $aantal < request('aantal'); $aantal++)
+                                {
+                                    $form->persist($checkdate, request('starttijd'), request('eindtijd'), $period);
+                                }
                                 $persisted = true;
                             }
                             $checkdate->addDay();
@@ -74,7 +77,6 @@ class SlotController extends Controller
                             return redirect()->back()->withErrors(array('datum' => 'De subperiod ligt niet geheel binnen de periode'));
                         }
                     }
-
                 }
             } else {
                 return redirect()->back()->withErrors(array('starttijd' => 'De starttijd ligt na of is gelijk aan de eindtijd'));

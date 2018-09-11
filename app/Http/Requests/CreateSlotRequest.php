@@ -26,7 +26,8 @@ class CreateSlotRequest extends FormRequest
     public function rules()
     {
         return [
-
+            'starttijd' => 'required',
+            'eindtijd' => 'required',
         ];
     }
 
