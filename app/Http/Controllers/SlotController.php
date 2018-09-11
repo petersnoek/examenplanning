@@ -157,8 +157,9 @@ class SlotController extends Controller
         // calculate all weeks between period startdate and enddate
         $startTime = $period->startdatum;
         $endTime = $period->einddatum;
+        $calendarweeks = [];
         while ($startTime < $endTime) {
-            $calendarweeks[] = $startTime->weekOfYear;   // Monday=1 as stated on http://php.net/manual/en/function.date.php
+            array_push($calendarweeks, [$startTime->format('Y'), $startTime->weekOfYear]);
             $startTime->addWeeks(1);
         }
         $weekdays = [1,2,3,4,5]; // monday = 1;
