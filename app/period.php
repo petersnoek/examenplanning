@@ -5,6 +5,18 @@ namespace App;
 
 class period extends Model
 {
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'startdatum',
+        'einddatum'
+    ];
+
     public function Schoolyear(){
         $this->belongsTo(Schoolyear::class);
     }

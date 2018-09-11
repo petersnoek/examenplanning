@@ -29,8 +29,8 @@
                                 <td class="text-center"></td>
                                 <td class="font-w600">{{$schoolyearPeriod->periodenaam}}</td>
                                 <td class="hidden-xs">
-                                    <small class="text-muted">{{Carbon\Carbon::parse($schoolyearPeriod->startdatum)->format('d-m-Y')}}
-                                        tot {{Carbon\Carbon::parse($schoolyearPeriod->einddatum)->format('d-m-Y')}}</small>
+                                    <small class="text-muted">{{$schoolyearPeriod->startdatum->format('d-m-Y')}}
+                                        tot {{$schoolyearPeriod->einddatum->format('d-m-Y')}}</small>
                                 </td>
                             </tr>
 

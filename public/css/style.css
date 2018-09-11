@@ -31,3 +31,23 @@
 .cursor_hand{
     cursor:pointer;
 }
+
+.flexbox{
+    display:flex
+}
+.flexbox-row{
+    flex-direction: row;
+}
+.flexbox-column{
+    flex-direction:column;
+}
+
+.wrap{
+    flex-wrap: wrap;
+}
+.date{
+    padding:10px;
+}
+.slot{
+    margin-bottom: 5px;
+}
