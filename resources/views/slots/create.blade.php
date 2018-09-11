@@ -48,14 +48,14 @@
                               method="post">
                             @csrf
                             <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-lg-12">
                                     <div class="form-group">
-                                        <div class="col-xs-4">
+                                        <div class="col-lg-3">
                                             <label for="dagen">Selecteer dagen</label>
                                             <select class="js-select2 form-control select2-hidden-accessible"
                                                     id="dagen" name="dagen[]"
                                                     style="width: 100%;" data-placeholder="Kies dag(en)" multiple=""
-                                                    tabindex="-1" aria-hidden="true">
+                                                    tabindex="-1" aria-hidden="true" required>
                                                 <option></option>
                                                 <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                                 <option value="{{Carbon\Carbon::MONDAY}}">Maandag</option>
@@ -70,12 +70,12 @@
                                             </span>
                                             @endif
                                         </div>
-                                        <div class="col-xs-8">
-                                            <div class="col-xs-6">
+                                        <div class="col-lg-7">
+                                            <div class="col-lg-6">
                                                 <label for="starttijd">Selecteer starttijd</label>
                                                 <div class="input-group bootstrap-timepicker timepicker">
                                                     <input class="form-control input-lg" type="text" id="starttijd"
-                                                           name="starttijd" placeholder="">
+                                                           name="starttijd" placeholder="" required>
                                                     <span class="input-group-addon"><i
                                                                 class="glyphicon glyphicon-time"></i></span>
                                                 </div>
@@ -85,15 +85,28 @@
                                             </span>
                                                 @endif
                                             </div>
-                                            <div class="col-xs-6">
+                                            <div class="col-lg-6">
                                                 <label for="eindtijd">Selecteer eindtijd</label>
                                                 <div class="input-group bootstrap-timepicker timepicker ">
                                                     <input class="form-control input-lg" type="text" id="eindtijd"
-                                                           name="eindtijd" placeholder="">
+                                                           name="eindtijd" placeholder="" required>
                                                     <span class="input-group-addon"><i
                                                                 class="glyphicon glyphicon-time"></i></span>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="input-group">
+                                                <label for="eyes">Aantal simultane slots</label>
+                                                <input class="form-control input-lg" type="number" id="aantal" name="aantal"
+                                                       placeholder="Min: 1"
+                                                       min="1" required />
+                                            </div>
+                                            @if ($errors->has('aantal'))
+                                                <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('aantal') }}</strong>
+                                            </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
