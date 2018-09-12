@@ -92,6 +92,10 @@
                                 <a href="/appointments">Kalender inzien</a>
                             </li>
                             <li>
+                                <a href="/exams/create">Examen aanmaken</a>
+                            </li>
+                            <li>
+                            <li>
                                 <a href="/home">Examen inplannen</a>
                             </li>
                             <li>

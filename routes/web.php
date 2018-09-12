@@ -59,6 +59,10 @@ Route::get('/schoolyears/{schoolyear}/remove', 'SchoolyearController@destroy');
 Route::get('/schoolyears/{schoolyear}/edit', 'SchoolyearController@edit');
 Route::put('/schoolyears/{schoolyear}', 'SchoolyearController@update');
 
+//CRUD exams
+Route::get('/exams/create', 'ExamController@create');
+Route::post('/exams/create', 'ExamController@store');
+
 
 
 
