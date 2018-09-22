@@ -15,9 +15,17 @@ class CreateExamsTable extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('proeve_van_bekwaamheid');
-            $table->string('opmerking');
+            $table->integer('slot_id')->nullable();
+            $table->integer('proevevanbekwaamheid_id');
+            $table->string('voorlopige_uitslag')->nullable();
             $table->timestamps();
+
+            $table->foreign('slot_id')
+                ->references('id')->on('slots')
+                ->onDelete('cascade');
+            $table->foreign('proevevanbekwaamheid_id')
+                ->references('id')->on('proevevanbekwaamheids')
+                ->onDelete('cascade');
         });
     }
 

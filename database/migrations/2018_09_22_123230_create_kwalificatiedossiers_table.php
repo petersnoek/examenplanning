@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSlotsTable extends Migration
+class CreateKwalificatiedossiersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,12 @@ class CreateSlotsTable extends Migration
      */
     public function up()
     {
-        Schema::create('slots', function (Blueprint $table) {
+        Schema::create('kwalificatiedossiers', function (Blueprint $table) {
             $table->increments('id');
-            $table->time('starttijd');
-            $table->time('eindtijd');
-            $table->date('datum');
-            $table->integer('period_id');
+            $table->date('releasedatum');
+            $table->string('crebo')->unique();;
+            $table->string('vanaf_cohort');
             $table->timestamps();
-
-            $table->foreign('period_id')
-                ->references('id')->on('periods')
-                ->onDelete('cascade');
         });
     }
 
@@ -34,6 +29,6 @@ class CreateSlotsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('slots');
+        Schema::dropIfExists('kwalificatiedossiers');
     }
 }

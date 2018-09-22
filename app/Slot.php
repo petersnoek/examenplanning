@@ -28,4 +28,7 @@ class Slot extends Model
     public function period(){
         return $this->belongsTo(period::class);
     }
+    public function exams(){
+        return $this->hasMany(Exam::class);
+    }
 }
