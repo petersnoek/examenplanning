@@ -13,10 +13,10 @@ class CreateExamenUserTable extends Migration
      */
     public function up()
     {
-        Schema::table('exam_user', function (Blueprint $table) {
+        Schema::create('exam_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('exam_id');
-            $table->integer('user_id');
+            $table->unsignedInteger('exam_id');
+            $table->unsignedInteger('user_id');
             $table->string('user_role');
 
             $table->foreign('exam_id')
@@ -35,7 +35,7 @@ class CreateExamenUserTable extends Migration
      */
     public function down()
     {
-        Schema::table('examen_user', function (Blueprint $table) {
+        Schema::table('exam_user', function (Blueprint $table) {
             //
         });
     }

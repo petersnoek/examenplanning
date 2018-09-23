@@ -13,10 +13,10 @@ class CreateExamenRemarkTable extends Migration
      */
     public function up()
     {
-        Schema::table('exam_remark', function (Blueprint $table) {
+        Schema::create('exam_remark', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('opmerking_id');
-            $table->integer('examen_id');
+            $table->unsignedInteger('opmerking_id');
+            $table->unsignedInteger('examen_id');
 
             $table->foreign('opmerking_id')
                 ->references('id')->on('remarks')
@@ -34,7 +34,7 @@ class CreateExamenRemarkTable extends Migration
      */
     public function down()
     {
-        Schema::table('examen_remark', function (Blueprint $table) {
+        Schema::table('exam_remark', function (Blueprint $table) {
             //
         });
     }

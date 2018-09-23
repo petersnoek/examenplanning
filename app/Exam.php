@@ -4,6 +4,7 @@ namespace App;
 
 class Exam extends Model
 {
+    public $table = 'exams';
     public function slots(){
         return $this->belongsTo(Slot::class);
     }

@@ -16,7 +16,7 @@ class CreateProevevanbekwaamheidsTable extends Migration
         Schema::create('proevevanbekwaamheids', function (Blueprint $table) {
             $table->increments('id');
             $table->string('naam');
-            $table->integer('kwalificatiedossier_id');
+            $table->unsignedInteger('kwalificatiedossier_id');
             $table->timestamps();
 
             $table->foreign('kwalificatiedossier_id')

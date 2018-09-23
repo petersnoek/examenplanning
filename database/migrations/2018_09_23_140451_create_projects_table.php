@@ -16,7 +16,7 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('naam');
-            $table->integer('company_id');
+            $table->unsignedInteger('company_id');
             $table->timestamps();
 
             $table->foreign('company_id')

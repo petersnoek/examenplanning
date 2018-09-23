@@ -18,7 +18,7 @@ class CreateSlotsTable extends Migration
             $table->time('starttijd');
             $table->time('eindtijd');
             $table->date('datum');
-            $table->integer('period_id');
+            $table->unsignedInteger('period_id');
             $table->timestamps();
 
             $table->foreign('period_id')

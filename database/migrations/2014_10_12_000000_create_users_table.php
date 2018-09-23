@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('postcode');
             $table->string('plaats');
             $table->string('land');
-            $table->boolean('active')->default('false');
+            $table->boolean('active')->default(false);
             $table->enum('rol', ['examinator', 'student', 'bedrijfsbegeleider', 'examencomissie', 'administrator']);
             $table->rememberToken();
             $table->timestamps();
