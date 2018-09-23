@@ -38,4 +38,8 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPassword($token));
     }
+
+    public function exams(){
+        return $this->belongsToMany(Exam::class, 'exam_user');
+    }
 }

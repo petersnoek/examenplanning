@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExamenUserTable extends Migration
+class CreateExamenRemarkTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateExamenUserTable extends Migration
      */
     public function up()
     {
-        Schema::table('exam_user', function (Blueprint $table) {
+        Schema::table('exam_remark', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('exam_id');
-            $table->integer('user_id');
-            $table->string('user_role');
+            $table->integer('opmerking_id');
+            $table->increments('examen_id');
 
-            $table->foreign('exam_id')
-                ->references('id')->on('exams')
+            $table->foreign('opmerking_id')
+                ->references('id')->on('remarks')
                 ->onDelete('cascade');
-            $table->foreign('user_id')
-                ->references('id')->on('users')
+            $table->foreign('examen_id')
+                ->references('id')->on('exams')
                 ->onDelete('cascade');
         });
     }
@@ -35,7 +34,7 @@ class CreateExamenUserTable extends Migration
      */
     public function down()
     {
-        Schema::table('examen_user', function (Blueprint $table) {
+        Schema::table('examen_remark', function (Blueprint $table) {
             //
         });
     }
