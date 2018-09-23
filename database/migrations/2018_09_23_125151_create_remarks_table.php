@@ -27,6 +27,7 @@ class CreateRemarksTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('exam_remark');
         Schema::dropIfExists('remarks');
     }
 }
