@@ -42,4 +42,10 @@ class User extends Authenticatable
     public function exams(){
         return $this->belongsToMany(Exam::class, 'exam_user');
     }
+    public function companies(){
+        return $this->belongsToMany(Company::class, 'company_user');
+    }
+    public function projects(){
+        return $this->belongsToMany(Project::class, 'project_user');
+    }
 }

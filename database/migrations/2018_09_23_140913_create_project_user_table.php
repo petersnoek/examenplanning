@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExamenRemarkTable extends Migration
+class CreateProjectUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateExamenRemarkTable extends Migration
      */
     public function up()
     {
-        Schema::table('exam_remark', function (Blueprint $table) {
+        Schema::table('project_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('opmerking_id');
-            $table->integer('examen_id');
+            $table->integer('project_id');
+            $table->integer('user_id');
 
-            $table->foreign('opmerking_id')
-                ->references('id')->on('remarks')
+            $table->foreign('project_id')
+                ->references('id')->on('projects')
                 ->onDelete('cascade');
-            $table->foreign('examen_id')
-                ->references('id')->on('exams')
+            $table->foreign('user_id')
+                ->references('id')->on('users')
                 ->onDelete('cascade');
         });
     }
@@ -34,7 +34,7 @@ class CreateExamenRemarkTable extends Migration
      */
     public function down()
     {
-        Schema::table('examen_remark', function (Blueprint $table) {
+        Schema::table('project_user', function (Blueprint $table) {
             //
         });
     }
