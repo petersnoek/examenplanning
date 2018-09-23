@@ -16,7 +16,9 @@ class KwalificatiedossierSeeder extends Seeder
             return;
         }
 
-        $kwalificatiedossier = factory(App\Kwalificatiedossier::class, 5)->create();
-        $this->command->info("Seeded crebo " . $kwalificatiedossier->crebo . " (uitgegeven op " . $kwalificatiedossier->releasedatum . ") vanaf cohort " . $kwalificatiedossier->vanaf_cohort);
+        foreach(factory(App\Kwalificatiedossier::class, 5)->create() as $kwalificatiedossier)
+        {
+            $this->command->info("Seeded crebo " . $kwalificatiedossier->crebo . " (uitgegeven op " . $kwalificatiedossier->releasedatum. ") vanaf cohort " . $kwalificatiedossier->vanaf_cohort);
+        }
     }
 }

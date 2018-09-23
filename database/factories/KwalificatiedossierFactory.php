@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Faker\Generator as Faker;
 
 /*
@@ -15,8 +16,8 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Kwalificatiedossier::class, function (Faker $faker) {
     return [
-        'releasedatum' => $faker->date('d-m-Y', 'now'),
+        'releasedatum' => Carbon::parse($faker->date('d-m-Y', 'now')),
         'crebo' => $faker->randomNumber(5),
-        'vanaf_cohort' => $faker->randomNumber() . '-' . $faker->randomNumber(),
+        'vanaf_cohort' => $faker->randomNumber(4) . '-' . $faker->randomNumber(4),
     ];
 });
