@@ -54,4 +54,7 @@ class User extends Authenticatable
     public function questionaires(){
         return $this->hasmany(Questionaire::class);
     }
+    public function roles(){
+        return $this->hasOne(Role::class);
+    }
 }

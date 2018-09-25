@@ -28,10 +28,14 @@ class CreateUsersTable extends Migration
             $table->string('plaats');
             $table->string('land');
             $table->boolean('active')->default(false);
-            $table->enum('rol', ['examinator', 'student', 'bedrijfsbegeleider', 'examencomissie', 'administrator']);
+            $table->unsignedInteger('role_id');
             $table->integer('davinci_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('role_id')
+                ->references('id')->on('roles')
+                ->onDelete('cascade');
         });
     }
 
