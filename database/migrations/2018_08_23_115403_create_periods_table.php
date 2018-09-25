@@ -15,7 +15,7 @@ class CreatePeriodsTable extends Migration
     {
         Schema::create('periods', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('periodenaam')->unique();
+            $table->string('periodenaam');
             $table->date('startdatum');
             $table->date('einddatum');
             $table->unsignedInteger('schoolyear_id');

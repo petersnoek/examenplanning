@@ -33,7 +33,7 @@ class CreateVragenlijstsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ramark_questionaire');
+        Schema::dropIfExists('remark_questionaire');
         Schema::dropIfExists('questionaires');
     }
 }

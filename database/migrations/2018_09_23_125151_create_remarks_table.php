@@ -34,7 +34,7 @@ class CreateRemarksTable extends Migration
     {
 
         Schema::dropIfExists('exam_remark');
-        Schema::dropIfExists('ramark_questionaire');
+        Schema::dropIfExists('remark_questionaire');
         Schema::dropIfExists('remarks');
     }
 }

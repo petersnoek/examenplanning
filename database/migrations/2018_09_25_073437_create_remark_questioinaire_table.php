@@ -13,7 +13,7 @@ class CreateRemarkQuestioinaireTable extends Migration
      */
     public function up()
     {
-        Schema::create('ramark_questionaire', function (Blueprint $table) {
+        Schema::create('remark_questionaire', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('remark_id');
             $table->unsignedInteger('questionaire_id');
@@ -34,7 +34,7 @@ class CreateRemarkQuestioinaireTable extends Migration
      */
     public function down()
     {
-        Schema::table('ramark_questionaire', function (Blueprint $table) {
+        Schema::table('remark_questionaire', function (Blueprint $table) {
 
         });
     }

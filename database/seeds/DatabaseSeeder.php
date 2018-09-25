@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
-    protected $toTruncate = ['users', 'roles', 'kwalificatiedossiers', 'proevevanbekwaamheids', 'statuses', 'schoolyears'];
+    protected $toTruncate = ['users', 'roles', 'kwalificatiedossiers', 'proevevanbekwaamheids', 'statuses', 'schoolyears', 'periods'];
 
     /**
      * Seed the application's database.
@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
         $this->call(KwalificatiedossierSeeder::class);
         $this->call(ProevevanbekwaamheidSeeder::class);
         $this->call(StatusSeeder::class);
-        $this->call(Schoolyear::class);
+        $this->call(SchoolyearSeeder::class);
+        $this->call(PeriodSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
 //        $this->call(CompaniesSeeder::class);
