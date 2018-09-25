@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('achternaam');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('telefoonnummer');
+            $table->string('telefoonnummer');
             $table->string('straat');
             $table->integer('huisnummer');
             $table->string('toevoeging')->nullable();
