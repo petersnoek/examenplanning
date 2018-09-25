@@ -16,6 +16,11 @@ class CompanySeeder extends Seeder
      */
     public function run()
     {
+        if (Schema::hasTable('companies') == false) {
+            $this->command->warn("Seeding companies failed; table 'companies' doesn't exist in database...");
+            return;
+        }
+
         $faker = Faker::create('nl_NL');
 
         $csv = Reader::createFromPath('database/csv/companies.csv', 'r');
