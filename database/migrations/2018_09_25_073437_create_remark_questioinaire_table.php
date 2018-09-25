@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProjectsTable extends Migration
+class CreateRemarkQuestioinaireTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateProjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('ramark_questionaire', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('naam');
-            $table->unsignedInteger('company_id');
-            $table->unsignedInteger('questionaire_id')->nullable();
-            $table->timestamps();
+            $table->unsignedInteger('remark_id');
+            $table->unsignedInteger('questionaire_id');
 
-            $table->foreign('company_id')
-                ->references('id')->on('companies')
+            $table->foreign('remark_id')
+                ->references('id')->on('remarks')
                 ->onDelete('cascade');
             $table->foreign('questionaire_id')
                 ->references('id')->on('questionaires')
@@ -36,7 +34,8 @@ class CreateProjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_user');
-        Schema::dropIfExists('projects');
+        Schema::table('ramark_questionaire', function (Blueprint $table) {
+
+        });
     }
 }

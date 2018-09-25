@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('land');
             $table->boolean('active')->default(false);
             $table->enum('rol', ['examinator', 'student', 'bedrijfsbegeleider', 'examencomissie', 'administrator']);
+            $table->integer('davinci_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

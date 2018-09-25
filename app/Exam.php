@@ -16,4 +16,7 @@ class Exam extends Model
     public function users(){
         return $this->belongsToMany(User::class, 'exam_user');
     }
+    public function statuses(){
+        return $this->hasOne(Status::class);
+    }
 }

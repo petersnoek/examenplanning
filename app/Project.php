@@ -12,4 +12,7 @@ class Project extends Model
     public function user(){
         return $this->belongsToMany(User::class, 'project_user');
     }
+    public function questionaires(){
+        return $this->hasOne(Questionaire::class);
+    }
 }

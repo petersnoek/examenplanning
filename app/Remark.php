@@ -2,11 +2,15 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Remark extends Model
 {
     public function exams(){
         return $this->belongsToMany(Exam::class);
+    }
+    public function users(){
+        return $this->belongsTo(User::class);
+    }
+    public function questionaires(){
+        return $this->belongsToMany(Questionaire::class, 'remark_questionaire');
     }
 }

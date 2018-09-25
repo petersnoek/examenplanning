@@ -16,7 +16,12 @@ class CreateRemarksTable extends Migration
         Schema::create('remarks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('body');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 
@@ -27,7 +32,9 @@ class CreateRemarksTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('exam_remark');
+        Schema::dropIfExists('ramark_questionaire');
         Schema::dropIfExists('remarks');
     }
 }
