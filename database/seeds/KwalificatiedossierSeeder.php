@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class KwalificatiedossierSeeder extends Seeder
@@ -16,9 +17,10 @@ class KwalificatiedossierSeeder extends Seeder
             return;
         }
 
-        foreach(factory(App\Kwalificatiedossier::class, 5)->create() as $kwalificatiedossier)
-        {
-            $this->command->info("Seeded crebo " . $kwalificatiedossier->crebo . " (uitgegeven op " . $kwalificatiedossier->releasedatum. ") vanaf cohort " . $kwalificatiedossier->vanaf_cohort);
-        }
+        DB::table('kwalificatiedossiers')->insert([
+            'releasedatum' => Carbon::createFromFormat('d-m-Y', '10-11-2015'),
+            'crebo' => 25178,
+            'vanaf_cohort' => '2015',
+        ]);
     }
 }
