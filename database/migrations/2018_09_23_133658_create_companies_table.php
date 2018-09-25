@@ -23,6 +23,7 @@ class CreateCompaniesTable extends Migration
             $table->string('plaats');
             $table->string('land');
             $table->string('sector');
+            $table->string('website');
             $table->timestamps();
         });
     }
