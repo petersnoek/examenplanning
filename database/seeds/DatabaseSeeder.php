@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
-    protected $toTruncate = ['users', 'roles', 'kwalificatiedossiers'];
+    protected $toTruncate = ['users', 'roles', 'kwalificatiedossiers', 'proevevanbekwaamheids'];
 
     /**
      * Seed the application's database.
@@ -26,10 +26,10 @@ class DatabaseSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
         $this->call(KwalificatiedossierSeeder::class);
+        $this->call(ProevevanbekwaamheidSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
 //        $this->call(CompaniesSeeder::class);
-
 
         Model::reguard();
     }

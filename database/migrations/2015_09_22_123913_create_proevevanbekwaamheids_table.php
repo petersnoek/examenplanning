@@ -15,7 +15,7 @@ class CreateProevevanbekwaamheidsTable extends Migration
     {
         Schema::create('proevevanbekwaamheids', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('naam');
+            $table->string('kerntaak');
             $table->longText('werkproces');
             $table->unsignedInteger('kwalificatiedossier_id');
             $table->timestamps();

@@ -21,6 +21,7 @@ class KwalificatiedossierSeeder extends Seeder
             'releasedatum' => Carbon::createFromFormat('d-m-Y', '10-11-2015'),
             'crebo' => 25178,
             'vanaf_cohort' => '2015',
+            'created_at' => Carbon::now(),
         ]);
     }
 }
