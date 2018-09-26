@@ -1,12 +1,13 @@
 <?php
 
+use App\Questionaire;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
-    protected $toTruncate = ['users', 'roles', 'kwalificatiedossiers', 'proevevanbekwaamheids', 'statuses', 'schoolyears', 'periods', 'companies', 'slots', 'exams'];
+    protected $toTruncate = ['users', 'roles', 'kwalificatiedossiers', 'proevevanbekwaamheids', 'statuses', 'schoolyears', 'periods', 'companies', 'slots', 'exams', 'questionaires', 'projects'];
 
     /**
      * Seed the application's database.
@@ -33,8 +34,10 @@ class DatabaseSeeder extends Seeder
         $this->call(SlotSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(QuestionaireSeeder::class);
         $this->call(CompanySeeder::class);
         $this->call(ExamSeeder::class);
+        $this->call(ProjectSeeder::class);
 
         Model::reguard();
     }

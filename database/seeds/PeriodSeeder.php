@@ -1,6 +1,5 @@
 <?php
 
-use App\Schoolyear;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
