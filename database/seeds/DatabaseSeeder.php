@@ -25,20 +25,23 @@ class DatabaseSeeder extends Seeder
 
         }
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-
-//        $this->call(KwalificatiedossierSeeder::class);
-//        $this->call(ProevevanbekwaamheidSeeder::class);
-//        $this->call(StatusSeeder::class);
-//        $this->call(SchoolyearSeeder::class);
-//        $this->call(PeriodSeeder::class);
-//        $this->call(SlotSeeder::class);
+        //model table seeders
+        $this->call(KwalificatiedossierSeeder::class);
+        $this->call(ProevevanbekwaamheidSeeder::class);
+        $this->call(StatusSeeder::class);
+        $this->call(SchoolyearSeeder::class);
+        $this->call(PeriodSeeder::class);
+        $this->call(SlotSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
 //        $this->call(QuestionaireSeeder::class);
 //        $this->call(CompanySeeder::class);
-//        $this->call(ExamSeeder::class);
+        $this->call(ExamSeeder::class);
 //        $this->call(ProjectSeeder::class);
-        $this->call(RemarkSeeder::class);
+//        $this->call(RemarkSeeder::class);
+
+        //pivottable seeders
+        $this->call(Pivot_exam_user_Seeder::class);
 
         Model::reguard();
     }
