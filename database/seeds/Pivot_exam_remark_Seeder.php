@@ -18,7 +18,7 @@ class Pivot_exam_remark_Seeder extends Seeder
             return;
         }
 
-        $remarks = Remark::inRandomOrder()->get();
+        $remarks = Remark::inRandomOrder()->take(round(Remark::all()->count() * 0.50))->get();
         $exams = Exam::inRandomOrder()->get();
 
         foreach($remarks as $remark)

@@ -1,8 +1,6 @@
 <?php
 
 use App\Company;
-use App\Exam;
-use App\Remark;
 use App\User;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
