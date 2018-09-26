@@ -2,7 +2,6 @@
 
 use App\Exam;
 use App\Remark;
-use App\User;
 use Illuminate\Database\Seeder;
 
 class Pivot_exam_remark_Seeder extends Seeder
