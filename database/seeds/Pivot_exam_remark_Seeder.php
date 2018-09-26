@@ -18,14 +18,14 @@ class Pivot_exam_remark_Seeder extends Seeder
             $this->command->warn("Seeding exam_remark failed; table 'exam_remark' doesn't exist in database...");
             return;
         }
-        $amount = round(User::where('role_id',  3)->count() * 0.75);
+
         $remarks = Remark::inRandomOrder()->get();
         $exams = Exam::inRandomOrder()->get();
 
-        foreach(range(1, $amount) as $index)
+        foreach($remarks as $remark)
         {
             DB::table('exam_remark')->insert([
-                'remark_id' => $remarks->pop()->id,
+                'remark_id' => $remark->id,
                 'exam_id' => $exams->random()->id,
             ]);
         }
