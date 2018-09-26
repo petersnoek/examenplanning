@@ -40,7 +40,7 @@ class User extends Authenticatable
     }
 
     public function exams(){
-        return $this->belongsToMany(Exam::class, 'exam_user');
+        return $this->belongsToMany(Exam::class, 'exam_user')->withPivot('user_role');
     }
     public function companies(){
         return $this->belongsToMany(Company::class, 'company_user');
@@ -56,5 +56,10 @@ class User extends Authenticatable
     }
     public function roles(){
         return $this->hasOne(Role::class);
+    }
+
+    public function slots()
+    {
+        return $this->hasManyThrough(Slot::class, Exam::class);
     }
 }

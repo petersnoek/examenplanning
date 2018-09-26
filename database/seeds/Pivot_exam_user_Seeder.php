@@ -21,16 +21,39 @@ class Pivot_exam_user_Seeder extends Seeder
         }
 
         $faker = Faker::create('nl_NL');
-        $amount = round(User::where('role_id',  3)->count() * 0.75);
-        $users = User::where('role_id', 3)->inRandomOrder()->get();
-        $exams = Exam::inRandomOrder()->get();
+        $amountOfStudents = User::where('role_id', 3)->count();
+        $studentsToGenerate = User::where('role_id', 3)->inRandomOrder()->take(round($amountOfStudents * 0.75))->get();
 
-        foreach(range(1, $amount) as $index)
+        $possibleExaminators = User::where('role_id', 2)->get();
+        $possibleBedrijfsbegeleiders = User::where('role_id', 4)->get();
+
+        $exams = Exam::where('slot_id', '!=', null )->inRandomOrder()->get();
+
+        foreach($studentsToGenerate as $student)
         {
+            $exam_id = $exams->pop()->id;
+
             DB::table('exam_user')->insert([
-                'user_role' => $faker->randomElement(['Examinator', 'Student', 'Bedrijfsbegeleider']),
-                'user_id' => $users->random()->id,
-                'exam_id' => $exams->random()->id,
+                'user_role' => 'Student',
+                'user_id' => $student->id,
+                'exam_id' => $exam_id,
+            ]);
+
+            DB::table('exam_user')->insert([
+                'user_role' => 'Examinator',
+                'user_id' => $possibleExaminators->random()->id,
+                'exam_id' => $exam_id,
+            ]);
+            DB::table('exam_user')->insert([
+                'user_role' => 'Examinator',
+                'user_id' => $possibleExaminators->random()->id,
+                'exam_id' => $exam_id,
+            ]);
+
+            DB::table('exam_user')->insert([
+                'user_role' => 'Bedrijfsbegeleider',
+                'user_id' => $possibleBedrijfsbegeleiders->random()->id,
+                'exam_id' => $exam_id,
             ]);
         }
     }

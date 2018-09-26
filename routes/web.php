@@ -63,6 +63,10 @@ Route::put('/schoolyears/{schoolyear}', 'SchoolyearController@update');
 Route::get('/exams/create', 'ExamController@create');
 Route::post('/exams/create', 'ExamController@store');
 
+//CRUD agenda
+Route::get('/agenda/persoonlijk', 'AgendaController@index');
+
+
 
 
 

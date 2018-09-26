@@ -115,6 +115,16 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i
+                                    class="si si-calendar"></i><span
+                                    class="sidebar-mini-hide">Agenda inzien</span></a>
+                        <ul>
+                            <li>
+                                <a href="/agenda/persoonlijk">Persoonlijk</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- END Side Content -->
