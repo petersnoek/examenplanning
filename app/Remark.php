@@ -5,7 +5,7 @@ namespace App;
 class Remark extends Model
 {
     public function exams(){
-        return $this->belongsToMany(Exam::class);
+        return $this->belongsToMany(Exam::class, 'exam_remark');
     }
     public function users(){
         return $this->belongsTo(User::class);

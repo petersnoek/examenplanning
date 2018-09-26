@@ -11,7 +11,7 @@ class Exam extends Model
         return $this->belongsTo(Proevevanbekwaamheid::class);
     }
     public function remarks(){
-        return $this->belongsToMany(Remark::class);
+        return $this->belongsToMany(Remark::class, 'exam_remark');
     }
     public function users(){
         return $this->belongsToMany(User::class, 'exam_user');

@@ -15,13 +15,13 @@ class CreateExamenRemarkTable extends Migration
     {
         Schema::create('exam_remark', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('opmerking_id');
-            $table->unsignedInteger('examen_id');
+            $table->unsignedInteger('remark_id');
+            $table->unsignedInteger('exam_id');
 
-            $table->foreign('opmerking_id')
+            $table->foreign('remark_id')
                 ->references('id')->on('remarks')
                 ->onDelete('cascade');
-            $table->foreign('examen_id')
+            $table->foreign('exam_id')
                 ->references('id')->on('exams')
                 ->onDelete('cascade');
         });

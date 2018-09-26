@@ -29,8 +29,8 @@ class Pivot_exam_user_Seeder extends Seeder
         {
             DB::table('exam_user')->insert([
                 'user_role' => $faker->randomElement(['Examinator', 'Student', 'Bedrijfsbegeleider']),
-                'user_id' => $users->pop()->id,
-                'exam_id' => $exams->pop()->id,
+                'user_id' => $users->random()->id,
+                'exam_id' => $exams->random()->id,
             ]);
         }
     }

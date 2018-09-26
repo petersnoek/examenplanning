@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
-    protected $toTruncate = ['users', 'roles', 'kwalificatiedossiers', 'proevevanbekwaamheids', 'statuses', 'schoolyears', 'periods', 'companies', 'slots', 'exams', 'questionaires', 'projects', 'remarks'];
+    protected $toTruncate = ['exam_user', 'exam_remark', 'users', 'roles', 'kwalificatiedossiers', 'proevevanbekwaamheids', 'statuses', 'schoolyears', 'periods', 'companies', 'slots', 'exams', 'questionaires', 'projects', 'remarks'];
 
     /**
      * Seed the application's database.
@@ -38,10 +38,11 @@ class DatabaseSeeder extends Seeder
 //        $this->call(CompanySeeder::class);
         $this->call(ExamSeeder::class);
 //        $this->call(ProjectSeeder::class);
-//        $this->call(RemarkSeeder::class);
+        $this->call(RemarkSeeder::class);
 
         //pivottable seeders
         $this->call(Pivot_exam_user_Seeder::class);
+        $this->call(Pivot_exam_remark_Seeder::class);
 
         Model::reguard();
     }
