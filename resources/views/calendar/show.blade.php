@@ -9,7 +9,8 @@
         <div class="row items-push">
             <div class="col-sm-7">
                 <h1 class="page-heading">
-                    Afspraken voor {{$loggedInUser->achternaam . ", " . $loggedInUser->voornaam . " " . $loggedInUser->tussenvoegsel}}
+                    Afspraken
+                    voor {{$loggedInUser->achternaam . ", " . $loggedInUser->voornaam . " " . $loggedInUser->tussenvoegsel}}
                     <small>Hier kunt u uw afspraken en examenmomenten inzien</small>
                 </h1>
             </div>
@@ -24,6 +25,22 @@
     <!-- END Page Header -->
 
     <div class="content col-lg-12">
+        @if(Auth::user()->role_id == 2)
+            <div class="row col-lg-12">
+                <form class="col-lg-2 form-horizontal push-10-t push-10" action="/requestagenda" method="POST">
+                    @csrf
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i> Zoek</button>
+                        </span>
+                        <input class="form-control" type="text" id="ovnummer" name="ovnummer"
+                               placeholder="Ovnummer..." required>
+                    </div>
+                </form>
+            </div>
+        @endif
+
+
         @foreach($exams as $exam)
             <div class="col-lg-6">
                 <div class="block block-bordered">
@@ -54,7 +71,8 @@
                             </div>
                             @foreach($exam->users as $invitee)
                                 <a class="list-group-item" href="#">
-                                    <i class="fa fa-fw fa-address-card push-5-r"></i> <span @if($invitee->id == $loggedInUser->id) class="text-success" @endif>{{$invitee->achternaam . ", " . $invitee->voornaam . " " . $invitee->tussenvoegsel . " - " . $invitee->pivot->user_role}}</span>
+                                    <i class="fa fa-fw fa-address-card push-5-r"></i> <span
+                                            @if($invitee->id == $loggedInUser->id) class="text-success" @endif>{{$invitee->achternaam . ", " . $invitee->voornaam . " " . $invitee->tussenvoegsel . " - " . $invitee->pivot->user_role}}</span>
                                 </a>
                             @endforeach
                         </div>

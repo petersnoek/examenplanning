@@ -101,4 +101,9 @@ class AgendaController extends Controller
     {
         //
     }
+
+    public function requestAgenda()
+    {
+        return redirect('/agenda/' . request('ovnummer'));
+    }
 }
