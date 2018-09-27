@@ -28,7 +28,7 @@
             <div class="col-lg-6">
                 <div class="block block-bordered">
                     <div class="block-header">
-                        <h3 class="block-title">{{ $exam->proevevanbekwaamheids->kerntaak}} - Je neemt deel als {{$exam->pivot->user_role}}</h3>
+                        <h3 class="block-title">{{ $exam->proevevanbekwaamheids->kerntaak}}</h3>
                     </div>
                     <div class="block-content">
                         <div class="pull-r-l pull-t push">
@@ -49,16 +49,12 @@
                         </div>
                         <div class="list-group">
                             <div class="list-group-item active" href="#">
-                                <span class="badge">{{$invitees = \App\User::whereHas("exams", function($q) use ($exam){
-                                $q->where("exams.id","=", $exam->id);
-                                })->count()}}</span>
+                                <span class="badge">{{$exam->users->count()}}</span>
                                 <i class="fa fa-fw fa-user push-5-r"></i> Genodigden
                             </div>
-                            @foreach(\App\User::whereHas("exams", function($q) use ($exam){
-                                $q->where("exams.id","=", $exam->id);
-                                })->get() as $invitee)
+                            @foreach($exam->users as $invitee)
                                 <a class="list-group-item" href="#">
-                                    <i class="fa fa-fw fa-address-card push-5-r"></i> <span @if($invitee->id == $loggedInUser->id) class="text-success" @endif>{{$invitee->achternaam . ", " . $invitee->voornaam . " " . $invitee->tussenvoegsel}}</span>
+                                    <i class="fa fa-fw fa-address-card push-5-r"></i> <span @if($invitee->id == $loggedInUser->id) class="text-success" @endif>{{$invitee->achternaam . ", " . $invitee->voornaam . " " . $invitee->tussenvoegsel . " - " . $invitee->pivot->user_role}}</span>
                                 </a>
                             @endforeach
                         </div>
