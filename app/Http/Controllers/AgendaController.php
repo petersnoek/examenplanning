@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,9 +13,25 @@ class AgendaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($davinci_id = null)
     {
-        $loggedInUser = Auth::user();
+        if(isset($davinci_id))
+        {
+//            $selectedUser = User::where('davinci_id', $davinci_id)->get();
+//            if($selectedUser->count())
+//            {
+//                $loggedInUser = $selectedUser->first();
+//            }
+//            else{
+//                session()->flash('error', 'Er bestaat geen gebruiker met het opgegeven OVnummer');
+//            }
+//            $loggedInUser = $davinci_id;
+            $selectedUser = User::where('davinci_id', $davinci_id)->get();
+            $loggedInUser = $selectedUser->first();
+        }
+        else{
+            $loggedInUser = Auth::user();
+        }
         $exams = $loggedInUser->exams;
         return view('calendar.show', compact('exams', 'loggedInUser'));
     }

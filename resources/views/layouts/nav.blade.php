@@ -121,7 +121,7 @@
                                     class="sidebar-mini-hide">Agenda inzien</span></a>
                         <ul>
                             <li>
-                                <a href="/agenda/persoonlijk">Persoonlijk</a>
+                                <a href="/agenda">Persoonlijk</a>
                             </li>
                         </ul>
                     </li>
