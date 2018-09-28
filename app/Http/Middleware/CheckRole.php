@@ -17,7 +17,7 @@ class CheckRole
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->davinci_id == $request->route('davinci_id') || (Auth::user()->role_id == 2 && User::where('davinci_id', $request->route('davinci_id'))->get()->count() != 0))
+        if(Auth::user()->davinci_id == $request->route('davinci_id') || (in_array(Auth::user()->role_id, [1,2]) && User::where('davinci_id', $request->route('davinci_id'))->get()->count() != 0))
         {
             return $next($request);
         }
