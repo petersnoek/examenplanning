@@ -39,11 +39,14 @@
                 </form>
             </div>
         @endif
-        @forelse($exams as $exam)
-            @include('calendar.exam')
-        @empty
-            @include('calendar.empty')
-        @endforelse
+
+        @include('calendar.overview')
+
+        {{--@forelse($exams as $exam)--}}
+            {{--@include('calendar.exam')--}}
+        {{--@empty--}}
+            {{--@include('calendar.empty')--}}
+        {{--@endforelse--}}
     </div>
 
 @endsection

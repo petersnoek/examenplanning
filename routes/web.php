@@ -68,6 +68,8 @@ Route::get('/agenda', ['uses' => 'AgendaController@index']);
 Route::get('/agenda/{davinci_id}', ['uses' => 'AgendaController@index', 'middleware' => 'checkRole']);
 Route::post('/requestagenda', 'AgendaController@requestAgenda');
 
+Route::get('exams-dt', 'AgendaController@showWithTable')->name('exams:dt');
+
 
 
 

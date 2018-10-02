@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exam;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\DataTables;
 
 class AgendaController extends Controller
 {
@@ -34,6 +36,11 @@ class AgendaController extends Controller
         }
         $exams = $loggedInUser->exams;
         return view('calendar.show', compact('exams', 'loggedInUser'));
+    }
+
+    public function showWithTable(){
+        $exams = Exam::all();
+        return Datatables::of($exams)->make(true);
     }
 
     /**
