@@ -45,7 +45,7 @@
                                 <td class="text-center sorting_1 col-lg-1">{{$student->id}}</td>
                                 <td class="font-w600 col-lg-3">{{$student->voornaam . " " }} @if($student->tussenvoegsel != null) {{$student->tussenvoegsel . " "}} @endif {{$student->achternaam}}</td>
                                 <td class="hidden-xs text-wrap col-lg-5">{{$student->email}}</td>
-                                <td class="hidden-xs col-lg-2">{{$student->ovnummer}}</td>
+                                <td class="hidden-xs col-lg-2">{{$student->davinci_id}}</td>
                                 <td class="text-center col-lg-1">
                                     <div class="btn-group">
                                         <a class="btn btn-xs btn-default" href="/students/{{$student->id}}/edit"

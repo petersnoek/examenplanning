@@ -16,7 +16,7 @@ class Exam extends Model
     public function users(){
         return $this->belongsToMany(User::class, 'exam_user')->withPivot('user_role');
     }
-    public function statuses(){
+    public function statusses(){
         return $this->hasOne(Status::class);
     }
 }

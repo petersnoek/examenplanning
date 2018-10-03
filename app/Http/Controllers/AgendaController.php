@@ -6,7 +6,7 @@ use App\Exam;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Yajra\DataTables\DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class AgendaController extends Controller
 {
@@ -35,12 +35,9 @@ class AgendaController extends Controller
             $loggedInUser = Auth::user();
         }
         $exams = $loggedInUser->exams;
-        return view('calendar.show', compact('exams', 'loggedInUser'));
-    }
-
-    public function showWithTable(){
-        $exams = Exam::all();
-        return Datatables::of($exams)->make(true);
+        //add statusses
+        $allExams = Exam::with('proevevanbekwaamheids', 'slots', 'remarks', 'users')->get();
+        return view('calendar.show', compact('exams', 'loggedInUser', 'allExams'));
     }
 
     /**

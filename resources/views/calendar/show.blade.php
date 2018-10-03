@@ -24,9 +24,9 @@
     </div>
     <!-- END Page Header -->
 
-    <div class="content col-lg-12">
+    <div class="content">
         @if(in_array(Auth::user()->role_id, [1,2]))
-            <div class="row col-lg-12">
+            <div class="row">
                 <form class="col-lg-2 form-horizontal push-10-t push-10" action="/requestagenda" method="POST">
                     @csrf
                     <div class="input-group">
@@ -40,13 +40,14 @@
             </div>
         @endif
 
-        @include('calendar.overview')
+            @include('calendar.overview')
 
-        {{--@forelse($exams as $exam)--}}
+            {{--@forelse($exams as $exam)--}}
             {{--@include('calendar.exam')--}}
-        {{--@empty--}}
+            {{--@empty--}}
             {{--@include('calendar.empty')--}}
-        {{--@endforelse--}}
+            {{--@endforelse--}}
+
     </div>
 
 @endsection
