@@ -8,7 +8,7 @@ var BaseTableDatatables = function() {
     // Init full DataTable, for more examples you can check out https://www.datatables.net/
     var initDataTableFull = function() {
         jQuery('.js-dataTable-full').dataTable({
-            columnDefs: [ { orderable: false, targets: [ 4 ] } ],
+            columnDefs: [ { orderable: true, targets: [ 4 ] } ],
             pageLength: 10,
             lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]]
         });
@@ -18,9 +18,23 @@ var BaseTableDatatables = function() {
     var initDataTableFullPagination = function() {
         jQuery('.js-dataTable-full-pagination').dataTable({
             pagingType: "full_numbers",
-            columnDefs: [ { orderable: false, targets: [ 4 ] } ],
+            columnDefs: [ { orderable: true, targets: [ 4 ] } ],
             pageLength: 10,
-            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]]
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+            "language": {
+                "infoEmpty": "Geen gegevens gevonden om weer te geven",
+                "emptyTable": "Geen gegevens beschikbaar in de database",
+                "zeroRecords": "Geen overeenkomstige gegevens beschikbaar",
+                "search": "<i class='fa fa-search'></i>",
+                "paginate": {
+                    "previous": "Vorige",
+                    "next": "Volgende",
+                    "last": "Laatste",
+                    "first": "Eerste",
+                    "page": "Pagina",
+                    "pageOf": "Van",
+                }
+            },
         });
     };
 
@@ -53,7 +67,7 @@ var BaseTableDatatables = function() {
             renderer: 'bootstrap',
             oLanguage: {
                 sLengthMenu: "_MENU_",
-                sInfo: "Showing <strong>_START_</strong>-<strong>_END_</strong> of <strong>_TOTAL_</strong>",
+                sInfo: "Weergegeven <strong>_START_</strong>-<strong>_END_</strong> van de <strong>_TOTAL_</strong>",
                 oPaginate: {
                     sPrevious: '<i class="fa fa-angle-left"></i>',
                     sNext: '<i class="fa fa-angle-right"></i>'

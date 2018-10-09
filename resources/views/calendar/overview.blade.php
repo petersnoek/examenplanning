@@ -7,33 +7,36 @@
         <h3 class="block-title">Examens inzien</h3>
     </div>
     <div class="table-responsive">
-        <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer block-content">
+        <div id="DataTables_Table_2_wrapper"
+             class="dataTables_wrapper form-inline dt-bootstrap no-footer block-content">
             <div class="row">
                 <div class="col-sm-12">
                     <table class="table table-bordered table-striped js-dataTable-full-pagination dataTable no-footer"
                            id="DataTables_Table_2" role="grid" aria-describedby="DataTables_Table_2_info">
                         <thead>
                         <tr role="row">
-                            <th class="text-center sorting_asc" tabindex="0" aria-controls="DataTables_Table_2"
+                            <th class="hidden-xs sorting_desc" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1" colspan="1" aria-sort="ascending"
-                                aria-label=": activate to sort column descending" style="width: 104px;"></th>
+                                aria-label="Id: activate to sort column descending">Id
+                            </th>
                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
                                 colspan="1"
-                                aria-label="Name: activate to sort column ascending" style="width: 402px;">Kerntaak
+                                aria-label="Kerntaak: activate to sort column ascending">Kerntaak
                             </th>
-                            <th class="sorting hidden-xs sorting" tabindex="0" aria-controls="DataTables_Table_2"
+                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
-                                colspan="1" aria-label="Email: activate to sort column ascending"
-                                style="width: 551px;">
-                                Email
+                                colspan="1" aria-label="Aantal genodigden: activate to sort column ascending">Aantal
+                                genodigden
                             </th>
-                            <th class="sorting hidden-xs sorting" tabindex="0" aria-controls="DataTables_Table_2"
+                            <th class="sorting sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
-                                colspan="1" aria-label="OV-nummer: activate to sort column ascending"
-                                style="width: 551px;">
-                                OV-nummer
+                                colspan="1" aria-label="Datum: activate to sort column ascending">Datum
                             </th>
-                            <th class="sorting text-center sorting_disabled" style="width: 137px;" rowspan="1"
+                            <th class="sorting sorting" tabindex="0" aria-controls="DataTables_Table_2"
+                                rowspan="1"
+                                colspan="1" aria-label="Tijd: activate to sort column ascending">Tijd
+                            </th>
+                            <th class="text-center sorting_disabled" rowspan="1"
                                 colspan="1"
                                 aria-label="Actions">Actions
                             </th>
@@ -42,10 +45,11 @@
                         <tbody>
                         @foreach($allExams as $exam)
                             <tr role="row" class="odd">
-                                <td class="text-center sorting_1">{{$exam->id}}</td>
+                                <td class="sorting_1">{{$exam->id}}</td>
                                 <td class="font-w600 sorting_1">{{$exam->proevevanbekwaamheids->kerntaak}}</td>
-                                <td class="sorting_1">{{$exam->slots}}</td>
-                                <td class="sorting_1">{{$exam->}}</td>
+                                <td class="sorting_1">{{$exam->users->count()}}</td>
+                                <td class="sorting_1">{{\Carbon\Carbon::parse($exam->slots["datum"])->format('d-m-Y') . ' (' . \Carbon\Carbon::parse($exam->slots["datum"])->format('D') . ')'}}</td>
+                                <td class="sorting_1">{{\Carbon\Carbon::parse($exam->slots["starttijd"])->format('H:i') . '-' . \Carbon\Carbon::parse($exam->slots["eindtijd"])->format('H:i')}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a class="btn btn-xs btn-default" href="/students/{{$exam->id}}/edit"
@@ -63,6 +67,16 @@
                             </tr>
                         @endforeach
                         </tbody>
+                        <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>Kerntaak</th>
+                            <th>Aantal genodigden</th>
+                            <th>Datum</th>
+                            <th>Tijd</th>
+                            <th></th>
+                        </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -73,4 +87,32 @@
 @push('scripts')
     <script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('assets/js/datatables/base_tables_datatables.js')}}"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Setup - add a text input to each footer cell
+            $('#DataTables_Table_2 tfoot th').each(function () {
+                var title = $(this).text();
+                if (title != "") {
+                    $(this).html('<input type="text" class="form-control" placeholder="Doorzoek ' + title + '" />');
+                }
+            });
+
+            // DataTable
+            var table = $('#DataTables_Table_2').DataTable();
+
+            // Apply the search
+            table.columns().every(function () {
+                var that = this;
+
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        });
+    </script>
 @endpush
