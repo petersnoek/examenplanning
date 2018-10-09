@@ -19,4 +19,10 @@ class Exam extends Model
     public function statusses(){
         return $this->hasOne(Status::class);
     }
+    public function examinators(){
+        return $this->users()->where('user_role', 'Examinator');
+    }
+    public function student(){
+        return $this->users()->where('user_role', 'Student');
+    }
 }

@@ -18,9 +18,20 @@ var BaseTableDatatables = function() {
     var initDataTableFullPagination = function() {
         jQuery('.js-dataTable-full-pagination').dataTable({
             pagingType: "full_numbers",
+            columnDefs: [ { orderable: false, targets: [ 4 ] } ],
+            pageLength: 10,
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+        });
+    };
+
+    // Init full extra DataTable, for more examples you can check out https://www.datatables.net/
+    var init_custom_exam_DataTableFullPagination = function() {
+        jQuery('.js-dataTable-full-pagination_exams').dataTable({
+            pagingType: "full_numbers",
             columnDefs: [ { orderable: true, targets: [ 4 ] } ],
             pageLength: 10,
             lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+            searching: true,
             "language": {
                 "infoEmpty": "Geen gegevens gevonden om weer te geven",
                 "emptyTable": "Geen gegevens beschikbaar in de database",
@@ -213,6 +224,7 @@ var BaseTableDatatables = function() {
             initDataTableSimple();
             initDataTableFull();
             initDataTableFullPagination();
+            init_custom_exam_DataTableFullPagination();
         }
     };
 }();

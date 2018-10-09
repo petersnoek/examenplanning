@@ -4,14 +4,14 @@
 
 <div class="block block-themed">
     <div class="block-header bg-success">
-        <h3 class="block-title">Examens inzien</h3>
+        <h3 class="block-title">Examens</h3>
     </div>
     <div class="table-responsive">
         <div id="DataTables_Table_2_wrapper"
              class="dataTables_wrapper form-inline dt-bootstrap no-footer block-content">
             <div class="row">
                 <div class="col-sm-12">
-                    <table class="table table-bordered table-striped js-dataTable-full-pagination dataTable no-footer"
+                    <table class="table table-bordered table-striped js-dataTable-full-pagination_exams dataTable no-footer"
                            id="DataTables_Table_2" role="grid" aria-describedby="DataTables_Table_2_info">
                         <thead>
                         <tr role="row">
@@ -27,6 +27,14 @@
                                 rowspan="1"
                                 colspan="1" aria-label="Aantal genodigden: activate to sort column ascending">Aantal
                                 genodigden
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2"
+                                rowspan="1"
+                                colspan="1" aria-label="Aantal genodigden: activate to sort column ascending">Examinator
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2"
+                                rowspan="1"
+                                colspan="1" aria-label="Aantal genodigden: activate to sort column ascending">Student
                             </th>
                             <th class="sorting sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
@@ -48,6 +56,8 @@
                                 <td class="sorting_1">{{$exam->id}}</td>
                                 <td class="font-w600 sorting_1">{{$exam->proevevanbekwaamheids->kerntaak}}</td>
                                 <td class="sorting_1">{{$exam->users->count()}}</td>
+                                <td class="sorting_1">@foreach($exam->examinators as $examinator) {{$examinator->davinci_id}} @endforeach</td>
+                                <td class="sorting_1">@foreach($exam->student as $student) {{$student->davinci_id}} @endforeach</td>
                                 <td class="sorting_1">{{\Carbon\Carbon::parse($exam->slots["datum"])->format('d-m-Y') . ' (' . \Carbon\Carbon::parse($exam->slots["datum"])->format('D') . ')'}}</td>
                                 <td class="sorting_1">{{\Carbon\Carbon::parse($exam->slots["starttijd"])->format('H:i') . '-' . \Carbon\Carbon::parse($exam->slots["eindtijd"])->format('H:i')}}</td>
                                 <td class="text-center">
@@ -72,6 +82,8 @@
                             <th></th>
                             <th>Kerntaak</th>
                             <th>Aantal genodigden</th>
+                            <th>Examinatoren</th>
+                            <th>Student</th>
                             <th>Datum</th>
                             <th>Tijd</th>
                             <th></th>

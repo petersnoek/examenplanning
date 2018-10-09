@@ -19,15 +19,6 @@ class AgendaController extends Controller
     {
         if(isset($davinci_id))
         {
-//            $selectedUser = User::where('davinci_id', $davinci_id)->get();
-//            if($selectedUser->count())
-//            {
-//                $loggedInUser = $selectedUser->first();
-//            }
-//            else{
-//                session()->flash('error', 'Er bestaat geen gebruiker met het opgegeven OVnummer');
-//            }
-//            $loggedInUser = $davinci_id;
             $selectedUser = User::where('davinci_id', $davinci_id)->get();
             $loggedInUser = $selectedUser->first();
         }
@@ -108,6 +99,24 @@ class AgendaController extends Controller
 
     public function requestAgenda()
     {
-        return redirect('/agenda/' . request('ovnummer'));
+        return redirect('/agenda/' . request('ovnummer') . '/show');
+    }
+    public function requestAgendaTable($davinci_id = null){
+        if(isset($davinci_id))
+        {
+            $selectedUser = User::where('davinci_id', $davinci_id)->get();
+            $loggedInUser = $selectedUser->first();
+        }
+        else{
+            $loggedInUser = Auth::user();
+        }
+        $allExams = $loggedInUser->exams;
+        return view('calendar.all', compact( 'loggedInUser', 'allExams'));
+    }
+
+    public function all(){
+        $allExams = Exam::with('proevevanbekwaamheids', 'slots', 'remarks', 'users')->get();
+        return view('/calendar/all', compact('allExams'));
+
     }
 }

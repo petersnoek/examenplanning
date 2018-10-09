@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('land');
             $table->boolean('active')->default(false);
             $table->unsignedInteger('role_id');
-            $table->integer('davinci_id')->nullable();
+            $table->string('davinci_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
 
