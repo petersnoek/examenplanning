@@ -36,8 +36,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(QuestionaireSeeder::class);
         $this->call(CompanySeeder::class);
-        $this->call(ExamSeeder::class);
         $this->call(ProjectSeeder::class);
+        $this->call(ExamSeeder::class);
         $this->call(RemarkSeeder::class);
 
         //pivottable seeders

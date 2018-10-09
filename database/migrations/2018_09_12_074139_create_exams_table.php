@@ -18,6 +18,7 @@ class CreateExamsTable extends Migration
             $table->unsignedInteger('slot_id')->nullable();
             $table->unsignedInteger('proevevanbekwaamheid_id');
             $table->unsignedInteger('status_id')->nullable();
+            $table->unsignedInteger('project_id');
             $table->string('voorlopige_uitslag')->nullable();
             $table->timestamps();
 
@@ -29,6 +30,9 @@ class CreateExamsTable extends Migration
                 ->onDelete('cascade');
             $table->foreign('status_id')
                 ->references('id')->on('statuses')
+                ->onDelete('cascade');
+            $table->foreign('project_id')
+                ->references('id')->on('projects')
                 ->onDelete('cascade');
         });
     }

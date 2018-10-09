@@ -15,4 +15,7 @@ class Project extends Model
     public function questionaires(){
         return $this->hasOne(Questionaire::class);
     }
+    public function exams(){
+        return $this->belongsToMany(Exam::class);
+    }
 }

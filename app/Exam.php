@@ -25,4 +25,7 @@ class Exam extends Model
     public function student(){
         return $this->users()->where('user_role', 'Student');
     }
+    public function projects(){
+        return $this->hasOne(Project::class, 'project_id');
+    }
 }
