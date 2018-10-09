@@ -25,20 +25,19 @@
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
-                                colspan="1" aria-label="Aantal genodigden: activate to sort column ascending">Aantal
-                                genodigden
+                                colspan="1" aria-label="Aantal genodigden: activate to sort column ascending">Student
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
                                 colspan="1" aria-label="Aantal genodigden: activate to sort column ascending">Examinator
                             </th>
-                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2"
-                                rowspan="1"
-                                colspan="1" aria-label="Aantal genodigden: activate to sort column ascending">Student
-                            </th>
                             <th class="sorting sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
                                 colspan="1" aria-label="Datum: activate to sort column ascending">Datum (yyy-dd-mm)
+                            </th>
+                            <th class="sorting sorting" tabindex="0" aria-controls="DataTables_Table_2"
+                                rowspan="1"
+                                colspan="1" aria-label="Datum: activate to sort column ascending">Bedrijf
                             </th>
                             <th class="sorting sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
@@ -53,12 +52,12 @@
                         <tbody>
                         @foreach($allExams as $exam)
                             <tr role="row" class="odd">
-                                <td class="sorting_1">{{$exam->id}}</td>
+                                <td class="sorting_1 hidden-xs">{{$exam->id}}</td>
                                 <td class="font-w600 sorting_1">{{$exam->proevevanbekwaamheids->kerntaak}}</td>
-                                <td class="sorting_1">{{$exam->users->count()}}</td>
-                                <td class="sorting_1">@foreach($exam->examinators as $examinator) {{$examinator->davinci_id}} @endforeach</td>
-                                <td class="sorting_1">@foreach($exam->student as $student) {{$student->davinci_id}} @endforeach</td>
+                                <td class="sorting_1">@foreach($exam->student as $student)<a href="/agenda/{{$student->davinci_id}}/show">{{$student->davinci_id}}</a>{{" (" . $student->achternaam . ", " . $student->voornaam . " " . $exam->student->first()->tussenvoegsel . ")" }} @endforeach</td>
+                                <td class="sorting_1">@foreach($exam->examinators as $examinator) <a href="/agenda/{{$examinator->davinci_id}}/show">{{$examinator->davinci_id}}</a>;@endforeach</td>
                                 <td class="sorting_1">{{\Carbon\Carbon::parse($exam->slots["datum"])->format('Y-d-m'). ' (' . \Carbon\Carbon::parse($exam->slots["datum"])->format('D') . ') '}}  </td>
+                                <td class="sorting_1">{{$exam->project->company->naam}}</td>
                                 <td class="sorting_1">{{\Carbon\Carbon::parse($exam->slots["starttijd"])->format('H:i') . '-' . \Carbon\Carbon::parse($exam->slots["eindtijd"])->format('H:i')}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
@@ -81,10 +80,10 @@
                         <tr>
                             <th></th>
                             <th>Kerntaak</th>
-                            <th>Aantal genodigden</th>
                             <th>Examinatoren</th>
                             <th>Student</th>
                             <th>Datum</th>
+                            <th>Bedrijf</th>
                             <th>Tijd</th>
                             <th></th>
                         </tr>
