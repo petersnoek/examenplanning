@@ -12,7 +12,7 @@
                             <div><i class="fa fa-fw fa-4x fa-calendar push-5-r"></i></div>
                             <div class="h5 text-muted text-uppercase push-5-t">{{\Carbon\Carbon::parse($exam->slots->datum)->format('d-m-Y')}}</div>
                         </td>
-                        <td class="border-r" style="width: 50%;">
+                        <td class="border-" style="width: 50%;">
                             <div><i class="fa fa-fw fa-4x fa-clock-o push-5-r"></i></div>
                             <div class="h5 text-muted text-uppercase push-5-t">{{\Carbon\Carbon::parse($exam->slots->starttijd)->format('H:i') . '-' . \Carbon\Carbon::parse($exam->slots->eindtijd)->format('H:i')}}</div>
                         </td>
@@ -26,7 +26,7 @@
                     <i class="fa fa-fw fa-user push-5-r"></i> Genodigden
                 </div>
                 @foreach($exam->users as $invitee)
-                        <a @if(in_array($invitee->role_id, [3]))class="list-group-item cursor_hand" href="/agenda/{{$invitee->davinci_id}}" @else class="list-group-item" @endif>
+                        <a @if(in_array($invitee->role_id, [3, 2]))class="list-group-item cursor_hand" href="/agenda/{{$invitee->davinci_id}}/show" @else class="list-group-item" @endif>
                             <i class="fa fa-fw fa-address-card push-5-r"></i> <span
                                     @if($invitee->id == $loggedInUser->id) class="text-success" @endif>{{$invitee->achternaam . ", " . $invitee->voornaam . " " . $invitee->tussenvoegsel . " - " . $invitee->pivot->user_role}}</span>
                         </a>

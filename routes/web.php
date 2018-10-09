@@ -67,8 +67,9 @@ Route::post('/exams/create', 'ExamController@store');
 Route::get('/agenda', ['uses' => 'AgendaController@index']);
 Route::get('/agenda/{davinci_id}/show', ['uses' => 'AgendaController@index', 'middleware' => 'checkRole']);
 Route::get('/agenda/{davinci_id}/show/table', ['uses' => 'AgendaController@requestAgendaTable', 'middleware' => 'checkRole']);
-Route::post('/requestagenda', 'AgendaController@requestAgenda');
 Route::get('/agenda/all', 'AgendaController@all');
+
+Route::post('/requestagenda', 'AgendaController@requestAgenda');
 
 
 
