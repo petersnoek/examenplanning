@@ -3,7 +3,7 @@
 @endpush
 
 <div class="block block-themed">
-    <div class="block-header bg-success">
+    <div class="block-header bg-default-dark">
         <h3 class="block-title">Examens</h3>
     </div>
     <div class="table-responsive">
@@ -38,7 +38,7 @@
                             </th>
                             <th class="sorting sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
-                                colspan="1" aria-label="Datum: activate to sort column ascending">Datum
+                                colspan="1" aria-label="Datum: activate to sort column ascending">Datum (yyy-dd-mm)
                             </th>
                             <th class="sorting sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
@@ -58,7 +58,7 @@
                                 <td class="sorting_1">{{$exam->users->count()}}</td>
                                 <td class="sorting_1">@foreach($exam->examinators as $examinator) {{$examinator->davinci_id}} @endforeach</td>
                                 <td class="sorting_1">@foreach($exam->student as $student) {{$student->davinci_id}} @endforeach</td>
-                                <td class="sorting_1">{{\Carbon\Carbon::parse($exam->slots["datum"])->format('d-m-Y') . ' (' . \Carbon\Carbon::parse($exam->slots["datum"])->format('D') . ')'}}</td>
+                                <td class="sorting_1">{{\Carbon\Carbon::parse($exam->slots["datum"])->format('Y-d-m'). ' (' . \Carbon\Carbon::parse($exam->slots["datum"])->format('D') . ') '}}  </td>
                                 <td class="sorting_1">{{\Carbon\Carbon::parse($exam->slots["starttijd"])->format('H:i') . '-' . \Carbon\Carbon::parse($exam->slots["eindtijd"])->format('H:i')}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">

@@ -32,6 +32,7 @@ var BaseTableDatatables = function() {
             pageLength: 10,
             lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
             searching: true,
+            order: [[ 5, 'asc' ], [ 3, 'asc' ], [ 6, 'asc' ], [ 0, 'asc' ], [ 1, 'asc' ], [ 2, 'asc' ], [ 4, 'asc' ]],
             "language": {
                 "infoEmpty": "Geen gegevens gevonden om weer te geven",
                 "emptyTable": "Geen gegevens beschikbaar in de database",

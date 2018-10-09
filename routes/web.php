@@ -69,6 +69,7 @@ Route::get('/agenda/{davinci_id}/show', ['uses' => 'AgendaController@index', 'mi
 Route::get('/agenda/{davinci_id}/show/table', ['uses' => 'AgendaController@requestAgendaTable', 'middleware' => 'checkRole']);
 Route::get('/agenda/all', 'AgendaController@all');
 
+
 Route::post('/requestagenda', 'AgendaController@requestAgenda');
 
 
