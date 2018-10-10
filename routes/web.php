@@ -65,9 +65,9 @@ Route::post('/exams/create', 'ExamController@store');
 
 //CRUD agenda
 Route::get('/agenda', ['uses' => 'AgendaController@index']);
-Route::get('/agenda/{davinci_id}/show', ['uses' => 'AgendaController@index', 'middleware' => 'checkRole']);
-Route::get('/agenda/{davinci_id}/show/table', ['uses' => 'AgendaController@requestAgendaTable', 'middleware' => 'checkRole']);
-Route::get('/agenda/all', 'AgendaController@all');
+Route::get('/agenda/{davinci_id}/show', ['uses' => 'AgendaController@index', 'middleware' => ['checkauthorization', 'checkrequesteduseragenda']]);
+Route::get('/agenda/{davinci_id}/show/table', ['uses' => 'AgendaController@requestAgendaTable', 'middleware' => ['checkauthorization', 'checkrequesteduseragenda']]);
+Route::get('/agenda/all', ['uses' => 'AgendaController@all', 'middleware' => ['checkauthorization']]);
 
 
 Route::post('/requestagenda', 'AgendaController@requestAgenda');
