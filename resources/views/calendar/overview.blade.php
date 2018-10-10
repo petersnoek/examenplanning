@@ -37,7 +37,7 @@
                             </th>
                             <th class="sorting sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
-                                colspan="1" aria-label="Datum: activate to sort column ascending">Datum (yyy-dd-mm)
+                                colspan="1" aria-label="Datum: activate to sort column ascending">Datum (yyy-mm-dd)
                             </th>
                             <th class="sorting sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
@@ -65,7 +65,7 @@
                                 <td class="sorting_1">{{$exam->voorlopige_uitslag}}</td>
                                 <td class="sorting_1">@if($exam->student->first()){{$exam->student->first()->achternaam . ", " . $exam->student->first()->voornaam . " " . $exam->student->first()->tussenvoegsel}} <a href="/agenda/{{$exam->student->first()->davinci_id}}/show"> ({{$exam->student->first()->davinci_id}})</a>  @else Geen student @endif</td>
                                 <td class="sorting_1">@if($exam->examinators->isNotEmpty()) @foreach($exam->examinators as $examinator) {{$examinator->achternaam . ', ' . $examinator->voornaam . ' ' . $examinator->tussenvoegsel}} <a href="/agenda/{{$examinator->davinci_id}}/show">({{$examinator->davinci_id}})</a>;<br>@endforeach @else Niet toegewezen @endif</td>
-                                <td class="sorting_1">@if($exam->slots) {{\Carbon\Carbon::parse($exam->slots["datum"])->format('Y-d-m'). ' (' . \Carbon\Carbon::parse($exam->slots["datum"])->format('D') . ') '}} @else Niet gepland @endif</td>
+                                <td class="sorting_1">@if($exam->slots) {{\Carbon\Carbon::parse($exam->slots["datum"])->format('Y-m-d'). ' (' . \Carbon\Carbon::parse($exam->slots["datum"])->format('D') . ') '}} @else Niet gepland @endif</td>
                                 <td class="sorting_1">{{$exam->project->company->naam}}</td>
                                 <td class="sorting_1">{{$exam->project->company->plaats}}</td>
                                 <td class="sorting_1">{{\Carbon\Carbon::parse($exam->slots["starttijd"])->format('H:i') . '-' . \Carbon\Carbon::parse($exam->slots["eindtijd"])->format('H:i')}}</td>
