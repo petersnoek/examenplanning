@@ -58,7 +58,7 @@
     <!-- END Stylesheets -->
 </head>
 <body>
-
+<div id="page-loader"></div>
 <!-- default Login & register links -->
 {{--@if (Route::has('login'))--}}
     {{--<div class="top-right links">--}}

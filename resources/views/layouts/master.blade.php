@@ -62,6 +62,7 @@
     <!-- END Stylesheets -->
 </head>
 <body>
+<div id="page-loader"></div>
 <!-- Page Container -->
 <!--
     Available Classes:
