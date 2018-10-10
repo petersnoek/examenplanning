@@ -15,13 +15,17 @@
                            id="DataTables_Table_2" role="grid" aria-describedby="DataTables_Table_2_info">
                         <thead>
                         <tr role="row">
-                            <th class="hidden-xs sorting_desc" tabindex="0" aria-controls="DataTables_Table_2"
-                                rowspan="1" colspan="1" aria-sort="ascending"
-                                aria-label="Id: activate to sort column descending">Id
-                            </th>
                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
                                 colspan="1"
                                 aria-label="Kerntaak: activate to sort column ascending">Kerntaak
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
+                                colspan="1"
+                                aria-label="Kerntaak: activate to sort column ascending">Status
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
+                                colspan="1"
+                                aria-label="Kerntaak: activate to sort column ascending">Voorlopige uitslag
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
@@ -37,7 +41,11 @@
                             </th>
                             <th class="sorting sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
-                                colspan="1" aria-label="Datum: activate to sort column ascending">Bedrijf
+                                colspan="1" aria-label="Bedrijf: activate to sort column ascending">Bedrijf
+                            </th>
+                            <th class="sorting sorting" tabindex="0" aria-controls="DataTables_Table_2"
+                                rowspan="1"
+                                colspan="1" aria-label="Plaats: activate to sort column ascending">Plaats
                             </th>
                             <th class="sorting sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
@@ -52,24 +60,31 @@
                         <tbody>
                         @foreach($allExams as $exam)
                             <tr role="row" class="odd">
-                                <td class="sorting_1 hidden-xs">{{$exam->id}}</td>
                                 <td class="font-w600 sorting_1">{{$exam->proevevanbekwaamheids->kerntaak}}</td>
-                                <td class="sorting_1">@foreach($exam->student as $student)<a href="/agenda/{{$student->davinci_id}}/show">{{$student->davinci_id}}</a>{{" (" . $student->achternaam . ", " . $student->voornaam . " " . $exam->student->first()->tussenvoegsel . ")" }} @endforeach</td>
-                                <td class="sorting_1">@foreach($exam->examinators as $examinator) <a href="/agenda/{{$examinator->davinci_id}}/show">{{$examinator->davinci_id}}</a>;@endforeach</td>
-                                <td class="sorting_1">{{\Carbon\Carbon::parse($exam->slots["datum"])->format('Y-d-m'). ' (' . \Carbon\Carbon::parse($exam->slots["datum"])->format('D') . ') '}}  </td>
+                                <td class="sorting_1">{{$exam->status->naam}}</td>
+                                <td class="sorting_1">{{$exam->voorlopige_uitslag}}</td>
+                                <td class="sorting_1">@if($exam->student->first()){{$exam->student->first()->achternaam . ", " . $exam->student->first()->voornaam . " " . $exam->student->first()->tussenvoegsel}} <a href="/agenda/{{$exam->student->first()->davinci_id}}/show"> ({{$exam->student->first()->davinci_id}})</a>  @else Geen student @endif</td>
+                                <td class="sorting_1">@if($exam->examinators->isNotEmpty()) @foreach($exam->examinators as $examinator) {{$examinator->achternaam . ', ' . $examinator->voornaam . ' ' . $examinator->tussenvoegsel}} <a href="/agenda/{{$examinator->davinci_id}}/show">({{$examinator->davinci_id}})</a>;<br>@endforeach @else Niet toegewezen @endif</td>
+                                <td class="sorting_1">@if($exam->slots) {{\Carbon\Carbon::parse($exam->slots["datum"])->format('Y-d-m'). ' (' . \Carbon\Carbon::parse($exam->slots["datum"])->format('D') . ') '}} @else Niet gepland @endif</td>
                                 <td class="sorting_1">{{$exam->project->company->naam}}</td>
+                                <td class="sorting_1">{{$exam->project->company->plaats}}</td>
                                 <td class="sorting_1">{{\Carbon\Carbon::parse($exam->slots["starttijd"])->format('H:i') . '-' . \Carbon\Carbon::parse($exam->slots["eindtijd"])->format('H:i')}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a class="btn btn-xs btn-default" href="/students/{{$exam->id}}/edit"
+                                        <a class="btn btn-xs btn-default" href=""
                                            data-toggle="tooltip"
                                            title=""
-                                           data-original-title="Bewerk student"><i class="fa fa-pencil"></i>
+                                           data-original-title="Bekijk examen"><i class="fa fa-eye"></i>
                                         </a>
-                                        <a class="btn btn-xs btn-default" href="/students/{{$exam->id}}/remove"
+                                        <a class="btn btn-xs btn-default" href=""
                                            data-toggle="tooltip"
                                            title=""
-                                           data-original-title="Verwijder student"><i class="fa fa-times"></i>
+                                           data-original-title="Bewerk examen"><i class="fa fa-pencil"></i>
+                                        </a>
+                                        <a class="btn btn-xs btn-default" href=""
+                                           data-toggle="tooltip"
+                                           title=""
+                                           data-original-title="Verwijder examen"><i class="fa fa-times"></i>
                                         </a>
                                     </div>
                                 </td>
@@ -78,12 +93,14 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th></th>
                             <th>Kerntaak</th>
-                            <th>Examinatoren</th>
+                            <th>Status</th>
+                            <th>Voorlopige uitslag</th>
                             <th>Student</th>
+                            <th>Examinatoren</th>
                             <th>Datum</th>
                             <th>Bedrijf</th>
+                            <th>Plaats</th>
                             <th>Tijd</th>
                             <th></th>
                         </tr>
@@ -105,7 +122,7 @@
             $('#DataTables_Table_2 tfoot th').each(function () {
                 var title = $(this).text();
                 if (title != "") {
-                    $(this).html('<input type="text" class="form-control" placeholder="Doorzoek ' + title + '" />');
+                    $(this).html('<input type="text" class="form-control small" placeholder="Doorzoek ' + title + '" />');
                 }
             });
 

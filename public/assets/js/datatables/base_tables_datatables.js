@@ -37,6 +37,7 @@ var BaseTableDatatables = function() {
                 "infoEmpty": "Geen gegevens gevonden om weer te geven",
                 "emptyTable": "Geen gegevens beschikbaar in de database",
                 "zeroRecords": "Geen overeenkomstige gegevens beschikbaar",
+                "infoFiltered": "(gefilterd van _MAX_ gegevens)",
                 "search": "<i class='fa fa-search'></i>",
                 "paginate": {
                     "previous": "Vorige",
