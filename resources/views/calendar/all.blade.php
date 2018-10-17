@@ -26,7 +26,7 @@
     <div class="content">
         @if(in_array(Auth::user()->role_id, [1,2]))
             <div class="row">
-                <form class="col-lg-2 form-horizontal push-10-t push-10" action="/requestagenda" method="POST">
+                <form class="col-lg-4 col-md-5 form-horizontal push-10-t push-10" action="/requestagenda" method="POST">
                     @csrf
                     <div class="input-group">
                         <span class="input-group-btn">
