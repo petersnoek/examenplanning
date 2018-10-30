@@ -24,6 +24,15 @@ var BaseTableDatatables = function() {
         });
     };
 
+    var initDataTableFullPaginationCustom = function() {
+        jQuery('.js-dataTable-full-pagination_custom').dataTable({
+            pagingType: "full_numbers",
+            columnDefs: [ { orderable: false, targets: [  ] } ],
+            pageLength: 10,
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+        });
+    };
+
     // Init full extra DataTable, for more examples you can check out https://www.datatables.net/
     var init_custom_exam_DataTableFullPagination = function() {
         jQuery('.js-dataTable-full-pagination_exams').dataTable({
@@ -226,6 +235,7 @@ var BaseTableDatatables = function() {
             initDataTableSimple();
             initDataTableFull();
             initDataTableFullPagination();
+            initDataTableFullPaginationCustom();
             init_custom_exam_DataTableFullPagination();
         }
     };

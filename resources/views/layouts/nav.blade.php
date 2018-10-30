@@ -73,6 +73,27 @@
                     </li>
                     <li class="nav-main-heading"><span class="sidebar-mini-hide">Pages</span></li>
                     <li>
+                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-plus"></i><span
+                                    class="sidebar-mini-hide">CRUD</span></a>
+                        <ul>
+                            <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Schooljaren</a>
+                                <ul>
+                                    <li>
+                                        <a href="/schoolyears">Read</a>
+                                    </li>
+                                    <li>
+                                        <a href="/schoolyears/create">Create</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Update</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
                         <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-wrench"></i><span
                                     class="sidebar-mini-hide">Manage examens</span></a>
                         <ul>

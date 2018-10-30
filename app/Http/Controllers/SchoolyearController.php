@@ -18,7 +18,7 @@ class SchoolyearController extends Controller
     public function index()
     {
         $schoolyears = Schoolyear::all();
-        return view('slots.create', compact('schoolyears'));
+        return view('schoolyears.index', compact('schoolyears'));
     }
 
     /**
@@ -100,6 +100,11 @@ class SchoolyearController extends Controller
     {
         Schoolyear::destroy($schoolyear->id);
         session()->flash('message', 'Schooljaar succesvol verwijderd.');
-        return redirect("/schoolyears/create");
+        return redirect("/schoolyears");
+    }
+
+    public function allSlots(){
+        $schoolyears = Schoolyear::all();
+        return view('slots.create', compact('schoolyears'));
     }
 }

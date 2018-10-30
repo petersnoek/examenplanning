@@ -21,19 +21,19 @@
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
                                 colspan="1"
-                                aria-label="Kerntaak: activate to sort column ascending">Status
+                                aria-label="Status: activate to sort column ascending">Status
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
                                 colspan="1"
-                                aria-label="Kerntaak: activate to sort column ascending">Voorlopige uitslag
+                                aria-label="Voorlopige uitslag: activate to sort column ascending">Voorlopige uitslag
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
-                                colspan="1" aria-label="Aantal genodigden: activate to sort column ascending">Student
+                                colspan="1" aria-label="Student: activate to sort column ascending">Student
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"
-                                colspan="1" aria-label="Aantal genodigden: activate to sort column ascending">Examinator
+                                colspan="1" aria-label="Examinator: activate to sort column ascending">Examinator
                             </th>
                             <th class="sorting sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                 rowspan="1"

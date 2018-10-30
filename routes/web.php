@@ -42,7 +42,7 @@ Route::get('/periods/{period}/edit', 'PeriodController@edit');
 Route::put('/periods/{period}', 'PeriodController@update');
 
 //CRUD slots
-Route::get('/slots', 'SchoolyearController@Index');
+Route::get('/slots', 'SchoolyearController@allSlots');
 Route::post('/slots/addtoperiod/{period}', 'SlotController@store');
 Route::get('/slots/{period}', 'SlotController@Create');
 Route::get('/slots/{slot}/remove', 'SlotController@destroy');
@@ -54,6 +54,7 @@ Route::get('/slots/assign', 'SlotController@assign');
 
 //CRUD schoolyears
 Route::get('/schoolyears/create', 'SchoolyearController@create');
+Route::get('/schoolyears', 'SchoolyearController@index');
 Route::post('/schoolyears', 'SchoolyearController@store');
 Route::get('/schoolyears/{schoolyear}/remove', 'SchoolyearController@destroy');
 Route::get('/schoolyears/{schoolyear}/edit', 'SchoolyearController@edit');
