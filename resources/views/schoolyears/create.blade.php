@@ -29,7 +29,7 @@
     </div>
     <!-- END Page Header -->
     <div class="content">
-        <h2 class="content-heading">Schooljaren aanmaken {{$errors}}</h2>
+        <h2 class="content-heading">Schooljaren aanmaken</h2>
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
