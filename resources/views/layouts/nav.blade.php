@@ -123,6 +123,9 @@
                             <li>
                                 <a href="/agenda">Persoonlijk</a>
                             </li>
+                            <li>
+                                <a href="/agenda/all">Alle</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

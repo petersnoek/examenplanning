@@ -16,7 +16,16 @@ class Exam extends Model
     public function users(){
         return $this->belongsToMany(User::class, 'exam_user')->withPivot('user_role');
     }
-    public function statuses(){
-        return $this->hasOne(Status::class);
+    public function status(){
+        return $this->belongsTo(Status::class);
+    }
+    public function examinators(){
+        return $this->users()->where('user_role', 'Examinator');
+    }
+    public function student(){
+        return $this->users()->where('user_role', 'Student');
+    }
+    public function project(){
+        return $this->belongsTo(Project::class, 'project_id');
     }
 }

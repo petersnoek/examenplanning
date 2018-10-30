@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exam;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class AgendaController extends Controller
 {
@@ -15,25 +18,11 @@ class AgendaController extends Controller
      */
     public function index($davinci_id = null)
     {
-        if(isset($davinci_id))
-        {
-//            $selectedUser = User::where('davinci_id', $davinci_id)->get();
-//            if($selectedUser->count())
-//            {
-//                $loggedInUser = $selectedUser->first();
-//            }
-//            else{
-//                session()->flash('error', 'Er bestaat geen gebruiker met het opgegeven OVnummer');
-//            }
-//            $loggedInUser = $davinci_id;
-            $selectedUser = User::where('davinci_id', $davinci_id)->get();
-            $loggedInUser = $selectedUser->first();
-        }
-        else{
-            $loggedInUser = Auth::user();
-        }
+        $loggedInUser = $this->setUser($davinci_id);
         $exams = $loggedInUser->exams;
-        return view('calendar.show', compact('exams', 'loggedInUser'));
+        //add statusses
+        $allExams = Exam::with('proevevanbekwaamheids', 'slots', 'remarks', 'users')->get();
+        return view('calendar.show', compact('exams', 'loggedInUser', 'allExams'));
     }
 
     /**
@@ -104,6 +93,27 @@ class AgendaController extends Controller
 
     public function requestAgenda()
     {
-        return redirect('/agenda/' . request('ovnummer'));
+        return redirect('/agenda/' . request('ovnummer') . '/show');
+    }
+    public function requestAgendaTable($davinci_id = null){
+        $loggedInUser = $this->setUser($davinci_id);
+        $allExams = $loggedInUser->exams;
+        return view('calendar.all', compact( 'loggedInUser', 'allExams'));
+    }
+
+    public function all(){
+        $allExams = Exam::with('proevevanbekwaamheids', 'slots', 'remarks', 'users')->get();
+        return view('/calendar/all', compact('allExams'));
+    }
+
+    public function setUser($davinci_id){
+        if(isset($davinci_id))
+        {
+            $selectedUser = User::where('davinci_id', $davinci_id)->get();
+            return $selectedUser->first();
+        }
+        else{
+            return Auth::user();
+        }
     }
 }

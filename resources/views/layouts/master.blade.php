@@ -62,6 +62,7 @@
     <!-- END Stylesheets -->
 </head>
 <body>
+<div id="page-loader"></div>
 <!-- Page Container -->
 <!--
     Available Classes:
@@ -118,9 +119,12 @@
 <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
 <script src="{{asset('assets/js/oneui.min.js')}}"></script>
 
-@stack('scripts')
+
 
 <!-- Page JS Plugins + Page JS Code -->
+@stack('scripts')
+
+<!-- General master page JS Code -->
 <script>
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 </script>

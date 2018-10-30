@@ -1,5 +1,6 @@
 <?php
 
+use App\Project;
 use App\User;
 use Illuminate\Database\Seeder;
 use App\Proevevanbekwaamheid;
@@ -24,6 +25,8 @@ class ExamSeeder extends Seeder
         $faker = Faker::create('nl_NL');
 
         $slots = Slot::inRandomOrder()->get();
+        $statusses = Status::inRandomOrder()->get();
+        $projects = Project::inRandomOrder()->get();
 
         foreach($users = User::where('role_id',  3)->get() as $user)
         {
@@ -41,7 +44,8 @@ class ExamSeeder extends Seeder
                     'voorlopige_uitslag' => $faker->randomElement(array('n', 'o', 'v', 'g')),
                     'slot_id' => $slotid,
                     'proevevanbekwaamheid_id' => $proevevanbekwaamheid->id,
-                    'status_id' => Status::inRandomOrder()->first()->id,
+                    'status_id' => $statusses->random()->id,
+                    'project_id' => $projects->random()->id,
                     'created_at' => Carbon::now(),
                 ]);
             }

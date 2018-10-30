@@ -8,7 +8,7 @@ var BaseTableDatatables = function() {
     // Init full DataTable, for more examples you can check out https://www.datatables.net/
     var initDataTableFull = function() {
         jQuery('.js-dataTable-full').dataTable({
-            columnDefs: [ { orderable: false, targets: [ 4 ] } ],
+            columnDefs: [ { orderable: true, targets: [ 4 ] } ],
             pageLength: 10,
             lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]]
         });
@@ -20,7 +20,34 @@ var BaseTableDatatables = function() {
             pagingType: "full_numbers",
             columnDefs: [ { orderable: false, targets: [ 4 ] } ],
             pageLength: 10,
-            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]]
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+        });
+    };
+
+    // Init full extra DataTable, for more examples you can check out https://www.datatables.net/
+    var init_custom_exam_DataTableFullPagination = function() {
+        jQuery('.js-dataTable-full-pagination_exams').dataTable({
+            pagingType: "full_numbers",
+            columnDefs: [ { orderable: true, targets: [ 4 ] } ],
+            pageLength: 10,
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+            searching: true,
+            order: [[ 5, 'asc' ], [ 4, 'asc' ], [ 8, 'asc' ]],
+            "language": {
+                "infoEmpty": "Geen gegevens gevonden om weer te geven",
+                "emptyTable": "Geen gegevens beschikbaar in de database",
+                "zeroRecords": "Geen overeenkomstige gegevens beschikbaar",
+                "infoFiltered": "(gefilterd van _MAX_ gegevens)",
+                "search": "<i class='fa fa-search'></i>",
+                "paginate": {
+                    "previous": "Vorige",
+                    "next": "Volgende",
+                    "last": "Laatste",
+                    "first": "Eerste",
+                    "page": "Pagina",
+                    "pageOf": "Van",
+                }
+            },
         });
     };
 
@@ -53,7 +80,7 @@ var BaseTableDatatables = function() {
             renderer: 'bootstrap',
             oLanguage: {
                 sLengthMenu: "_MENU_",
-                sInfo: "Showing <strong>_START_</strong>-<strong>_END_</strong> of <strong>_TOTAL_</strong>",
+                sInfo: "Weergegeven <strong>_START_</strong>-<strong>_END_</strong> van de <strong>_TOTAL_</strong>",
                 oPaginate: {
                     sPrevious: '<i class="fa fa-angle-left"></i>',
                     sNext: '<i class="fa fa-angle-right"></i>'
@@ -199,6 +226,7 @@ var BaseTableDatatables = function() {
             initDataTableSimple();
             initDataTableFull();
             initDataTableFullPagination();
+            init_custom_exam_DataTableFullPagination();
         }
     };
 }();

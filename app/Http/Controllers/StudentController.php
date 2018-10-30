@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateStudentForm;
 use App\Http\Requests\EditStudentForm;
 use App\Student;
+use App\User;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -26,7 +27,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $students = Student::all();
+        $students = User::all();
         return view('students.create', compact('students'));
     }
 

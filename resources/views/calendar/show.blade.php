@@ -24,26 +24,38 @@
     </div>
     <!-- END Page Header -->
 
-    <div class="content col-lg-12">
-        @if(in_array(Auth::user()->role_id, [1,2]))
-            <div class="row col-lg-12">
-                <form class="col-lg-2 form-horizontal push-10-t push-10" action="/requestagenda" method="POST">
-                    @csrf
-                    <div class="input-group">
+    <div class="content">
+        <div class="">
+            @if(in_array(Auth::user()->role_id, [1,2]))
+                <div class="row">
+                    <form class="col-lg-4 col-md-4 form-horizontal push-10-t push-10" action="/requestagenda" method="POST">
+                        @csrf
+                        <div class="input-group">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit"><i class="fa fa-search"></i> Zoek</button>
                         </span>
-                        <input class="form-control" type="text" id="ovnummer" name="ovnummer"
-                               placeholder="Ovnummer..." required>
-                    </div>
-                </form>
+                            <input class="form-control" type="text" id="ovnummer" name="ovnummer"
+                                   placeholder="Ovnummer..." required>
+                        </div>
+                    </form>
+                </div>
+            @endif
+
+            <div class="row">
+                @forelse($exams as $exam)
+                    @include('calendar.exam')
+                @empty
+                    @include('calendar.empty')
+                @endforelse
             </div>
-        @endif
-        @forelse($exams as $exam)
-            @include('calendar.exam')
-        @empty
-            @include('calendar.empty')
-        @endforelse
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="/agenda/{{$loggedInUser->davinci_id}}/show/table">Klik hier voor tabelweergave</a>
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection
