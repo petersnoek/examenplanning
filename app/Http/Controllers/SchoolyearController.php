@@ -40,13 +40,12 @@ class SchoolyearController extends Controller
      */
     public function store(CreateSchoolyearForm $form)
     {
-        $schooljaar = "01-01-" . explode("-", request('schooljaar'))[0];
         if (Carbon::parse(request('einddatum')) < Carbon::parse(request('startdatum'))) {
             return redirect()->back()->withErrors(array('einddatum' => 'Deze einddatum ligt voor de startdatum'));
         } else {
             $form->persist();
             session()->flash('message', 'Schooljaar succesvol aangemaakt.');
-            return redirect("/schoolyears/create");
+            return redirect("/schoolyears/");
         }
     }
 
@@ -86,7 +85,7 @@ class SchoolyearController extends Controller
         } else {
             $form->patch($schoolyear);
             session()->flash('message', 'Schooljaar succesvol aangepast.');
-            return redirect("/schoolyears/create");
+            return redirect("/schoolyears");
         }
     }
 

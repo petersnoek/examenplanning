@@ -55,9 +55,10 @@ Route::get('/slots/assign', 'SlotController@assign');
 //CRUD schoolyears
 Route::get('/schoolyears/create', 'SchoolyearController@create');
 Route::get('/schoolyears', 'SchoolyearController@index');
-Route::post('/schoolyears', 'SchoolyearController@store');
 Route::get('/schoolyears/{schoolyear}/remove', 'SchoolyearController@destroy');
 Route::get('/schoolyears/{schoolyear}/edit', 'SchoolyearController@edit');
+
+Route::post('/schoolyears', 'SchoolyearController@store');
 Route::put('/schoolyears/{schoolyear}', 'SchoolyearController@update');
 
 //CRUD exams

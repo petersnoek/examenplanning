@@ -85,9 +85,6 @@
                                     <li>
                                         <a href="/schoolyears/create">Create</a>
                                     </li>
-                                    <li>
-                                        <a href="">Update</a>
-                                    </li>
                                 </ul>
                             </li>
                         </ul>

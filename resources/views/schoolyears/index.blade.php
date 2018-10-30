@@ -24,10 +24,11 @@
     </div>
     <!-- END Page Header -->
 
-    <div class="content bg-lighter">
+    <div class="bg-lighter content">
+        <h2 class="content-heading">Schooljaren inzien</h2>
         <div class="table-responsive">
             <div id="DataTables_Table_2_wrapper"
-                 class="dataTables_wrapper form-inline dt-bootstrap no-footer block-content">
+                 class="dataTables_wrapper form-inline dt-bootstrap no-footer block block-content">
                 <div class="row">
                     <div class="col-sm-12">
                         <table class="table table-bordered table-striped js-dataTable-full-pagination_custom dataTable no-footer"
@@ -40,11 +41,11 @@
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
                                     colspan="1"
-                                    aria-label="Kerntaak: activate to sort column ascending">Startdatum
+                                    aria-label="Kerntaak: activate to sort column ascending">Startdatum (jjjj-mm-dd)
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
                                     colspan="1"
-                                    aria-label="Kerntaak: activate to sort column ascending">Einddatum
+                                    aria-label="Kerntaak: activate to sort column ascending">Einddatum (jjjj-mm-dd)
                                 </th>
                                 <th class="text-center sorting_disabled" rowspan="1"
                                     colspan="1"
