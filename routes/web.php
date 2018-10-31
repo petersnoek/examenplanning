@@ -35,6 +35,7 @@ Route::post('/appointments', 'AppointmentController@store');
 Route::get('/appointments/{appointment}/remove', 'AppointmentController@destroy');
 
 //CRUD Periods
+Route::get('/periods', 'PeriodController@index');
 Route::get('/periods/create', 'PeriodController@create');
 Route::post('/periods', 'PeriodController@store');
 Route::get('/periods/{period}/remove', 'PeriodController@destroy');
