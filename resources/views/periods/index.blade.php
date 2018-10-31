@@ -38,7 +38,7 @@
                                     aria-label="Name: activate to sort column ascending" style="width: 402px;">
                                     Schooljaar
                                 </th>
-                                <th class="hidden-xs sorting" tabindex="0" aria-controls="DataTables_Table_2"
+                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2"
                                     rowspan="1"
                                     colspan="1" aria-label="Email: activate to sort column ascending"
                                     style="width: 551px;">
@@ -60,7 +60,7 @@
                             @foreach($periods as $period)
                                 <tr role="row" class="odd">
                                     <td class="font-w600 col-xs-3">{{$period->schoolyear->schooljaar}}</td>
-                                    <td class="hidden-xs text-wrap col-xs-5">{{$period->startdatum->format('Y-m-d')}}
+                                    <td class="text-wrap col-xs-5">{{$period->startdatum->format('Y-m-d')}}
                                         tot {{$period->einddatum->format('Y-m-d')}}</td>
                                     <td class="col-xs-2">{{$period->periodenaam}}</td>
                                     <td class="text-center col-xs-1">
