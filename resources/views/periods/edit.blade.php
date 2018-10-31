@@ -48,7 +48,7 @@
                                             <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                             @foreach($schoolyears as $schoolyear)
                                                 <option value="{{$schoolyear->id}}"
-                                                        @if($schoolyear->schooljaar == $period->schooljaar) selected="selected" @endif>{{$schoolyear->schooljaar}}</option>
+                                                        @if($schoolyear->id == $period->schoolyear_id) selected="selected" @endif>{{$schoolyear->schooljaar}}</option>
                                             @endforeach
                                         </select>
                                         <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"

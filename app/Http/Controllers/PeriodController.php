@@ -45,19 +45,19 @@ class PeriodController extends Controller
      */
     public function store(CreatePeriodForm $form)
     {
-//        try {
-        if (Carbon::parse(request('startdatum')) < Carbon::parse(Schoolyear::find(request('schooljaar'))->startdatum)) {
-            return redirect()->back()->withErrors(array('startdatum' => 'Deze startdatum ligt voor het geselecteerde schooljaar'));
-        } elseif (Carbon::parse(request('einddatum')) < Carbon::parse(request('startdatum'))) {
-            return redirect()->back()->withErrors(array('einddatum' => 'Deze einddatum ligt voor de startdatum'));
-        } else {
-            $form->persist();
+////        try {
+//        if (Carbon::parse(request('startdatum')) < Carbon::parse(Schoolyear::find(request('schooljaar'))->startdatum)) {
+//            return redirect()->back()->withErrors(array('startdatum' => 'Deze startdatum ligt voor het geselecteerde schooljaar'));
+//        } elseif (Carbon::parse(request('einddatum')) < Carbon::parse(request('startdatum'))) {
+//            return redirect()->back()->withErrors(array('einddatum' => 'Deze einddatum ligt voor de startdatum'));
+//        } else {
+            $form->persist(Schoolyear::find(request('schooljaar')));
             session()->flash('message', 'Periode succesvol aangemaakt.');
-            return redirect("/periods/create");
-        }
-//        } catch (Exception $e) {
-//            return redirect()->back()->withErrors(array('periodenaam' => 'Deze periodenaam is al in gebruik voor dit schooljaar'));
+            return redirect("/periods/");
 //        }
+////        } catch (Exception $e) {
+////            return redirect()->back()->withErrors(array('periodenaam' => 'Deze periodenaam is al in gebruik voor dit schooljaar'));
+////        }
     }
 
     /**
