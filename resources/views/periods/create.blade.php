@@ -70,7 +70,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-material">
                                         <div class="input-daterange input-group"
-                                             data-date-format="dd-mm-yyyy">
+                                             data-date-format="yyyy-mm-dd">
                                             <input class="form-control" type="text" id="example-daterange1"
                                                    name="startdatum"
                                                    placeholder="Startdatum"
@@ -130,7 +130,7 @@
 
     <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/datepickers/change_startdate.min.js')}}"></script>
+    {{--<script src="{{asset('assets/js/datepickers/change_startdate.min.js')}}"></script>--}}
     <script>
         jQuery(function () {
             // Init page helpers (BS Datepicker + BS Datetimepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Input + Range Sliders + Tags Inputs + AutoNumeric plugins)
