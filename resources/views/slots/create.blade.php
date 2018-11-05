@@ -34,14 +34,14 @@
         <div class="block">
             <div class="block-content">
                 @if(isset($period))
-                    <form class="form-horizontal push-10-t push-10 form-material"
+                    <form class="form-horizontal push-10-t push-10"
                           action="/slots/addtoperiod/{{$period->id}}"
                           method="post">
                         @csrf
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-12">
                                         <label for="dagen">Selecteer dagen</label>
                                         <select class="js-select2 form-control select2-hidden-accessible"
                                                 id="dagen" name="dagen[]"
@@ -61,32 +61,35 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="col-lg-7">
-                                        <div class="col-lg-6">
-                                            <label for="starttijd">Selecteer starttijd</label>
-                                            <div class="input-group bootstrap-timepicker timepicker">
-                                                <input class="form-control input-lg" type="text" id="starttijd"
-                                                       name="starttijd" placeholder="" required>
-                                                <span class="input-group-addon"><i
-                                                            class="glyphicon glyphicon-time"></i></span>
-                                            </div>
-                                            @if ($errors->has('starttijd'))
-                                                <span class="invalid-feedback" role="alert">
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label for="starttijd">Selecteer starttijd</label>
+                                        <div class="input-group bootstrap-timepicker timepicker">
+                                            <input class="form-control input-lg" type="text" id="starttijd"
+                                                   name="starttijd" placeholder="" required>
+                                            <span class="input-group-addon"><i
+                                                        class="glyphicon glyphicon-time"></i></span>
+                                        </div>
+                                        @if ($errors->has('starttijd'))
+                                            <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('starttijd') }}</strong>
                                             </span>
-                                            @endif
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label for="eindtijd">Selecteer eindtijd</label>
-                                            <div class="input-group bootstrap-timepicker timepicker ">
-                                                <input class="form-control input-lg" type="text" id="eindtijd"
-                                                       name="eindtijd" placeholder="" required>
-                                                <span class="input-group-addon"><i
-                                                            class="glyphicon glyphicon-time"></i></span>
-                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <label for="eindtijd">Selecteer eindtijd</label>
+                                        <div class="input-group bootstrap-timepicker timepicker ">
+                                            <input class="form-control input-lg" type="text" id="eindtijd"
+                                                   name="eindtijd" placeholder="" required>
+                                            <span class="input-group-addon"><i
+                                                        class="glyphicon glyphicon-time"></i></span>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2">
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-12">
                                         <div class="input-group">
                                             <label for="eyes">Aantal simultane slots</label>
                                             <input class="form-control input-lg" type="number" id="aantal" name="aantal"
@@ -100,10 +103,8 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-5">
                                 <div class="form-group">
-                                    <div class="col-xs-12">
+                                    <div class="col-lg-12">
                                         <label class="css-input switch switch-success">
                                             <input type="checkbox" checked="checked" id="herhaal"
                                                    name="gehele_periode"><span></span> Herhaal over de gehele periode?

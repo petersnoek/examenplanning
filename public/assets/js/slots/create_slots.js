@@ -5,7 +5,7 @@ $("#herhaal").on('change', function(){
             "                                    <div class=\"col-lg-6\">\n" +
             "                                        <div class=\"form-material\">\n" +
             "                                            <div class=\"input-daterange input-group input-group-sm\"\n" +
-            "                                                 data-date-format=\"dd-mm-yyyy\">\n" +
+            "                                                 data-date-format=\"yyyy-mm-dd\">\n" +
             "                                                <input autocomplete=\"false\" class=\"form-control\" type=\"text\"\n" +
             "                                                       id=\"example-daterange1\"\n" +
             "                                                       name=\"startdatum\"\n" +
