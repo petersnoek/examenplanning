@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Exam;
 use App\Http\Requests\CreateExamRequest;
+use App\Proevevanbekwaamheid;
+use App\Schoolyear;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -27,9 +29,9 @@ class ExamController extends Controller
     public function create()
     {
         $students = User::all(); // fetch only students
-        $pvbs = array((object)array('id'=>'1', 'name'=>'PvB1'),(object)array('id'=>'2', 'name'=>'PvB2'), (object)array('id'=>'3', 'name'=>'PvB3'),(object)array('id'=>'4', 'name'=>'PvB4'));
-        $kerntaken = [(object)['id'=>'1', 'name'=>'Ontwerpen', 'identifier' => 'KT1'],(object)['id'=>'2', 'name'=>'Realiseren', 'identifier' => 'KT2'], (object)['id'=>'3', 'name'=>'Opleveren/Implementeren', 'identifier' => 'KT3'],(object)['id'=>'4', 'name'=>'Onderhoud', 'identifier' => 'KT4']];
-        return view('exams.create', compact('students', 'pvbs', 'kerntaken'));
+        $pvbs = Proevevanbekwaamheid::all();
+        $schoolyears = Schoolyear::all();
+        return view('exams.create', compact('students', 'pvbs', 'schoolyears'));
     }
 
     /**

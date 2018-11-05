@@ -106,6 +106,17 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Exams</a>
+                                <ul>
+                                    <li>
+                                        <a href="/exams">Read</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exams/create">Create</a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
 
