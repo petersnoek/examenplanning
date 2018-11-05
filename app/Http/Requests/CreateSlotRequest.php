@@ -25,34 +25,44 @@ class CreateSlotRequest extends FormRequest
      */
     public function rules()
     {
-        $schoolyear = Schoolyear::find(request('schooljaar'));
         return [
             'starttijd' => 'required',
-            'eindtijd' => 'required|unique:periods,periodenaam,NULL,id,schoolyear_id,' . $schoolyear->id,
-            'datum' => 'required|after:startdatum',
+            'eindtijd' => 'required',
+//            'datum' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'schooljaar.required' => 'Het schooljaarveld is verplicht',
-            'periodenaam.required' => 'Het periodenaamveld is verplicht',
-            'periodenaam.unique' => 'Een periode met deze naam bestaat al voor dit schooljaar',
-            'startdatum.required' => 'Het startdatumveld is verplicht',
-            'einddatum.required' => 'Het einddatumveld is verplicht',
-            'einddatum.after' => 'De einddatum moet na de startdatum liggen',
-            'startdatum.before' => 'De startdatum moet voor de einddatum van het schooljaar liggen',
-            'startdatum.after' => 'De startdatum moet na de startdatum van het schooljaar liggen',
         ];
     }
 
-    public function persist($datum, $starttijd, $eindtijd, $period){
-        $slot = Slot::create([
-            'starttijd' => Carbon::parse($starttijd)->format('H:i'),
-            'eindtijd' => Carbon::parse($eindtijd)->format('H:i'),
-            'period_id' => $period->id,
-            'datum' => Carbon::parse($datum),
-        ]);
+    public function persist($period)
+    {
+        $persisted = false;
+        $days = request('dagen');
+        if (request('gehele_periode') == "on") {
+            $checkdate = Carbon::parse($period->startdatum);
+            $einddatum = Carbon::parse($period->einddatum);
+        } else {
+            $checkdate = Carbon::parse(request('startdatum'));
+            $einddatum = Carbon::parse(request('einddatum'));
+        }
+        while ($checkdate <= $einddatum) {
+            if (in_array($checkdate->dayOfWeek,$days)) {
+                for ($aantal = 0; $aantal < request('aantal'); $aantal++) {
+                    Slot::create([
+                        'starttijd' => Carbon::parse(request('starttijd'))->format('H:i'),
+                        'eindtijd' => Carbon::parse(request('eindtijd'))->format('H:i'),
+                        'period_id' => $period->id,
+                        'datum' => Carbon::parse($checkdate),
+                    ]);
+                    $persisted = true;
+                }
+            }
+            $checkdate->addDay();
+        }
+        return $persisted;
     }
 }
