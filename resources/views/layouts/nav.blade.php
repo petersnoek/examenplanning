@@ -98,6 +98,14 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Slots</a>
+                                <ul>
+                                    <li>
+                                        <a href="/slots">Read</a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
 

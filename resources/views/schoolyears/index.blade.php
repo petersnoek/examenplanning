@@ -57,8 +57,8 @@
                             @foreach($schoolyears as $schoolyear)
                                 <tr role="row" class="odd">
                                     <td class="font-w600 sorting_1">{{$schoolyear->schooljaar}}</td>
-                                    <td class="font-w600 sorting_1">{{$schoolyear->startdatum->format('Y-m-d')}}</td>
-                                    <td class="font-w600 sorting_1">{{$schoolyear->einddatum->format('Y-m-d')}}</td>
+                                    <td class="sorting_1">{{$schoolyear->startdatum->format('Y-m-d')}}</td>
+                                    <td class="sorting_1">{{$schoolyear->einddatum->format('Y-m-d')}}</td>
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <a class="btn btn-xs btn-default" href="/schoolyears/{{$schoolyear->id}}/edit"

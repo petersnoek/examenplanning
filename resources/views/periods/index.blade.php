@@ -27,7 +27,7 @@
         <h2 class="content-heading">Schooljaren inzien</h2>
         <div class="table-responsive">
             <div id="DataTables_Table_2_wrapper"
-                 class="dataTables_wrapper form-inline dt-bootstrap no-footer block-content block block-content">
+                 class="dataTables_wrapper form-inline dt-bootstrap no-footer block-content block">
                 <div class="row">
                     <div class="col-xs-12">
                         <table class="table table-bordered table-striped js-dataTable-full-pagination_custom dataTable no-footer"

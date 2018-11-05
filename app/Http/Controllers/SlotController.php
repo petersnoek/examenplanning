@@ -21,7 +21,8 @@ class SlotController extends Controller
      */
     public function index()
     {
-        //
+        $schoolyears = Schoolyear::all();
+        return view('slots.index', compact('schoolyears'));
     }
 
     /**
@@ -29,10 +30,9 @@ class SlotController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(period $period)
+    public function create(Period $period)
     {
-        $schoolyears = Schoolyear::all();
-        return view('slots.create', compact('schoolyears', 'period'));
+        return view('slots.create', compact('period'));
     }
 
     /**
@@ -101,9 +101,10 @@ class SlotController extends Controller
      * @param  \App\Slot $slot
      * @return \Illuminate\Http\Response
      */
-    public function show(Slot $slot)
+    public function show(period $period)
     {
-        //
+        $schoolyears = Schoolyear::all();
+        return view('slots.index', compact('schoolyears', 'period'));
     }
 
     public function showAll(Period $period)

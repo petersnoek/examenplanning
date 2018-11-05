@@ -103,7 +103,6 @@ class SchoolyearController extends Controller
     }
 
     public function allSlots(){
-        $schoolyears = Schoolyear::all();
-        return view('slots.create', compact('schoolyears'));
+
     }
 }
