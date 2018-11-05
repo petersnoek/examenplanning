@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\period;
 use App\Slot;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
@@ -25,16 +26,34 @@ class CreateSlotRequest extends FormRequest
      */
     public function rules()
     {
+        $period = request('period');
         return [
+            'dagen' => 'required',
             'starttijd' => 'required',
-            'eindtijd' => 'required',
-//            'datum' => 'required',
+            'eindtijd' => 'required|after:starttijd',
+            'aantal' => 'required',
+
+            'startdatum' => 'nullable|after_or_equal:'. $period->startdatum.',before:'.$period->einddatum,
+            'einddatum' => 'nullable|after_or_equal:startdatum|before_or_equal:'. $period->einddatum,
+
         ];
     }
 
     public function messages()
     {
         return [
+            'dagen.required' => 'Het veld :attribute is verplicht',
+            'starttijd.required' => 'Het veld :attribute is verplicht',
+            'eindtijd.required' => 'Het veld :attribute is verplicht',
+            'eindtijd.after' => 'De eindtijd moet na de starttijd liggen',
+            'aantal.required' => 'Het veld :attribute is verplicht',
+
+
+            'startdatum.after_or_equal' => 'Het veld :attribute moet na de startdatum van de periode liggen',
+            'startdatum.before' => 'Het veld :attribute moet voor de einddatum van de periode liggen',
+            'einddatum.after_or_equal' => 'Het veld :attribute moet na de startdatum liggen',
+            'einddatum.before_or_equal' => 'Het veld :attribute moet voor de einddatum van de periode liggen',
+
         ];
     }
 

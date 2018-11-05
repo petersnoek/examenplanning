@@ -86,8 +86,14 @@
                                             <span class="input-group-addon"><i
                                                         class="glyphicon glyphicon-time"></i></span>
                                         </div>
+                                        @if ($errors->has('eindtijd'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('eindtijd') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <div class="col-lg-12">
                                         <div class="input-group">
@@ -107,7 +113,7 @@
                                     <div class="col-lg-12">
                                         <label class="css-input switch switch-success">
                                             <input type="checkbox" checked="checked" id="herhaal"
-                                                   name="gehele_periode"><span></span> Herhaal over de gehele periode?
+                                                   name="gehele_periode"><span></span> Herhaal over de gehele periode? ({{$period->startdatum->format('Y-m-d')}} tot {{$period->einddatum->format('Y-m-d')}})
                                         </label>
                                     </div>
                                 </div>
@@ -116,22 +122,22 @@
                         <div class="row">
                             <div class="col-sm-12" id="moreOptions">
 
-                            </div>
-                            @if ($errors->has('datum'))
-                                <span class="invalid-feedback" role="alert">
+                                @if ($errors->has('datum'))
+                                    <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('datum') }}</strong>
                                             </span>
-                            @endif
-                            @if ($errors->has('startdatum'))
-                                <span class="invalid-feedback" role="alert">
+                                @endif
+                                @if ($errors->has('startdatum'))
+                                    <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('startdatum') }}</strong>
                                             </span>
-                            @endif
-                            @if ($errors->has('einddatum'))
-                                <span class="invalid-feedback" role="alert">
+                                @endif
+                                @if ($errors->has('einddatum'))
+                                    <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('einddatum') }}</strong>
                                             </span>
-                            @endif
+                                @endif
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
