@@ -47,13 +47,13 @@
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="form-material">
-                                        <select class="form-control" id="schoolyear"
-                                                name="schoolyear" size="1">
-                                            @foreach($schoolyears as $schoolyear)
-                                                <option value="{{$schoolyear->id}}">{{$schoolyear->schooljaar}}</option>
+                                        <select class="form-control" id="kwalificatiedossier"
+                                                name="kwalificatiedossier" size="1">
+                                            @foreach($kwalificatiedossiers as $kwalificatiedossier)
+                                                <option value="{{$kwalificatiedossier->id}}">{{$kwalificatiedossier->crebo}}</option>
                                             @endforeach
                                         </select>
-                                        <label for="pvb">Schooljaar</label>
+                                        <label for="pvb">Crebo</label>
                                     </div>
                                 </div>
                             </div>
@@ -62,27 +62,12 @@
                                     <div class="form-material">
                                         <select class="form-control" id="pvb"
                                                 name="pvb" size="1">
-                                            @foreach($pvbs as $pvb)
-                                                <option value="{{$pvb->id}}">{{$pvb->kerntaak}}</option>
-                                            @endforeach
+                                            {{--@foreach($pvbs as $pvb)--}}
+                                            {{--<option value="{{$pvb->id}}">{{$pvb->kerntaak}}</option>--}}
+                                            {{--@endforeach--}}
                                         </select>
                                         <label for="pvb">Proeve van Bekwaamheid</label>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-lg-12">
-                                    <label for="kts">Selecteer KT's</label>
-                                    <select class="js-select2 form-control select2-hidden-accessible"
-                                            id="kerntaken" name="kts[]"
-                                            style="width: 100%;" data-placeholder="Kies KT's" multiple=""
-                                            tabindex="-1" aria-hidden="true" required>
-                                        <option></option>
-                                        <!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                        {{--@foreach($kerntaken as $kerntaak)--}}
-                                            {{--<option value="{{$kerntaak->id}}">{{$kerntaak->name . " (" . $kerntaak->identifier . ")"}}</option>--}}
-                                        {{--@endforeach--}}
-                                    </select>
                                 </div>
                             </div>
 
@@ -120,13 +105,43 @@
             App.initHelpers(['select2']);
         });
 
-        $('#pvb').change(function () {
-            //ajax call to fetch selected pvb and its kerntaken
-            //fill the select of kerntaken
+        $('#kwalificatiedossier').change(function () {
+            getPvbs();
         });
-        $('#schoolyear').change(function () {
-            //ajax call to fetch selected schoolyear and its proevevanbekwaamheid
-            //fill the select of proevevanbekwaamheid
+        $(document).ready(function(){
+            getPvbs();
         });
+
+        function getPvbs(){
+            if($("#kwalificatiedossier").val() != '') {
+                $.ajax({
+                    url: '/getPvbs/' + $("#kwalificatiedossier").val(),
+                    type: 'GET',
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        if (data.fail) {
+                            alert(data.message.error);
+                            console.log(data.message.message);
+                        }
+                        else {
+                            $('#pvb').empty();
+                            data.message.pvbs.forEach(function (element) {
+                                $('#pvb')
+                                    .append($("<option></option>")
+                                        .attr("value", element.id)
+                                        .text(element.kerntaak));
+                            });
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert(xhr.responseText);
+                    }
+                });
+            }
+            else {
+                $('#pvb').empty();
+            }
+        }
     </script>
 @endpush

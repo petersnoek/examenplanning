@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exam;
 use App\Http\Requests\CreateExamRequest;
+use App\Kwalificatiedossier;
 use App\Proevevanbekwaamheid;
 use App\Schoolyear;
 use App\User;
@@ -28,10 +29,9 @@ class ExamController extends Controller
      */
     public function create()
     {
-        $students = User::all(); // fetch only students
-        $pvbs = Proevevanbekwaamheid::all();
-        $schoolyears = Schoolyear::all();
-        return view('exams.create', compact('students', 'pvbs', 'schoolyears'));
+        $students = User::where('role_id','=', '3')->get();
+        $kwalificatiedossiers = Kwalificatiedossier::all();
+        return view('exams.create', compact('students', 'pvbs', 'kwalificatiedossiers'));
     }
 
     /**
@@ -90,5 +90,24 @@ class ExamController extends Controller
     public function destroy(exam $exam)
     {
         //
+    }
+
+    public function getPvbs(Kwalificatiedossier $kwalificatiedossier){
+        try{
+            $pvbs = $kwalificatiedossier->proevevanbekwaamheids;
+            return array(
+                'fail' => false,
+                'message' => collect(['pvbs' => $pvbs])
+            );
+        }
+        catch(\Exception $e){
+            return array(
+                'fail' => true,
+                'message' => collect([
+                    'error' => 'Er zijn geen proeve van bekwaamheids gevonden voor dit kwalificatiedoessier. Vraag een administrator om deze te updaten.',
+                    'message' => $e.getMessage(),
+                    ])
+            );
+        }
     }
 }

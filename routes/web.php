@@ -69,6 +69,10 @@ Route::get('/exams', ['uses' => 'Agendacontroller@all', 'middleware' => ['checka
 Route::get('/exams/create', 'ExamController@create');
 Route::post('/exams/create', 'ExamController@store');
 
+//AJAX endpoints
+Route::get('/getPvbs/{kwalificatiedossier}', 'ExamController@getPvbs');
+
+
 //CRUD agenda
 Route::get('/agenda', ['uses' => 'AgendaController@index']);
 Route::get('/agenda/{davinci_id}/show', ['uses' => 'AgendaController@index', 'middleware' => ['checkauthorization', 'checkrequesteduseragenda']]);
