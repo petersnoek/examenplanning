@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="col-lg-12">
-                <span class=" font-w400 text-muted"><i class="si si-info"></i> Gebruik de plus in het overzicht blok om nieuwe slots aan te maken voor de geselecteerde periode</h4>
+                <span class=" font-w400 text-muted"><i class="si si-info"></i> Gebruik de plus in het overzicht blok om nieuwe slots aan te maken voor de geselecteerde periode</span>
             </div>
         </div>
     </div>

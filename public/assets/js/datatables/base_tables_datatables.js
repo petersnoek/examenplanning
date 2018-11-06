@@ -30,6 +30,21 @@ var BaseTableDatatables = function() {
             columnDefs: [ { orderable: false, targets: [  ] } ],
             pageLength: 10,
             lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+            "language": {
+                "infoEmpty": "Geen gegevens gevonden om weer te geven",
+                "emptyTable": "Geen gegevens beschikbaar in de database",
+                "zeroRecords": "Geen overeenkomstige gegevens beschikbaar",
+                "infoFiltered": "(gefilterd van _MAX_ gegevens)",
+                "search": "<i class='fa fa-search'></i>",
+                "paginate": {
+                    "previous": "Vorige",
+                    "next": "Volgende",
+                    "last": "Laatste",
+                    "first": "Eerste",
+                    "page": "Pagina",
+                    "pageOf": "Van",
+                }
+            },
         });
     };
 

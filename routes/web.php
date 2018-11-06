@@ -19,6 +19,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//CRUD exams
+Route::get('/kwalificatiedossiers', 'KwalificatiedossierController@index');
+Route::get('/kwalificatiedossiers/create', 'KwalificatiedossierController@create');
+Route::post('/kwalificatiedossiers', 'KwalificatiedossierController@store');
+Route::get('kwalificatiedossiers/{kwalificatiedossier}/remove', 'KwalificatiedossierController@destroy');
+Route::get('kwalificatiedossiers/{kwalificatiedossier}/edit', 'KwalificatiedossierController@edit');
+Route::put('kwalificatiedossiers/{kwalificatiedossier}', 'KwalificatiedossierController@update');
+
 //CRUD Students
 Route::get('/students/create', 'StudentController@create');
 Route::post('/students', 'StudentController@store');
@@ -53,7 +61,6 @@ Route::get('/slots/{slot}/remove', 'SlotController@destroy');
 Route::get('/slots/assignable/show', 'SlotController@showAssignables');
 Route::get('/slots/assignable/show/{period}', 'SlotController@showAssignable');
 Route::get('/slots/assign', 'SlotController@assign');
-
 
 //CRUD schoolyears
 Route::get('/schoolyears/create', 'SchoolyearController@create');

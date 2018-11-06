@@ -77,6 +77,17 @@
                                     class="sidebar-mini-hide">CRUD</span></a>
                         <ul>
                             <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Kwalificatiedossier</a>
+                                <ul>
+                                    <li>
+                                        <a href="/kwalificatiedossiers">Read</a>
+                                    </li>
+                                    <li>
+                                        <a href="/kwalificatiedossiers/create">Create</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
                                 <a class="nav-submenu" data-toggle="nav-submenu" href="#">Schooljaren</a>
                                 <ul>
                                     <li>
@@ -121,30 +132,14 @@
                     </li>
 
                     <li>
-                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-wrench"></i><span
-                                    class="sidebar-mini-hide">Manage examens</span></a>
+                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-calendar"></i><span
+                                    class="sidebar-mini-hide">Plannen</span></a>
                         <ul>
-                            <li>
-                                <a href="/periods/create">Examenperioden aanmaken</a>
-                            </li>
-                            <li>
-                                <a href="/slots">Slots aanmaken</a>
-                            </li>
                             <li>
                                 <a href="/slots/assignable/show">Slots inplannen</a>
                             </li>
                             <li>
                                 <a href="/appointments">Kalender inzien</a>
-                            </li>
-                            <li>
-                                <a href="/exams/create">Examen aanmaken</a>
-                            </li>
-                            <li>
-                            <li>
-                                <a href="/home">Examen inplannen</a>
-                            </li>
-                            <li>
-                                <a href="/home">Examen wijzigen</a>
                             </li>
                         </ul>
                     </li>
@@ -162,7 +157,7 @@
                     </li>
                     <li>
                         <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i
-                                    class="si si-calendar"></i><span
+                                    class="si si-eye"></i><span
                                     class="sidebar-mini-hide">Agenda inzien</span></a>
                         <ul>
                             <li>
