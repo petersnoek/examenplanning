@@ -110,7 +110,7 @@
                                 <a class="nav-submenu" data-toggle="nav-submenu" href="#">Exams</a>
                                 <ul>
                                     <li>
-                                        <a href="/exams">Read</a>
+                                        <a href="/exams/show">Read</a>
                                     </li>
                                     <li>
                                         <a href="/exams/create">Create</a>

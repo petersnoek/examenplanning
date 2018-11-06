@@ -30,14 +30,14 @@
             <div class="col-md-12">
                 <div class="block">
                     <div class="block-content">
-                        <form class="form-horizontal push-10-t push-10" action="/exams"
+                        <form class="form-horizontal push-10-t push-10" action="/exams/create"
                               method="post">
                             @csrf
                             <div class="form-group">
                                 <div class="col-xs-6">
                                     <div class="form-material">
                                         <select class="js-select2 form-control select2-hidden-accessible"
-                                                id="student" name="students[]"
+                                                id="student" name="student[]"
                                                 style="width: 100%;" data-placeholder="Kies student"
                                                 tabindex="-1" aria-hidden="true" required>
                                             <option></option>
@@ -66,9 +66,6 @@
                                     <div class="form-material">
                                         <select class="form-control" id="pvb"
                                                 name="pvb" size="1">
-                                            {{--@foreach($pvbs as $pvb)--}}
-                                            {{--<option value="{{$pvb->id}}">{{$pvb->kerntaak}}</option>--}}
-                                            {{--@endforeach--}}
                                         </select>
                                         <label for="pvb">Proeve van Bekwaamheid</label>
                                     </div>
