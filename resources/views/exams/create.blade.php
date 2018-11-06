@@ -36,10 +36,14 @@
                             <div class="form-group">
                                 <div class="col-xs-6">
                                     <div class="form-material">
-                                        <select class="form-control" id="student"
-                                                name="student" size="1">
+                                        <select class="js-select2 form-control select2-hidden-accessible"
+                                                id="student" name="students[]"
+                                                style="width: 100%;" data-placeholder="Kies student"
+                                                tabindex="-1" aria-hidden="true" required>
+                                            <option></option>
+                                            <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                             @foreach($students as $student)
-                                                <option value="{{$student->id}}">{{$student->achternaam . ", " . $student->voornaam . " " . $student->tussenvoegsel . " (" . $student->davinci_id . ")" }} </option>
+                                                <option value="{{$student->id}}">{{$student->achternaam . ', ' . $student->voornaam . ' ' . $student->tussenvoegsel . ' (' . $student->davinci_id . ')'}}</option>
                                             @endforeach
                                         </select>
                                         <label for="student">Naam van student</label>
@@ -78,8 +82,8 @@
                                                           rows="7" placeholder="Schrijf een opmerking"></textarea>
                                         <label for="contact2-msg">Opmerking</label>
                                     </div>
-                                    <div class="help-block text-right">Feel free to use common tags: &lt;blockquote&gt;,
-                                        &lt;strong&gt;, &lt;em&gt;
+                                    <div class="help-block text-right">
+                                        Vul hier een opmerking in betreffende het examen.
                                     </div>
                                 </div>
                             </div>
@@ -108,12 +112,15 @@
         $('#kwalificatiedossier').change(function () {
             getPvbs();
         });
-        $(document).ready(function(){
+        $(document).ready(function () {
             getPvbs();
+            $("#tags").select2({
+                maximumSelectionLength: 3
+            });
         });
 
-        function getPvbs(){
-            if($("#kwalificatiedossier").val() != '') {
+        function getPvbs() {
+            if ($("#kwalificatiedossier").val() != '') {
                 $.ajax({
                     url: '/getPvbs/' + $("#kwalificatiedossier").val(),
                     type: 'GET',
