@@ -34,8 +34,13 @@ Route::get('/students/{student}/edit', 'StudentController@edit');
 Route::get('/students/{student}/remove', 'StudentController@destroy');
 Route::put('/students/{student}', 'StudentController@update');
 
-//Contact Students
-Route::get('/students/contact', 'StudentController@mail');
+//Contact Users
+Route::get('/users', 'UserController@index');
+Route::get('/users/create', 'UserController@create');
+Route::post('/users', 'UserController@store');
+Route::get('/users/{user}/edit', 'UserController@edit');
+Route::get('/users/{user}/remove', 'UserController@destroy');
+Route::put('/users/{user}', 'UserController@update');
 
 //CRUD Appointments
 Route::get('/appointments', 'AppointmentController@index');

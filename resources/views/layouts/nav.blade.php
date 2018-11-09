@@ -118,6 +118,17 @@
                                 </ul>
                             </li>
                             <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Users</a>
+                                <ul>
+                                    <li>
+                                        <a href="/users">Read</a>
+                                    </li>
+                                    <li>
+                                        <a href="/users/create">Create</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
                                 <a class="nav-submenu" data-toggle="nav-submenu" href="#">Exams</a>
                                 <ul>
                                     <li>

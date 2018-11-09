@@ -55,8 +55,8 @@ protected $guarded = [];
     public function questionaires(){
         return $this->hasmany(Questionaire::class);
     }
-    public function roles(){
-        return $this->hasOne(Role::class);
+    public function role(){
+        return $this->belongsto(Role::class);
     }
 
     public function slots()

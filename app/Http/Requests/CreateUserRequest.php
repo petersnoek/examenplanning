@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Http\Requests;
+
+use App\User;
+use Carbon\Carbon;
+use Illuminate\Foundation\Http\FormRequest;
+
+class CreateUserRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    public function rules()
+    {
+        return [
+            'voornaam' => 'required|string',
+            'achternaam' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed',
+            'telefoonnummer' => 'required|min:9',
+            'straat' => 'required|string',
+            'huisnummer' => 'required|numeric',
+            'postcode' => 'required|min:6   ',
+            'plaats' => 'required|string',
+            'land' => 'required|string',
+            'role_id' => 'required|numeric',
+            'davinci_id' => 'required|min:3',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            '*.required' => 'Het :attribute veld is verplicht',
+            'voornaam.string' => 'Het :attribute veld moet text zijn',
+            'achternaam.string' => 'Het :attribute veld moet text zijn',
+            'straat.string' => 'Het :attribute veld moet text zijn',
+            'plaats.string' => 'Het :attribute veld moet text zijn',
+            'land.string' => 'Het :attribute veld moet text zijn',
+            'email.email' => 'Het :attribute veld moet een email zijn',
+            'password.confirmed' => 'De wachtwoorden komen niet overeen',
+            'huisnummer.numeric' => 'Het :attribute veld moet een getal zijn',
+            'role_id.numeric' => 'Het :attribute veld moet een getal zijn',
+            'email.min' => 'Het :attribute veld moet minimaal :min karakters zijn',
+            'postcode.min' => 'Het :attribute veld moet minimaal :min karakters zijn',
+            'davinci_id.min' => 'Het :attribute veld moet minimaal :min karakters zijn',
+            'actief.in' => 'De switch voor :attirbute moet aan of uit staan',
+        ];
+    }
+
+    public function persist()
+    {
+        User::create([
+            'voornaam' => request('voornaam'),
+            'tussenvoegsel' => request('tussenvoegsel'),
+            'achternaam' => request('achternaam'),
+            'email' => request('email'),
+            'password' => request('password'),
+            'telefoonnummer' => request('telefoonnummer'),
+            'straat' => request('straat'),
+            'huisnummer' => request('huisnummer'),
+            'toevoeging' => request('toevoeging'),
+            'postcode' => request('postcode'),
+            'plaats' => request('plaats'),
+            'land' => request('land'),
+            'active' => request('actief') == "on" ? 1 : 0,
+            'role_id' => request('role_id'),
+            'davinci_id' => request('davinci_id'),
+            'updated_at' => Carbon::now(),
+        ]);
+    }
+}
