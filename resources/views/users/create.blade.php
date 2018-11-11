@@ -345,10 +345,6 @@
 @push('scripts')
     <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
     <script>
-        jQuery(function () {
-            // Init page helpers (BS Datepicker + BS Datetimepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Input + Range Sliders + Tags Inputs + AutoNumeric plugins)
-
-        });
 
         var data = {_token: '{{csrf_token()}}'};
 

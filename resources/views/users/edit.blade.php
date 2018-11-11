@@ -1,10 +1,8 @@
 @extends('layouts.master')
 
 @push('style')
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker3.min.css')}}">
-
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.css')}}">
-
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2-bootstrap.min.css')}}">
 @endpush
 
 @section('content')
@@ -27,7 +25,6 @@
     </div>
     <!-- END Page Header -->
     <div class="content">
-        {{$errors}}
         <h2 class="content-heading">Pas "{{$user->achternaam}}, {{$user->voornaam}} {{$user->tussenvoegsel}}" aan</h2>
         <div class="row">
             <div class="col-md-12">
@@ -43,7 +40,7 @@
                                         <input class="form-control {{ $errors->has('voornaam') ? ' is-invalid' : '' }}"
                                                type="text" id="voornaam" name="voornaam"
                                                placeholder="Vul je voornaam in..."
-                                               autofocus required  value="{{$user->voornaam}}">
+                                               autofocus required value="{{$user->voornaam}}">
                                         <label for="voornaam">Voornaam</label>
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
@@ -58,7 +55,8 @@
                                     <div class="form-material input-group">
                                         <input class="form-control {{ $errors->has('tussenvoegsel') ? ' is-invalid' : '' }}"
                                                type="text" id="tussenvoegsel" name="tussenvoegsel"
-                                               placeholder="Vul je tussenvoegsel in..." value="{{$user->tussenvoegsel}}">
+                                               placeholder="Vul je tussenvoegsel in..."
+                                               value="{{$user->tussenvoegsel}}">
                                         <label for="tussenvoegsel">Tussenvoegsel</label>
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
@@ -73,7 +71,8 @@
                                     <div class="form-material input-group">
                                         <input class="form-control {{ $errors->has('achternaam') ? ' is-invalid' : '' }}"
                                                type="text" id="achternaam" name="achternaam"
-                                               placeholder="Vul je achternaam in..." required value="{{$user->achternaam}}">
+                                               placeholder="Vul je achternaam in..." required
+                                               value="{{$user->achternaam}}">
                                         <label for="achternaam">Achternaam</label>
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
@@ -262,7 +261,8 @@
                                 <div class="col-xs-12">
                                     <div class="form-material input-group">
                                         <input class="form-control" type="password" id="password-confirm"
-                                               name="password_confirmation" placeholder="Herhaal wachtwoord..." required value="{{$user->password}}">
+                                               name="password_confirmation" placeholder="Herhaal wachtwoord..." required
+                                               value="{{$user->password}}">
                                         <label for="password-confirm">Herhaal wachtwoord</label>
                                         <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
                                     </div>
@@ -273,20 +273,44 @@
                                 <label class="col-xs-12">Roltype</label>
                                 <div class="col-xs-12">
                                     <label class="radio-inline" for="example-inline-radio1">
-                                        <input type="radio" id="example-inline-radio1" @if($user->role_id == 1) checked="" @endif name="role_id" value="1"> Administrator
+                                        <input class="other_radio" type="radio" id="example-inline-radio1"
+                                               @if($user->role_id == 1) checked="" @endif name="role_id" value="1">
+                                        Administrator
                                     </label>
                                     <label class="radio-inline" for="example-inline-radio2">
-                                        <input type="radio" id="example-inline-radio2" @if($user->role_id == 2) checked="" @endif name="role_id" value="2"> Examinator
+                                        <input class="other_radio" type="radio" id="example-inline-radio2"
+                                               @if($user->role_id == 2) checked="" @endif name="role_id" value="2">
+                                        Examinator
                                     </label>
                                     <label class="radio-inline" for="example-inline-radio3">
-                                        <input type="radio" id="example-inline-radio3" @if($user->role_id == 3) checked="" @endif name="role_id" value="3"> Student
+                                        <input class="other_radio" type="radio" id="example-inline-radio3"
+                                               @if($user->role_id == 3) checked="" @endif name="role_id" value="3">
+                                        Student
                                     </label>
                                     <label class="radio-inline" for="example-inline-radio4">
-                                        <input type="radio" id="example-inline-radio4" @if($user->role_id == 4) checked="" @endif name="role_id" value="4"> Bedrijf
+                                        <input type="radio" id="example-inline-radio4"
+                                               @if($user->role_id == 4) checked="" @endif name="role_id" value="4">
+                                        Bedrijfsmedewerker
                                     </label>
                                     <label class="radio-inline" for="example-inline-radio5">
-                                        <input type="radio" id="example-inline-radio5" @if($user->role_id == 5) checked="" @endif name="role_id" value="5"> Examencomissie
+                                        <input class="other_radio" type="radio" id="example-inline-radio5"
+                                               @if($user->role_id == 5) checked="" @endif name="role_id" value="5">
+                                        Examencomissie
                                     </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-xs-12 select-company">
+
+                                </div>
+                                @if ($errors->has('bedrijf'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('bedrijf') }}</strong>
+                                    </span>
+                                @endif
+                                <div class="provide-role">
+
                                 </div>
                             </div>
 
@@ -309,7 +333,8 @@
 
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <button class="btn btn-sm btn-info" type="submit"><i class="fa fa-pencil push-5-r"></i>Aanpassen
+                                    <button class="btn btn-sm btn-info" type="submit"><i
+                                                class="fa fa-pencil push-5-r"></i>Aanpassen
                                     </button>
                                 </div>
                             </div>
@@ -323,11 +348,75 @@
 @endsection
 
 @push('scripts')
-    <script src="{{asset('assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
     <script>
-        jQuery(function () {
-            // Init page helpers (BS Datepicker + BS Datetimepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Input + Range Sliders + Tags Inputs + AutoNumeric plugins)
-            App.initHelpers(['datepicker']);
+        var data = {_token: '{{csrf_token()}}'};
+
+        function getCompanies() {
+            $.ajax({
+                type: "GET",
+                url: '/companies/all',
+                data: data,
+                success: function (data) {
+                    $('.select-company').append('<div class="form-material">\n' +
+                        '                                        <select class="js-select2 form-control select2-hidden-accessible"\n' +
+                        '                                                id="companies" name="bedrijf" style="width: 100%;"\n' +
+                        '                                                data-placeholder="Kies een bedrijf..." tabindex="-1"\n' +
+                        '                                                aria-hidden="true">\n' +
+                        '                                            <option></option>\n' +
+                        '                                        </select>\n' +
+                        '                                        <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"\n' +
+                        '                                              dir="ltr" style="width: 100%;">\n' +
+                        '                                                <span class="selection">\n' +
+                        '\n' +
+                        '                                                </span>\n' +
+                        '                                            <span class="dropdown-wrapper" aria-hidden="true"></span>\n' +
+                        '                                        </span>\n' +
+                        '                                        <label for="example2-select2">Kies een bedrijf</label>\n' +
+                        '                                    </div>');
+
+                    $('.provide-role').append('<div class="col-lg-12 col-xs-12">\n' +
+                        '                                    <div class="form-material input-group">\n' +
+                        '                                        <input class="form-control"\n' +
+                        '                                               type="text" id="rol" name="rol"\n' +
+                        '                                               placeholder="Vul je rol in..."\n' +
+                        '                                               autofocus required ' +
+                            {{--'                                               value="{{$user->companies()->first()->pivot->bedrijfsrol}}"'+--}}
+                                '                                               >\n' +
+                        '                                        <label for="rol">Rol binnen bedrijf</label>\n' +
+                        '                                        <span class="input-group-addon"><i class="fa fa-user-circle-o"></i></span>\n' +
+                        '                                    </div>\n' +
+                        '                                </div>');
+                    App.initHelpers(['select2']);
+                    $.each(data.msg, function (index, value) {
+                        {{--if(value.id == {{$user->companies()->first()->id}})--}}
+                        {{--{--}}
+                        {{--$('#companies').append('<option value="' + value.id + '" selected>' + value.naam + '</option>');--}}
+                        {{--}--}}
+                        {{--else{--}}
+                        $('#companies').append('<option value="' + value.id + '">' + value.naam + '</option>');
+                        // }
+                    });
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            if ($('#example-inline-radio4').is(':checked')) {
+                getCompanies();
+            }
+        });
+
+        $("#example-inline-radio4").change(function () {
+            getCompanies();
+        });
+        
+        $('.other_radio').click(function () {
+            $('.select-company').empty();
+            $('.provide-role').empty();
         });
     </script>
 @endpush

@@ -44,7 +44,7 @@ protected $guarded = [];
         return $this->belongsToMany(Exam::class, 'exam_user')->withPivot('user_role');
     }
     public function companies(){
-        return $this->belongsToMany(Company::class, 'company_user');
+        return $this->belongsToMany(Company::class, 'company_user')->withPivot('bedrijfsrol');
     }
     public function projects(){
         return $this->belongsToMany(Project::class, 'project_user');
