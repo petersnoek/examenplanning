@@ -40,10 +40,10 @@ class RoleSeeder extends Seeder
         $this->command->info("Seeded Role Student");
 
         DB::table('roles')->insert([
-            'naam' => 'Bedrijf',
+            'naam' => 'Bedrijfsmedewerker',
             'created_at' => Carbon::now(),
         ]);
-        $this->command->info("Seeded Role Bedrijf");
+        $this->command->info("Seeded Role Bedrijfsmedewerker");
 
         DB::table('roles')->insert([
             'naam' => 'Examencomissie',

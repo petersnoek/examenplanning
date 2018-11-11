@@ -4,9 +4,6 @@
     <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker3.min.css')}}">
-
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.css')}}">
-
 @endpush
 
 @section('content')

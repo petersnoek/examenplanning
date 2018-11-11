@@ -33,7 +33,7 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateCompanyRequest $form)
@@ -46,7 +46,7 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Company  $company
+     * @param  \App\Company $company
      * @return \Illuminate\Http\Response
      */
     public function show(Company $company)
@@ -57,7 +57,7 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Company  $company
+     * @param  \App\Company $company
      * @return \Illuminate\Http\Response
      */
     public function edit(Company $company)
@@ -68,8 +68,8 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Company  $company
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Company $company
      * @return \Illuminate\Http\Response
      */
     public function update(EditCompanyRequest $form, Company $company)
@@ -82,7 +82,7 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Company  $company
+     * @param  \App\Company $company
      * @return \Illuminate\Http\Response
      */
     public function destroy(Company $company)
@@ -90,5 +90,10 @@ class CompanyController extends Controller
         Company::destroy($company->id);
         session()->flash('message', 'Bedrijf succesvol verwijderd.');
         return redirect("/companies");
+    }
+
+    public function getAll()
+    {
+        return response()->json(array('msg'=> Company::all()),200);
     }
 }

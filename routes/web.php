@@ -41,6 +41,8 @@ Route::post('/companies', 'CompanyController@store');
 Route::get('/companies/{company}/edit', 'CompanyController@edit');
 Route::get('/companies/{company}/remove', 'CompanyController@destroy');
 Route::put('/companies/{company}', 'CompanyController@update');
+//ajax endpoint
+Route::get('/companies/all', 'CompanyController@getAll');
 
 //Contact Users
 Route::get('/users', 'UserController@index');

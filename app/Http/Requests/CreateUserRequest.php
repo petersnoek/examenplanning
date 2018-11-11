@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Company;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
@@ -33,6 +34,8 @@ class CreateUserRequest extends FormRequest
             'land' => 'required|string',
             'role_id' => 'required|numeric',
             'davinci_id' => 'required|min:3',
+            'bedrijf' => 'nullable',
+            'rol' => 'nullable|string',
         ];
     }
 
@@ -44,6 +47,7 @@ class CreateUserRequest extends FormRequest
             'achternaam.string' => 'Het :attribute veld moet text zijn',
             'straat.string' => 'Het :attribute veld moet text zijn',
             'plaats.string' => 'Het :attribute veld moet text zijn',
+            'rol.string' => 'Het :attribute veld moet een string zijn',
             'land.string' => 'Het :attribute veld moet text zijn',
             'email.email' => 'Het :attribute veld moet een email zijn',
             'password.confirmed' => 'De wachtwoorden komen niet overeen',
@@ -58,7 +62,7 @@ class CreateUserRequest extends FormRequest
 
     public function persist()
     {
-        User::create([
+        $user = User::create([
             'voornaam' => request('voornaam'),
             'tussenvoegsel' => request('tussenvoegsel'),
             'achternaam' => request('achternaam'),
@@ -76,5 +80,8 @@ class CreateUserRequest extends FormRequest
             'davinci_id' => request('davinci_id'),
             'updated_at' => Carbon::now(),
         ]);
+        if(request('bedrijf')){
+            $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=>request('rol')]]);
+        }
     }
 }
