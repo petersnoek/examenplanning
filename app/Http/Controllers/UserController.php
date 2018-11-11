@@ -64,7 +64,6 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-//        dd($user->companies()->first()->naam);
         return view('users.edit',compact('user'));
     }
 

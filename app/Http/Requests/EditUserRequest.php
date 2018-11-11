@@ -82,5 +82,8 @@ class EditUserRequest extends FormRequest
         $user->davinci_id = request('davinci_id');
         $user->updated_at = Carbon::now();
         $user->update();
+        if(request('bedrijf')){
+            $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=>request('rol')]]);
+        }
     }
 }
