@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Http\Requests\CreateCompanyRequest;
+use App\Http\Requests\EditCompanyRequest;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -14,7 +16,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::all();
+        return view('companies.index', compact('companies'));
     }
 
     /**
@@ -24,7 +27,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('companies.create');
     }
 
     /**
@@ -33,9 +36,11 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCompanyRequest $form)
     {
-        //
+        $form->persist();
+        session()->flash('message', 'Bedrijf succesvol aangemaakt.');
+        return redirect("/companies");
     }
 
     /**
@@ -57,7 +62,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies.edit', compact('company'));
     }
 
     /**
@@ -67,9 +72,11 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(EditCompanyRequest $form, Company $company)
     {
-        //
+        $form->patch($company);
+        session()->flash('message', 'Bedrijf succesvol aangepast.');
+        return redirect("/companies");
     }
 
     /**
@@ -80,6 +87,8 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        Company::destroy($company->id);
+        session()->flash('message', 'Bedrijf succesvol verwijderd.');
+        return redirect("/companies");
     }
 }

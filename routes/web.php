@@ -34,6 +34,14 @@ Route::get('/students/{student}/edit', 'StudentController@edit');
 Route::get('/students/{student}/remove', 'StudentController@destroy');
 Route::put('/students/{student}', 'StudentController@update');
 
+//CRUD bedrijven
+Route::get('/companies', 'CompanyController@index');
+Route::get('/companies/create', 'CompanyController@create');
+Route::post('/companies', 'CompanyController@store');
+Route::get('/companies/{company}/edit', 'CompanyController@edit');
+Route::get('/companies/{company}/remove', 'CompanyController@destroy');
+Route::put('/companies/{company}', 'CompanyController@update');
+
 //Contact Users
 Route::get('/users', 'UserController@index');
 Route::get('/users/create', 'UserController@create');

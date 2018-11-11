@@ -129,6 +129,17 @@
                                 </ul>
                             </li>
                             <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Bedrijven</a>
+                                <ul>
+                                    <li>
+                                        <a href="/companies">Read</a>
+                                    </li>
+                                    <li>
+                                        <a href="/companies/create">Create</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
                                 <a class="nav-submenu" data-toggle="nav-submenu" href="#">Exams</a>
                                 <ul>
                                     <li>
