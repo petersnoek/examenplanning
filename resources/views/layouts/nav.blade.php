@@ -73,33 +73,95 @@
                     </li>
                     <li class="nav-main-heading"><span class="sidebar-mini-hide">Pages</span></li>
                     <li>
-                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-wrench"></i><span
-                                    class="sidebar-mini-hide">Manage examens</span></a>
+                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-plus"></i><span
+                                    class="sidebar-mini-hide">CRUD</span></a>
                         <ul>
                             <li>
-                                <a href="/schoolyears/create">Schooljaren aanmaken</a>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Kwalificatiedossier</a>
+                                <ul>
+                                    <li>
+                                        <a href="/kwalificatiedossiers">Read</a>
+                                    </li>
+                                    <li>
+                                        <a href="/kwalificatiedossiers/create">Create</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <a href="/periods/create">Examenperioden aanmaken</a>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Schooljaren</a>
+                                <ul>
+                                    <li>
+                                        <a href="/schoolyears">Read</a>
+                                    </li>
+                                    <li>
+                                        <a href="/schoolyears/create">Create</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <a href="/slots">Slots aanmaken</a>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Perioden</a>
+                                <ul>
+                                    <li>
+                                        <a href="/periods">Read</a>
+                                    </li>
+                                    <li>
+                                        <a href="/periods/create">Create</a>
+                                    </li>
+                                </ul>
                             </li>
+                            <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Slots</a>
+                                <ul>
+                                    <li>
+                                        <a href="/slots">Read</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Users</a>
+                                <ul>
+                                    <li>
+                                        <a href="/users">Read</a>
+                                    </li>
+                                    <li>
+                                        <a href="/users/create">Create</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Bedrijven</a>
+                                <ul>
+                                    <li>
+                                        <a href="/companies">Read</a>
+                                    </li>
+                                    <li>
+                                        <a href="/companies/create">Create</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Exams</a>
+                                <ul>
+                                    <li>
+                                        <a href="/exams/show">Read</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exams/create">Create</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-calendar"></i><span
+                                    class="sidebar-mini-hide">Plannen</span></a>
+                        <ul>
                             <li>
                                 <a href="/slots/assignable/show">Slots inplannen</a>
                             </li>
                             <li>
                                 <a href="/appointments">Kalender inzien</a>
-                            </li>
-                            <li>
-                                <a href="/exams/create">Examen aanmaken</a>
-                            </li>
-                            <li>
-                            <li>
-                                <a href="/home">Examen inplannen</a>
-                            </li>
-                            <li>
-                                <a href="/home">Examen wijzigen</a>
                             </li>
                         </ul>
                     </li>
@@ -117,7 +179,7 @@
                     </li>
                     <li>
                         <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i
-                                    class="si si-calendar"></i><span
+                                    class="si si-eye"></i><span
                                     class="sidebar-mini-hide">Agenda inzien</span></a>
                         <ul>
                             <li>

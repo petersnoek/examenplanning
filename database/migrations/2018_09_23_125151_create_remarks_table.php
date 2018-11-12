@@ -15,7 +15,7 @@ class CreateRemarksTable extends Migration
     {
         Schema::create('remarks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('body');
+            $table->text('body');
             $table->unsignedInteger('user_id');
             $table->timestamps();
 

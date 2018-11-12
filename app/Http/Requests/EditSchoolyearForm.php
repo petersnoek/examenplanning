@@ -28,7 +28,14 @@ class EditSchoolyearForm extends FormRequest
         return [
             'schooljaar' => 'required',
             'startdatum' => 'required',
-            'einddatum' => 'required',
+            'einddatum' => 'required|after:startdatum',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'einddatum.after' => 'De einddatum moet na de begindatum liggen',
         ];
     }
 

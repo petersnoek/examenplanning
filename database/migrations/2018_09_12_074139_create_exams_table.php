@@ -18,7 +18,7 @@ class CreateExamsTable extends Migration
             $table->unsignedInteger('slot_id')->nullable();
             $table->unsignedInteger('proevevanbekwaamheid_id');
             $table->unsignedInteger('status_id')->nullable();
-            $table->unsignedInteger('project_id');
+            $table->unsignedInteger('project_id')->nullable();
             $table->string('voorlopige_uitslag')->nullable();
             $table->timestamps();
 

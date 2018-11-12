@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateKwalificatiedossierRequest;
+use App\Http\Requests\EditKwalificatiedossierRequest;
 use App\Kwalificatiedossier;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,8 @@ class KwalificatiedossierController extends Controller
      */
     public function index()
     {
-        //
+        $kwalificatiedossiers = Kwalificatiedossier::all();
+        return view('kwalificatiedossier.index', compact('kwalificatiedossiers'));
     }
 
     /**
@@ -24,7 +27,7 @@ class KwalificatiedossierController extends Controller
      */
     public function create()
     {
-        //
+        return view('kwalificatiedossier.create');
     }
 
     /**
@@ -33,9 +36,11 @@ class KwalificatiedossierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateKwalificatiedossierRequest $form)
     {
-        //
+        $form->persist();
+        session()->flash('message', 'Kwalificatiedossier succesvol aangemaakt.');
+        return redirect("/kwalificatiedossiers");
     }
 
     /**
@@ -57,7 +62,7 @@ class KwalificatiedossierController extends Controller
      */
     public function edit(Kwalificatiedossier $kwalificatiedossier)
     {
-        //
+        return view('kwalificatiedossier.edit', compact('kwalificatiedossier'));
     }
 
     /**
@@ -67,9 +72,11 @@ class KwalificatiedossierController extends Controller
      * @param  \App\Kwalificatiedossier  $kwalificatiedossier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kwalificatiedossier $kwalificatiedossier)
+    public function update(EditKwalificatiedossierRequest $form, Kwalificatiedossier $kwalificatiedossier)
     {
-        //
+        $form->patch($kwalificatiedossier);
+        session()->flash('message', 'Kwalificatiedossier succesvol aangepast.');
+        return redirect("/kwalificatiedossiers");
     }
 
     /**
@@ -80,6 +87,8 @@ class KwalificatiedossierController extends Controller
      */
     public function destroy(Kwalificatiedossier $kwalificatiedossier)
     {
-        //
+        Kwalificatiedossier::destroy($kwalificatiedossier->id);
+        session()->flash('message', 'Kwalificatiedossier succesvol verwijderd.');
+        return redirect("/kwalificatiedossiers");
     }
 }
