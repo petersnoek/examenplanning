@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Exam;
 use App\Http\Requests\CreateExamRequest;
+use App\Kwalificatiedossier;
+use App\Proevevanbekwaamheid;
+use App\Schoolyear;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -26,10 +29,9 @@ class ExamController extends Controller
      */
     public function create()
     {
-        $students = User::all(); // fetch only students
-        $pvbs = array((object)array('id'=>'1', 'name'=>'PvB1'),(object)array('id'=>'2', 'name'=>'PvB2'), (object)array('id'=>'3', 'name'=>'PvB3'),(object)array('id'=>'4', 'name'=>'PvB4'));
-        $kerntaken = [(object)['id'=>'1', 'name'=>'Ontwerpen', 'identifier' => 'KT1'],(object)['id'=>'2', 'name'=>'Realiseren', 'identifier' => 'KT2'], (object)['id'=>'3', 'name'=>'Opleveren/Implementeren', 'identifier' => 'KT3'],(object)['id'=>'4', 'name'=>'Onderhoud', 'identifier' => 'KT4']];
-        return view('exams.create', compact('students', 'pvbs', 'kerntaken'));
+        $students = User::where('role_id','=', '3')->get();
+        $kwalificatiedossiers = Kwalificatiedossier::all();
+        return view('exams.create', compact('students', 'pvbs', 'kwalificatiedossiers'));
     }
 
     /**
@@ -88,5 +90,24 @@ class ExamController extends Controller
     public function destroy(exam $exam)
     {
         //
+    }
+
+    public function getPvbs(Kwalificatiedossier $kwalificatiedossier){
+        try{
+            $pvbs = $kwalificatiedossier->proevevanbekwaamheids;
+            return array(
+                'fail' => false,
+                'message' => collect(['pvbs' => $pvbs])
+            );
+        }
+        catch(\Exception $e){
+            return array(
+                'fail' => true,
+                'message' => collect([
+                    'error' => 'Er zijn geen proeve van bekwaamheids gevonden voor dit kwalificatiedoessier. Vraag een administrator om deze te updaten.',
+                    'message' => $e.getMessage(),
+                    ])
+            );
+        }
     }
 }

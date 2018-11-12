@@ -256,11 +256,11 @@
                             <label class="radio-inline" for="example-inline-radio3">
                                 <input type="radio" id="example-inline-radio3" name="role_id" value="3"> Student
                             </label>
-                            <label class="radio-inline" for="example-inline-radio3">
-                                <input type="radio" id="example-inline-radio3" name="role_id" value="4"> Bedrijf
+                            <label class="radio-inline" for="example-inline-radio4">
+                                <input type="radio" id="example-inline-radio4" name="role_id" value="4"> Bedrijfsmedewerker (Begeleider)
                             </label>
-                            <label class="radio-inline" for="example-inline-radio3">
-                                <input type="radio" id="example-inline-radio3" name="role_id" value="5"> Examencomissie
+                            <label class="radio-inline" for="example-inline-radio5">
+                                <input type="radio" id="example-inline-radio5" name="role_id" value="5"> Examencomissie
                             </label>
                         </div>
                     </div>

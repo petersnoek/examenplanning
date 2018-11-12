@@ -44,7 +44,7 @@ protected $guarded = [];
         return $this->belongsToMany(Exam::class, 'exam_user')->withPivot('user_role');
     }
     public function companies(){
-        return $this->belongsToMany(Company::class, 'company_user');
+        return $this->belongsToMany(Company::class, 'company_user')->withPivot('bedrijfsrol');
     }
     public function projects(){
         return $this->belongsToMany(Project::class, 'project_user');
@@ -55,8 +55,8 @@ protected $guarded = [];
     public function questionaires(){
         return $this->hasmany(Questionaire::class);
     }
-    public function roles(){
-        return $this->hasOne(Role::class);
+    public function role(){
+        return $this->belongsto(Role::class);
     }
 
     public function slots()
