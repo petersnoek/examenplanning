@@ -24,7 +24,7 @@
     </div>
     <!-- END Page Header -->
     <div class="content">
-        <h2 class="content-heading">Maak bedrijf aan</h2> {{$errors}}
+        <h2 class="content-heading">Maak bedrijf aan</h2>
         <div class="block">
             <div class="block-content">
                 <form class="form-horizontal push-10-t push-10"
