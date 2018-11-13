@@ -80,7 +80,6 @@ class EditUserRequest extends FormRequest
         $user->active = request('actief') == "on" ? 1 : 0 ;
         $user->role_id = request('role_id');
         $user->davinci_id = request('davinci_id');
-        $user->updated_at = Carbon::now();
         $user->update();
         if(request('bedrijf')){
             $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=>request('rol')]]);

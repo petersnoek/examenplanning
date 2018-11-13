@@ -15,6 +15,5 @@ $factory->define(Model::class, function (Faker $faker) {
         'slot_id' => $faker->company,
         'proevevanbekwaamheid_id' => $faker->company,
         'status_id' => Status::inRandomOrder()->first()->id,
-        'created_at' => Carbon::now(),
     ];
 });

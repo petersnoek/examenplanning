@@ -78,7 +78,6 @@ class CreateUserRequest extends FormRequest
             'active' => request('actief') == "on" ? 1 : 0,
             'role_id' => request('role_id'),
             'davinci_id' => request('davinci_id'),
-            'updated_at' => Carbon::now(),
         ]);
         if(request('bedrijf')){
             $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=>request('rol')]]);

@@ -199,6 +199,7 @@
                 </form>
             </div>
         </div>
+        @include('revisionable.personal_timeline', ['histories' => $company->revisionHistory->reverse()])
     </div>
 
 

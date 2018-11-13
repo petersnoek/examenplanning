@@ -32,7 +32,6 @@ class ProjectSeeder extends Seeder
                 'naam' => $faker->sentence($faker->numberBetween(1,3)),
                 'company_id' => $companies->pop()->id,
                 'questionaire_id' => $questionaires->pop()->id,
-                'created_at' => Carbon::now(),
             ]);
         }
         $this->command->info('Seeded ' . $amount . ' projects');
