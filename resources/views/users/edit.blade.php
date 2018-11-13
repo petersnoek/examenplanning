@@ -343,6 +343,9 @@
                 </div>
             </div>
         </div>
+
+        @include('revisionable.personal_timeline', ['histories' => $user->revisionHistory->reverse()])
+
     </div>
 
 @endsection

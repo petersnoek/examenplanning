@@ -46,7 +46,6 @@ class ExamSeeder extends Seeder
                     'proevevanbekwaamheid_id' => $proevevanbekwaamheid->id,
                     'status_id' => $statusses->random()->id,
                     'project_id' => $projects->random()->id,
-                    'created_at' => Carbon::now(),
                 ]);
             }
         }

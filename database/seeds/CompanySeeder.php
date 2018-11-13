@@ -33,18 +33,17 @@ class CompanySeeder extends Seeder
 
         $records = $stmt->process($csv);
         foreach ($records as $record) {
-            $c = new Company();
-            $c->naam = $record['bedrijfsnaam'];
-            $c->straat = $record['bezoek_adres'];
-            $c->huisnummer = $faker->numberBetween(1, 500);
-            $c->toevoeging = $faker->randomLetter;
-            $c->postcode = $faker->postcode;
-            $c->plaats = $record['bezoek_plaats'];
-            $c->land = $faker->country;
-            $c->website = 'https://www.google.nl';
-            $c->sector = $faker->word;
-            $c->created_at = Carbon::now();
-            $c->save();
+            Company::create([
+            'naam' => $record['bedrijfsnaam'],
+            'straat' => $record['bezoek_adres'],
+            'huisnummer' => $faker->numberBetween(1, 500),
+            'toevoeging' => $faker->randomLetter,
+            'postcode' => $faker->postcode,
+            'plaats' => $record['bezoek_plaats'],
+            'land' => $faker->country,
+            'website' => 'https://www.google.nl',
+            'sector' => $faker->word,
+            ]);
         }
     }
 }

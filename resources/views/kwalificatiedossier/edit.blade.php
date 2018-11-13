@@ -98,7 +98,9 @@
                 </form>
             </div>
         </div>
+        @include('revisionable.personal_timeline', ['histories' => $kwalificatiedossier->revisionHistory->reverse()])
     </div>
+
 
 
 @endsection

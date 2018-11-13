@@ -9,6 +9,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+    use \Venturecraft\Revisionable\RevisionableTrait;
+
+    //    protected $revisionCreationsEnabled = true;
+
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +23,10 @@ class User extends Authenticatable
 //        'name', 'email', 'password',
 //    ];
 protected $guarded = [];
+
+//    protected $dontKeepRevisionOf = array(
+//        'password'
+//    );
 
     /**
      * The attributes that should be hidden for arrays.

@@ -33,6 +33,5 @@ $factory->define(App\User::class, function (Faker $faker) {
         'davinci_id' => 99 . $faker->randomNumber(6, true),
         'role_id' => Role::inRandomOrder()->first()->id,
         'remember_token' => str_random(10),
-        'created_at' => Carbon::now(),
     ];
 });

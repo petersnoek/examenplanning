@@ -24,11 +24,7 @@ class Pivot_company_user_Seeder extends Seeder
 
         foreach($bedrijfsleden as $bedrijfsuser)
         {
-            DB::table('company_user')->insert([
-                'user_id' => $bedrijfsuser->id,
-                'company_id' => $companies->random()->id,
-                'bedrijfsrol' => $faker->randomElement(['CEO', 'Bedrijfsleider', 'Werknemer', 'Recruiter', 'Coach', 'Manager', 'Assistent']),
-            ]);
+            $bedrijfsuser->companies()->attach([$companies->random()->id => ['bedrijfsrol'=>$faker->randomElement(['CEO', 'Bedrijfsleider', 'Werknemer', 'Recruiter', 'Coach', 'Manager', 'Assistent'])]]);
         }
     }
 }
