@@ -27,6 +27,9 @@ class CreateProjectsTable extends Migration
                 ->references('id')->on('questionaires')
                 ->onDelete('cascade');
         });
+        Schema::table('projects', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

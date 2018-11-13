@@ -37,6 +37,10 @@ class CreateUsersTable extends Migration
                 ->references('id')->on('roles')
                 ->onDelete('cascade');
         });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

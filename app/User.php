@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Notifications\ResetPassword;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -10,6 +11,8 @@ class User extends Authenticatable
 {
     use Notifiable;
     use \Venturecraft\Revisionable\RevisionableTrait;
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
 
     //    protected $revisionCreationsEnabled = true;
 

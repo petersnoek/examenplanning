@@ -22,6 +22,9 @@ class CreateAppointmentsTable extends Migration
             $table->string('hex_color')->nullable();
             $table->timestamps();
         });
+        Schema::table('appointments', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

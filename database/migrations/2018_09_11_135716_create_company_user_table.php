@@ -26,6 +26,9 @@ class CreateCompanyUserTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
         });
+        Schema::table('company_user', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

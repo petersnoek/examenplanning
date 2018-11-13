@@ -25,6 +25,9 @@ class CreateExamenRemarkTable extends Migration
                 ->references('id')->on('exams')
                 ->onDelete('cascade');
         });
+        Schema::table('exam_remark', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

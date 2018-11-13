@@ -24,6 +24,9 @@ class CreateVragenlijstsTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
         });
+        Schema::table('questionaires', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

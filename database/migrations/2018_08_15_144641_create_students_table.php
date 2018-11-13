@@ -24,6 +24,9 @@ class CreateStudentsTable extends Migration
             $table->string('geslacht');
             $table->timestamps();
         });
+        Schema::table('students', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

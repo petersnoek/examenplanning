@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Venturecraft\Revisionable\Revisionable;
 
 class Model extends Revisionable
@@ -11,4 +12,7 @@ class Model extends Revisionable
 
     protected $revisionNullString = 'niets';
     protected $revisionUnknownString = 'onbekend';
+
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
 }
