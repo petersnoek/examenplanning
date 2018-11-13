@@ -344,7 +344,7 @@
             </div>
         </div>
 
-        @include('revisionable.personal_timeline', ['histories' => $user->revisionHistory->reverse()])
+        @include('revisionable.history_feed', ['histories' => $user->revisionHistory->reverse()])
 
     </div>
 

@@ -104,6 +104,12 @@ Route::get('/agenda/all', ['uses' => 'AgendaController@all', 'middleware' => ['c
 
 Route::post('/requestagenda', 'AgendaController@requestAgenda');
 
+//CRUD revisions
+Route::get('/revisions', 'RevisionController@index');
+
+//CRUD Deletes
+Route::get('/deletes', 'DeletionController@index');
+Route::get('/deletes/{modelname}', 'DeletionController@index');
 
 
 

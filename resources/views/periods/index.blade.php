@@ -59,7 +59,7 @@
                             <tbody>
                             @foreach($periods as $period)
                                 <tr role="row" class="odd">
-                                    <td class="font-w600 col-xs-3">{{$period->schoolyear->schooljaar}}</td>
+                                    <td class="font-w600 col-xs-3">{{isset($period->schoolyear) ? $period->schoolyear->schooljaar : 'Non-existent'}}</td>
                                     <td class="text-wrap col-xs-5">{{$period->startdatum->format('Y-m-d')}}
                                         tot {{$period->einddatum->format('Y-m-d')}}</td>
                                     <td class="col-xs-2">{{$period->periodenaam}}</td>

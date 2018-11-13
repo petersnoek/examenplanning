@@ -140,7 +140,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Exams</a>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Examens</a>
                                 <ul>
                                     <li>
                                         <a href="/exams/show">Read</a>
@@ -149,6 +149,42 @@
                                         <a href="/exams/create">Create</a>
                                     </li>
                                 </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-refresh"></i><span
+                                    class="sidebar-mini-hide">Revisions</span></a>
+                        <ul>
+                            <li>
+                                <a href="/revisions">Read</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-close"></i><span
+                                    class="sidebar-mini-hide">Deletes</span></a>
+                        <ul>
+                            <li>
+                                <a href="/deletes/Kwalificatiedossier">Kwalificatiedossier</a>
+                            </li>
+                            <li>
+                                <a href="/deletes/Schoolyear">Schooljaren</a>
+                            </li>
+                            <li>
+                                <a href="/deletes/Period">Periodes</a>
+                            </li>
+                            <li>
+                                <a href="/deletes/Slot">Slots</a>
+                            </li>
+                            <li>
+                                <a href="/deletes/User">Users</a>
+                            </li>
+                            <li>
+                                <a href="/deletes/Company">Bedrijven</a>
+                            </li>
+                            <li>
+                                <a href="/deletes/Exam">Examens</a>
                             </li>
                         </ul>
                     </li>
