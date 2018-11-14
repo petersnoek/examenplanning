@@ -16,9 +16,14 @@ class DeletionController extends Controller
     public function index($modelname)
     {
         $classname = '\App\\' . $modelname;
-        $class = new $classname();
-        $deletions = $class::onlyTrashed()->get();
-        return view('deletions.index',compact('deletions'));
+        if(class_exists ($classname)){
+            $class = new $classname();
+            $deletions = $class::onlyTrashed()->get();
+            return view('deletions.index',compact('deletions'));
+        }
+        else{
+            return redirect('home')->withErrors(array('error' => 'De class die je probeert op te vragen bestaat niet'));
+        }
     }
 
     /**
