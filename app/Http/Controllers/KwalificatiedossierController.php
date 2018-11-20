@@ -91,4 +91,8 @@ class KwalificatiedossierController extends Controller
         session()->flash('message', 'Kwalificatiedossier succesvol verwijderd.');
         return redirect("/kwalificatiedossiers");
     }
+
+    public function all(){
+        return response()->json(array('msg'=> Kwalificatiedossier::all()),200);
+    }
 }

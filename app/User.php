@@ -3,12 +3,19 @@
 namespace App;
 
 use App\Notifications\ResetPassword;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use \Venturecraft\Revisionable\RevisionableTrait;
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+
+    //    protected $revisionCreationsEnabled = true;
+
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +26,10 @@ class User extends Authenticatable
 //        'name', 'email', 'password',
 //    ];
 protected $guarded = [];
+
+//    protected $dontKeepRevisionOf = array(
+//        'password'
+//    );
 
     /**
      * The attributes that should be hidden for arrays.
@@ -57,6 +68,9 @@ protected $guarded = [];
     }
     public function role(){
         return $this->belongsto(Role::class);
+    }
+    public function kwalificatiedossier(){
+        return $this->belongsto(Kwalificatiedossier::class, 'kwalificatiedossier_id');
     }
 
     public function slots()

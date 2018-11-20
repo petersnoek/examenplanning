@@ -20,6 +20,9 @@ class CreateKwalificatiedossiersTable extends Migration
             $table->string('vanaf_cohort');
             $table->timestamps();
         });
+        Schema::table('kwalificatiedossiers', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

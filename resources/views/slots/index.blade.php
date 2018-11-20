@@ -11,13 +11,13 @@
             <div class="col-sm-7">
                 <h1 class="page-heading">
                     Slots
-                    <small>Overzicht</small>
+                    <small>Read</small>
                 </h1>
             </div>
             <div class="col-sm-5 text-right hidden-xs">
                 <ol class="breadcrumb push-10-t">
                     <li>Slots</li>
-                    <li><a class="link-effect" href="">Selecteer periode</a></li>
+                    <li><a class="link-effect" href="">Read</a></li>
                 </ol>
             </div>
         </div>

@@ -58,7 +58,6 @@ class EditCompanyRequest extends FormRequest
         $company->land = request('land');
         $company->sector = request('sector');
         $company->website = request('website');
-        $company->updated_at = Carbon::now();
         $company->update();
     }
 }

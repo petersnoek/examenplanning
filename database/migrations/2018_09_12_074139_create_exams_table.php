@@ -35,6 +35,9 @@ class CreateExamsTable extends Migration
                 ->references('id')->on('projects')
                 ->onDelete('cascade');
         });
+        Schema::table('exams', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

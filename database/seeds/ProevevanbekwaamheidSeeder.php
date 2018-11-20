@@ -25,14 +25,12 @@ class ProevevanbekwaamheidSeeder extends Seeder
                 B1-K1-W3:  Levert een bijdrage aan het ontwerp
                 B1-K1-W4:  Bereidt de realisatie voor',
             'kwalificatiedossier_id' => 1,
-            'created_at' => Carbon::now(),
         ]);
         DB::table('proevevanbekwaamheids')->insert([
             'kerntaak' => 'B1-K2:  Realiseert en test (onderdelen van) een product',
             'werkproces' => 'B1-K2-W1:  Realiseert (onderdelen van) een product
                 B1-K2-W2:  Test het ontwikkelde product',
             'kwalificatiedossier_id' => 1,
-            'created_at' => Carbon::now(),
         ]);
         DB::table('proevevanbekwaamheids')->insert([
             'kerntaak' => 'B1-K3:  Levert een product op',
@@ -40,7 +38,6 @@ class ProevevanbekwaamheidSeeder extends Seeder
                 B1-K3-W2:  Levert het product op
                 B1-K3-W3:  Evalueert het opgeleverde product',
             'kwalificatiedossier_id' => 1,
-            'created_at' => Carbon::now(),
         ]);
         DB::table('proevevanbekwaamheids')->insert([
             'kerntaak' => 'P1-K4:  Applicatie- en mediaontwikkelaar',
@@ -48,7 +45,6 @@ class ProevevanbekwaamheidSeeder extends Seeder
                 P1-K1-W1:  Onderhoudt een applicatie
                 P1-K1-W2:  Beheert gegevens',
             'kwalificatiedossier_id' => 1,
-            'created_at' => Carbon::now(),
         ]);
     }
 }

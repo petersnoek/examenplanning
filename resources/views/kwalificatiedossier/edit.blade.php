@@ -98,7 +98,9 @@
                 </form>
             </div>
         </div>
+        @include('revisionable.history_feed', ['histories' => $kwalificatiedossier->revisionHistory->reverse()])
     </div>
+
 
 
 @endsection

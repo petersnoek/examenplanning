@@ -18,6 +18,9 @@ class CreateStatusesTable extends Migration
             $table->string('naam')->unique();
             $table->timestamps();
         });
+        Schema::table('statuses', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

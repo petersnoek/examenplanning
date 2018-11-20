@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Company;
+use App\Kwalificatiedossier;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
@@ -78,10 +79,12 @@ class CreateUserRequest extends FormRequest
             'active' => request('actief') == "on" ? 1 : 0,
             'role_id' => request('role_id'),
             'davinci_id' => request('davinci_id'),
-            'updated_at' => Carbon::now(),
         ]);
         if(request('bedrijf')){
             $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=>request('rol')]]);
+        }
+        else if(request('kwalificatiedossier')){
+            $user->kwalificatiedossier()->associate(request('kwalificatiedossier'))->save();
         }
     }
 }

@@ -94,6 +94,7 @@
                 </div>
             </div>
         </div>
+        @include('revisionable.history_feed', ['histories' => $schoolyear->revisionHistory->reverse()])
     </div>
 
 @endsection

@@ -283,7 +283,7 @@
                                         Examinator
                                     </label>
                                     <label class="radio-inline" for="example-inline-radio3">
-                                        <input class="other_radio" type="radio" id="example-inline-radio3"
+                                        <input class="radio" type="radio" id="example-inline-radio3"
                                                @if($user->role_id == 3) checked="" @endif name="role_id" value="3">
                                         Student
                                     </label>
@@ -301,7 +301,7 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="col-xs-12 select-company">
+                                <div class="col-xs-12 additional_content">
 
                                 </div>
                                 @if ($errors->has('bedrijf'))
@@ -309,7 +309,7 @@
                                         <strong>{{ $errors->first('bedrijf') }}</strong>
                                     </span>
                                 @endif
-                                <div class="provide-role">
+                                <div class="additional_content_2">
 
                                 </div>
                             </div>
@@ -343,80 +343,85 @@
                 </div>
             </div>
         </div>
+
+        @include('revisionable.history_feed', ['histories' => $user->revisionHistory->reverse()])
+
     </div>
 
 @endsection
 
 @push('scripts')
     <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
-    <script>
-        var data = {_token: '{{csrf_token()}}'};
+    <script src="{{asset('assets/js/userscreation/user_crud.min.js')}}"></script>
 
-        function getCompanies() {
-            $.ajax({
-                type: "GET",
-                url: '/companies/all',
-                data: data,
-                success: function (data) {
-                    $('.select-company').append('<div class="form-material">\n' +
-                        '                                        <select class="js-select2 form-control select2-hidden-accessible"\n' +
-                        '                                                id="companies" name="bedrijf" style="width: 100%;"\n' +
-                        '                                                data-placeholder="Kies een bedrijf..." tabindex="-1"\n' +
-                        '                                                aria-hidden="true">\n' +
-                        '                                            <option></option>\n' +
-                        '                                        </select>\n' +
-                        '                                        <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"\n' +
-                        '                                              dir="ltr" style="width: 100%;">\n' +
-                        '                                                <span class="selection">\n' +
-                        '\n' +
-                        '                                                </span>\n' +
-                        '                                            <span class="dropdown-wrapper" aria-hidden="true"></span>\n' +
-                        '                                        </span>\n' +
-                        '                                        <label for="example2-select2">Kies een bedrijf</label>\n' +
-                        '                                    </div>');
+    {{--<script>--}}
+        {{--var data = {_token: '{{csrf_token()}}'};--}}
 
-                    $('.provide-role').append('<div class="col-lg-12 col-xs-12">\n' +
-                        '                                    <div class="form-material input-group">\n' +
-                        '                                        <input class="form-control"\n' +
-                        '                                               type="text" id="rol" name="rol"\n' +
-                        '                                               placeholder="Vul je rol in..."\n' +
-                        '                                               autofocus required ' +
+        {{--function getCompanies() {--}}
+            {{--$.ajax({--}}
+                {{--type: "GET",--}}
+                {{--url: '/companies/all',--}}
+                {{--data: data,--}}
+                {{--success: function (data) {--}}
+                    {{--$('.select-company').append('<div class="form-material">\n' +--}}
+                        {{--'                                        <select class="js-select2 form-control select2-hidden-accessible"\n' +--}}
+                        {{--'                                                id="companies" name="bedrijf" style="width: 100%;"\n' +--}}
+                        {{--'                                                data-placeholder="Kies een bedrijf..." tabindex="-1"\n' +--}}
+                        {{--'                                                aria-hidden="true">\n' +--}}
+                        {{--'                                            <option></option>\n' +--}}
+                        {{--'                                        </select>\n' +--}}
+                        {{--'                                        <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"\n' +--}}
+                        {{--'                                              dir="ltr" style="width: 100%;">\n' +--}}
+                        {{--'                                                <span class="selection">\n' +--}}
+                        {{--'\n' +--}}
+                        {{--'                                                </span>\n' +--}}
+                        {{--'                                            <span class="dropdown-wrapper" aria-hidden="true"></span>\n' +--}}
+                        {{--'                                        </span>\n' +--}}
+                        {{--'                                        <label for="example2-select2">Kies een bedrijf</label>\n' +--}}
+                        {{--'                                    </div>');--}}
+
+                    {{--$('.provide-role').append('<div class="col-lg-12 col-xs-12">\n' +--}}
+                        {{--'                                    <div class="form-material input-group">\n' +--}}
+                        {{--'                                        <input class="form-control"\n' +--}}
+                        {{--'                                               type="text" id="rol" name="rol"\n' +--}}
+                        {{--'                                               placeholder="Vul je rol in..."\n' +--}}
+                        {{--'                                               autofocus required ' +--}}
                             {{--'                                               value="{{$user->companies()->first()->pivot->bedrijfsrol}}"'+--}}
-                                '                                               >\n' +
-                        '                                        <label for="rol">Rol binnen bedrijf</label>\n' +
-                        '                                        <span class="input-group-addon"><i class="fa fa-user-circle-o"></i></span>\n' +
-                        '                                    </div>\n' +
-                        '                                </div>');
-                    App.initHelpers(['select2']);
-                    $.each(data.msg, function (index, value) {
+                                {{--'                                               >\n' +--}}
+                        {{--'                                        <label for="rol">Rol binnen bedrijf</label>\n' +--}}
+                        {{--'                                        <span class="input-group-addon"><i class="fa fa-user-circle-o"></i></span>\n' +--}}
+                        {{--'                                    </div>\n' +--}}
+                        {{--'                                </div>');--}}
+                    {{--App.initHelpers(['select2']);--}}
+                    {{--$.each(data.msg, function (index, value) {--}}
                         {{--if(value.id == {{$user->companies()->first()->id}})--}}
                         {{--{--}}
                         {{--$('#companies').append('<option value="' + value.id + '" selected>' + value.naam + '</option>');--}}
                         {{--}--}}
                         {{--else{--}}
-                        $('#companies').append('<option value="' + value.id + '">' + value.naam + '</option>');
-                        // }
-                    });
-                },
-                error: function (xhr, status, error) {
-                    alert(xhr.responseText);
-                }
-            });
-        }
+                        {{--$('#companies').append('<option value="' + value.id + '">' + value.naam + '</option>');--}}
+                        {{--// }--}}
+                    {{--});--}}
+                {{--},--}}
+                {{--error: function (xhr, status, error) {--}}
+                    {{--alert(xhr.responseText);--}}
+                {{--}--}}
+            {{--});--}}
+        {{--}--}}
 
-        $(document).ready(function () {
-            if ($('#example-inline-radio4').is(':checked')) {
-                getCompanies();
-            }
-        });
+        {{--$(document).ready(function () {--}}
+            {{--if ($('#example-inline-radio4').is(':checked')) {--}}
+                {{--getCompanies();--}}
+            {{--}--}}
+        {{--});--}}
 
-        $("#example-inline-radio4").change(function () {
-            getCompanies();
-        });
+        {{--$("#example-inline-radio4").change(function () {--}}
+            {{--getCompanies();--}}
+        {{--});--}}
 
-        $('.other_radio').click(function () {
-            $('.select-company').empty();
-            $('.provide-role').empty();
-        });
-    </script>
+        {{--$('.other_radio').click(function () {--}}
+            {{--$('.select-company').empty();--}}
+            {{--$('.provide-role').empty();--}}
+        {{--});--}}
+    {{--</script>--}}
 @endpush

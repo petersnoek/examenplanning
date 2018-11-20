@@ -125,6 +125,7 @@
                 </div>
             </div>
         </div>
+        @include('revisionable.history_feed', ['histories' => $period->revisionHistory->reverse()])
     </div>
 @endsection
 

@@ -18,6 +18,9 @@ class CreateRolesTable extends Migration
             $table->string('naam')->unique();
             $table->timestamps();
         });
+        Schema::table('roles', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

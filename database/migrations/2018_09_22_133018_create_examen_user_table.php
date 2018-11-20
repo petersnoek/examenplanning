@@ -26,6 +26,9 @@ class CreateExamenUserTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
         });
+        Schema::table('exam_user', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

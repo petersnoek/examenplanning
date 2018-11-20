@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
-    protected $toTruncate = ['remark_questionaire', 'company_user', 'project_user', 'exam_user', 'exam_remark', 'users', 'roles', 'kwalificatiedossiers', 'proevevanbekwaamheids', 'statuses', 'schoolyears', 'periods', 'companies', 'slots', 'exams', 'questionaires', 'projects', 'remarks'];
+    protected $toTruncate = ['revisions','remark_questionaire', 'company_user', 'project_user', 'exam_user', 'exam_remark', 'users', 'roles', 'kwalificatiedossiers', 'proevevanbekwaamheids', 'statuses', 'schoolyears', 'periods', 'companies', 'slots', 'exams', 'questionaires', 'projects', 'remarks'];
 
     /**
      * Seed the application's database.
@@ -48,5 +48,8 @@ class DatabaseSeeder extends Seeder
         $this->call(Pivot_remark_questionaire_Seeder::class);
 
         Model::reguard();
+
+        DB::table('revisions')->truncate();
+
     }
 }
