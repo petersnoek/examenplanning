@@ -103,7 +103,7 @@ class AgendaController extends Controller
 
     public function all(){
         $allExams = Exam::with('proevevanbekwaamheids', 'slots', 'remarks', 'users')->get();
-        return view('/calendar/all', compact('allExams'));
+        return view('calendar.all', compact('allExams'));
     }
 
     public function setUser($davinci_id){

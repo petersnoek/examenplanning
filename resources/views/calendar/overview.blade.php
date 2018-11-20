@@ -2,10 +2,7 @@
     <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.css')}}">
 @endpush
 
-<div class="block block-themed">
-    <div class="block-header bg-default-dark">
-        <h3 class="block-title">Examens</h3>
-    </div>
+<div class="block">
     <div class="table-responsive">
         <div id="DataTables_Table_2_wrapper"
              class="dataTables_wrapper form-inline dt-bootstrap no-footer block-content">

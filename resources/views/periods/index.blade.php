@@ -10,21 +10,21 @@
         <div class="row items-push">
             <div class="col-sm-7">
                 <h1 class="page-heading">
-                    Beheer examenperioden
-                    <small>Examinatoren kunnen hier examenperiode aanmaken</small>
+                    Periodes
+                    <small>Inzien</small>
                 </h1>
             </div>
             <div class="col-sm-5 text-right hidden-xs">
                 <ol class="breadcrumb push-10-t">
-                    <li>Examens</li>
-                    <li><a class="link-effect" href="">Examenperiode aanmaken</a></li>
+                    <li>Periodes</li>
+                    <li><a class="link-effect" href="">Inzien</a></li>
                 </ol>
             </div>
         </div>
     </div>
     <!-- END Page Header -->
     <div class="bg-lighter content">
-        <h2 class="content-heading">Schooljaren inzien</h2>
+        <h2 class="content-heading">Period inzien</h2>
         <div class="table-responsive">
             <div id="DataTables_Table_2_wrapper"
                  class="dataTables_wrapper form-inline dt-bootstrap no-footer block-content block">
