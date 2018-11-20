@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
+use App\Http\Requests\CreateProjectRequest;
+use App\Http\Requests\EditProjectRequest;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::all();
+        return view('projects.index', compact('projects'));
     }
 
     /**
@@ -24,7 +28,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $companies = Company::all();
+        return view('projects.create', compact('companies'));
     }
 
     /**
@@ -33,9 +38,11 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProjectRequest $form)
     {
-        //
+        $form->persist();
+        session()->flash('message', 'Project succesvol aangemaakt.');
+        return redirect('/projects');
     }
 
     /**
@@ -57,7 +64,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $companies = Company::all();
+        return view('projects.edit',compact('project', 'companies'));
     }
 
     /**
@@ -67,9 +75,11 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(EditProjectRequest $form, Project $project)
     {
-        //
+        $form->patch();
+        session()->flash('message', 'Project succesvol aangepast.');
+        return redirect('/projects');
     }
 
     /**

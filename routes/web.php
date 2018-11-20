@@ -111,6 +111,14 @@ Route::get('/revisions', 'RevisionController@index');
 Route::get('/deletes', 'DeletionController@index');
 Route::get('/deletes/{modelname}', 'DeletionController@index');
 
+//CRUD Projects
+Route::get('/projects/create', 'ProjectController@create');
+Route::get('/projects', 'ProjectController@index');
+Route::get('/projects/{project}/remove', 'ProjectController@destroy');
+Route::get('/projects/{project}/edit', 'ProjectController@edit');
+
+Route::post('/projects', 'ProjectController@store');
+Route::put('/projects/{project}', 'ProjectController@update');
 
 
 

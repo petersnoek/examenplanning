@@ -140,6 +140,17 @@
                                 </ul>
                             </li>
                             <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Projects</a>
+                                <ul>
+                                    <li>
+                                        <a href="/projects">Read</a>
+                                    </li>
+                                    <li>
+                                        <a href="/projects/create">Create</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
                                 <a class="nav-submenu" data-toggle="nav-submenu" href="#">Examens</a>
                                 <ul>
                                     <li>

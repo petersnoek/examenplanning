@@ -8,6 +8,6 @@ class Company extends Model
         return $this->belongsToMany(User::class, 'company_user');
     }
     public function projects(){
-        return $this->hasMany(Project::class);
+        return $this->hasMany(Project::class, 'company_id');
     }
 }
