@@ -25,7 +25,6 @@
     <!-- END Page Header -->
 
     <div class="content">
-        <h2 class="content-heading">Examens inzien</h2>
         @if(in_array(Auth::user()->role_id, [1,2]))
             <div class="row">
                 <form class="col-lg-4 col-md-5 form-horizontal push-10-t push-10" action="/requestagenda" method="POST">
@@ -40,7 +39,7 @@
                 </form>
             </div>
         @endif
-
+        <h2 class="content-heading">Examens inzien</h2>
         @include('calendar.overview')
 
     </div>
