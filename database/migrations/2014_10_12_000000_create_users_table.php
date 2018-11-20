@@ -29,12 +29,17 @@ class CreateUsersTable extends Migration
             $table->string('land');
             $table->boolean('active')->default(false);
             $table->unsignedInteger('role_id');
+            $table->unsignedInteger('kwalificatiedossier_id')->nullable();
             $table->string('davinci_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('role_id')
                 ->references('id')->on('roles')
+                ->onDelete('cascade');
+
+            $table->foreign('kwalificatiedossier_id')
+                ->references('id')->on('kwalificatiedossiers')
                 ->onDelete('cascade');
         });
 

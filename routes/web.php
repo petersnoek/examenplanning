@@ -41,8 +41,6 @@ Route::post('/companies', 'CompanyController@store');
 Route::get('/companies/{company}/edit', 'CompanyController@edit');
 Route::get('/companies/{company}/remove', 'CompanyController@destroy');
 Route::put('/companies/{company}', 'CompanyController@update');
-//ajax endpoint
-Route::get('/companies/all', 'CompanyController@getAll');
 
 //Contact Users
 Route::get('/users', 'UserController@index');
@@ -93,6 +91,8 @@ Route::post('/exams/create', 'ExamController@store');
 
 //AJAX endpoints
 Route::get('/getPvbs/{kwalificatiedossier}', 'ExamController@getPvbs');
+Route::get('/kwalificatiedossier/all', 'KwalificatiedossierController@all');
+Route::get('/companies/all', 'CompanyController@getAll');
 
 
 //CRUD agenda
@@ -110,6 +110,7 @@ Route::get('/revisions', 'RevisionController@index');
 //CRUD Deletes
 Route::get('/deletes', 'DeletionController@index');
 Route::get('/deletes/{modelname}', 'DeletionController@index');
+
 
 
 

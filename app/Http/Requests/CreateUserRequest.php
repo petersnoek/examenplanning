@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Company;
+use App\Kwalificatiedossier;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
@@ -81,6 +82,9 @@ class CreateUserRequest extends FormRequest
         ]);
         if(request('bedrijf')){
             $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=>request('rol')]]);
+        }
+        else if(request('kwalificatiedossier')){
+            $user->kwalificatiedossier()->associate(request('kwalificatiedossier'))->save();
         }
     }
 }

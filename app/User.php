@@ -69,6 +69,9 @@ protected $guarded = [];
     public function role(){
         return $this->belongsto(Role::class);
     }
+    public function kwalificatiedossier(){
+        return $this->belongsto(Kwalificatiedossier::class, 'kwalificatiedossier_id');
+    }
 
     public function slots()
     {
