@@ -90,6 +90,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        Project::destroy($project->id);
+        session()->flash('message', 'Project succesvol verwijderd.');
+        return redirect('/projects');
     }
 }

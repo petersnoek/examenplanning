@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Company;
+use App\Exam;
 use App\Kwalificatiedossier;
 use App\User;
 use Carbon\Carbon;

@@ -195,6 +195,9 @@
                                 <a href="/deletes/Company">Bedrijven</a>
                             </li>
                             <li>
+                                <a href="/deletes/Project">Projects</a>
+                            </li>
+                            <li>
                                 <a href="/deletes/Exam">Examens</a>
                             </li>
                         </ul>

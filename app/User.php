@@ -13,8 +13,7 @@ class User extends Authenticatable
     use \Venturecraft\Revisionable\RevisionableTrait;
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-
-    //    protected $revisionCreationsEnabled = true;
+    protected $revisionCreationsEnabled = true;
 
 
     /**

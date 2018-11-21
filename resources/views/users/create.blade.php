@@ -329,7 +329,7 @@
                             <div class="form-group">
                                 <div class="col-xs-12">
                                     <button class="btn btn-sm btn-success" type="submit"><i
-                                                class="fa fa-plus push-5-r"></i>Aanpassen
+                                                class="fa fa-plus push-5-r"></i>Aanmaken
                                     </button>
                                 </div>
                             </div>
