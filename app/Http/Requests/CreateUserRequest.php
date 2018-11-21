@@ -80,11 +80,23 @@ class CreateUserRequest extends FormRequest
             'role_id' => request('role_id'),
             'davinci_id' => request('davinci_id'),
         ]);
-        if(request('bedrijf')){
+        if(request('bedrijf') && request('role_id') == 4){
             $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=>request('rol')]]);
         }
-        else if(request('kwalificatiedossier')){
+        else if(request('kwalificatiedossier') && request('role_id') == '3'){
             $user->kwalificatiedossier()->associate(request('kwalificatiedossier'))->save();
+            foreach($user->kwalificatiedossier->proevevanbekwaamheids as $proevevanbekwaamheid){
+                $exam = Exam::create([
+                    'proevevanbekwaamheid_id' => $proevevanbekwaamheid->id,
+                ]);
+                $user->exams()->attach([$exam->id => ['user_role' => 'Student']]);
+            }
+        }
+        if(request('role_id') != '3'){
+            $user->kwalificatiedossier()->dissociate()->save();
+        }
+        if(request('role_id') == 1 | request('role_id') == 5){
+            $user->exams()->detach();
         }
     }
 }

@@ -95,7 +95,7 @@ function appendKwalificatiedossier(){
         '                                        <select class="js-select2 form-control select2-hidden-accessible"\n' +
         '                                                id="kwalificatiedossier" name="kwalificatiedossier" style="width: 100%;"\n' +
         '                                                data-placeholder="Kies een kwalificatiedossier..." tabindex="-1"\n' +
-        '                                                aria-hidden="true">\n' +
+        '                                                aria-hidden="true" required>\n' +
         '                                            <option></option>\n' +
         '                                        </select>\n' +
         '                                        <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"\n' +
