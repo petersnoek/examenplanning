@@ -76,4 +76,5 @@ protected $guarded = [];
     {
         return $this->hasManyThrough(Slot::class, Exam::class);
     }
+
 }
