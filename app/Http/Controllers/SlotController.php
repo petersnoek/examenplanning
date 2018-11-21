@@ -22,7 +22,8 @@ class SlotController extends Controller
     public function index()
     {
         $schoolyears = Schoolyear::all();
-        return view('slots.index', compact('schoolyears'));
+        $link = '/slots/';
+        return view('slots.index', compact('schoolyears', 'link'));
     }
 
     /**
@@ -61,7 +62,8 @@ class SlotController extends Controller
     public function show(period $period)
     {
         $schoolyears = Schoolyear::all();
-        return view('slots.index', compact('schoolyears', 'period'));
+        $link = '/slots/';
+        return view('slots.index', compact('schoolyears', 'period', 'link'));
     }
 
     public function showAll(Period $period)
@@ -107,8 +109,11 @@ class SlotController extends Controller
 
     public function showAssignables()
     {
+        //redirect to tussenview met de select
+
         $schoolyears = Schoolyear::all();
-        return view('slots.show_assignable', compact('schoolyears'));
+        $link = '/slots/assignable/show/';
+        return view('slots.selection', compact('schoolyears', 'link'));
     }
 
     public function showAssignable(period $period)

@@ -50,7 +50,7 @@
                         @if(isset($period))
                             @include('slots.showall')
                         @else
-                            <h3 class="block-title push-20 font-w300">Selecteer eerst links een periode</h3>
+                            <h3 class="block-title push-20 font-w300">Selecteer eerst een periode</h3>
                         @endif
                     </div>
                 </div>

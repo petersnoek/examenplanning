@@ -24,7 +24,7 @@
                     <tbody>
                     @foreach($schoolyear->periods as $schoolyearPeriod)
                         <tr class="cursor_hand"
-                            onclick="window.location.href='/slots/{{$schoolyearPeriod->id}}';">
+                            onclick="window.location.href='{{$link}}{{$schoolyearPeriod->id}}';">
                             <td class="text-center"></td>
                             <td class="font-w600">{{$schoolyearPeriod->periodenaam}}</td>
                             <td class="hidden-xs">
