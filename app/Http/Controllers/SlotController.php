@@ -109,8 +109,6 @@ class SlotController extends Controller
 
     public function showAssignables()
     {
-        //redirect to tussenview met de select
-
         $schoolyears = Schoolyear::all();
         $link = '/slots/assignable/show/';
         return view('slots.selection', compact('schoolyears', 'link'));
@@ -130,7 +128,7 @@ class SlotController extends Controller
         $weekdays = [1,2,3,4,5]; // monday = 1;
         $slots = $period->slots;
         $date = Carbon::now();
-        return view('slots.show_assignable', compact('calendarweeks', 'weekdays', 'slots', 'period', 'schoolyears', 'date'));
+        return view('slots.planning', compact('calendarweeks', 'weekdays', 'slots', 'period', 'schoolyears', 'date'));
     }
 
     public function assign()

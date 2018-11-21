@@ -30,7 +30,8 @@
         </h2>
         <div class="block block-bordered">
             <div class="block-header bg-gray-lighter">
-                <h3 class="block-title">Je weergeeft de slots voor periode "{{$period->periodenaam}}" - {{$period->slots->count()}} slots in deze periode
+                <h3 class="block-title">Je weergeeft de slots voor periode "{{$period->periodenaam}}"
+                    - {{$period->slots->count()}} slots in deze periode
                     <small class="pull-right">{{Carbon\Carbon::parse($period->startdatum)->format('d-m-Y')}}
                         tot {{Carbon\Carbon::parse($period->einddatum)->format('d-m-Y')}}</small>
                 </h3>
@@ -59,6 +60,9 @@
                                             @foreach($slots as $slot)
                                                 @if( $slot->Weeknumber==$wk[1] && $slot->Daynumber==$wd && $slot->datum->format('Y')==$wk[0])
                                                     {{--create the slot viasually--}}
+                                                    @if($slot->id == 16)
+                                                        {{--{{dd($slot->exams->first()->users->first()->voornaam)}}--}}
+                                                    @endif
                                                     <div class="bg-gray-light col-lg-12 text-wrap slot text-center rounded cursor_hand"
                                                          data-toggle="modal"
                                                          data-target="#slotModal"
@@ -66,7 +70,9 @@
                                                          data-date="{{ \Carbon\Carbon::parse($slot->datum)->format('Y-m-d')}}"
                                                          data-starttijd="{{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i')}}"
                                                          data-eindtijd="{{ \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}"
-                                                         data-period="{{ $slot->period}}"
+                                                         data-period=""
+                                                         data-genodigden="{{$slot->exams->isNotEmpty() && $slot->exams->first()->users->isNotEmpty() ? $slot->exams->first()->users : 'Geen genodigden'}}"
+
                                                     >
                                                                 <span class="font-w700" data-target="slotModal">
                                                                     {{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i') . "-" . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}
@@ -102,6 +108,18 @@
                 $("#slotModalDatum").html($(e.relatedTarget).data('date'));
                 $("#slotModalStarttijd").html($(e.relatedTarget).data('starttijd'));
                 $("#slotModalEindtijd").html($(e.relatedTarget).data('eindtijd'));
+                if($.isArray($(e.relatedTarget).data('genodigden')))
+                {
+                    var genodigden = "";
+                    $.each($(e.relatedTarget).data('genodigden'), function( index, value ) {
+                          genodigden = genodigden +  "<li>" + value.voornaam + "</li>";
+                    });
+                    $("#slotModalGenodigden > ul").html(genodigden);
+
+                }
+                else{
+                    $("#slotModalGenodigden").html($(e.relatedTarget).data('genodigden'));
+                }
             });
         });
     </script>

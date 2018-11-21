@@ -19,13 +19,12 @@
                         {{--end creation of map--}}
                         <div class="block-content block-content-full">
                             <h2 class="h4 push-10">Proeve van bekwaamheidnr/Examencode</h2>
-                            <span>Genodigden</span>
-                            <ul>
-                                <li>Student</li>
-                                <li>Bedrijfbegeleider</li>
-                                <li>Examinator 1</li>
-                                <li>Examinator 2</li>
-                            </ul>
+                            <h5>Genodigden</h5>
+                            <div id="slotModalGenodigden">
+                                <ul>
+
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
