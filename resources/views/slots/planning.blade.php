@@ -61,18 +61,15 @@
                                             @foreach($slots as $slot)
                                                 @if( $slot->Weeknumber==$wk[1] && $slot->Daynumber==$wd && $slot->datum->format('Y')==$wk[0])
                                                     {{--create the slot viasually--}}
-                                                    @if($slot->id == 16)
-                                                        {{--{{dd($slot->exams->first()->users->first()->voornaam)}}--}}
-                                                    @endif
                                                     <div class="bg-gray-light col-lg-12 text-wrap slot text-center rounded cursor_hand"
                                                          data-toggle="modal"
                                                          data-target="#slotModal"
                                                          data-id="{{ $slot->id }}"
+                                                         data-examid="{{$slot->exams->pluck('id')}}"
                                                          data-date="{{ \Carbon\Carbon::parse($slot->datum)->format('Y-m-d')}}"
                                                          data-starttijd="{{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i')}}"
                                                          data-eindtijd="{{ \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}"
                                                          data-genodigden="{{$slot->exams->isNotEmpty() && $slot->exams->first()->users->isNotEmpty() ? $slot->exams->first()->users : 'Geen genodigden'}}"
-
                                                     >
                                                                 <span class="font-w700" data-target="slotModal">
                                                                     {{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i') . "-" . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}
@@ -101,31 +98,6 @@
 @endsection
 
 @push('scripts')
-    <script>
-        $(function () {
-            $('#slotModal').on("show.bs.modal", function (e) {
-                $('#planform').attr('action', '/slots/plan/' + $(e.relatedTarget).data('id'));
-                $("#slotModalDatum").html($(e.relatedTarget).data('date'));
-                $("#slotModalStarttijd").html($(e.relatedTarget).data('starttijd'));
-                $("#slotModalEindtijd").html($(e.relatedTarget).data('eindtijd'));
-                if($.isArray($(e.relatedTarget).data('genodigden')))
-                {
-                    var genodigden = "";
-                    $.each($(e.relatedTarget).data('genodigden'), function( index, value ) {
-                          genodigden = genodigden +  "<li>" + value.voornaam + "</li>";
-                    });
-                    $("#slotModalGenodigden > ul").html(genodigden);
-
-                }
-                else{
-                    $("#slotModalGenodigden").html($(e.relatedTarget).data('genodigden'));
-                }
-            });
-        });
-
-
-
-    </script>
 
     <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
     <script>
@@ -147,5 +119,49 @@
         });
     </script>
 
+    <script>
+        $(function () {
+            $('#slotModal').on("show.bs.modal", function (e) {
+                $('#planform').attr('action', '/slots/plan/' + $(e.relatedTarget).data('id'));
+                $("#slotModalDatum").html($(e.relatedTarget).data('date'));
+                $("#slotModalStarttijd").html($(e.relatedTarget).data('starttijd'));
+                $("#slotModalEindtijd").html($(e.relatedTarget).data('eindtijd'));
+
+                // console.log('array is', $(e.relatedTarget).data('examid'));
+                // console.log($(e.relatedTarget).data('examid').includes(1));
+                // if($(e.relatedTarget).data('examid').includes(1)){
+                //     console.log('examen gekoppeld aan het slot heeft id: '+ value);
+                // };
+
+
+                var preselected = [];
+                $('#examens').select2('val', []);
+                $("#examens option").each(function()
+                {
+                    if($(e.relatedTarget).data('examid').includes(parseInt($(this).attr('value')))){
+                        preselected.push($(this).attr('value'));
+                    }
+                });
+                //select the options that were linked with the slot
+                $('#examens').select2('val', preselected);
+
+                if($.isArray($(e.relatedTarget).data('genodigden')))
+                {
+                    var genodigden = "";
+                    $.each($(e.relatedTarget).data('genodigden'), function( index, value ) {
+                        genodigden = genodigden +  "<li>" + value.voornaam + "</li>";
+                    });
+                    $("#slotModalGenodigden > ul").html(genodigden);
+
+                }
+                else{
+                    $("#slotModalGenodigden").html($(e.relatedTarget).data('genodigden'));
+                }
+            });
+        });
+
+
+
+    </script>
 
 @endpush

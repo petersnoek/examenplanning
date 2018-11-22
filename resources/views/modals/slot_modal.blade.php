@@ -34,10 +34,10 @@
                                                     style="width: 100%;" data-placeholder="Kies examinator(en)"
                                                     multiple="multiple"
                                                     tabindex="-1" aria-hidden="true">
-                                                <option></option>
+                                                <option id="option"></option>
                                                 <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                                 @foreach($examinators as $examinator)
-                                                    <option value="{{$examinator->id}}">{{$examinator->achternaam}}
+                                                    <option id="option" value="{{$examinator->id}}">{{$examinator->achternaam}}
                                                         , {{$examinator->voornaam}} {{$examinator->tussenvoegsel}}
                                                         ({{$examinator->davinci_id}})
                                                     </option>

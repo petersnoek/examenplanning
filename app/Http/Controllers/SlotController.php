@@ -134,7 +134,8 @@ class SlotController extends Controller
 
         $studenten = User::where('role_id', '=', '3')->get();
 
-        $examens = Exam::where('slot_id', '=', null)->get();
+//        $examens = Exam::where('slot_id', '=', null)->get();
+        $examens = Exam::all();
 
         $bedrijfsmederwerker = User::where('role_id', '=', '4')->get();
 
