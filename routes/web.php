@@ -68,6 +68,8 @@ Route::get('/slots', 'SlotController@index');
 Route::get('/slots/{period}', 'SlotController@show');
 Route::get('/slots/{period}/create', 'SlotController@create');
 Route::post('/slots/addtoperiod/{period}', 'SlotController@store');
+Route::post('/slots/plan/{slot}', 'SlotController@plan');
+
 
 Route::get('/slots/{slot}/remove', 'SlotController@destroy');
 

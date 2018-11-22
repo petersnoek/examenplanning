@@ -1,7 +1,8 @@
 @extends('layouts.master')
 
 @push('style')
-
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2-bootstrap.min.css')}}">
 @endpush
 
 @section('content')
@@ -70,7 +71,6 @@
                                                          data-date="{{ \Carbon\Carbon::parse($slot->datum)->format('Y-m-d')}}"
                                                          data-starttijd="{{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i')}}"
                                                          data-eindtijd="{{ \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}"
-                                                         data-period=""
                                                          data-genodigden="{{$slot->exams->isNotEmpty() && $slot->exams->first()->users->isNotEmpty() ? $slot->exams->first()->users : 'Geen genodigden'}}"
 
                                                     >
@@ -104,7 +104,7 @@
     <script>
         $(function () {
             $('#slotModal').on("show.bs.modal", function (e) {
-                $("#slotModalLabel").html($(e.relatedTarget).data('id'));
+                $('#planform').attr('action', '/slots/plan/' + $(e.relatedTarget).data('id'));
                 $("#slotModalDatum").html($(e.relatedTarget).data('date'));
                 $("#slotModalStarttijd").html($(e.relatedTarget).data('starttijd'));
                 $("#slotModalEindtijd").html($(e.relatedTarget).data('eindtijd'));
@@ -122,5 +122,30 @@
                 }
             });
         });
+
+
+
     </script>
+
+    <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
+    <script>
+
+        jQuery(function () {
+            App.initHelpers(['select2']);
+        });
+
+        $(document).ready(function () {
+            $("#examinatoren").select2({
+                maximumSelectionLength: 2
+            });
+        });
+
+        $(document).ready(function () {
+            $("#examens").select2({
+                maximumSelectionLength: 2
+            });
+        });
+    </script>
+
+
 @endpush

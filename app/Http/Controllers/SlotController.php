@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exam;
 use App\Http\Requests\CreateSlotRequest;
 use App\period;
 use App\Schoolyear;
@@ -133,14 +134,16 @@ class SlotController extends Controller
 
         $studenten = User::where('role_id', '=', '3')->get();
 
+        $examens = Exam::where('slot_id', '=', null)->get();
+
         $bedrijfsmederwerker = User::where('role_id', '=', '4')->get();
 
-        return view('slots.planning', compact('calendarweeks', 'weekdays', 'slots', 'period', 'date', 'studenten', 'examinators', 'bedrijfsmederwerker'));
+        return view('slots.planning', compact('calendarweeks', 'weekdays', 'slots', 'period', 'date', 'studenten', 'examinators', 'bedrijfsmederwerker', 'examens'));
     }
 
-    public function assign()
+    public function plan(Slot $slot)
     {
-
+        dd($slot);
     }
 
     public static function resetWeek()

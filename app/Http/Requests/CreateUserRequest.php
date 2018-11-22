@@ -84,9 +84,12 @@ class CreateUserRequest extends FormRequest
         if(request('bedrijf') && request('role_id') == 4){
             $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=>request('rol')]]);
         }
+        //&& project is set
         else if(request('kwalificatiedossier') && request('role_id') == '3'){
+
             $user->kwalificatiedossier()->associate(request('kwalificatiedossier'))->save();
             foreach($user->kwalificatiedossier->proevevanbekwaamheids as $proevevanbekwaamheid){
+                //koppel aan project
                 $exam = Exam::create([
                     'proevevanbekwaamheid_id' => $proevevanbekwaamheid->id,
                 ]);
