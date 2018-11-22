@@ -75,9 +75,6 @@
                                                                     {{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i') . "-" . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}
                                                                 </span>
                                                     </div>
-
-
-                                                    {{--{{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i') . "-" . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}--}}
                                                 @endif
                                             @endforeach
                                         </div>
@@ -127,39 +124,29 @@
                 $("#slotModalStarttijd").html($(e.relatedTarget).data('starttijd'));
                 $("#slotModalEindtijd").html($(e.relatedTarget).data('eindtijd'));
 
-                // console.log('array is', $(e.relatedTarget).data('examid'));
-                // console.log($(e.relatedTarget).data('examid').includes(1));
-                // if($(e.relatedTarget).data('examid').includes(1)){
-                //     console.log('examen gekoppeld aan het slot heeft id: '+ value);
-                // };
-
-
                 var preselected = [];
                 $('#examens').select2('val', []);
-                $("#examens option").each(function()
-                {
-                    if($(e.relatedTarget).data('examid').includes(parseInt($(this).attr('value')))){
+                $("#examens option").each(function () {
+                    if ($(e.relatedTarget).data('examid').includes(parseInt($(this).attr('value')))) {
                         preselected.push($(this).attr('value'));
                     }
                 });
                 //select the options that were linked with the slot
                 $('#examens').select2('val', preselected);
 
-                if($.isArray($(e.relatedTarget).data('genodigden')))
-                {
+                if ($.isArray($(e.relatedTarget).data('genodigden'))) {
                     var genodigden = "";
-                    $.each($(e.relatedTarget).data('genodigden'), function( index, value ) {
-                        genodigden = genodigden +  "<li>" + value.voornaam + "</li>";
+                    $.each($(e.relatedTarget).data('genodigden'), function (index, value) {
+                        genodigden = genodigden + "<li>" + value.voornaam + "</li>";
                     });
                     $("#slotModalGenodigden > ul").html(genodigden);
 
                 }
-                else{
+                else {
                     $("#slotModalGenodigden").html($(e.relatedTarget).data('genodigden'));
                 }
             });
         });
-
 
 
     </script>
