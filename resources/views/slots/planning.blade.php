@@ -124,15 +124,7 @@
                 $("#slotModalStarttijd").html($(e.relatedTarget).data('starttijd'));
                 $("#slotModalEindtijd").html($(e.relatedTarget).data('eindtijd'));
 
-                var preselected = [];
-                $('#examens').select2('val', []);
-                $("#examens option").each(function () {
-                    if ($(e.relatedTarget).data('examid').includes(parseInt($(this).attr('value')))) {
-                        preselected.push($(this).attr('value'));
-                    }
-                });
-                //select the options that were linked with the slot
-                $('#examens').select2('val', preselected);
+                $('#examens').select2('val', $(e.relatedTarget).data('examid'));
 
                 if ($.isArray($(e.relatedTarget).data('genodigden'))) {
                     var genodigden = "";
