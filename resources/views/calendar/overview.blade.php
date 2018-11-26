@@ -60,12 +60,12 @@
                                 <td class="font-w600 sorting_1">{{$exam->proevevanbekwaamheids->kerntaak}}</td>
                                 <td class="sorting_1">{{ isset($exam->status->naam) ? $exam->status->naam : '-'  }}</td>
                                 <td class="sorting_1">{{isset($exam->voorlopige_uitslag) ? $exam->voorlopige_uitslag : '-'}}</td>
-                                <td class="sorting_1">@if($exam->student->first()) {{$exam->student->first()->achternaam . ', ' . $exam->student->first()->voornaam . ' ' . $exam->student->first()->tussenvoegsel }} <a href="/agenda/{{$exam->student->first()->davinci_id}}/show"> ({{$exam->student->first()->davinci_id}})</a> @else - @endif</td>
-                                <td class="sorting_1">@if($exam->examinators->isNotEmpty()) @foreach($exam->examinators as $examinator) {{$examinator->achternaam . ', ' . $examinator->voornaam . ' ' . $examinator->tussenvoegsel}} <a href="/agenda/{{$examinator->davinci_id}}/show">({{$examinator->davinci_id}})</a>;<br>@endforeach @else - @endif</td>
-                                <td class="sorting_1">@if($exam->slots) {{\Carbon\Carbon::parse($exam->slots["datum"])->format('Y-m-d'). ' (' . \Carbon\Carbon::parse($exam->slots["datum"])->format('D') . ') '}} @else - @endif</td>
+                                <td class="sorting_1">@if($exam->user) {{$exam->user->achternaam . ', ' . $exam->user->voornaam . ' ' . $exam->user->tussenvoegsel }} <a href="/agenda/{{$exam->user->davinci_id}}/show"> ({{$exam->user->davinci_id}})</a> @else - @endif</td>
+                                <td class="sorting_1">@if($exam->slot) @if($exam->slot->examinators->isNotEmpty()) @foreach($exam->slot->examinators as $examinator) {{$examinator->achternaam . ', ' . $examinator->voornaam . ' ' . $examinator->tussenvoegsel}} <a href="/agenda/{{$examinator->davinci_id}}/show">({{$examinator->davinci_id}})</a>;<br>@endforeach @endif @else - @endif</td>
+                                <td class="sorting_1">@if($exam->slot) {{\Carbon\Carbon::parse($exam->slot["datum"])->format('Y-m-d'). ' (' . \Carbon\Carbon::parse($exam->slot["datum"])->format('D') . ') '}} @else - @endif</td>
                                 <td class="sorting_1">{{isset($exam->project->company->naam) ? $exam->project->company->naam : '-'  }}</td>
                                 <td class="sorting_1">{{isset($exam->project->company->plaats) ? $exam->project->company->plaats : '-'}}</td>
-                                <td class="sorting_1">{{isset($exam->slots) ? \Carbon\Carbon::parse($exam->slots["starttijd"])->format('H:i') . '-' . \Carbon\Carbon::parse($exam->slots["eindtijd"])->format('H:i') : '-'}}</td>
+                                <td class="sorting_1">{{isset($exam->slot) ? \Carbon\Carbon::parse($exam->slot["starttijd"])->format('H:i') . '-' . \Carbon\Carbon::parse($exam->slot["eindtijd"])->format('H:i') : '-'}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a class="btn btn-xs btn-default" href=""

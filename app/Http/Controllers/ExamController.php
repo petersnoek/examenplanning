@@ -44,7 +44,7 @@ class ExamController extends Controller
     {
         $form->persist();
         session()->flash('message', 'Examen succesvol aangemaakt.');
-        return redirect('/exams/create');
+        return redirect('/exams/show');
     }
 
     /**

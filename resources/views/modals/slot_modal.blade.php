@@ -62,7 +62,7 @@
                                                 <option></option>
                                                 <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                                 @foreach($examens as $exam)
-                                                    <option value="{{$exam->id}}">{{$exam->student->isNotEmpty() ? $exam->student->first()->voornaam : 'Geen student gekoppeld'}} - {{$exam->proevevanbekwaamheids->kerntaak}}
+                                                    <option value="{{$exam->id}}">{{$exam->user ? $exam->user->voornaam : 'Geen student gekoppeld'}} - {{$exam->proevevanbekwaamheids->kerntaak}}
                                                     </option>
                                                 @endforeach
                                             </select>

@@ -69,7 +69,8 @@
                                                          data-date="{{ \Carbon\Carbon::parse($slot->datum)->format('Y-m-d')}}"
                                                          data-starttijd="{{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i')}}"
                                                          data-eindtijd="{{ \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}"
-                                                         data-genodigden="{{$slot->exams->isNotEmpty() && $slot->exams->first()->users->isNotEmpty() ? $slot->exams->first()->users : 'Geen genodigden'}}"
+                                                         data-genodigden="{{$slot->users ? $slot->users : 'Geen genodigden'}}"
+                                                         data-user="{{$slot->exams->isNotEmpty() ? $slot->exams->first()->user : ''}}"
                                                     >
                                                                 <span class="font-w700" data-target="slotModal">
                                                                     {{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i') . "-" . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}
@@ -128,6 +129,8 @@
 
                 if ($.isArray($(e.relatedTarget).data('genodigden'))) {
                     var genodigden = "";
+
+                    genodigden = genodigden + "<li>" + $(e.relatedTarget).data('user').voornaam + "</li>";
                     $.each($(e.relatedTarget).data('genodigden'), function (index, value) {
                         genodigden = genodigden + "<li>" + value.voornaam + "</li>";
                     });

@@ -210,9 +210,6 @@
                             <li>
                                 <a href="/slots/assignable/show">Slots inplannen</a>
                             </li>
-                            <li>
-                                <a href="/appointments">Kalender inzien</a>
-                            </li>
                         </ul>
                     </li>
                     <li>
