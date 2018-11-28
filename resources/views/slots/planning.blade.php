@@ -128,7 +128,10 @@
                 $("#slotModalEindtijd").html($(e.relatedTarget).data('eindtijd'));
 
                 $('#examens').val(null);
+                $('#examinatoren').val(null).trigger('change');
                 $('#examens').val($(e.relatedTarget).data('examid')).trigger('change');
+
+                if($(e.relatedTarget).data('examid') != ""){
 
 
                 //fetch all invitees
@@ -142,7 +145,6 @@
                             console.log(data.message.message);
                         }
                         else {
-                            console.log(data.message.examinators);
                             $('#slotModalGenodigden > ul').empty();
                             var genodigden = "";
                             data.message.invitees.forEach(function (element) {
@@ -158,6 +160,7 @@
                         alert(xhr.responseText);
                     }
                 });
+                }
             });
         });
 
