@@ -131,19 +131,33 @@
                 $('#examens').val($(e.relatedTarget).data('examid')).trigger('change');
 
 
-                if ($.isArray($(e.relatedTarget).data('genodigden'))) {
-                    var genodigden = "";
+                //fetch all invitees
+                $.ajax({
+                    url: '/exams/invitees',
+                    type: 'POST',
+                    data: {message:$(e.relatedTarget).data('examid'), _token: '{{csrf_token()}}'},
+                    success: function (data) {
+                        if (data.fail) {
+                            alert(data.message.error);
+                            console.log(data.message.message);
+                        }
+                        else {
+                            console.log(data.message.examinators);
+                            $('#slotModalGenodigden > ul').empty();
+                            var genodigden = "";
+                            data.message.invitees.forEach(function (element) {
+                                genodigden = genodigden + "<li>" + element.voornaam + "</li>";
+                            });
+                            $("#slotModalGenodigden > ul").html(genodigden);
 
-                    genodigden = genodigden + "<li>" + $(e.relatedTarget).data('user').voornaam + "</li>";
-                    $.each($(e.relatedTarget).data('genodigden'), function (index, value) {
-                        genodigden = genodigden + "<li>" + value.voornaam + "</li>";
-                    });
-                    $("#slotModalGenodigden > ul").html(genodigden);
-
-                }
-                else {
-                    $("#slotModalGenodigden").html($(e.relatedTarget).data('genodigden'));
-                }
+                            $('#examinatoren').val(null);
+                            $('#examinatoren').val(data.message.examinators).trigger('change');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert(xhr.responseText);
+                    }
+                });
             });
         });
 

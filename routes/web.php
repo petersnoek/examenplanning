@@ -95,6 +95,7 @@ Route::post('/exams/create', 'ExamController@store');
 Route::get('/getPvbs/{kwalificatiedossier}', 'ExamController@getPvbs');
 Route::get('/kwalificatiedossier/all', 'KwalificatiedossierController@all');
 Route::get('/companies/all', 'CompanyController@getAll');
+Route::post('/exams/invitees', 'ExamController@getInvitees');
 
 
 //CRUD agenda

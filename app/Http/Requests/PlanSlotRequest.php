@@ -51,10 +51,11 @@ class PlanSlotRequest extends FormRequest
             }
         }
 
-        if(request('examinatoren') != null)
+        if(request('examinatoren'))
         {
+            $count =0;
             foreach(request('examinatoren') as $examinatorId){
-                $slot->users()->sync([$examinatorId => ['user_role'=>'Examinator']]);
+                $slot->users()->attach([$examinatorId => ['user_role'=>'Examinator']]);
             }
         }
         else{
