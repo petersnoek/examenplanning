@@ -49,7 +49,7 @@
                                 @foreach($revisions as $revision)
                                     <tr>
                                         <td class="">{{$revision->revisionable_type}}</td>
-                                        <td class="">{{$revision->userResponsible()->achternaam}}, {{$revision->userResponsible()->voornaam}} {{$revision->userResponsible()->tussenvoegsel}}</td>
+                                        <td class="">{{$revision->userResponsible() ? $revision->userResponsible()->achternaam .', '. $revision->userResponsible()->voornaam .' '.$revision->userResponsible()->tussenvoegsel : 'Deze resource is gegenereerd'}}</td>
                                         <td class="">{{$revision->fieldname()}}</td>
                                         <td class="">{{$revision->oldValue()}}</td>
                                         <td class="">{{$revision->newValue()}}</td>

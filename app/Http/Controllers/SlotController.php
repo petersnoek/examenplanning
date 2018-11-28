@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exam;
 use App\Http\Requests\CreateSlotRequest;
+use App\Http\Requests\PlanSlotRequest;
 use App\period;
 use App\Schoolyear;
 use App\Slot;
@@ -142,9 +143,11 @@ class SlotController extends Controller
         return view('slots.planning', compact('calendarweeks', 'weekdays', 'slots', 'period', 'date', 'studenten', 'examinators', 'bedrijfsmederwerker', 'examens'));
     }
 
-    public function plan(Slot $slot)
+    public function plan(PlanSlotRequest $form, Slot $slot)
     {
-        dd($slot);
+        $form->plan($slot);
+        session()->flash('message', 'Slot(s) succesvol gepland/herpland');
+        return redirect()->back();
     }
 
     public static function resetWeek()

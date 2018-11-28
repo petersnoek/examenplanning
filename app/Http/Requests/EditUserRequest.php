@@ -90,15 +90,19 @@ class EditUserRequest extends FormRequest
             foreach($user->kwalificatiedossier->proevevanbekwaamheids as $proevevanbekwaamheid){
                 $exam = Exam::create([
                     'proevevanbekwaamheid_id' => $proevevanbekwaamheid->id,
+                    'user_id' => $user->id,
                 ]);
-                $user->exams()->attach([$exam->id => ['user_role' => 'Student']]);
+                $user->exams()->save($exam);
             }
         }
         if(request('role_id') != '3'){
             $user->kwalificatiedossier()->dissociate()->save();
         }
         if(request('role_id') == 1 | request('role_id') == 5){
-            $user->exams()->detach();
+            foreach($user->exams as $exam){
+                $exam->user_id = null;
+                $exam->save();
+            }
         }
     }
 }
