@@ -106,13 +106,15 @@
 
         $(document).ready(function () {
             $("#examinatoren").select2({
-                maximumSelectionLength: 2
+                // maximumSelectionLength: 2
+                multiple: true
             });
         });
 
         $(document).ready(function () {
             $("#examens").select2({
-                maximumSelectionLength: 2
+                // maximumSelectionLength: 2
+                multiple: true
             });
         });
     </script>
@@ -125,7 +127,9 @@
                 $("#slotModalStarttijd").html($(e.relatedTarget).data('starttijd'));
                 $("#slotModalEindtijd").html($(e.relatedTarget).data('eindtijd'));
 
-                $('#examens').select2('val', $(e.relatedTarget).data('examid'));
+                $('#examens').val(null);
+                $('#examens').val($(e.relatedTarget).data('examid')).trigger('change');
+
 
                 if ($.isArray($(e.relatedTarget).data('genodigden'))) {
                     var genodigden = "";
