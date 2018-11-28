@@ -21,7 +21,7 @@
                             </div>
                             {{--creation oof map--}}
                             {{--@include('slots.location')--}}
-                            <img class="img-responsive" src="{{asset('images/Full_image_placeholder.jpg')}}">
+                            <img class="img-responsive" src="{{asset('images/maps.png')}}">
                             {{--end creation of map--}}
                             <div class="block-content block-content-full">
 
