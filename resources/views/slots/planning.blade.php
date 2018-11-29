@@ -147,6 +147,7 @@
                         else {
                             $('#slotModalGenodigden > ul').empty();
                             var genodigden = "";
+                            console.log(data.message.invitees);
                             data.message.invitees.forEach(function (element) {
                                 genodigden = genodigden + "<li>" + element.voornaam + "</li>";
                             });

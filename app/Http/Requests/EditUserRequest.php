@@ -82,27 +82,50 @@ class EditUserRequest extends FormRequest
         $user->role_id = request('role_id');
         $user->davinci_id = request('davinci_id');
         $user->update();
-        if(request('bedrijf') && request('role_id') == 4){
-            $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=>request('rol')]]);
+
+//        dd('hallo',$user->kwalificatiedossier);
+
+        if(request('bedrijf')){
+            if(in_array(request('role_id'), [3,4]))
+            {
+                $user->companies()->detach();
+//                dd(!in_Array(request('bedrijf'), $user->companies->pluck('id')->toArray()));
+                if(in_Array(request('bedrijf'), $user->companies->pluck('id')->toArray()))
+                {
+                    $user->companies()->updateExistingPivot(request('bedrijf'), ['bedrijfsrol'=> request('role_id') == 4 ?  request('rol') : 'Stagiair']);
+                }
+                else{
+                    $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=> request('role_id') == 4 ?  request('rol') : 'Stagiair']]);
+                }
+            }
         }
-        else if(request('kwalificatiedossier') && request('role_id') == '3'){
-            $user->kwalificatiedossier()->associate(request('kwalificatiedossier'))->save();
-            foreach($user->kwalificatiedossier->proevevanbekwaamheids as $proevevanbekwaamheid){
-                $exam = Exam::create([
-                    'proevevanbekwaamheid_id' => $proevevanbekwaamheid->id,
-                    'user_id' => $user->id,
-                ]);
-                $user->exams()->save($exam);
+        else{
+            $user->companies()->detach();
+        }
+
+        if(request('kwalificatiedossier') && request('role_id') == '3'){
+            if(request('kwalificatiedossier') != ($user->kwalificatiedossier ? $user->kwalificatiedossier->id : null))
+            {
+                $user->kwalificatiedossier()->dissociate()->save();
+                $user->kwalificatiedossier()->associate(request('kwalificatiedossier'))->save();
+//                $user->update();
+                $user = User::find($user->id);
+
+                $user->exams()->delete();
+
+                foreach($user->kwalificatiedossier->proevevanbekwaamheids as $proevevanbekwaamheid){
+                    $exam = Exam::create([
+                        'proevevanbekwaamheid_id' => $proevevanbekwaamheid->id,
+                        'user_id' => $user->id,
+                    ]);
+                    $user->exams()->save($exam);
+                }
             }
         }
         if(request('role_id') != '3'){
             $user->kwalificatiedossier()->dissociate()->save();
+            $user->exams()->delete();
         }
-        if(request('role_id') == 1 | request('role_id') == 5){
-            foreach($user->exams as $exam){
-                $exam->user_id = null;
-                $exam->save();
-            }
-        }
+
     }
 }

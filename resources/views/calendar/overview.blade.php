@@ -96,7 +96,7 @@
                             <th>Student</th>
                             <th>Examinatoren</th>
                             <th>Datum</th>
-                            <th>Bedrijf</th>
+                            <th>eBedrijf</th>
                             <th>Plaats</th>
                             <th>Tijd</th>
                             <th></th>

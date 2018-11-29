@@ -10,4 +10,10 @@ class Company extends Model
     public function projects(){
         return $this->hasMany(Project::class, 'company_id');
     }
+    public function stagiairs(){
+
+    }
+    public function medewerkers(){
+
+    }
 }

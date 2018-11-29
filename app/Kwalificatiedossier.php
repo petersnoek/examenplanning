@@ -9,7 +9,7 @@ class Kwalificatiedossier extends Model
     }
 
     public function users(){
-        return $this->hasMany(User::class, 'kwalificatiedossier_id');
+        return $this->hasMany(User::class);
     }
 
 }

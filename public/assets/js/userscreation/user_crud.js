@@ -3,24 +3,28 @@ var data = {_token: '{{csrf_token()}}'};
 $( document ).ready(function() {
     emptyAdditionalcontent();
         if($('#example-inline-radio3').is(':checked')) {
-            studentSelected();
+            showKwalificatiedossier();
+            showBedrijven();
         }
         if($('#example-inline-radio4').is(':checked')) {
-            bedrijfsmedewerkerSelected();
+            showBedrijven();
+            showBedrijfsrol();
         }
 });
 
 $("#example-inline-radio4").change(function () {
     emptyAdditionalcontent();
-    bedrijfsmedewerkerSelected();
+    showBedrijven();
+    showBedrijfsrol();
 });
 
 $("#example-inline-radio3").change(function () {
     emptyAdditionalcontent();
-    studentSelected();
+    showKwalificatiedossier();
+    showBedrijven();
 });
 
-function studentSelected(){
+function showKwalificatiedossier(){
     $.ajax({
         type: "GET",
         url: '/kwalificatiedossier/all',
@@ -38,13 +42,30 @@ function studentSelected(){
     });
 }
 
-function bedrijfsmedewerkerSelected(){
+function showBedrijven(){
     $.ajax({
         type: "GET",
         url: '/companies/all',
         data: data,
         success: function (data) {
             appendCompanies();
+            App.initHelpers(['select2']);
+            $.each(data.msg, function (index, value) {
+                $('#companies').append('<option value="' + value.id + '">' + value.naam + '</option>');
+            });
+        },
+        error: function (xhr, status, error) {
+            alert(xhr.responseText);
+        }
+    });
+}
+
+function showBedrijfsrol(){
+    $.ajax({
+        type: "GET",
+        url: '/companies/all',
+        data: data,
+        success: function (data) {
             appendBedrijfsrol();
             App.initHelpers(['select2']);
             $.each(data.msg, function (index, value) {
@@ -63,7 +84,7 @@ function appendCompanies(){
         '                                        <select class="js-select2 form-control select2-hidden-accessible"\n' +
         '                                                id="companies" name="bedrijf" style="width: 100%;"\n' +
         '                                                data-placeholder="Kies een bedrijf..." tabindex="-1"\n' +
-        '                                                aria-hidden="true">\n' +
+        '                                                aria-hidden="true" required>\n' +
         '                                            <option></option>\n' +
         '                                        </select>\n' +
         '                                        <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"\n' +
