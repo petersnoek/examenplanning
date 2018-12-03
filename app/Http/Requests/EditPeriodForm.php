@@ -24,13 +24,14 @@ class EditPeriodForm extends FormRequest
      *
      * @return array
      */
-    public function rules(Schoolyear $schoolyear)
+    public function rules()
     {
+        $schoolyear = Schoolyear::find(request('schooljaar'));
         return [
             'schooljaar' => 'required',
             'periodenaam' => 'required',
-            'startdatum' => 'required|before:einddatum',
-            'einddatum' => 'required|after:'.Carbon::parse($schoolyear->startdatum),
+            'startdatum' => 'required|after:'.Carbon::parse($schoolyear->startdatum).'|before:'. $schoolyear->einddatum,
+            'einddatum' => 'required|after:startdatum',
         ];
     }
     public function messages()
@@ -40,8 +41,9 @@ class EditPeriodForm extends FormRequest
             'periodenaam.required' => 'Het periodenaamveld is verplicht',
             'startdatum.required' => 'Het startdatumveld is verplicht',
             'einddatum.required' => 'Het einddatumveld is verplicht',
-            'einddatum.after' => 'De einddatum moet na de begindatum van het schooljaar liggen',
-            'startdatum.before' => 'De startdatum moet voor de einddatum liggen',
+            'einddatum.after' => 'De einddatum moet na de startdatum liggen',
+            'startdatum.before' => 'De startdatum moet voor de einddatum van het schooljaar liggen',
+            'startdatum.after' => 'De startdatum moet na na de startdatum van het schooljaar liggen',
         ];
     }
 

@@ -24,6 +24,9 @@ class CreateProevevanbekwaamheidsTable extends Migration
                 ->references('id')->on('kwalificatiedossiers')
                 ->onDelete('cascade');
         });
+        Schema::table('proevevanbekwaamheids', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

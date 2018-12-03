@@ -140,7 +140,18 @@
                                 </ul>
                             </li>
                             <li>
-                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Exams</a>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Projects</a>
+                                <ul>
+                                    <li>
+                                        <a href="/projects">Read</a>
+                                    </li>
+                                    <li>
+                                        <a href="/projects/create">Create</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#">Examens</a>
                                 <ul>
                                     <li>
                                         <a href="/exams/show">Read</a>
@@ -152,6 +163,45 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-refresh"></i><span
+                                    class="sidebar-mini-hide">Revisions</span></a>
+                        <ul>
+                            <li>
+                                <a href="/revisions">Read</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-close"></i><span
+                                    class="sidebar-mini-hide">Deletes</span></a>
+                        <ul>
+                            <li>
+                                <a href="/deletes/Kwalificatiedossier">Kwalificatiedossier</a>
+                            </li>
+                            <li>
+                                <a href="/deletes/Schoolyear">Schooljaren</a>
+                            </li>
+                            <li>
+                                <a href="/deletes/Period">Periodes</a>
+                            </li>
+                            <li>
+                                <a href="/deletes/Slot">Slots</a>
+                            </li>
+                            <li>
+                                <a href="/deletes/User">Users</a>
+                            </li>
+                            <li>
+                                <a href="/deletes/Company">Bedrijven</a>
+                            </li>
+                            <li>
+                                <a href="/deletes/Project">Projects</a>
+                            </li>
+                            <li>
+                                <a href="/deletes/Exam">Examens</a>
+                            </li>
+                        </ul>
+                    </li>
 
                     <li>
                         <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-calendar"></i><span
@@ -159,21 +209,6 @@
                         <ul>
                             <li>
                                 <a href="/slots/assignable/show">Slots inplannen</a>
-                            </li>
-                            <li>
-                                <a href="/appointments">Kalender inzien</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-wrench"></i><span
-                                    class="sidebar-mini-hide">Manage studenten</span></a>
-                        <ul>
-                            <li>
-                                <a href="/students/create">Student aanmaken</a>
-                            </li>
-                            <li>
-                                <a href="/students/contact">Mail studenten</a>
                             </li>
                         </ul>
                     </li>

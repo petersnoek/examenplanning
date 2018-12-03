@@ -25,6 +25,9 @@ class CreateSlotsTable extends Migration
                 ->references('id')->on('periods')
                 ->onDelete('cascade');
         });
+        Schema::table('slots', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

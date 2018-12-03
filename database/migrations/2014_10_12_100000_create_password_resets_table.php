@@ -18,6 +18,9 @@ class CreatePasswordResetsTable extends Migration
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
+        Schema::table('password_resets', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

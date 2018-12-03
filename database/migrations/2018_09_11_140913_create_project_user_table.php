@@ -25,6 +25,9 @@ class CreateProjectUserTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
         });
+        Schema::table('project_user', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

@@ -22,27 +22,21 @@ class StatusSeeder extends Seeder
 
         DB::table('statuses')->insert([
             'naam' => 'Student afwezig',
-            'created_at' => Carbon::now(),
         ]);
         DB::table('statuses')->insert([
             'naam' => 'Examinator afwezig',
-            'created_at' => Carbon::now(),
         ]);
         DB::table('statuses')->insert([
             'naam' => 'Bedrijfsbegeleider afwezig',
-            'created_at' => Carbon::now(),
         ]);
         DB::table('statuses')->insert([
             'naam' => 'Uitgesteld',
-            'created_at' => Carbon::now(),
         ]);
         DB::table('statuses')->insert([
             'naam' => 'Vergeten',
-            'created_at' => Carbon::now(),
         ]);
         DB::table('statuses')->insert([
             'naam' => 'Afgerond',
-            'created_at' => Carbon::now(),
         ]);
     }
 }

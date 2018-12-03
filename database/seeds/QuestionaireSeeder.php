@@ -29,7 +29,6 @@ class QuestionaireSeeder extends Seeder
                 'vraag1' => substr($faker->sentence, 0, -1) . "?",
                 'vraag2' => substr($faker->sentence, 0, -1) . "?",
                 'user_id' => $users->pop()->id,
-                'created_at' => Carbon::now(),
             ]);
         }
         $this->command->info('Seeded ' . $amount . ' questionaires');
