@@ -51,8 +51,10 @@ class CreateExamRequest extends FormRequest
 
         $exam = Exam::create([
             'proevevanbekwaamheid_id' => request('pvb'),
+            'user_id' => $user->id,
         ]);
-        $exam->users()->attach(request('student')[0], ['user_role'=> 'student' ]);
+        $exam->user_id = (request('student')[0]);
+        $exam->save();
         if(request('opmerking')){
             $remark = Remark::create([
                 'body' => request('opmerking'),

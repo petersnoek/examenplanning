@@ -48,9 +48,7 @@
         </div>
     </div>
 @else
-    <h4 class="h4 font-w300 push-20">Er bestaan nog geen slots voor deze periode, druk op de plus rechtsboven in dit
-        blok
-        om slots aan te maken.</h4>
+    <h3 class="block-title push-20 font-w300">Er bestaan nog geen slots voor deze periode, druk op de plus rechtsboven in dit blok om slots aan te maken.</h3>
 @endif
 
 @push('scripts')

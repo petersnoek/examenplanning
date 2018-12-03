@@ -12,13 +12,13 @@
                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                 @else
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown text-right">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->voornaam }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            <a class="dropdown-item text-right-force" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
@@ -32,12 +32,12 @@
                 @endguest
             </ul>
         </li>
-        <li>
-            <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
-            <button class="btn btn-default" data-toggle="layout" data-action="side_overlay_toggle" type="button">
-                <i class="fa fa-tasks"></i>
-            </button>
-        </li>
+        {{--<li>--}}
+            {{--<!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->--}}
+            {{--<button class="btn btn-default" data-toggle="layout" data-action="side_overlay_toggle" type="button">--}}
+                {{--<i class="fa fa-tasks"></i>--}}
+            {{--</button>--}}
+        {{--</li>--}}
     </ul>
     <!-- END Header Navigation Right -->
 
@@ -55,20 +55,20 @@
                 <i class="fa fa-ellipsis-v"></i>
             </button>
         </li>
-        <li class="visible-xs">
-            <!-- Toggle class helper (for .js-header-search below), functionality initialized in App() -> uiToggleClass() -->
-            <button class="btn btn-default" data-toggle="class-toggle" data-target=".js-header-search" data-class="header-search-xs-visible" type="button">
-                <i class="fa fa-search"></i>
-            </button>
-        </li>
-        <li class="js-header-search header-search">
-            <form class="form-horizontal" action="start_backend.html" method="post">
-                <div class="form-material form-material-primary input-group remove-margin-t remove-margin-b">
-                    <input class="form-control" type="text" id="base-material-text" name="base-material-text" placeholder="Search..">
-                    <span class="input-group-addon"><i class="si si-magnifier"></i></span>
-                </div>
-            </form>
-        </li>
+        {{--<li class="visible-xs">--}}
+            {{--<!-- Toggle class helper (for .js-header-search below), functionality initialized in App() -> uiToggleClass() -->--}}
+            {{--<button class="btn btn-default" data-toggle="class-toggle" data-target=".js-header-search" data-class="header-search-xs-visible" type="button">--}}
+                {{--<i class="fa fa-search"></i>--}}
+            {{--</button>--}}
+        {{--</li>--}}
+        {{--<li class="js-header-search header-search">--}}
+            {{--<form class="form-horizontal" action="start_backend.html" method="post">--}}
+                {{--<div class="form-material form-material-primary input-group remove-margin-t remove-margin-b">--}}
+                    {{--<input class="form-control" type="text" id="base-material-text" name="base-material-text" placeholder="Search..">--}}
+                    {{--<span class="input-group-addon"><i class="si si-magnifier"></i></span>--}}
+                {{--</div>--}}
+            {{--</form>--}}
+        {{--</li>--}}
     </ul>
     <!-- END Header Navigation Left -->
 </header>

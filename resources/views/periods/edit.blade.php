@@ -29,7 +29,7 @@
     </div>
 
     <div class="content">
-        <h2 class="content-heading">Pas {{$period->periodenaam}} aan</h2>
+        <h2 class="content-heading">Pas {{$period->periodenaam}} aan - ({{$period->startdatum->format('Y-m-d')}} - {{$period->einddatum->format('Y-m-d')}})</h2>
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
@@ -48,7 +48,7 @@
                                             <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                             @foreach($schoolyears as $schoolyear)
                                                 <option value="{{$schoolyear->id}}"
-                                                        @if($schoolyear->id == $period->schoolyear_id) selected="selected" @endif>{{$schoolyear->schooljaar}}</option>
+                                                        @if($schoolyear->id == $period->schoolyear_id) selected="selected" @endif>{{$schoolyear->schooljaar}} ({{$schoolyear->startdatum->format('Y-m-d')}} - {{$schoolyear->einddatum->format('Y-m-d')}})</option>
                                             @endforeach
                                         </select>
                                         <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"
@@ -72,11 +72,11 @@
                                 <div class="col-lg-12">
                                     <div class="form-material">
                                         <div class="input-daterange input-group"
-                                             data-date-format="dd-mm-yyyy">
+                                             data-date-format="yyyy-mm-dd">
                                             <input class="form-control" type="text" id="example-daterange1"
                                                    name="startdatum"
                                                    placeholder="Startdatum"
-                                                   value="{{$period->startdatum->format('d-m-Y')}}">
+                                                   value="{{$period->startdatum->format('Y-m-d')}}">
                                             <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
                                             <input class="form-control" type="text" id="example-daterange2"
                                                    name="einddatum"
@@ -133,7 +133,7 @@
 
     <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/datepickers/change_startdate.min.js')}}"></script>
+    {{--<script src="{{asset('assets/js/datepickers/change_startdate.min.js')}}"></script>--}}
     <script>
         jQuery(function () {
             // Init page helpers (BS Datepicker + BS Datetimepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Input + Range Sliders + Tags Inputs + AutoNumeric plugins)

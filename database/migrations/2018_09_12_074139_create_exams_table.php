@@ -19,6 +19,7 @@ class CreateExamsTable extends Migration
             $table->unsignedInteger('proevevanbekwaamheid_id');
             $table->unsignedInteger('status_id')->nullable();
             $table->unsignedInteger('project_id')->nullable();
+            $table->unsignedInteger('user_id');
             $table->string('voorlopige_uitslag')->nullable();
             $table->timestamps();
 
@@ -34,6 +35,9 @@ class CreateExamsTable extends Migration
             $table->foreign('project_id')
                 ->references('id')->on('projects')
                 ->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
         Schema::table('exams', function (Blueprint $table) {
             $table->softDeletes();
@@ -47,7 +51,7 @@ class CreateExamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exam_user');
+        Schema::dropIfExists('slot_user');
         Schema::dropIfExists('exam_remark');
         Schema::dropIfExists('exams');
     }

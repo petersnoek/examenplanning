@@ -97,14 +97,14 @@
                                                            href="/users/{{$user->id}}/edit"
                                                            data-toggle="tooltip"
                                                            title=""
-                                                           data-original-title="Bewerk schooljaar"><i
+                                                           data-original-title="Bewerk gebruiker"><i
                                                                     class="fa fa-pencil"></i>
                                                         </a>
                                                         <a class="btn btn-xs btn-default"
                                                            href="/users/{{$user->id}}/remove"
                                                            data-toggle="tooltip"
                                                            title=""
-                                                           data-original-title="Verwijder schooljaar"><i
+                                                           data-original-title="Verwijder gebruiker"><i
                                                                     class="fa fa-times"></i>
                                                         </a>
                                                     </div>

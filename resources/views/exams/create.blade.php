@@ -112,7 +112,7 @@
         $(document).ready(function () {
             getPvbs();
             $("#tags").select2({
-                maximumSelectionLength: 3
+                // maximumSelectionLength: 3
             });
         });
 

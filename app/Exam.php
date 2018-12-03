@@ -4,7 +4,7 @@ namespace App;
 
 class Exam extends Model
 {
-    public function slots(){
+    public function slot(){
         return $this->belongsTo(Slot::class, 'slot_id');
     }
     public function proevevanbekwaamheids(){
@@ -13,17 +13,11 @@ class Exam extends Model
     public function remarks(){
         return $this->belongsToMany(Remark::class, 'exam_remark');
     }
-    public function users(){
-        return $this->belongsToMany(User::class, 'exam_user')->withPivot('user_role');
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function status(){
         return $this->belongsTo(Status::class);
-    }
-    public function examinators(){
-        return $this->users()->where('user_role', 'Examinator');
-    }
-    public function student(){
-        return $this->users()->where('user_role', 'Student');
     }
     public function project(){
         return $this->belongsTo(Project::class, 'project_id');

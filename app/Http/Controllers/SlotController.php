@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Exam;
 use App\Http\Requests\CreateSlotRequest;
+use App\Http\Requests\PlanSlotRequest;
 use App\period;
 use App\Schoolyear;
 use App\Slot;
+use App\User;
 use Carbon\Carbon;
 use DateInterval;
 use DatePeriod;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SlotController extends Controller
 {
@@ -22,7 +26,8 @@ class SlotController extends Controller
     public function index()
     {
         $schoolyears = Schoolyear::all();
-        return view('slots.index', compact('schoolyears'));
+        $link = '/slots/';
+        return view('slots.index', compact('schoolyears', 'link'));
     }
 
     /**
@@ -43,11 +48,10 @@ class SlotController extends Controller
      */
     public function store(CreateSlotRequest $form, period $period)
     {
-        if($form->persist($period)){
+        if ($form->persist($period)) {
             session()->flash('message', 'Slot(s) succesvol aangemaakt.');
             return redirect("/slots/" . $period->id);
-        }
-        else{
+        } else {
             return redirect()->back()->withErrors(array('dagen' => 'Er bestonden geen geselecteerde dagen in de (sub)periode'));
         }
     }
@@ -61,7 +65,8 @@ class SlotController extends Controller
     public function show(period $period)
     {
         $schoolyears = Schoolyear::all();
-        return view('slots.index', compact('schoolyears', 'period'));
+        $link = '/slots/';
+        return view('slots.index', compact('schoolyears', 'period', 'link'));
     }
 
     public function showAll(Period $period)
@@ -108,13 +113,12 @@ class SlotController extends Controller
     public function showAssignables()
     {
         $schoolyears = Schoolyear::all();
-        return view('slots.show_assignable', compact('schoolyears'));
+        $link = '/slots/assignable/show/';
+        return view('slots.selection', compact('schoolyears', 'link'));
     }
 
     public function showAssignable(period $period)
     {
-        $schoolyears = Schoolyear::all();
-        // calculate all weeks between period startdate and enddate
         $startTime = $period->startdatum;
         $endTime = $period->einddatum;
         $calendarweeks = [];
@@ -122,15 +126,28 @@ class SlotController extends Controller
             array_push($calendarweeks, [$startTime->format('Y'), $startTime->weekOfYear]);
             $startTime->addWeeks(1);
         }
-        $weekdays = [1,2,3,4,5]; // monday = 1;
+        $weekdays = [1, 2, 3, 4, 5]; // monday = 1;
         $slots = $period->slots;
         $date = Carbon::now();
-        return view('slots.show_assignable', compact('calendarweeks', 'weekdays', 'slots', 'period', 'schoolyears', 'date'));
+
+        //fetch all the data to make the modal form possible
+        $examinators = User::where('role_id', '=', '2')->get();
+
+        $studenten = User::where('role_id', '=', '3')->get();
+
+//        $examens = Exam::where('slot_id', '=', null)->get();
+        $examens = Exam::all();
+
+        $bedrijfsmederwerker = User::where('role_id', '=', '4')->get();
+
+        return view('slots.planning', compact('calendarweeks', 'weekdays', 'slots', 'period', 'date', 'studenten', 'examinators', 'bedrijfsmederwerker', 'examens'));
     }
 
-    public function assign()
+    public function plan(PlanSlotRequest $form, Slot $slot)
     {
-
+        $form->plan($slot);
+        session()->flash('message', 'Slot(s) succesvol gepland/herpland');
+        return redirect()->back();
     }
 
     public static function resetWeek()

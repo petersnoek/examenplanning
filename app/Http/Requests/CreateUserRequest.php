@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Company;
+use App\Exam;
 use App\Kwalificatiedossier;
 use App\User;
 use Carbon\Carbon;
@@ -80,11 +81,23 @@ class CreateUserRequest extends FormRequest
             'role_id' => request('role_id'),
             'davinci_id' => request('davinci_id'),
         ]);
-        if(request('bedrijf')){
-            $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=>request('rol')]]);
+        if(in_array(request('role_id'), [3,4])){
+            if(request('bedrijf'))
+            {
+                $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=> request('role_id') == 4 ?  request('rol') : 'Stagiair']]);
+            }
         }
-        else if(request('kwalificatiedossier')){
+        if(request('kwalificatiedossier') && request('role_id') == '3'){
+
             $user->kwalificatiedossier()->associate(request('kwalificatiedossier'))->save();
+            foreach($user->kwalificatiedossier->proevevanbekwaamheids as $proevevanbekwaamheid){
+                //koppel aan project
+                $exam = Exam::create([
+                    'proevevanbekwaamheid_id' => $proevevanbekwaamheid->id,
+                    'user_id' => $user->id,
+                ]);
+                $user->exams()->save(($exam));
+            }
         }
     }
 }

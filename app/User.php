@@ -13,8 +13,7 @@ class User extends Authenticatable
     use \Venturecraft\Revisionable\RevisionableTrait;
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-
-    //    protected $revisionCreationsEnabled = true;
+    protected $revisionCreationsEnabled = true;
 
 
     /**
@@ -25,7 +24,7 @@ class User extends Authenticatable
 //    protected $fillable = [
 //        'name', 'email', 'password',
 //    ];
-protected $guarded = [];
+    protected $guarded = [];
 
 //    protected $dontKeepRevisionOf = array(
 //        'password'
@@ -43,7 +42,7 @@ protected $guarded = [];
     /**
      * Send the password reset notification.
      *
-     * @param  string  $token
+     * @param  string $token
      * @return void
      */
     public function sendPasswordResetNotification($token)
@@ -51,30 +50,44 @@ protected $guarded = [];
         $this->notify(new ResetPassword($token));
     }
 
-    public function exams(){
-        return $this->belongsToMany(Exam::class, 'exam_user')->withPivot('user_role');
+    public function exams()
+    {
+        return $this->hasmany(Exam::class);
     }
-    public function companies(){
+
+    public function companies()
+    {
         return $this->belongsToMany(Company::class, 'company_user')->withPivot('bedrijfsrol');
     }
-    public function projects(){
+
+    public function projects()
+    {
         return $this->belongsToMany(Project::class, 'project_user');
     }
-    public function remarks(){
+
+    public function remarks()
+    {
         return $this->hasMany(Remark::class);
     }
-    public function questionaires(){
+
+    public function questionaires()
+    {
         return $this->hasmany(Questionaire::class);
     }
-    public function role(){
+
+    public function role()
+    {
         return $this->belongsto(Role::class);
     }
-    public function kwalificatiedossier(){
+
+    public function kwalificatiedossier()
+    {
         return $this->belongsto(Kwalificatiedossier::class, 'kwalificatiedossier_id');
     }
 
     public function slots()
     {
-        return $this->hasManyThrough(Slot::class, Exam::class);
+        return $this->belongsToMany(Slot::class, 'slot_user');
     }
+
 }
