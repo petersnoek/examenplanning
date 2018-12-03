@@ -213,18 +213,6 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-wrench"></i><span
-                                    class="sidebar-mini-hide">Manage studenten</span></a>
-                        <ul>
-                            <li>
-                                <a href="/students/create">Student aanmaken</a>
-                            </li>
-                            <li>
-                                <a href="/students/contact">Mail studenten</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
                         <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i
                                     class="si si-eye"></i><span
                                     class="sidebar-mini-hide">Agenda inzien</span></a>

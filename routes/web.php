@@ -87,7 +87,7 @@ Route::post('/schoolyears', 'SchoolyearController@store');
 Route::put('/schoolyears/{schoolyear}', 'SchoolyearController@update');
 
 //CRUD exams
-Route::get('/exams/show', ['uses' => 'Agendacontroller@all', 'middleware' => ['checkauthorization']]);
+Route::get('/exams/show', ['uses' => 'AgendaController@all', 'middleware' => ['checkauthorization']]);
 Route::get('/exams/create', 'ExamController@create');
 Route::post('/exams/create', 'ExamController@store');
 
