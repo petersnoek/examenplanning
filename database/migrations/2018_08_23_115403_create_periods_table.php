@@ -25,6 +25,9 @@ class CreatePeriodsTable extends Migration
                 ->references('id')->on('schoolyears')
                 ->onDelete('cascade');
         });
+        Schema::table('periods', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

@@ -19,9 +19,24 @@ class AgendaController extends Controller
     public function index($davinci_id = null)
     {
         $loggedInUser = $this->setUser($davinci_id);
-        $exams = $loggedInUser->exams;
+        if($loggedInUser->role_id == 3){
+            $exams = $loggedInUser->exams;
+
+        }
+        else{
+            $slots = $loggedInUser->slots;
+            $exams = collect();
+            foreach($slots as $slot)
+            {
+                foreach($slot->exams as $exam)
+                {
+                    $exams->push($exam);
+                }
+//                dd($exams);
+            }
+        }
         //add statusses
-        $allExams = Exam::with('proevevanbekwaamheids', 'slots', 'remarks', 'users')->get();
+        $allExams = Exam::with('proevevanbekwaamheids', 'slot', 'remarks')->get();
         return view('calendar.show', compact('exams', 'loggedInUser', 'allExams'));
     }
 
@@ -97,13 +112,28 @@ class AgendaController extends Controller
     }
     public function requestAgendaTable($davinci_id = null){
         $loggedInUser = $this->setUser($davinci_id);
-        $allExams = $loggedInUser->exams;
+
+        if($loggedInUser->role_id == 3){
+            $allExams = $loggedInUser->exams;
+        }
+        else{
+            $slots = $loggedInUser->slots;
+            $allExams = collect();
+            foreach($slots as $slot)
+            {
+                foreach($slot->exams as $exam)
+                {
+                    $allExams->push($exam);
+                }
+            }
+        }
+
         return view('calendar.all', compact( 'loggedInUser', 'allExams'));
     }
 
     public function all(){
-        $allExams = Exam::with('proevevanbekwaamheids', 'slots', 'remarks', 'users')->get();
-        return view('/calendar/all', compact('allExams'));
+        $allExams = Exam::with('proevevanbekwaamheids', 'slot', 'remarks')->get();
+        return view('calendar.all', compact('allExams'));
     }
 
     public function setUser($davinci_id){

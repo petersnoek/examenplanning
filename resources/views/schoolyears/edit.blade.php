@@ -1,8 +1,6 @@
 @extends('layouts.master')
 
 @push('style')
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker3.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.css')}}">
@@ -94,6 +92,7 @@
                 </div>
             </div>
         </div>
+        @include('revisionable.history_feed', ['histories' => $schoolyear->revisionHistory->reverse()])
     </div>
 
 @endsection

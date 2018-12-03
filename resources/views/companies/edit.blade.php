@@ -199,6 +199,7 @@
                 </form>
             </div>
         </div>
+        @include('revisionable.history_feed', ['histories' => $company->revisionHistory->reverse()])
     </div>
 
 

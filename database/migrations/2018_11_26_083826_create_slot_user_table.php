@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExamenUserTable extends Migration
+class CreateSlotUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,21 @@ class CreateExamenUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('exam_user', function (Blueprint $table) {
+        Schema::create('slot_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('exam_id');
+            $table->unsignedInteger('slot_id');
             $table->unsignedInteger('user_id');
             $table->string('user_role');
 
-            $table->foreign('exam_id')
-                ->references('id')->on('exams')
+            $table->foreign('slot_id')
+                ->references('id')->on('slots')
                 ->onDelete('cascade');
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
+        });
+        Schema::table('slot_user', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -35,7 +38,7 @@ class CreateExamenUserTable extends Migration
      */
     public function down()
     {
-        Schema::table('exam_user', function (Blueprint $table) {
+        Schema::table('slot_user', function (Blueprint $table) {
             //
         });
     }

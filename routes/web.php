@@ -41,8 +41,6 @@ Route::post('/companies', 'CompanyController@store');
 Route::get('/companies/{company}/edit', 'CompanyController@edit');
 Route::get('/companies/{company}/remove', 'CompanyController@destroy');
 Route::put('/companies/{company}', 'CompanyController@update');
-//ajax endpoint
-Route::get('/companies/all', 'CompanyController@getAll');
 
 //Contact Users
 Route::get('/users', 'UserController@index');
@@ -70,6 +68,8 @@ Route::get('/slots', 'SlotController@index');
 Route::get('/slots/{period}', 'SlotController@show');
 Route::get('/slots/{period}/create', 'SlotController@create');
 Route::post('/slots/addtoperiod/{period}', 'SlotController@store');
+Route::post('/slots/plan/{slot}', 'SlotController@plan');
+
 
 Route::get('/slots/{slot}/remove', 'SlotController@destroy');
 
@@ -87,12 +87,15 @@ Route::post('/schoolyears', 'SchoolyearController@store');
 Route::put('/schoolyears/{schoolyear}', 'SchoolyearController@update');
 
 //CRUD exams
-Route::get('/exams/show', ['uses' => 'Agendacontroller@all', 'middleware' => ['checkauthorization']]);
+Route::get('/exams/show', ['uses' => 'AgendaController@all', 'middleware' => ['checkauthorization']]);
 Route::get('/exams/create', 'ExamController@create');
 Route::post('/exams/create', 'ExamController@store');
 
 //AJAX endpoints
 Route::get('/getPvbs/{kwalificatiedossier}', 'ExamController@getPvbs');
+Route::get('/kwalificatiedossier/all', 'KwalificatiedossierController@all');
+Route::get('/companies/all', 'CompanyController@getAll');
+Route::post('/exams/invitees', 'ExamController@getInvitees');
 
 
 //CRUD agenda
@@ -104,6 +107,21 @@ Route::get('/agenda/all', ['uses' => 'AgendaController@all', 'middleware' => ['c
 
 Route::post('/requestagenda', 'AgendaController@requestAgenda');
 
+//CRUD revisions
+Route::get('/revisions', 'RevisionController@index');
+
+//CRUD Deletes
+Route::get('/deletes', 'DeletionController@index');
+Route::get('/deletes/{modelname}', 'DeletionController@index');
+
+//CRUD Projects
+Route::get('/projects/create', 'ProjectController@create');
+Route::get('/projects', 'ProjectController@index');
+Route::get('/projects/{project}/remove', 'ProjectController@destroy');
+Route::get('/projects/{project}/edit', 'ProjectController@edit');
+
+Route::post('/projects', 'ProjectController@store');
+Route::put('/projects/{project}', 'ProjectController@update');
 
 
 

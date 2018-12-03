@@ -9,7 +9,8 @@
         <div class="row items-push">
             <div class="col-sm-7">
                 <h1 class="page-heading">
-                    Examens @if(isset($loggedInUser)) van {{$loggedInUser->achternaam . ", " . $loggedInUser->voornaam . " " . $loggedInUser->tussenvoegsel}} @endif
+                    Examens @if(isset($loggedInUser))
+                        van {{$loggedInUser->achternaam . ", " . $loggedInUser->voornaam . " " . $loggedInUser->tussenvoegsel}} @endif
                     <small>Hier kunt u alle examens inzien</small>
                 </h1>
             </div>
@@ -38,7 +39,7 @@
                 </form>
             </div>
         @endif
-
+        <h2 class="content-heading">Examens inzien</h2>
         @include('calendar.overview')
 
     </div>

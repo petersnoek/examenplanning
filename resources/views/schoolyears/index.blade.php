@@ -24,67 +24,77 @@
     </div>
     <!-- END Page Header -->
 
-    <div class="bg-lighter content">
+    <div class="content">
         <h2 class="content-heading">Schooljaren inzien</h2>
-        <div class="table-responsive">
-            <div id="DataTables_Table_2_wrapper"
-                 class="dataTables_wrapper form-inline dt-bootstrap no-footer block block-content">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <table class="table table-bordered table-striped js-dataTable-full-pagination_custom dataTable no-footer"
-                               id="DataTables_Table_2" role="grid" aria-describedby="DataTables_Table_2_info">
-                            <thead>
-                            <tr role="row">
-                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
-                                    colspan="1"
-                                    aria-label="Kerntaak: activate to sort column ascending">Schooljaar
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
-                                    colspan="1"
-                                    aria-label="Kerntaak: activate to sort column ascending">Startdatum (jjjj-mm-dd)
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
-                                    colspan="1"
-                                    aria-label="Kerntaak: activate to sort column ascending">Einddatum (jjjj-mm-dd)
-                                </th>
-                                <th class="text-center sorting_disabled" rowspan="1"
-                                    colspan="1"
-                                    aria-label="Actions">Actions
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($schoolyears as $schoolyear)
-                                <tr role="row" class="odd">
-                                    <td class="font-w600 sorting_1">{{$schoolyear->schooljaar}}</td>
-                                    <td class="sorting_1">{{$schoolyear->startdatum->format('Y-m-d')}}</td>
-                                    <td class="sorting_1">{{$schoolyear->einddatum->format('Y-m-d')}}</td>
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            <a class="btn btn-xs btn-default" href="/schoolyears/{{$schoolyear->id}}/edit"
-                                               data-toggle="tooltip"
-                                               title=""
-                                               data-original-title="Bewerk schooljaar"><i class="fa fa-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-xs btn-default" href="/schoolyears/{{$schoolyear->id}}/remove"
-                                               data-toggle="tooltip"
-                                               title=""
-                                               data-original-title="Verwijder schooljaar"><i class="fa fa-times"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>Schooljaar</th>
-                                <th>Startdatum</th>
-                                <th>Einddatum</th>
-                                <th></th>
-                            </tr>
-                            </tfoot>
-                        </table>
+        <div class="block">
+            <div class="block-content">
+                <div class="table-responsive">
+                    <div id="DataTables_Table_2_wrapper"
+                         class="dataTables_wrapper form-inline dt-bootstrap no-footer block block-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-striped js-dataTable-full-pagination_custom dataTable no-footer"
+                                       id="DataTables_Table_2" role="grid" aria-describedby="DataTables_Table_2_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
+                                            colspan="1"
+                                            aria-label="Kerntaak: activate to sort column ascending">Schooljaar
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
+                                            colspan="1"
+                                            aria-label="Kerntaak: activate to sort column ascending">Startdatum
+                                            (jjjj-mm-dd)
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
+                                            colspan="1"
+                                            aria-label="Kerntaak: activate to sort column ascending">Einddatum
+                                            (jjjj-mm-dd)
+                                        </th>
+                                        <th class="text-center sorting_disabled" rowspan="1"
+                                            colspan="1"
+                                            aria-label="Actions">Actions
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($schoolyears as $schoolyear)
+                                        <tr role="row" class="odd">
+                                            <td class="font-w600 sorting_1">{{$schoolyear->schooljaar}}</td>
+                                            <td class="sorting_1">{{$schoolyear->startdatum->format('Y-m-d')}}</td>
+                                            <td class="sorting_1">{{$schoolyear->einddatum->format('Y-m-d')}}</td>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <a class="btn btn-xs btn-default"
+                                                       href="/schoolyears/{{$schoolyear->id}}/edit"
+                                                       data-toggle="tooltip"
+                                                       title=""
+                                                       data-original-title="Bewerk schooljaar"><i
+                                                                class="fa fa-pencil"></i>
+                                                    </a>
+                                                    <a class="btn btn-xs btn-default"
+                                                       href="/schoolyears/{{$schoolyear->id}}/remove"
+                                                       data-toggle="tooltip"
+                                                       title=""
+                                                       data-original-title="Verwijder schooljaar"><i
+                                                                class="fa fa-times"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Schooljaar</th>
+                                        <th>Startdatum</th>
+                                        <th>Einddatum</th>
+                                        <th></th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

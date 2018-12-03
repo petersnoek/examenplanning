@@ -25,6 +25,9 @@ class CreateRemarkQuestioinaireTable extends Migration
                 ->references('id')->on('questionaires')
                 ->onDelete('cascade');
         });
+        Schema::table('remark_questionaire', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

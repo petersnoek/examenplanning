@@ -27,7 +27,6 @@ class SlotSeeder extends Seeder
                 'eindtijd' => Carbon::createFromFormat('H:i', '15:30'),
                 'datum' => $start->format('Y-m-d'),
                 'period_id' => 1,
-                'created_at' => Carbon::now(),
             ]);
             $start->addWeek();
         }
@@ -38,7 +37,6 @@ class SlotSeeder extends Seeder
                 'eindtijd' => Carbon::createFromFormat('H:i', '12:00'),
                 'datum' => $start->format('Y-m-d'),
                 'period_id' => 1,
-                'created_at' => Carbon::now(),
             ]);
             $start->addWeek();
         }
@@ -51,7 +49,6 @@ class SlotSeeder extends Seeder
                 'eindtijd' => Carbon::createFromFormat('H:i', '13:30'),
                 'datum' => $start->format('Y-m-d'),
                 'period_id' => 2,
-                'created_at' => Carbon::now(),
             ]);
             $start->addWeek();
         }
@@ -62,7 +59,6 @@ class SlotSeeder extends Seeder
                 'eindtijd' => Carbon::createFromFormat('H:i', '11:00'),
                 'datum' => $start->format('Y-m-d'),
                 'period_id' => 2,
-                'created_at' => Carbon::now(),
             ]);
             $start->addWeek();
         }

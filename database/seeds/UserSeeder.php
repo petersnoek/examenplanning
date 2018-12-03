@@ -41,7 +41,6 @@ class UserSeeder extends Seeder
             'davinci_id' => 99 . $faker->randomNumber(6, true),
             'role_id' => 1,
             'remember_token' => str_random(10),
-            'created_at' => Carbon::now(),
         ]);
         $this->command->info("Seeded user Peter Snoek (psnoek@davinci.nl) with password 'Studentje1'");
 
@@ -64,7 +63,6 @@ class UserSeeder extends Seeder
             'davinci_id' => 99 . $faker->randomNumber(6, true),
             'role_id' => 1,
             'remember_token' => str_random(10),
-            'created_at' => Carbon::now(),
         ]);
         $this->command->info("Seeded user Developer (dev@dev.com) with password 'password'");
 
@@ -85,7 +83,6 @@ class UserSeeder extends Seeder
             'davinci_id' => 99 . $faker->randomNumber(6, true),
             'role_id' => 3,
             'remember_token' => str_random(10),
-            'created_at' => Carbon::now(),
         ]);
         $this->command->info("Seeded student student (student@mail.com) with password 'student'");
 
@@ -106,7 +103,6 @@ class UserSeeder extends Seeder
             'davinci_id' => 99 . $faker->randomNumber(6, true),
             'role_id' => 2,
             'remember_token' => str_random(10),
-            'created_at' => Carbon::now(),
         ]);
         $this->command->info("Seeded examinator examinator (examinator@mail.com) with password 'examinator'");
 
@@ -127,7 +123,6 @@ class UserSeeder extends Seeder
             'davinci_id' => 99 . $faker->randomNumber(6, true),
             'role_id' => 4,
             'remember_token' => str_random(10),
-            'created_at' => Carbon::now(),
         ]);
         $this->command->info("Seeded bedrijf bedrijf (bedrijf@mail.com) with password 'bedrijf'");
 
@@ -148,7 +143,6 @@ class UserSeeder extends Seeder
             'davinci_id' => 99 . $faker->randomNumber(6, true),
             'role_id' => 5,
             'remember_token' => str_random(10),
-            'created_at' => Carbon::now(),
         ]);
         $this->command->info("Seeded examencomissie examencomissie (examencomissie@mail.com) with password 'examencomissie'");
 

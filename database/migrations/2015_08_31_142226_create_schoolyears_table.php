@@ -20,6 +20,9 @@ class CreateSchoolyearsTable extends Migration
             $table->date('einddatum');
             $table->timestamps();
         });
+        Schema::table('schoolyears', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

@@ -28,7 +28,6 @@ class RemarkSeeder extends Seeder
             DB::table('remarks')->insert([
                 'body' => $faker->sentence,
                 'user_id' => $users->pop()->id,
-                'created_at' => Carbon::now(),
             ]);
         }
         $this->command->info('Seeded ' . $amount . ' remarks');

@@ -23,6 +23,9 @@ class CreateRemarksTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
         });
+        Schema::table('remarks', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**
