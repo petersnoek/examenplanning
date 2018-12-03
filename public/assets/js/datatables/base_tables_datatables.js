@@ -24,6 +24,30 @@ var BaseTableDatatables = function() {
         });
     };
 
+    var initDataTableFullPaginationCustom = function() {
+        jQuery('.js-dataTable-full-pagination_custom').dataTable({
+            pagingType: "full_numbers",
+            columnDefs: [ { orderable: false, targets: [  ] } ],
+            pageLength: 10,
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+            "language": {
+                "infoEmpty": "Geen gegevens gevonden om weer te geven",
+                "emptyTable": "Geen gegevens beschikbaar in de database",
+                "zeroRecords": "Geen overeenkomstige gegevens beschikbaar",
+                "infoFiltered": "(gefilterd van _MAX_ gegevens)",
+                "search": "<i class='fa fa-search'></i>",
+                "paginate": {
+                    "previous": "Vorige",
+                    "next": "Volgende",
+                    "last": "Laatste",
+                    "first": "Eerste",
+                    "page": "Pagina",
+                    "pageOf": "Van",
+                }
+            },
+        });
+    };
+
     // Init full extra DataTable, for more examples you can check out https://www.datatables.net/
     var init_custom_exam_DataTableFullPagination = function() {
         jQuery('.js-dataTable-full-pagination_exams').dataTable({
@@ -33,6 +57,56 @@ var BaseTableDatatables = function() {
             lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
             searching: true,
             order: [[ 5, 'asc' ], [ 4, 'asc' ], [ 8, 'asc' ]],
+            "language": {
+                "infoEmpty": "Geen gegevens gevonden om weer te geven",
+                "emptyTable": "Geen gegevens beschikbaar in de database",
+                "zeroRecords": "Geen overeenkomstige gegevens beschikbaar",
+                "infoFiltered": "(gefilterd van _MAX_ gegevens)",
+                "search": "<i class='fa fa-search'></i>",
+                "paginate": {
+                    "previous": "Vorige",
+                    "next": "Volgende",
+                    "last": "Laatste",
+                    "first": "Eerste",
+                    "page": "Pagina",
+                    "pageOf": "Van",
+                }
+            },
+        });
+    };
+    var init_custom_revisionable_DataTableFullPagination = function() {
+        jQuery('.js-dataTable-full-pagination_custom_revisionable').dataTable({
+            pagingType: "full_numbers",
+            columnDefs: [ { orderable: true, targets: [ 4 ] } ],
+            pageLength: 10,
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+            searching: true,
+            order: [[ 5, 'desc' ]],
+            "language": {
+                "infoEmpty": "Geen gegevens gevonden om weer te geven",
+                "emptyTable": "Geen gegevens beschikbaar in de database",
+                "zeroRecords": "Geen overeenkomstige gegevens beschikbaar",
+                "infoFiltered": "(gefilterd van _MAX_ gegevens)",
+                "search": "<i class='fa fa-search'></i>",
+                "paginate": {
+                    "previous": "Vorige",
+                    "next": "Volgende",
+                    "last": "Laatste",
+                    "first": "Eerste",
+                    "page": "Pagina",
+                    "pageOf": "Van",
+                }
+            },
+        });
+    };
+    var init_custom_deletions_DataTableFullPagination = function() {
+        jQuery('.js-dataTable-full-pagination_custom_deletions').dataTable({
+            pagingType: "full_numbers",
+            columnDefs: [ { orderable: true, targets: [  ] } ],
+            pageLength: 10,
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+            searching: true,
+            order: [[ 2, 'desc' ]],
             "language": {
                 "infoEmpty": "Geen gegevens gevonden om weer te geven",
                 "emptyTable": "Geen gegevens beschikbaar in de database",
@@ -226,7 +300,10 @@ var BaseTableDatatables = function() {
             initDataTableSimple();
             initDataTableFull();
             initDataTableFullPagination();
+            initDataTableFullPaginationCustom();
             init_custom_exam_DataTableFullPagination();
+            init_custom_revisionable_DataTableFullPagination();
+            init_custom_deletions_DataTableFullPagination();
         }
     };
 }();

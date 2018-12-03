@@ -25,10 +25,10 @@
     <!-- END Page Header -->
 
     <div class="content">
-        <div class="col-lg-12">
+        <div class="">
             @if(in_array(Auth::user()->role_id, [1,2]))
                 <div class="row">
-                    <form class="col-lg-2 form-horizontal push-10-t push-10" action="/requestagenda" method="POST">
+                    <form class="col-lg-4 col-md-4 form-horizontal push-10-t push-10" action="/requestagenda" method="POST">
                         @csrf
                         <div class="input-group">
                         <span class="input-group-btn">
@@ -51,7 +51,9 @@
 
 
             <div class="row">
-                <a href="/agenda/{{$loggedInUser->davinci_id}}/show/table">Klik hier voor tabelweergave</a>
+                <div class="col-lg-12">
+                    <a href="/agenda/{{$loggedInUser->davinci_id}}/show/table">Klik hier voor tabelweergave</a>
+                </div>
             </div>
         </div>
     </div>

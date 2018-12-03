@@ -30,24 +30,35 @@ class ExamSeeder extends Seeder
 
         foreach($users = User::where('role_id',  3)->get() as $user)
         {
+            $slotid = null;
+            if($slots->isNotEmpty())
+            {
+                $slotid = $slots->pop()->id;
+            }
+
+            $count = 0;
             foreach($proevevanbekwaamheids = Proevevanbekwaamheid::all() as $proevevanbekwaamheid)
             {
-                $slotid = null;
-                if($slots->isNotEmpty())
+                if($count == 2)
                 {
-                    $slotid = $slots->pop()->id;
-                }
-                else{
                     $slotid = null;
+                    if($slots->isNotEmpty())
+                    {
+                        $slotid = $slots->pop()->id;
+                    }
+                    $count = 0;
                 }
+
                 DB::table('exams')->insert([
                     'voorlopige_uitslag' => $faker->randomElement(array('n', 'o', 'v', 'g')),
                     'slot_id' => $slotid,
                     'proevevanbekwaamheid_id' => $proevevanbekwaamheid->id,
                     'status_id' => $statusses->random()->id,
                     'project_id' => $projects->random()->id,
-                    'created_at' => Carbon::now(),
+                    'user_id' => $user->id,
                 ]);
+
+                $count++;
             }
         }
     }

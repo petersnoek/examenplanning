@@ -15,13 +15,16 @@ class CreateRemarksTable extends Migration
     {
         Schema::create('remarks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('body');
+            $table->text('body');
             $table->unsignedInteger('user_id');
             $table->timestamps();
 
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
+        });
+        Schema::table('remarks', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 

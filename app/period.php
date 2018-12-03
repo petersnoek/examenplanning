@@ -17,8 +17,8 @@ class period extends Model
         'einddatum'
     ];
 
-    public function Schoolyear(){
-        $this->belongsTo(Schoolyear::class);
+    public function schoolyear(){
+        return $this->belongsTo(Schoolyear::class);
     }
 
     public function slots(){

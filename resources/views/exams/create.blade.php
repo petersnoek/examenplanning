@@ -11,93 +11,90 @@
         <div class="row items-push">
             <div class="col-sm-7">
                 <h1 class="page-heading">
-                    Beheer examens
-                    <small>Examinatoren kunnen hier examens aanmaken</small>
+                    Examens
+                    <small>Aanmaken</small>
                 </h1>
             </div>
             <div class="col-sm-5 text-right hidden-xs">
                 <ol class="breadcrumb push-10-t">
                     <li>Examens</li>
-                    <li><a class="link-effect" href="">Examen aanmaken</a></li>
+                    <li><a class="link-effect" href="">Aanmaken</a></li>
                 </ol>
             </div>
         </div>
     </div>
     <!-- END Page Header -->
-    <div class="content col-lg-12">
-        <div class="col-lg-7">
-            <!-- Material Contact -->
-            <div class="block block-themed">
-                <div class="block-header bg-info">
-                    <h3 class="block-title">Material</h3>
-                </div>
-                <div class="block-content">
-                    <form class="form-horizontal push-10-t push-10" action="/exams"
-                          method="post">
-                        @csrf
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <div class="form-material">
-                                    <select class="form-control" id="student"
-                                            name="student" size="1">
-                                        @foreach($students as $student)
-                                            <option value="{{$student->id}}">{{$student->name}}</option>
-                                        @endforeach
-                                    </select>
-                                    <label for="student">Naam van student</label>
+    <div class="content">
+        <h2 class="content-heading">Examens aanmaken</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <div class="block-content">
+                        <form class="form-horizontal push-10-t push-10" action="/exams/create"
+                              method="post">
+                            @csrf
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <div class="form-material">
+                                        <select class="js-select2 form-control select2-hidden-accessible"
+                                                id="student" name="student[]"
+                                                style="width: 100%;" data-placeholder="Kies student"
+                                                tabindex="-1" aria-hidden="true" required>
+                                            <option></option>
+                                            <!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                            @foreach($students as $student)
+                                                <option value="{{$student->id}}">{{$student->achternaam . ', ' . $student->voornaam . ' ' . $student->tussenvoegsel . ' (' . $student->davinci_id . ')'}}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="student">Naam van student</label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-material">
+                                        <select class="form-control" id="kwalificatiedossier"
+                                                name="kwalificatiedossier" size="1">
+                                            @foreach($kwalificatiedossiers as $kwalificatiedossier)
+                                                <option value="{{$kwalificatiedossier->id}}">{{$kwalificatiedossier->crebo}}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="pvb">Crebo</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-xs-6">
-                                <div class="form-material">
-                                    <select class="form-control" id="pvb"
-                                            name="pvb" size="1">
-                                        @foreach($pvbs as $pvb)
-                                            <option value="{{$pvb->id}}">{{$pvb->name}}</option>
-                                        @endforeach
-                                    </select>
-                                    <label for="pvb">Proeve van Bekwaamheid</label>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <div class="form-material">
+                                        <select class="form-control" id="pvb"
+                                                name="pvb" size="1">
+                                        </select>
+                                        <label for="pvb">Proeve van Bekwaamheid</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                <label for="kts">Selecteer KT's</label>
-                                <select class="js-select2 form-control select2-hidden-accessible"
-                                        id="kts" name="kts[]"
-                                        style="width: 100%;" data-placeholder="Kies KT's" multiple=""
-                                        tabindex="-1" aria-hidden="true" required>
-                                    <option></option>
-                                    <!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                    @foreach($kerntaken as $kerntaak)
-                                        <option value="{{$kerntaak->id}}">{{$kerntaak->name . " (" . $kerntaak->identifier . ")"}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <div class="form-material">
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <div class="form-material">
                                                 <textarea class="form-control" id="opmerking" name="opmerking"
                                                           rows="7" placeholder="Schrijf een opmerking"></textarea>
-                                    <label for="contact2-msg">Opmerking</label>
-                                </div>
-                                <div class="help-block text-right">Feel free to use common tags: &lt;blockquote&gt;,
-                                    &lt;strong&gt;, &lt;em&gt;
+                                        <label for="contact2-msg">Opmerking</label>
+                                    </div>
+                                    <div class="help-block text-right">
+                                        Vul hier een opmerking in betreffende het examen.
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <button class="btn btn-sm btn-info" type="submit"><i
-                                            class="fa fa-send push-5-r"></i> Maak examen aan
-                                </button>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <button class="btn btn-sm btn-info" type="submit"><i
+                                                class="fa fa-send push-5-r"></i> Maak examen aan
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <!-- END Material Contact -->
         </div>
     </div>
 @endsection
@@ -108,5 +105,47 @@
         jQuery(function () {
             App.initHelpers(['select2']);
         });
+
+        $('#kwalificatiedossier').change(function () {
+            getPvbs();
+        });
+        $(document).ready(function () {
+            getPvbs();
+            $("#tags").select2({
+                // maximumSelectionLength: 3
+            });
+        });
+
+        function getPvbs() {
+            if ($("#kwalificatiedossier").val() != '') {
+                $.ajax({
+                    url: '/getPvbs/' + $("#kwalificatiedossier").val(),
+                    type: 'GET',
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        if (data.fail) {
+                            alert(data.message.error);
+                            console.log(data.message.message);
+                        }
+                        else {
+                            $('#pvb').empty();
+                            data.message.pvbs.forEach(function (element) {
+                                $('#pvb')
+                                    .append($("<option></option>")
+                                        .attr("value", element.id)
+                                        .text(element.kerntaak));
+                            });
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert(xhr.responseText);
+                    }
+                });
+            }
+            else {
+                $('#pvb').empty();
+            }
+        }
     </script>
 @endpush

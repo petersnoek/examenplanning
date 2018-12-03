@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('land');
             $table->boolean('active')->default(false);
             $table->unsignedInteger('role_id');
+            $table->unsignedInteger('kwalificatiedossier_id')->nullable();
             $table->string('davinci_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
@@ -36,6 +37,14 @@ class CreateUsersTable extends Migration
             $table->foreign('role_id')
                 ->references('id')->on('roles')
                 ->onDelete('cascade');
+
+            $table->foreign('kwalificatiedossier_id')
+                ->references('id')->on('kwalificatiedossiers')
+                ->onDelete('cascade');
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -46,7 +55,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exam_user');
+        Schema::dropIfExists('slot_user');
         Schema::dropIfExists('company_user');
         Schema::dropIfExists('project_user');
         Schema::dropIfExists('users');

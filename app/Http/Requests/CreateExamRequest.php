@@ -3,7 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Exam;
+use App\Remark;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CreateExamRequest extends FormRequest
 {
@@ -14,7 +16,7 @@ class CreateExamRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,17 +27,40 @@ class CreateExamRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'student' => 'required',
+            'kwalificatiedossier' => 'required',
+            'pvb' => 'required',
+            'opmerking' => 'nullable|max:16383',
+
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'student.required' => 'Het student veld is verplicht',
+            'kwalificatiedossier.required' => 'Het kwalificatiedossier veld is verplicht',
+            'pvb.required' => 'Het proeve van bekwaamheid veld is verplicht',
+            'opmerking.max' => 'Het veld mag maximaal :max karakters lang zijn',
         ];
     }
 
     public function persist()
     {
+        //find student project and insert into db
+        $user = Auth::user();
 
-        Exam::create([
-            'student_id' => request('student'),
-            'proeve_van_bekwaamheid' => request('pvb'),
-            'kerntaak' => request('kerntaken'),
+        $exam = Exam::create([
+            'proevevanbekwaamheid_id' => request('pvb'),
+            'user_id' => $user->id,
         ]);
+        $exam->user_id = (request('student')[0]);
+        $exam->save();
+        if(request('opmerking')){
+            $remark = Remark::create([
+                'body' => request('opmerking'),
+                'user_id' => $user->id,
+            ]);
+            $remark->exams()->attach($exam->id);
+        }
     }
 }

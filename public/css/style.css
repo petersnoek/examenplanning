@@ -53,3 +53,7 @@
 .slot{
     margin-bottom: 5px;
 }
+
+.text-right-force{
+    text-align:right !important;
+}

@@ -15,6 +15,5 @@ $factory->define(Company::class, function (Faker $faker) {
         'land' => $faker->country,
         'sector' => $faker->word,
         'website' => 'http://www.google.nl',
-        'created_at' => Carbon::now(),
     ];
 });
