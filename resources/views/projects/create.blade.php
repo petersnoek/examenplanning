@@ -30,7 +30,7 @@
             <div class="col-md-12">
                 <div class="block">
                     <div class="block-content">
-                        <form class="form-horizontal push-10-t push-10" action="/projects/"
+                        <form class="form-horizontal push-10-t push-10" action="/projects"
                               method="POST">
                             @csrf
                             <div class="form-group">
