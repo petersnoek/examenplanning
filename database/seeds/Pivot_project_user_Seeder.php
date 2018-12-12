@@ -30,6 +30,8 @@ class Pivot_project_user_Seeder extends Seeder
             DB::table('project_user')->insert([
                 'user_id' => $user->id,
                 'project_id' => $projects->random()->id,
+                'active' => true,
+                'startdatum' => Carbon::now(),
             ]);
         }
     }

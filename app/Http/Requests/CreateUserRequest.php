@@ -81,12 +81,20 @@ class CreateUserRequest extends FormRequest
             'role_id' => request('role_id'),
             'davinci_id' => request('davinci_id'),
         ]);
-        if(in_array(request('role_id'), [3,4])){
+        if(in_array(request('role_id'), [4])){
             if(request('bedrijf'))
             {
-                $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=> request('role_id') == 4 ?  request('rol') : 'Stagiair']]);
+                $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=> request('rol')]]);
             }
         }
+
+        if(request('project')){
+            if(in_array(request('role_id'), [3]))
+            {
+                $user->projects()->attach([request('project') => ['active'=> true, 'startdatum' => Carbon::now()]]);
+            }
+        }
+
         if(request('kwalificatiedossier') && request('role_id') == '3'){
 
             $user->kwalificatiedossier()->associate(request('kwalificatiedossier'))->save();
