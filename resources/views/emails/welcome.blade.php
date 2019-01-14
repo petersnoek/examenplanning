@@ -13,7 +13,7 @@ Of het nu gaat om het inplannen, het bezoeken of gemakkelijke communicatie tusse
 
 @endcomponent
 
-@component('mail::button', ['url' => 'https://examenplanning.nl'])
+@component('mail::button', ['url' => $url])
 Start met plannen
 @endcomponent
 

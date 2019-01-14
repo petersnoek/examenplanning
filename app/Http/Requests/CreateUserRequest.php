@@ -5,9 +5,12 @@ namespace App\Http\Requests;
 use App\Company;
 use App\Exam;
 use App\Kwalificatiedossier;
+use App\Mail\Welcome;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 
 class CreateUserRequest extends FormRequest
 {
@@ -69,7 +72,7 @@ class CreateUserRequest extends FormRequest
             'tussenvoegsel' => request('tussenvoegsel'),
             'achternaam' => request('achternaam'),
             'email' => request('email'),
-            'password' => request('password'),
+            'password' => bcrypt(request('password')),
             'telefoonnummer' => request('telefoonnummer'),
             'straat' => request('straat'),
             'huisnummer' => request('huisnummer'),
@@ -107,5 +110,6 @@ class CreateUserRequest extends FormRequest
                 $user->exams()->save(($exam));
             }
         }
+        Mail::to($user)->send(new Welcome($user, URL::route('home')));
     }
 }
