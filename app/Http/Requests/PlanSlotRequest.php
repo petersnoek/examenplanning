@@ -37,26 +37,10 @@ class PlanSlotRequest extends FormRequest
     public function plan(Slot $slot){
         $slot->users()->detach();
 
-        if(request('examens')){
-            //detaching the exams
-            foreach($slot->exams as $exam){
-                $exam->slot_id = null;
-                $exam->save();
-            }
-
-            //attaching the selected exams only
-            foreach(request('examens') as $examId){
-                $exam = Exam::find((Int)$examId);
-//                $exam->slot()->associate($slot)->save();
-                $slot->exams()->save($exam);
-            }
-        }
-        else{
-            //detaching all exams
-            foreach($slot->exams as $exam){
-                $exam->slot_id = null;
-                $exam->save();
-            }
+        //detaching the exams
+        foreach($slot->exams as $exam){
+            $exam->slot_id = null;
+            $exam->save();
         }
 
         if(request('examinatoren'))
@@ -65,17 +49,22 @@ class PlanSlotRequest extends FormRequest
                 $slot->users()->attach([$examinatorId => ['user_role'=>'Examinator']]);
             }
         }
-        else{
-            $slot->examinators()->detach();
-        }
 
+        if(request('examens')){
+            //attaching the selected exams only
+            foreach(request('examens') as $examId){
+                $exam = Exam::find((Int)$examId);
+                $slot->exams()->save($exam);
+            }
+        }
 
         $slot->save();
 
         //send mail to all examinators
         foreach($slot->users as $user){
-            Mail::to($user)->queue(new PlannedExam(URL::route('personalAgenda'), $slot->fresh(), $user));
+            Mail::to($user)->send(new PlannedExam(URL::route('personalAgenda'), $slot->fresh(), $user));
         }
-        //send mail to student
+        //send mail to student & bedrijfsbegeleider
+
     }
 }

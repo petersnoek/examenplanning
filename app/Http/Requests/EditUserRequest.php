@@ -91,22 +91,16 @@ class EditUserRequest extends FormRequest
 
             if(in_array(request('role_id'), [4]))
             {
-                if(in_Array(request('bedrijf'), $user->companies->pluck('id')->toArray()))
-                {
-                    $user->companies()->updateExistingPivot(request('bedrijf'), ['bedrijfsrol'=> request('role_id') == 4 ?  request('rol') : 'Stagiair']);
-                }
-                else{
-                    $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=> request('role_id') == 4 ?  request('rol') : 'Stagiair']]);
-                }
+                $user->companies()->attach(request('bedrijf'), ['bedrijfsrol'=> request('rol')]);
             }
         }
 
-        if(request('project')){
-            if(in_array(request('role_id'), [3]))
-            {
-                $user->projects()->updateExistingPivot($user->currentProject()->id, ['active' => false, 'einddatum' => Carbon::now()]);
-
-                $user->projects()->attach([request('project') => ['active'=> true, 'startdatum' => Carbon::now()]]);
+        if(request('project')) {
+            if (in_array(request('role_id'), [3])) {
+                if ($user->currentProject()->id != request('project')) {
+                    $user->projects()->updateExistingPivot($user->currentProject()->id, ['active' => false, 'einddatum' => Carbon::now()]);
+                    $user->projects()->attach([request('project') => ['active' => true, 'startdatum' => Carbon::now()]]);
+                }
             }
         }
 

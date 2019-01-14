@@ -9,12 +9,12 @@ Er is een wijziging geweest in je planning.
     <ul>
         @foreach($slot->exams as $exam)
             <li>
-                <b>{{$exam->proevevanbekwaamheids->kerntaak}}</b><br>
+                <b class="text-muted">{{$exam->user->achternaam}}, {{$exam->user->voornaam}} {{$exam->user->tussenvoegsel}}</b> - <b>{{$exam->proevevanbekwaamheids->kerntaak}}</b><br>
                 De volgende personen zullen aanwezig zijn:
                 <ul>
                     @foreach($exam->invitees() as $invitee)
                         <li>
-                            {{$invitee->achternaam}}, {{$invitee->voornaam}} {{$invitee->tussenvoegsel}} -
+                            {{$invitee->achternaam}}, {{$invitee->voornaam}} {{$invitee->tussenvoegsel}} {{isset($invitee->pivot->user_role) ? ' - ' . $invitee->pivot->user_role : 'Student'}}
                         </li>
                     @endforeach
                 </ul>

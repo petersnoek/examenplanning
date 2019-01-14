@@ -95,6 +95,7 @@ class CreateUserRequest extends FormRequest
             if(in_array(request('role_id'), [3]))
             {
                 $user->projects()->attach([request('project') => ['active'=> true, 'startdatum' => Carbon::now()]]);
+                $user->companies()->attach([$user->currentproject->company->id => ['bedrijfsrol'=> 'Stagiair']]);
             }
         }
 
@@ -110,6 +111,6 @@ class CreateUserRequest extends FormRequest
                 $user->exams()->save(($exam));
             }
         }
-        Mail::to($user)->queue(new Welcome($user, URL::route('home')));
+        Mail::to($user)->send(new Welcome($user, URL::route('home')));
     }
 }
