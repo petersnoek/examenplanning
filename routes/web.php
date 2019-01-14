@@ -100,7 +100,7 @@ Route::post('/exams/invitees', 'ExamController@getInvitees');
 
 
 //CRUD agenda
-Route::get('/agenda', ['uses' => 'AgendaController@index']);
+Route::get('/agenda', ['uses' => 'AgendaController@index'])->name('personalAgenda');
 Route::get('/agenda/{davinci_id}/show', ['uses' => 'AgendaController@index', 'middleware' => ['checkauthorization', 'checkrequesteduseragenda']]);
 Route::get('/agenda/{davinci_id}/show/table', ['uses' => 'AgendaController@requestAgendaTable', 'middleware' => ['checkauthorization', 'checkrequesteduseragenda']]);
 Route::get('/agenda/all', ['uses' => 'AgendaController@all', 'middleware' => ['checkauthorization']]);

@@ -110,6 +110,6 @@ class CreateUserRequest extends FormRequest
                 $user->exams()->save(($exam));
             }
         }
-        Mail::to($user)->send(new Welcome($user, URL::route('home')));
+        Mail::to($user)->queue(new Welcome($user, URL::route('home')));
     }
 }
