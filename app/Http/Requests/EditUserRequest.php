@@ -97,10 +97,12 @@ class EditUserRequest extends FormRequest
 
         if(request('project')) {
             if (in_array(request('role_id'), [3])) {
-                if ($user->currentProject()->id != request('project')) {
+                if ($user->currentProject() != null && $user->currentProject()->id != request('project')) {
                     $user->projects()->updateExistingPivot($user->currentProject()->id, ['active' => false, 'einddatum' => Carbon::now()]);
-                    $user->projects()->attach([request('project') => ['active' => true, 'startdatum' => Carbon::now()]]);
                 }
+                $user->projects()->attach([request('project') => ['active' => true, 'startdatum' => Carbon::now()]]);
+                $user->companies()->attach([$user->currentproject()->company->id => ['bedrijfsrol' => 'Stagiair']]);
+
             }
         }
 
@@ -123,10 +125,15 @@ class EditUserRequest extends FormRequest
                 }
             }
         }
+        if(in_array(request('role_id'), [1,2,5]))
+        {
+            $user->projects()->detach();
+        }
         if(request('role_id') != '3'){
             $user->kwalificatiedossier()->dissociate()->save();
             $user->exams()->delete();
         }
+
 
     }
 }
