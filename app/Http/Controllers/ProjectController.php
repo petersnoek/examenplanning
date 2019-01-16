@@ -65,7 +65,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $companies = Company::all();
-        return view('projects.edit',compact('project', 'companies'));
+        $company = Company::find($project->company->id);
+        return view('projects.edit',compact('project', 'companies', 'company'));
     }
 
     /**

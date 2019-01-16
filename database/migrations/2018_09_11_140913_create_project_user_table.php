@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -18,7 +19,8 @@ class CreateProjectUserTable extends Migration
             $table->unsignedInteger('project_id');
             $table->unsignedInteger('user_id');
             $table->boolean('active')->default(false);
-            $table->date('startdatum');
+            $table->boolean('begeleider')->default(false);
+            $table->date('startdatum')->default(Carbon::now());
             $table->date('einddatum')->nullable();
 
 

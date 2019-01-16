@@ -16,4 +16,7 @@ class Company extends Model
     public function medewerkers(){
 
     }
+    public function begeleiders(){
+        return $this->users()->where('bedrijfsrol', '!=' , 'stagiair');
+    }
 }

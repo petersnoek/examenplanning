@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Project;
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateProjectRequest extends FormRequest
@@ -26,6 +27,7 @@ class CreateProjectRequest extends FormRequest
     {
         return [
             'naam' => 'required|unique:projects,naam',
+            'begeleider' => 'required',
             'bedrijf' => 'required',
         ];
     }
@@ -43,5 +45,8 @@ class CreateProjectRequest extends FormRequest
             'naam' => request('naam'),
             'company_id' => request('bedrijf'),
         ]);
+        $user = User::find(request('begeleider'));
+        //koppel begeleider aan project als begeleider
+        $project->user()->attach([request('begeleider') => ['begeleider' => true, 'active' => true]]);
     }
 }
