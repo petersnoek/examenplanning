@@ -16,4 +16,7 @@ class Project extends Model
     public function exams(){
         return $this->belongsToMany(Exam::class);
     }
+    public function begeleider(){
+        return $this->user()->where('begeleider' , '=' , true)->first();
+    }
 }

@@ -6,6 +6,7 @@ use App\Company;
 use App\Http\Requests\CreateCompanyRequest;
 use App\Http\Requests\EditCompanyRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
 {
@@ -95,5 +96,13 @@ class CompanyController extends Controller
     public function getAll()
     {
         return response()->json(array('msg'=> Company::all()),200);
+    }
+
+    public function getEmployees(Company $company){
+        $begeleiders = $company->begeleiders;
+        Log::info('de begeleiders' . $begeleiders);
+//        $begeleiders = 3;
+
+        return response()->json(array('msg'=> $begeleiders),200);
     }
 }

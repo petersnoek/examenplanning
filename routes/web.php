@@ -96,6 +96,8 @@ Route::get('/getPvbs/{kwalificatiedossier}', 'ExamController@getPvbs');
 Route::get('/kwalificatiedossier/all', 'KwalificatiedossierController@all');
 Route::get('/companies/all', 'CompanyController@getAll');
 Route::get('/projects/all', 'ProjectController@getAll');
+Route::get('/employees/{company}', 'CompanyController@getEmployees');
+
 Route::post('/exams/invitees', 'ExamController@getInvitees');
 
 

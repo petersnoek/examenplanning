@@ -41,6 +41,9 @@ class EditProjectRequest extends FormRequest
         $project = request('project');
         $project->naam = request('naam');
         $project->company_id = request('bedrijf');
+
+        $project->user()->sync([request('begeleider') => ['begeleider' => true, 'active' => true]]);
+
         $project->update();
     }
 }

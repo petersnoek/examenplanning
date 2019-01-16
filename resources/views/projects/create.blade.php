@@ -37,7 +37,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-material">
                                         <select class="js-select2 form-control select2-hidden-accessible"
-                                                id="example2-select2" name="bedrijf" style="width: 100%;"
+                                                id="bedrijf" name="bedrijf" style="width: 100%;"
                                                 data-placeholder="Kies een bedrijf..." tabindex="-1"
                                                 aria-hidden="true" required size="1">
                                             <option></option>
@@ -53,7 +53,7 @@
                                                 </span>
                                             <span class="dropdown-wrapper" aria-hidden="true"></span>
                                         </span>
-                                        <label for="example2-select2">Kies een bedrijf</label>
+                                        <label for="bedrijf">Kies een bedrijf</label>
                                         @if ($errors->has('bedrijf'))
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('bedrijf') }}</strong>
@@ -61,9 +61,34 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="form-material">
+                                        <select class="js-select2 form-control select2-hidden-accessible"
+                                                id="begeleider" name="begeleider" style="width: 100%;"
+                                                data-placeholder="Kies een begeleider..." tabindex="-1"
+                                                aria-hidden="true" required size="1">
+                                            <option></option>
+                                            <!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                            <!-- fill using ajax callback -->
+
+                                        </select>
+                                        <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"
+                                              dir="ltr" style="width: 100%;">
+                                                <span class="selection">
+
+                                                </span>
+                                            <span class="dropdown-wrapper" aria-hidden="true"></span>
+                                        </span>
+                                        <label for="example2-select2">Kies een begeleider</label>
+                                        @if ($errors->has('begeleider'))
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('begeleider') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <div class="col-xs-12">
                                     <div class="form-material input-group">
                                         <input class="form-control" type="text" id="naam"
@@ -105,4 +130,7 @@
             App.initHelpers(['select2']);
         });
     </script>
+    <script src="{{asset('assets/js/projectcreation/projectcrud.js')}}"></script>
+
+
 @endpush
