@@ -25,7 +25,10 @@ class Exam extends Model
     public function invitees(){
         $duplicates = [];
         array_push($duplicates, $this->user);
-
+        //check if exam has begeleider
+        if($this->project->begeleider()){
+            array_push($duplicates, $this->project->begeleider());
+        }
         foreach($this->slot->users as $invitee)
         {
             array_push($duplicates, $invitee);

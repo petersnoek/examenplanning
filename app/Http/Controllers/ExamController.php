@@ -120,6 +120,11 @@ class ExamController extends Controller
             foreach(request('message') as $exam){
                 $foundExam = Exam::find($exam);
                 array_push($duplicates, $foundExam->user);
+
+                if($foundExam->project->begeleider()){
+                    array_push($duplicates, $foundExam->project->begeleider());
+                }
+
                 foreach($foundExam->slot->users as $invitee)
                 {
                     array_push($duplicates, $invitee);

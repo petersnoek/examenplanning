@@ -3,6 +3,7 @@
 @push('style')
     <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2-bootstrap.min.css')}}">
+    <script>{{ 'var currentBegeleider = ' . ($project->begeleider() ? $project->begeleider()->id : -1) . ';'}}</script>
 @endpush
 
 @section('content')
@@ -72,7 +73,7 @@
                                             {{--<option></option>--}}
                                             <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                             <!-- fill using ajax callback -->
-                                            <option value="{{$project->begeleider()->id}}">{{$project->begeleider()->voornaam}}</option>
+                                                <option></option>
                                         </select>
                                         <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"
                                               dir="ltr" style="width: 100%;">
