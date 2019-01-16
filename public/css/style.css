@@ -9,6 +9,8 @@
     color:#999999;
     padding:10px;
 }
+
+.
 .dashboard-auth > li > a:hover{
     color: rgb(62, 62, 62);
 }
@@ -50,4 +52,8 @@
 }
 .slot{
     margin-bottom: 5px;
+}
+
+.text-right-force{
+    text-align:right !important;
 }

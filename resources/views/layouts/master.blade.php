@@ -62,6 +62,7 @@
     <!-- END Stylesheets -->
 </head>
 <body>
+<div id="page-loader"></div>
 <!-- Page Container -->
 <!--
     Available Classes:
@@ -81,7 +82,7 @@
 
     'header-navbar-fixed'        Enables fixed header
 -->
-<div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
+<div id="page-container" class="sidebar-l sidebar-mini sidebar-o side-scroll header-navbar-fixed">
     <!-- Side Overlay-->
     @include('layouts.aside')
     <!-- END Side Overlay -->
@@ -92,6 +93,9 @@
     <!-- Flash message -->
     @if($flash = session('message'))
         <div id="flash-message" class="alert alert-success js-animation-object animated bounce" role="alert">{{$flash}}</div>
+    @endif
+    @if($errors->has('error'))
+        <div id="flash-message" class="alert alert-danger js-animation-object animated shake" role="alert">{{$errors->first('error')}}</div>
     @endif
     {{--@include('flash::message')--}}
     <!-- END Flash message -->
@@ -115,9 +119,12 @@
 <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
 <script src="{{asset('assets/js/oneui.min.js')}}"></script>
 
-@stack('scripts')
+
 
 <!-- Page JS Plugins + Page JS Code -->
+@stack('scripts')
+
+<!-- General master page JS Code -->
 <script>
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 </script>

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\period;
+use App\Schoolyear;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,21 +26,36 @@ class CreatePeriodForm extends FormRequest
      */
     public function rules()
     {
+        $schoolyear = Schoolyear::find(request('schooljaar'));
         return [
             'schooljaar' => 'required',
-            'periodenaam' => 'required', //make unique in combination with selected schoolyear
-            'startdatum' => 'required',
-            'einddatum' => 'required',
+            'periodenaam' => 'required|unique:periods,periodenaam,NULL,id,schoolyear_id,' . $schoolyear->id,
+            'startdatum' => 'required|after:'. $schoolyear->startdatum . '|before:'. $schoolyear->einddatum,
+            'einddatum' => 'required|after:startdatum',
         ];
     }
 
-    public function persist(){
-//        dd(request('schooljaar'));
-        $period = Period::create([
+    public function messages()
+    {
+        return [
+            'schooljaar.required' => 'Het schooljaarveld is verplicht',
+            'periodenaam.required' => 'Het periodenaamveld is verplicht',
+            'periodenaam.unique' => 'Een periode met deze naam bestaat al voor dit schooljaar',
+            'startdatum.required' => 'Het startdatumveld is verplicht',
+            'einddatum.required' => 'Het einddatumveld is verplicht',
+            'einddatum.after' => 'De einddatum moet na de startdatum liggen',
+            'startdatum.before' => 'De startdatum moet voor de einddatum van het schooljaar liggen',
+            'startdatum.after' => 'De startdatum moet na de startdatum van het schooljaar liggen',
+        ];
+    }
+
+    public function persist()
+    {
+        $period = period::create([
             'schoolyear_id' => request('schooljaar'),
             'periodenaam' => request('periodenaam'),
-            'startdatum' => Carbon::createFromFormat('d-m-Y', request('startdatum')),
-            'einddatum' => Carbon::createFromFormat('d-m-Y', request('einddatum')),
+            'startdatum' => Carbon::createFromFormat('Y-m-d', request('startdatum')),
+            'einddatum' => Carbon::createFromFormat('Y-m-d', request('einddatum')),
         ]);
     }
 }

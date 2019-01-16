@@ -1,9 +1,9 @@
 
 
 @component('mail::message')
-![Examenplanning]
-[Examenplanning]:{{asset('/images/examenplanning_placeholder.svg' )}} "Examenplanning"
-# Welkom bij Examenplanning, {{$user->name}}!
+![Examenplanning]({{asset('/images/examenplanning_placeholder.svg')}})
+
+# Welkom bij Examenplanning, {{$user->voornaam}}!
 
 Examenplanning is een tool ontwikkeld door het Da Vinci College, en bied een oplossing voor het plannen en organiseren van examens.
 Of het nu gaat om het inplannen, het bezoeken of gemakkelijke communicatie tussen bedrijf, student en school, Examenplanning ondersteund het allemaal!
@@ -13,7 +13,7 @@ Of het nu gaat om het inplannen, het bezoeken of gemakkelijke communicatie tusse
 
 @endcomponent
 
-@component('mail::button', ['url' => 'https://examenplanning.nl'])
+@component('mail::button', ['url' => $url])
 Start met plannen
 @endcomponent
 

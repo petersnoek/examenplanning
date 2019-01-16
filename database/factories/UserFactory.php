@@ -1,5 +1,8 @@
 <?php
 
+use App\Kwalificatiedossier;
+use App\Role;
+use Carbon\Carbon;
 use Faker\Generator as Faker;
 
 /*
@@ -15,9 +18,22 @@ use Faker\Generator as Faker;
 
 $factory->define(App\User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'voornaam' => $faker->firstName,
+        'tussenvoegsel' => "van 't",
+        'achternaam' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', //secret
+        'telefoonnummer' => $faker->phoneNumber,
+        'straat' => $faker->streetName,
+        'huisnummer' => $faker->numberBetween(1, 500),
+        'toevoeging' => $faker->randomLetter,
+        'postcode' => $faker->postcode,
+        'plaats' => $faker->city,
+        'land' => $faker->country,
+        'active' => $faker->boolean,
+        'davinci_id' => 99 . $faker->randomNumber(6, true),
+        'role_id' => Role::inRandomOrder()->first()->id,
+        'kwalificatiedossier_id' => Kwalificatiedossier::inRandomOrder()->first()->id,
         'remember_token' => str_random(10),
     ];
 });

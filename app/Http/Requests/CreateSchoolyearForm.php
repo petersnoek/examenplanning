@@ -5,6 +5,8 @@ namespace App\Http\Requests;
 use App\Schoolyear;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CreateSchoolyearForm extends FormRequest
 {
@@ -28,7 +30,14 @@ class CreateSchoolyearForm extends FormRequest
         return [
             'schooljaar' => 'required|unique:schoolyears,schooljaar',
             'startdatum' => 'required',
-            'einddatum' => 'required',
+            'einddatum' => 'required|after:startdatum',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'schooljaar.unique' => 'Een schooljaar met deze naam bestaat al',
+            'einddatum.after' => 'De einddatum moet na de begindatum liggen',
         ];
     }
 

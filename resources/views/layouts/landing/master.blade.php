@@ -58,7 +58,7 @@
     <!-- END Stylesheets -->
 </head>
 <body>
-
+<div id="page-loader"></div>
 <!-- default Login & register links -->
 {{--@if (Route::has('login'))--}}
     {{--<div class="top-right links">--}}
@@ -138,7 +138,8 @@
 
     <!-- Main Container -->
     <main id="main-container">
-        @include('layouts.auth')
+        <div class="pull-right hidden-sm hidden-xs">@include('layouts.auth')</div>
+
 
         <!-- Hero Content -->
         @include('layouts.landing.banner')

@@ -28,4 +28,13 @@ class Slot extends Model
     public function period(){
         return $this->belongsTo(period::class);
     }
+    public function exams(){
+        return $this->hasMany(Exam::class);
+    }
+    public function users(){
+        return $this->belongsToMany(User::class,'slot_user')->withPivot('user_role', 'user_id', 'slot_id');
+    }
+    public function examinators(){
+        return $this->users()->where('user_role', 'Examinator');
+    }
 }

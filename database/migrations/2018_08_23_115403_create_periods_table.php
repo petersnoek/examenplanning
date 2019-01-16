@@ -18,8 +18,15 @@ class CreatePeriodsTable extends Migration
             $table->string('periodenaam');
             $table->date('startdatum');
             $table->date('einddatum');
-            $table->integer('schoolyear_id');
+            $table->unsignedInteger('schoolyear_id');
             $table->timestamps();
+
+            $table->foreign('schoolyear_id')
+                ->references('id')->on('schoolyears')
+                ->onDelete('cascade');
+        });
+        Schema::table('periods', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
