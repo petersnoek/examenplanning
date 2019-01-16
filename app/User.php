@@ -62,7 +62,7 @@ class User extends Authenticatable
 
     public function projects()
     {
-        return $this->belongsToMany(Project::class, 'project_user');
+        return $this->belongsToMany(Project::class, 'project_user')->withPivot('active', 'startdatum', 'einddatum');
     }
 
     public function remarks()
@@ -88,6 +88,12 @@ class User extends Authenticatable
     public function slots()
     {
         return $this->belongsToMany(Slot::class, 'slot_user');
+    }
+
+    public function currentProject()
+    {
+//        $this->projects()->wherePivot('active', '=', true);
+        return $this->projects()->wherePivot('active', '=', true)->first();
     }
 
 }

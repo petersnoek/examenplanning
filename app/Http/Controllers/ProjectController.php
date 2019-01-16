@@ -94,4 +94,10 @@ class ProjectController extends Controller
         session()->flash('message', 'Project succesvol verwijderd.');
         return redirect('/projects');
     }
+
+    public function getAll(){
+        $projects = Project::with('company')->get();
+
+        return response()->json(array('msg'=> $projects),200);
+    }
 }

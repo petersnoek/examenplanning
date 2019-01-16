@@ -83,24 +83,27 @@ class EditUserRequest extends FormRequest
         $user->davinci_id = request('davinci_id');
         $user->update();
 
-//        dd('hallo',$user->kwalificatiedossier);
+        $user->companies()->detach();
 
         if(request('bedrijf')){
-            if(in_array(request('role_id'), [3,4]))
+
+            $user->projects()->detach();
+
+            if(in_array(request('role_id'), [4]))
             {
-                $user->companies()->detach();
-//                dd(!in_Array(request('bedrijf'), $user->companies->pluck('id')->toArray()));
-                if(in_Array(request('bedrijf'), $user->companies->pluck('id')->toArray()))
-                {
-                    $user->companies()->updateExistingPivot(request('bedrijf'), ['bedrijfsrol'=> request('role_id') == 4 ?  request('rol') : 'Stagiair']);
-                }
-                else{
-                    $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=> request('role_id') == 4 ?  request('rol') : 'Stagiair']]);
-                }
+                $user->companies()->attach(request('bedrijf'), ['bedrijfsrol'=> request('rol')]);
             }
         }
-        else{
-            $user->companies()->detach();
+
+        if(request('project')) {
+            if (in_array(request('role_id'), [3])) {
+                if ($user->currentProject() != null && $user->currentProject()->id != request('project')) {
+                    $user->projects()->updateExistingPivot($user->currentProject()->id, ['active' => false, 'einddatum' => Carbon::now()]);
+                }
+                $user->projects()->attach([request('project') => ['active' => true, 'startdatum' => Carbon::now()]]);
+                $user->companies()->attach([$user->currentproject()->company->id => ['bedrijfsrol' => 'Stagiair']]);
+
+            }
         }
 
         if(request('kwalificatiedossier') && request('role_id') == '3'){
@@ -122,10 +125,15 @@ class EditUserRequest extends FormRequest
                 }
             }
         }
+        if(in_array(request('role_id'), [1,2,5]))
+        {
+            $user->projects()->detach();
+        }
         if(request('role_id') != '3'){
             $user->kwalificatiedossier()->dissociate()->save();
             $user->exams()->delete();
         }
+
 
     }
 }

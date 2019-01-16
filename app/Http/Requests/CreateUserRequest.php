@@ -5,9 +5,12 @@ namespace App\Http\Requests;
 use App\Company;
 use App\Exam;
 use App\Kwalificatiedossier;
+use App\Mail\Welcome;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 
 class CreateUserRequest extends FormRequest
 {
@@ -69,7 +72,7 @@ class CreateUserRequest extends FormRequest
             'tussenvoegsel' => request('tussenvoegsel'),
             'achternaam' => request('achternaam'),
             'email' => request('email'),
-            'password' => request('password'),
+            'password' => bcrypt(request('password')),
             'telefoonnummer' => request('telefoonnummer'),
             'straat' => request('straat'),
             'huisnummer' => request('huisnummer'),
@@ -81,12 +84,21 @@ class CreateUserRequest extends FormRequest
             'role_id' => request('role_id'),
             'davinci_id' => request('davinci_id'),
         ]);
-        if(in_array(request('role_id'), [3,4])){
+        if(in_array(request('role_id'), [4])){
             if(request('bedrijf'))
             {
-                $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=> request('role_id') == 4 ?  request('rol') : 'Stagiair']]);
+                $user->companies()->attach([request('bedrijf') => ['bedrijfsrol'=> request('rol')]]);
             }
         }
+
+        if(request('project')){
+            if(in_array(request('role_id'), [3]))
+            {
+                $user->projects()->attach([request('project') => ['active'=> true, 'startdatum' => Carbon::now()]]);
+                $user->companies()->attach([$user->currentproject->company->id => ['bedrijfsrol'=> 'Stagiair']]);
+            }
+        }
+
         if(request('kwalificatiedossier') && request('role_id') == '3'){
 
             $user->kwalificatiedossier()->associate(request('kwalificatiedossier'))->save();
@@ -99,5 +111,6 @@ class CreateUserRequest extends FormRequest
                 $user->exams()->save(($exam));
             }
         }
+        Mail::to($user)->send(new Welcome($user, URL::route('home')));
     }
 }

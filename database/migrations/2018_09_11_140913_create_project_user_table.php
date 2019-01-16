@@ -17,6 +17,10 @@ class CreateProjectUserTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('project_id');
             $table->unsignedInteger('user_id');
+            $table->boolean('active')->default(false);
+            $table->date('startdatum');
+            $table->date('einddatum')->nullable();
+
 
             $table->foreign('project_id')
                 ->references('id')->on('projects')

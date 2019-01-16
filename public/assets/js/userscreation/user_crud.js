@@ -4,7 +4,8 @@ $( document ).ready(function() {
     emptyAdditionalcontent();
         if($('#example-inline-radio3').is(':checked')) {
             showKwalificatiedossier();
-            showBedrijven();
+            // showBedrijven();
+            showProjects();
         }
         if($('#example-inline-radio4').is(':checked')) {
             showBedrijven();
@@ -21,7 +22,8 @@ $("#example-inline-radio4").change(function () {
 $("#example-inline-radio3").change(function () {
     emptyAdditionalcontent();
     showKwalificatiedossier();
-    showBedrijven();
+    // showBedrijven();
+    showProjects();
 });
 
 function showKwalificatiedossier(){
@@ -52,6 +54,24 @@ function showBedrijven(){
             App.initHelpers(['select2']);
             $.each(data.msg, function (index, value) {
                 $('#companies').append('<option value="' + value.id + '">' + value.naam + '</option>');
+            });
+        },
+        error: function (xhr, status, error) {
+            alert(xhr.responseText);
+        }
+    });
+}
+
+function showProjects(){
+    $.ajax({
+        type: "GET",
+        url: '/projects/all',
+        data: data,
+        success: function (data) {
+            appendProjects();
+            App.initHelpers(['select2']);
+            $.each(data.msg, function (index, value) {
+                $('#projects').append('<option value="' + value.id + '">' + value.company.naam + ' | ' + value.naam + '</option>');
             });
         },
         error: function (xhr, status, error) {
@@ -129,6 +149,26 @@ function appendKwalificatiedossier(){
         '                                        <label for="example2-select2">Kies een kwalificatiedossier</label>\n' +
         '                                    </div>');
 }
+
+function appendProjects(){
+    $('.additional_content').append('<div class="form-material">\n' +
+        '                                        <select class="js-select2 form-control select2-hidden-accessible"\n' +
+        '                                                id="projects" name="project" style="width: 100%;"\n' +
+        '                                                data-placeholder="Kies een project..." tabindex="-1"\n' +
+        '                                                aria-hidden="true" required>\n' +
+        '                                            <option></option>\n' +
+        '                                        </select>\n' +
+        '                                        <span class="select2 select2-container select2-container--default select2-container--below select2-container--focus"\n' +
+        '                                              dir="ltr" style="width: 100%;">\n' +
+        '                                                <span class="selection">\n' +
+        '\n' +
+        '                                                </span>\n' +
+        '                                            <span class="dropdown-wrapper" aria-hidden="true"></span>\n' +
+        '                                        </span>\n' +
+        '                                        <label for="example2-select2">Kies een project</label>\n' +
+        '                                    </div>');
+}
+
 $('.other_radio').click(function () {
     emptyAdditionalcontent();
 });

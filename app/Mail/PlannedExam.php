@@ -2,27 +2,31 @@
 
 namespace App\Mail;
 
+use App\Slot;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class Welcome extends Mailable
+class PlannedExam extends Mailable
 {
     use Queueable, SerializesModels;
-    public $user;
+
     public $url;
+    public $slot;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, $url)
+    public function __construct($url, Slot $slot, User $user)
     {
-        $this->user = $user;
         $this->url = $url;
+        $this->slot = $slot;
+        $this->user = $user;
     }
 
     /**
@@ -32,6 +36,6 @@ class Welcome extends Mailable
      */
     public function build()
     {
-        return $this->subject('Welkom bij examenplanning')->markdown('emails.welcome');
+        return $this->subject('Je planning is veranderd!')->markdown('emails.planning.plannedexam');
     }
 }

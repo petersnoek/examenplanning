@@ -22,4 +22,14 @@ class Exam extends Model
     public function project(){
         return $this->belongsTo(Project::class, 'project_id');
     }
+    public function invitees(){
+        $duplicates = [];
+        array_push($duplicates, $this->user);
+
+        foreach($this->slot->users as $invitee)
+        {
+            array_push($duplicates, $invitee);
+        }
+        return array_unique($duplicates);
+    }
 }
