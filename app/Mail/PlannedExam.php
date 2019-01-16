@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Exam;
 use App\Slot;
 use App\User;
 use Illuminate\Bus\Queueable;
@@ -14,19 +15,19 @@ class PlannedExam extends Mailable
     use Queueable, SerializesModels;
 
     public $url;
-    public $slot;
     public $user;
+    public $exam;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($url, Slot $slot, User $user)
+    public function __construct($url, User $user, Exam $exam)
     {
         $this->url = $url;
-        $this->slot = $slot;
         $this->user = $user;
+        $this->exam = $exam;
     }
 
     /**

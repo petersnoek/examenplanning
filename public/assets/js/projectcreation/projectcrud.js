@@ -1,17 +1,15 @@
 var data = {_token: '{{csrf_token()}}'};
-var currentBegeleider = -1;
 
 $(document).ready(function () {
-    currentBegeleider = $('#begeleider').val();
     getEmployees();
 });
 
 $('#bedrijf').change(function (e) {
+    $('#begeleider').empty().append('<option></option>');
     getEmployees();
 });
 
 function getEmployees() {
-    $('#begeleider').empty().append('<option></option>');
     var company = $("#bedrijf").val();
     if (company) {
         //fetch employees from server
@@ -21,7 +19,7 @@ function getEmployees() {
             data: data,
             success: function (data) {
                 $.each(data.msg, function (index, value) {
-                    if(currentBegeleider != null && parseInt(value.id) === parseInt(currentBegeleider)){
+                    if(currentBegeleider > -1 && parseInt(value.id) === currentBegeleider){
                         $('#begeleider').append('<option value="' + value.id + '" selected >' + value.achternaam + ", " + value.voornaam + " " + value.tussenvoegsel + '</option>');
                     }
                     else{

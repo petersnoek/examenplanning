@@ -59,11 +59,17 @@ class PlanSlotRequest extends FormRequest
         }
 
         $slot->save();
-
+        $slot = $slot->fresh();
         //send mail to all examinators
-        foreach($slot->users as $user){
-            Mail::to($user)->send(new PlannedExam(URL::route('personalAgenda'), $slot->fresh(), $user));
+        foreach($slot->exams as $exam){
+            foreach($exam->invitees() as $user){
+                Mail::to($user)->send(new PlannedExam(URL::route('personalAgenda'), $user, $exam));
+            }
         }
+//        foreach($slot->users as $user){
+//            Mail::to($user)->send(new PlannedExam(URL::route('personalAgenda'), $slot->fresh(), $user));
+//        }
+//        foreach()
         //send mail to student & bedrijfsbegeleider
 
     }

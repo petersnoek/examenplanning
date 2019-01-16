@@ -3,6 +3,7 @@
 @push('style')
     <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2-bootstrap.min.css')}}">
+    <script>{{ 'var currentBegeleider = -1;'}}</script>
 @endpush
 
 @section('content')
