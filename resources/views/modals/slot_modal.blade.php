@@ -15,14 +15,31 @@
                     <div class="block-content">
                         <div class="block">
                             <div class="block-content-full">
-                                <span class="font-w600"><span id="bedrijfsnaam">Naam bedrijf hier</span> - <i class="si si-envelope-open"></i> <a
+                                <span class="font-w600"><span id="bedrijfsnaam">Naam bedrijf hier</span> - <i
+                                            class="si si-envelope-open"></i> <a
                                             href="mailto:bedrijfsbegeleider@mail.com" id="begeleidersemail">Naam bedrijfsbegeleider</a> - <i
-                                            class="si si-call-out"></i> <a href="tel:telnrbedrijfsbegeleider" id="begeleidersTelnr">Bedrijfsbegeleidertelnr</a> <br></span>
+                                            class="si si-call-out"></i> <a href="tel:telnrbedrijfsbegeleider"
+                                                                           id="begeleidersTelnr">Bedrijfsbegeleidertelnr</a> <br></span>
                             </div>
                             {{--creation oof map--}}
                             {{--@include('slots.location')--}}
-                            <img class="img-responsive" src="{{asset('images/maps.png')}}">
-                            <a href="#" id="directions" target="_blank">Klik hier voor routebeschrijving</a>
+
+                            {{--<div id="container">--}}
+                                {{--<div id="dummy"></div>--}}
+                                {{--<div id="element">--}}
+                                    {{--some text--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+
+                            <div class="map-responsive">
+                                <iframe class="" id="frame"
+                                        src="https://maps.google.com/maps?q=ROC+Da+Vinci+College&amp;ie=UTF8&amp;t=&amp;z=12&amp;iwloc=B&amp;output=embed"
+                                        frameborder="0" scrolling="no"></iframe>
+                            </div>
+
+                            {{--<img class="img-responsive" src="{{asset('images/maps.png')}}">--}}
+
+                            {{--<a href="#" id="directions" target="_blank">Klik hier voor routebeschrijving</a>--}}
                             {{--end creation of map--}}
                             <div class="block-content block-content-full">
 
@@ -38,7 +55,8 @@
                                                 <option id="option"></option>
                                                 <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                                 @foreach($examinators as $examinator)
-                                                    <option id="option" value="{{$examinator->id}}">{{$examinator->achternaam}}
+                                                    <option id="option"
+                                                            value="{{$examinator->id}}">{{$examinator->achternaam}}
                                                         , {{$examinator->voornaam}} {{$examinator->tussenvoegsel}}
                                                         ({{$examinator->davinci_id}})
                                                     </option>
@@ -63,7 +81,8 @@
                                                 <option></option>
                                                 <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                                 @foreach($examens as $exam)
-                                                    <option value="{{$exam->id}}">{{$exam->user ? $exam->user->voornaam : 'Geen student gekoppeld'}} - {{$exam->proevevanbekwaamheids->kerntaak}}
+                                                    <option value="{{$exam->id}}">{{$exam->user ? $exam->user->voornaam : 'Geen student gekoppeld'}}
+                                                        - {{$exam->proevevanbekwaamheids->kerntaak}}
                                                     </option>
                                                 @endforeach
                                             </select>

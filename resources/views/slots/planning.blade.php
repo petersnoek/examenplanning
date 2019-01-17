@@ -150,6 +150,7 @@
                     $("#begeleidersTelnr").html('Geen begeleider');
                 }
 
+                $("#frame").attr('src', 'https://maps.google.com/maps?q=' + $(e.relatedTarget).data('postcode') + '&ie=UTF8&t=&z=15&iwloc=B&output=embed');
                 $("#directions").attr('href', 'https://www.google.com/maps?q=' + $(e.relatedTarget).data('postcode'));
 
 
