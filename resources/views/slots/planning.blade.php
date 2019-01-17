@@ -69,8 +69,8 @@
                                                          data-date="{{ \Carbon\Carbon::parse($slot->datum)->format('Y-m-d')}}"
                                                          data-starttijd="{{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i')}}"
                                                          data-eindtijd="{{ \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}"
-                                                         data-genodigden="{{$slot->users ? $slot->users : 'Geen genodigden'}}"
-                                                         data-user="{{$slot->exams->isNotEmpty() ? $slot->exams->first()->user : ''}}"
+                                                         {{--data-genodigden="{{$slot->users ? $slot->users->pluck('id') : 'Geen genodigden'}}"--}}
+                                                         {{--data-user="{{$slot->exams->isNotEmpty() ? $slot->exams->first()->user->id : ''}}"--}}
                                                     >
                                                                 <span class="font-w700" data-target="slotModal">
                                                                     {{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i') . "-" . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}
@@ -147,14 +147,19 @@
                         else {
                             $('#slotModalGenodigden > ul').empty();
                             var genodigden = "";
-                            console.log(data.message.invitees);
-                            data.message.invitees.forEach(function (element) {
-                                genodigden = genodigden + "<li>" + element.voornaam + "</li>";
+                            // console.log(data.message.invitees);
+                            $.each( data.message.invitees, function( key, value ) {
+                                    genodigden = genodigden + "<li>" + value.voornaam + "</li>";
                             });
                             $("#slotModalGenodigden > ul").html(genodigden);
 
                             $('#examinatoren').val(null);
-                            $('#examinatoren').val(data.message.examinators).trigger('change');
+                            var examinators = [];
+                            $.each( data.message.invitees, function( key, value ) {
+                                examinators.push(key);
+                            });
+                            $('#examinatoren').val(examinators).trigger('change');
+
                         }
                     },
                     error: function (xhr, status, error) {

@@ -114,28 +114,44 @@ class ExamController extends Controller
 
     public function getInvitees()
     {
-        $duplicates = [];
-        $duplicateExaminators = [];
+
+        $invitees = [];
+        $examinators = [];
         if(request('message')){
+//        if(true){
             foreach(request('message') as $exam){
+//            foreach([1,2] as $exam){
                 $foundExam = Exam::find($exam);
-                array_push($duplicates, $foundExam->user);
 
-                if($foundExam->project->begeleider()){
-                    array_push($duplicates, $foundExam->project->begeleider());
+                //get all invitees
+                foreach($foundExam->invitees() as $invitee){
+                    $invitees[$invitee->id] = $invitee;
+//                    array_push($duplicates, $invitee);
                 }
 
-                foreach($foundExam->slot->users as $invitee)
-                {
-                    array_push($duplicates, $invitee);
-                    if($invitee->pivot->user_role == "Examinator")
-                    {
-                        array_push($duplicateExaminators, $invitee->id);
-                    }
+
+                //get only examinators
+                foreach($foundExam->slot->examinators as $examinator){
+                    $examinators[$examinator->id] = $examinator;
+//                    array_push($duplicateExaminators, $examinator);
                 }
+
+
+//                array_push($duplicates, $foundExam->user);
+//
+//                if($foundExam->project->begeleider()){
+//                    array_push($duplicates, $foundExam->project->begeleider());
+//                }
+//
+//                foreach($foundExam->slot->users as $invitee)
+//                {
+//                    array_push($duplicates, $invitee);
+//                    if($invitee->pivot->user_role == "Examinator")
+//                    {
+//                        array_push($duplicateExaminators, $invitee->id);
+//                    }
+//                }
             }
-            $invitees = array_unique($duplicates);
-            $examinators = array_unique($duplicateExaminators);
         }
 
         try {

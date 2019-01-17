@@ -127,7 +127,8 @@ Route::post('/projects', 'ProjectController@store');
 Route::put('/projects/{project}', 'ProjectController@update');
 
 
-
+//test routes
+Route::get('/test', 'ExamController@getInvitees');
 
 
 
