@@ -69,8 +69,18 @@
                                                          data-date="{{ \Carbon\Carbon::parse($slot->datum)->format('Y-m-d')}}"
                                                          data-starttijd="{{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i')}}"
                                                          data-eindtijd="{{ \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}"
-                                                         {{--data-genodigden="{{$slot->users ? $slot->users->pluck('id') : 'Geen genodigden'}}"--}}
-                                                         {{--data-user="{{$slot->exams->isNotEmpty() ? $slot->exams->first()->user->id : ''}}"--}}
+
+                                                         data-begeleidernaam="{{$slot->exams->first()->project->begeleider()['achternaam']}}, {{$slot->exams->first()->project->begeleider()['voornaam']}} {{$slot->exams->first()->project->begeleider()['tussenvoesgel']}}"
+                                                         data-begeleider_email="{{$slot->exams->first()->project->begeleider()['email']}}"
+                                                         data-begeleider_telnr="{{$slot->exams->first()->project->begeleider()['telefoonnummer']}}"
+
+                                                         data-bedrijfsnaam="{{$slot->exams->first()->project->company->naam}}"
+                                                         data-straat="{{$slot->exams->first()->project->company->straat}}"
+                                                         data-huisnummer="{{$slot->exams->first()->project->company->huisnummer}}"
+                                                         data-toevoeging="{{$slot->exams->first()->project->company->toevoeging}}"
+                                                         data-postcode="{{$slot->exams->first()->project->company->postcode}}"
+                                                         data-plaats="{{$slot->exams->first()->project->company->plaats}}"
+                                                         data-land="{{$slot->exams->first()->project->company->land}}"
                                                     >
                                                                 <span class="font-w700" data-target="slotModal">
                                                                     {{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i') . "-" . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}
@@ -126,6 +136,22 @@
                 $("#slotModalDatum").html($(e.relatedTarget).data('date'));
                 $("#slotModalStarttijd").html($(e.relatedTarget).data('starttijd'));
                 $("#slotModalEindtijd").html($(e.relatedTarget).data('eindtijd'));
+                $("#bedrijfsnaam").html($(e.relatedTarget).data('bedrijfsnaam'));
+                if($(e.relatedTarget).data('begeleider_email')){
+                    $("#begeleidersemail").html($(e.relatedTarget).data('begeleidernaam'));
+                    $("#begeleidersemail").attr('href', 'mailto:' + $(e.relatedTarget).data('begeleider_email'));
+                    $("#begeleidersTelnr").attr('href', 'tel:' + $(e.relatedTarget).data('begeleider_telnr'));
+                    $("#begeleidersTelnr").html($(e.relatedTarget).data('begeleider_telnr'));
+                }
+                else{
+                    $("#begeleidersemail").html('Geen begeleider');
+                    $("#begeleidersemail").attr('href', '#');
+                    $("#begeleidersTelnr").attr('href', '#');
+                    $("#begeleidersTelnr").html('Geen begeleider');
+                }
+
+                $("#directions").attr('href', 'https://www.google.com/maps?q=' + $(e.relatedTarget).data('postcode'));
+
 
                 $('#examens').val(null);
                 $('#examinatoren').val(null).trigger('change');
@@ -149,7 +175,7 @@
                             var genodigden = "";
                             // console.log(data.message.invitees);
                             $.each( data.message.invitees, function( key, value ) {
-                                    genodigden = genodigden + "<li>" + value.voornaam + "</li>";
+                                    genodigden = genodigden + "<li>" + value.davinci_id + " - " + value.achternaam + ", " + value.voornaam + " " + value.tussenvoegsel + "</li>";
                             });
                             $("#slotModalGenodigden > ul").html(genodigden);
 

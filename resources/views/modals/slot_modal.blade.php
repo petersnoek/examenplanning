@@ -15,13 +15,14 @@
                     <div class="block-content">
                         <div class="block">
                             <div class="block-content-full">
-                                <span class="font-w600">Naam bedrijf hier - <i class="si si-envelope-open"></i> <a
-                                            href="mailto:bedrijfsbegeleider@mail.com">Naam bedrijfsbegeleider</a> - <i
-                                            class="si si-call-out"></i> <a href="tel:telnrbedrijfsbegeleider">Bedrijfsbegeleidertelnr</a> <br></span>
+                                <span class="font-w600"><span id="bedrijfsnaam">Naam bedrijf hier</span> - <i class="si si-envelope-open"></i> <a
+                                            href="mailto:bedrijfsbegeleider@mail.com" id="begeleidersemail">Naam bedrijfsbegeleider</a> - <i
+                                            class="si si-call-out"></i> <a href="tel:telnrbedrijfsbegeleider" id="begeleidersTelnr">Bedrijfsbegeleidertelnr</a> <br></span>
                             </div>
                             {{--creation oof map--}}
                             {{--@include('slots.location')--}}
                             <img class="img-responsive" src="{{asset('images/maps.png')}}">
+                            <a href="#" id="directions" target="_blank">Klik hier voor routebeschrijving</a>
                             {{--end creation of map--}}
                             <div class="block-content block-content-full">
 
