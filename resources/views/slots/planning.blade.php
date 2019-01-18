@@ -75,6 +75,8 @@
                                                          data-begeleider_email="{{isset($slot->exams->first()->project) ?$slot->exams->first()->project->begeleider()['email'] : ''}}"
                                                          data-begeleider_telnr="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->begeleider()['telefoonnummer'] : ''}}"
 
+                                                         data-examinatoren="{{$slot->examinators->pluck('id')}}"
+
                                                          data-bedrijfsnaam="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->naam : ''}}"
                                                          data-straat="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->straat : ''}}"
                                                          data-huisnummer="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->huisnummer : ''}}"
@@ -83,9 +85,14 @@
                                                          data-plaats="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->plaats :''}}"
                                                          data-land="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->land : ''}}"
                                                     >
-                                                                <span class="font-w700" data-target="slotModal">
-                                                                    {{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i') . "-" . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}
-                                                                </span>
+                                                        <span class="text-muted">
+                                                            @foreach($slot->examinators as $examinator)
+                                                                 {{$examinator->davinci_id}}
+                                                            @endforeach
+                                                        </span>
+                                                        <span class="font-w700" data-target="slotModal">
+                                                            {{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i') . "-" . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}
+                                                        </span>
                                                     </div>
                                                 @endif
                                             @endforeach
@@ -185,12 +192,11 @@
                                 $("#slotModalGenodigden > ul").html(genodigden);
 
                                 $('#examinatoren').val(null);
-                                var examinators = [];
-                                $.each(data.message.invitees, function (key, value) {
-                                    examinators.push(key);
-                                });
-                                $('#examinatoren').val(examinators).trigger('change');
-
+                                // var examinators = [];
+                                // $.each(data.message.examinators, function (key, value) {
+                                //     examinators.push(key);
+                                // });
+                                $('#examinatoren').val($(e.relatedTarget).data('examinatoren')).trigger('change');
                             }
                         },
                         error: function (xhr, status, error) {

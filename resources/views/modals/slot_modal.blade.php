@@ -55,7 +55,7 @@
                                                 <option id="option"></option>
                                                 <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                                 @foreach($examinators as $examinator)
-                                                    <option id="option"
+                                                    <option id=""
                                                             value="{{$examinator->id}}">{{$examinator->achternaam}}
                                                         , {{$examinator->voornaam}} {{$examinator->tussenvoegsel}}
                                                         ({{$examinator->davinci_id}})
