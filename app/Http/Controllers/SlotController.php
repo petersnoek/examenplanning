@@ -37,7 +37,8 @@ class SlotController extends Controller
      */
     public function create(Period $period)
     {
-        return view('slots.create', compact('period'));
+        $examinatoren = User::where('role_id', '=', '2')->get();
+        return view('slots.create', compact('period', 'examinatoren'));
     }
 
     /**

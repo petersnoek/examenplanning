@@ -96,15 +96,20 @@
 
                                 <div class="form-group">
                                     <div class="col-lg-12">
-                                        <div class="input-group">
-                                            <label for="eyes">Aantal simultane slots</label>
-                                            <input class="form-control input-lg" type="number" id="aantal" name="aantal"
-                                                   placeholder="Min: 1"
-                                                   min="1" required/>
-                                        </div>
-                                        @if ($errors->has('aantal'))
+                                        <label for="dagen">Selecteer examinatoren</label>
+                                        <select class="js-select2 form-control select2-hidden-accessible"
+                                                id="examinatoren" name="examinatoren[]"
+                                                style="width: 100%;" data-placeholder="Kies examinator(en)" multiple=""
+                                                tabindex="-1" aria-hidden="true">
+                                            <option></option>
+                                            <!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                            @foreach($examinatoren as $examinator)
+                                                <option value="{{$examinator->id}}">{{$examinator->davinci_id}} - {{$examinator->achternaam}}, {{$examinator->voornaam}} {{$examinator->tussenvoegsel}}</option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('examinatoren'))
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('aantal') }}</strong>
+                                                <strong>{{ $errors->first('examinatoren') }}</strong>
                                             </span>
                                         @endif
                                     </div>
