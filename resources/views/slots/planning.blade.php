@@ -61,7 +61,7 @@
                                             @foreach($slots as $slot)
                                                 @if( $slot->Weeknumber==$wk[1] && $slot->Daynumber==$wd && $slot->datum->format('Y')==$wk[0])
                                                     {{--create the slot viasually--}}
-                                                    <div class="bg-gray-light col-lg-12 text-wrap slot text-center rounded cursor_hand"
+                                                    <div class="{{!$slot->exams->isEmpty() ? 'bg-success' : 'bg-gray-light'}} col-lg-12 text-wrap slot text-center slot-rounded cursor_hand"
                                                          data-toggle="modal"
                                                          data-target="#slotModal"
                                                          data-id="{{ $slot->id }}"
@@ -70,17 +70,18 @@
                                                          data-starttijd="{{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i')}}"
                                                          data-eindtijd="{{ \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}"
 
-                                                         data-begeleidernaam="{{$slot->exams->first()->project->begeleider()['achternaam']}}, {{$slot->exams->first()->project->begeleider()['voornaam']}} {{$slot->exams->first()->project->begeleider()['tussenvoesgel']}}"
-                                                         data-begeleider_email="{{$slot->exams->first()->project->begeleider()['email']}}"
-                                                         data-begeleider_telnr="{{$slot->exams->first()->project->begeleider()['telefoonnummer']}}"
 
-                                                         data-bedrijfsnaam="{{$slot->exams->first()->project->company->naam}}"
-                                                         data-straat="{{$slot->exams->first()->project->company->straat}}"
-                                                         data-huisnummer="{{$slot->exams->first()->project->company->huisnummer}}"
-                                                         data-toevoeging="{{$slot->exams->first()->project->company->toevoeging}}"
-                                                         data-postcode="{{$slot->exams->first()->project->company->postcode}}"
-                                                         data-plaats="{{$slot->exams->first()->project->company->plaats}}"
-                                                         data-land="{{$slot->exams->first()->project->company->land}}"
+                                                         data-begeleidernaam="{{isset($slot->exams->first()->project) ?  $slot->exams->first()->project->begeleider()['achternaam']. ', ' .$slot->exams->first()->project->begeleider()['voornaam'].' '.$slot->exams->first()->project->begeleider()['tussenvoesgel'] : ''}}"
+                                                         data-begeleider_email="{{isset($slot->exams->first()->project) ?$slot->exams->first()->project->begeleider()['email'] : ''}}"
+                                                         data-begeleider_telnr="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->begeleider()['telefoonnummer'] : ''}}"
+
+                                                         data-bedrijfsnaam="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->naam : ''}}"
+                                                         data-straat="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->straat : ''}}"
+                                                         data-huisnummer="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->huisnummer : ''}}"
+                                                         data-toevoeging="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->toevoeging : ''}}"
+                                                         data-postcode="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->postcode : ''}}"
+                                                         data-plaats="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->plaats :''}}"
+                                                         data-land="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->land : ''}}"
                                                     >
                                                                 <span class="font-w700" data-target="slotModal">
                                                                     {{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i') . "-" . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}
@@ -136,14 +137,18 @@
                 $("#slotModalDatum").html($(e.relatedTarget).data('date'));
                 $("#slotModalStarttijd").html($(e.relatedTarget).data('starttijd'));
                 $("#slotModalEindtijd").html($(e.relatedTarget).data('eindtijd'));
-                $("#bedrijfsnaam").html($(e.relatedTarget).data('bedrijfsnaam'));
-                if($(e.relatedTarget).data('begeleider_email')){
+                if($(e.relatedTarget).data('bedrijfsnaam') !== ''){
+                    $("#bedrijfsnaam").html($(e.relatedTarget).data('bedrijfsnaam'));
+                }
+                else{
+                    $("#bedrijfsnaam").html('Geen bedrijf');
+                }
+                if ($(e.relatedTarget).data('begeleider_email')) {
                     $("#begeleidersemail").html($(e.relatedTarget).data('begeleidernaam'));
                     $("#begeleidersemail").attr('href', 'mailto:' + $(e.relatedTarget).data('begeleider_email'));
                     $("#begeleidersTelnr").attr('href', 'tel:' + $(e.relatedTarget).data('begeleider_telnr'));
                     $("#begeleidersTelnr").html($(e.relatedTarget).data('begeleider_telnr'));
-                }
-                else{
+                } else {
                     $("#begeleidersemail").html('Geen begeleider');
                     $("#begeleidersemail").attr('href', '#');
                     $("#begeleidersTelnr").attr('href', '#');
@@ -158,41 +163,40 @@
                 $('#examinatoren').val(null).trigger('change');
                 $('#examens').val($(e.relatedTarget).data('examid')).trigger('change');
 
-                if($(e.relatedTarget).data('examid') != ""){
+                if ($(e.relatedTarget).data('examid') !== "") {
 
 
-                //fetch all invitees
-                $.ajax({
-                    url: '/exams/invitees',
-                    type: 'POST',
-                    data: {message:$(e.relatedTarget).data('examid'), _token: '{{csrf_token()}}'},
-                    success: function (data) {
-                        if (data.fail) {
-                            alert(data.message.error);
-                            console.log(data.message.message);
-                        }
-                        else {
-                            $('#slotModalGenodigden > ul').empty();
-                            var genodigden = "";
-                            // console.log(data.message.invitees);
-                            $.each( data.message.invitees, function( key, value ) {
+                    //fetch all invitees
+                    $.ajax({
+                        url: '/exams/invitees',
+                        type: 'POST',
+                        data: {message: $(e.relatedTarget).data('examid'), _token: '{{csrf_token()}}'},
+                        success: function (data) {
+                            if (data.fail) {
+                                alert(data.message.error);
+                                console.log(data.message.message);
+                            } else {
+                                $('#slotModalGenodigden > ul').empty();
+                                var genodigden = "";
+                                // console.log(data.message.invitees);
+                                $.each(data.message.invitees, function (key, value) {
                                     genodigden = genodigden + "<li>" + value.davinci_id + " - " + value.achternaam + ", " + value.voornaam + " " + value.tussenvoegsel + "</li>";
-                            });
-                            $("#slotModalGenodigden > ul").html(genodigden);
+                                });
+                                $("#slotModalGenodigden > ul").html(genodigden);
 
-                            $('#examinatoren').val(null);
-                            var examinators = [];
-                            $.each( data.message.invitees, function( key, value ) {
-                                examinators.push(key);
-                            });
-                            $('#examinatoren').val(examinators).trigger('change');
+                                $('#examinatoren').val(null);
+                                var examinators = [];
+                                $.each(data.message.invitees, function (key, value) {
+                                    examinators.push(key);
+                                });
+                                $('#examinatoren').val(examinators).trigger('change');
 
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            alert(xhr.responseText);
                         }
-                    },
-                    error: function (xhr, status, error) {
-                        alert(xhr.responseText);
-                    }
-                });
+                    });
                 }
             });
         });
