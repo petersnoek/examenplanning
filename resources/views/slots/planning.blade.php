@@ -84,14 +84,18 @@
                                                          data-postcode="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->postcode : ''}}"
                                                          data-plaats="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->plaats :''}}"
                                                          data-land="{{isset($slot->exams->first()->project) ? $slot->exams->first()->project->company->land : ''}}"
+
+
                                                     >
-                                                        <span class="text-muted">
+                                                        <span data-toggle="popover" title="" data-placement="top" data-html="true" data-content="@foreach($slot->exams as $exam)<b>{{$exam->user->achternaam}}, {{$exam->user->voornaam}} {{$exam->user->tussenvoegsel}}:</b> {{$exam->proevevanbekwaamheids->kerntaak}} - <i>{{$exam->project->company->naam}}</i> <br> @endforeach" data-original-title="<b>@foreach($slot->examinators as $examinator) {{$examinator->davinci_id}} ({{$examinator->achternaam}}) @endforeach</b>">
+                                                            <span class="text-muted">
                                                             @foreach($slot->examinators as $examinator)
-                                                                 {{$examinator->davinci_id}}
-                                                            @endforeach
-                                                        </span>
-                                                        <span class="font-w700" data-target="slotModal">
-                                                            {{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i') . "-" . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}
+                                                                    {{$examinator->davinci_id}}
+                                                                @endforeach
+                                                            </span>
+                                                            <span class="font-w700" data-target="slotModal">
+                                                                {{ \Carbon\Carbon::parse($slot->starttijd)->format('H:i') . "-" . \Carbon\Carbon::parse($slot->eindtijd)->format('H:i')}}
+                                                            </span>
                                                         </span>
                                                     </div>
                                                 @endif
