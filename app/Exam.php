@@ -24,13 +24,17 @@ class Exam extends Model
     }
     public function invitees(){
         $duplicates = [];
+        $this->user['user_role'] = 'Student';
         array_push($duplicates, $this->user);
         //check if exam has begeleider
-        if($this->project->begeleider()){
-            array_push($duplicates, $this->project->begeleider());
-        }
+//        dd($this->user->with(''));
+//        if($this->project->begeleider()){
+//            array_push($duplicates, $this->project->begeleider());
+//        }
+        //get slot->get users-> then go again
         foreach($this->slot->users as $invitee)
         {
+            $invitee['user_role'] = $invitee->pivot->user_role;
             array_push($duplicates, $invitee);
         }
         return array_unique($duplicates);

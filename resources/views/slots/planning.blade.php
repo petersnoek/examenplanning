@@ -191,7 +191,7 @@
                                 var genodigden = "";
                                 // console.log(data.message.invitees);
                                 $.each(data.message.invitees, function (key, value) {
-                                    genodigden = genodigden + "<li>" + value.davinci_id + " - " + value.achternaam + ", " + value.voornaam + " " + value.tussenvoegsel + "</li>";
+                                    genodigden = genodigden + "<li>" + value.davinci_id + " - " + value.achternaam + ", " + value.voornaam + " " + value.tussenvoegsel + " - " + value.user_role + "</li>";
                                 });
                                 $("#slotModalGenodigden > ul").html(genodigden);
 

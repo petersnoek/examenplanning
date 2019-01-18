@@ -7,6 +7,7 @@ use App\Mail\PlannedExam;
 use App\Mail\Welcome;
 use App\Slot;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 
@@ -35,7 +36,7 @@ class PlanSlotRequest extends FormRequest
     }
 
     public function plan(Slot $slot){
-        $slot->users()->detach();
+        $slot->users()->wherePivot('user_role', '=', 'Examinator')->detach();
 
         //detaching the exams
         foreach($slot->exams as $exam){
@@ -52,9 +53,14 @@ class PlanSlotRequest extends FormRequest
 
         if(request('examens')){
             //attaching the selected exams only
+            $slot->users()->wherePivot('user_role', '=', 'Bedrijfsbegeleider')->detach();
             foreach(request('examens') as $examId){
                 $exam = Exam::find((Int)$examId);
                 $slot->exams()->save($exam);
+//                dd($exam->project->id);
+                if($exam->project->begeleider() != null){
+                    $slot->users()->attach([$exam->project->begeleider()->id => ['user_role'=>'Bedrijfsbegeleider']]);
+                }
             }
         }
 
