@@ -70,7 +70,7 @@ class EditUserRequest extends FormRequest
         $user->tussenvoegsel = request('tussenvoegsel');
         $user->achternaam = request('achternaam');
         $user->email = request('email');
-        $user->password = request('password');
+        $user->password = bcrypt(request('password'));
         $user->telefoonnummer = request('telefoonnummer');
         $user->straat = request('straat');
         $user->huisnummer = request('huisnummer');

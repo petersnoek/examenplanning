@@ -26,20 +26,20 @@
             </div>
             <div class="list-group">
                 <div class="list-group-item active" href="#">
-                    <span class="badge">{{isset($exam->slot) ? $exam->slot->users->count() +1 : 1}}</span>
+                    <span class="badge">{{isset($exam->slot) ? count($exam->invitees()) : 1}}</span>
                     <i class="fa fa-fw fa-user push-5-r"></i> Genodigden
                 </div>
-                <a @if(in_array($exam->user->role_id, [3, 2]))class="list-group-item cursor_hand"
-                   href="/agenda/{{$exam->user->davinci_id}}/show" @else class="list-group-item" @endif>
-                    <i class="fa fa-fw fa-address-card push-5-r"></i> <span
-                            @if($exam->user->id == $loggedInUser->id) class="text-success" @endif>{{$exam->user->achternaam . ", " . $exam->user->voornaam . " " . $exam->user->tussenvoegsel . " - Student"}}</span>
-                </a>
+                {{--<a @if(in_array($exam->user->role_id, [3, 2]))class="list-group-item cursor_hand"--}}
+                   {{--href="/agenda/{{$exam->user->davinci_id}}/show" @else class="list-group-item" @endif>--}}
+                    {{--<i class="fa fa-fw fa-address-card push-5-r"></i> <span--}}
+                            {{--@if($exam->user->id == $loggedInUser->id) class="text-success" @endif>{{$exam->user->achternaam . ", " . $exam->user->voornaam . " " . $exam->user->tussenvoegsel . " - Student"}}</span>--}}
+                {{--</a>--}}
                 @if(isset($exam->slot))
-                    @foreach($exam->slot->users as $invitee)
+                    @foreach($exam->invitees() as $invitee)
                         <a @if(in_array($invitee->role_id, [3, 2]))class="list-group-item cursor_hand"
                            href="/agenda/{{$invitee->davinci_id}}/show" @else class="list-group-item" @endif>
                             <i class="fa fa-fw fa-address-card push-5-r"></i> <span
-                                    @if($invitee->id == $loggedInUser->id) class="text-success" @endif>{{$invitee->achternaam . ", " . $invitee->voornaam . " " . $invitee->tussenvoegsel . " - " . $invitee->pivot->user_role}}</span>
+                                    @if($invitee->id == $loggedInUser->id) class="text-success" @endif>{{$invitee->achternaam . ", " . $invitee->voornaam . " " . $invitee->tussenvoegsel}}</span>
                         </a>
                     @endforeach
                 @endif
