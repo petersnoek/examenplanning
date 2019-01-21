@@ -96,4 +96,10 @@ class User extends Authenticatable
         return $this->projects()->wherePivot('active', '=', true)->first();
     }
 
+    public function hasRole($roleArray){
+        if(in_array($this->role_id, $roleArray)){
+            return true;
+        }
+        return false;
+    }
 }
