@@ -74,3 +74,18 @@
 .slot-rounded{
     border-radius: 10px;
 }
+
+.bg-banner-dashboard{
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    overflow: hidden;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-color: transparent;
+    background-position: 50% 50%;
+    background-repeat: no-repeat no-repeat;"
+}

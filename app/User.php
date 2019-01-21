@@ -102,4 +102,8 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function fullName(){
+        return $this->achternaam . ', ' . $this->voornaam . ' ' . $this->tussenvoegsel;
+    }
 }
