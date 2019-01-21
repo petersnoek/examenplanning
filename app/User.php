@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Notifications\ResetPassword;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -105,5 +106,13 @@ class User extends Authenticatable
 
     public function fullName(){
         return $this->achternaam . ', ' . $this->voornaam . ' ' . $this->tussenvoegsel;
+    }
+
+    public function hasUpcoming(){
+        $now = Carbon::now();
+        $limit = Carbon::now()->addDay(7);
+        return $this->exams()->whereHas('slot', function ($query) use($now, $limit) {
+            $query->whereBetween('datum', [$now, $limit])->orderBy('datum');
+        })->first();
     }
 }
