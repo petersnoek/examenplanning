@@ -55,38 +55,48 @@
                         <div>Je eerstvolgende examen van deze week</div>
                         <h2 class="h1 text-black">Bekijk hem hieronder</h2>
                     </div>
-
-
-                    <div class="col-sm-6 col-md-6 col-md-offset-3 animated fadeIn" data-toggle="appear"
-                         data-offset="50"
-                         data-class="animated fadeIn">
+                    <div class="block row col-lg-6 col-sm-8 col-lg-offset-3 col-sm-offset-2">
                         <div class="bg-image" style="background-image: url('{{asset('images/exam_card.jpg')}}');">
-                            <div class="bg-black-op">
-                                <div class="block block-themed block-transparent">
-                                    <div class="block-header">
-                                        <h3 class="block-title text-center">{{$upcoming->user->fullName()}}
-                                            - {{$upcoming->proevevanbekwaamheids->kerntaak}}</h3>
-                                    </div>
-                                    <div class="block-content block-content-full">
-                                        <div class="pull-left col-lg-4">
-                                            <i class="fa fa-5x fa-fw fa-calendar text-white-op"></i>
-                                            <div class="text-muted">{{isset($upcoming->slot) ? \Carbon\Carbon::parse($upcoming->slot->datum)->format('Y-m-d') . ' ' . \Carbon\Carbon::parse($upcoming->slot->starttijd)->format('H:i') . ' ' . \Carbon\Carbon::parse($upcoming->slot->eindtijd)->format('H:i') : 'Nog niet ingepland'}}</div>
-                                        </div>
-                                        <div class="push-10-t col-lg-8">
+                            <div class="block-header">
+                                <h3 class="block-title"><i
+                                            class="fa fa-fw fa-calendar"></i> {{$upcoming->user->fullName()}}
+                                    - <span class="text-muted">{{$upcoming->proevevanbekwaamheids->kerntaak}}</span>
+                                </h3>
+                            </div>
+                            <div class="">
+                                <table class="block-table">
+                                    <tbody>
+                                    <tr>
+                                        <td class="col-lg-3 text-center">
+                                            <div class="push-30">
+                                                <i class="fa fa-calendar fa-4x text-grey"></i>
+                                                <p class="font-w700 push-15-t text-gray-dark">{{isset($upcoming->slot) ? \Carbon\Carbon::parse($upcoming->slot->datum)->format('Y-m-d') . ' ' . \Carbon\Carbon::parse($upcoming->slot->starttijd)->format('H:i') . ' - ' . \Carbon\Carbon::parse($upcoming->slot->eindtijd)->format('H:i') : 'Nog niet ingepland'}}</p>
+                                            </div>
+                                        </td>
+                                        <td class="col-lg-9">
                                             <div class="font-w600 push-5 text-amethyst-dark">{{isset($upcoming->project) ? $upcoming->project->company->naam  : "Geen bedrijf"}}</div>
                                             @if(isset($upcoming->project))
-                                                <div class="text-muted">{{$upcoming->project->company->straat}} {{$upcoming->project->company->huisnummer}} {{$upcoming->project->company->toevoeging}}
+                                                <div class="text-gray-dark font-w600">
+                                                    {{$upcoming->project->company->straat}} {{$upcoming->project->company->huisnummer}} {{$upcoming->project->company->toevoeging}}
                                                     <br> {{$upcoming->project->company->postcode}} {{$upcoming->project->company->plaats}}
-                                                    <br> {{$upcoming->project->company->land}}</div>
+                                                    <br> {{$upcoming->project->company->land}}
+                                                </div>
+                                                <div class="push-15-t text-gray-dark font-w600">
+                                                    <i class="si si-envelope-open text-amethyst-light font-w700"></i>
+                                                    <a href="mailto:bedrijfsbegeleider@mail.com"
+                                                       id="begeleidersemail"> {{$upcoming->project->begeleider()->email}}</a>
+                                                    -
+                                                    <i class="si si-call-out text-amethyst-light font-w70"></i>
+                                                    <a href="tel:{{$upcoming->project->begeleider()->telefoonnummer}}"
+                                                       id="begeleidersTelnr"> {{$upcoming->project->begeleider()->telefoonnummer}}</a>
+                                                </div>
                                             @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="block-content block-content-full text-center">
-                                        <a class="btn btn-sm btn-default" href="javascript:void(0)">
-                                            <i class="fa fa-fw fa-plus"></i> Add friend
-                                        </a>
-                                    </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="text-center push block-content block-content-full block-content-mini text-amethysts font-w700">
+                                    <small><a href="/agenda">View all...</a></small>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +123,7 @@
                         </a>
                         <div class="h1 push-5" data-toggle="countTo" data-to="{{Auth::user()->exams->count()}}"
                              data-after="">{{Auth::user()->exams->count()}}</div>
-                        <div class="font-w600 text-uppercase text-muted">{{str_plural('Exam', Auth::user()->exams->count())}}</div>
+                        <div class="font-w6:0 text-uppercase text-muted">{{str_plural('Exam', Auth::user()->exams->count())}}</div>
                     </div>
                     <div class="col-xs-6 col-sm-4">
                         <a class="item item-2x item-circle bg-white border push-10 animated bounceIn cursor_hand"
