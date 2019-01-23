@@ -1,3 +1,12 @@
 .landing-image{
     height:400px;
 }
+
+.diensten{
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.diensten_opacity{
+    background-color: rgba(255, 115, 25, 0.50);
+}

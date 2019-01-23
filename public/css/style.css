@@ -10,9 +10,8 @@
     padding:10px;
 }
 
-.
-.dashboard-auth > li > a:hover{
-    color: rgb(62, 62, 62);
+.nav-link:hover{
+    color: rgb(227, 227, 227) !important;
 }
 .dropdown-toggle:focus{
     color: rgb(82, 82, 82);

@@ -2,15 +2,15 @@
     <!-- Authentication Links -->
     @guest
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+            <a class="nav-link" href="{{ route('login') }}"><span class="text-white">{{ __('Login') }}</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+            <a class="nav-link" href="{{ route('register') }}"><span class="text-white">{{ __('Register') }}</span></a>
         </li>
     @else
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }}
+                {{ Auth::user()->voornaam }}
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
