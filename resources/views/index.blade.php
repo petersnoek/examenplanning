@@ -67,7 +67,7 @@
                 <!-- Header -->
                 <section class="content content-full content-boxed overflow-hidden">
                     <div class="push-150-t push-150">
-                        <h1 class="font-s48 font-w700 text-uppercase text-gray-dark push-10 text-center animated bounceIn" data-toggle="appear" data-class="animated bounceIn">Examens plannen als nooit tevoren</h1>
+                        <h1 class="font-s48 font-w700 text-uppercase text-gray-dark push-10 text-center animated fadeIn" data-toggle="appear" data-class="animated fadeIn">Examens plannen als nooit tevoren</h1>
                         <h2 class="h3 font-w400 text-gray push-50 text-center animated fadeIn" data-toggle="appear" data-class="animated fadeIn" data-timeout="750">Blijf up to date met alle veranderingen in jouw planning</h2>
                     </div>
                 </section>

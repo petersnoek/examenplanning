@@ -24,16 +24,18 @@ class AgendaController extends Controller
 
         }
         else{
-            $slots = $loggedInUser->slots;
-            $exams = collect();
-            foreach($slots as $slot)
-            {
-                foreach($slot->exams as $exam)
-                {
-                    $exams->push($exam);
-                }
-//                dd($exams);
-            }
+//            $slots = $loggedInUser->slots()->exams;
+            $exams = $loggedInUser->attends();
+//            dd($exams);
+//            $exams = collect();
+//            foreach($slots as $slot)
+//            {
+//                foreach($slot->exams as $exam)
+//                {
+//                    $exams->push($exam);
+//                }
+////                dd($exams);
+//            }
         }
         //add statusses
         $allExams = Exam::with('proevevanbekwaamheids', 'slot', 'remarks')->get();
@@ -117,15 +119,17 @@ class AgendaController extends Controller
             $allExams = $loggedInUser->exams;
         }
         else{
-            $slots = $loggedInUser->slots;
-            $allExams = collect();
-            foreach($slots as $slot)
-            {
-                foreach($slot->exams as $exam)
-                {
-                    $allExams->push($exam);
-                }
-            }
+            $allExams = $loggedInUser->attends();
+
+//            $slots = $loggedInUser->slots;
+//            $allExams = collect();
+//            foreach($slots as $slot)
+//            {
+//                foreach($slot->exams as $exam)
+//                {
+//                    $allExams->push($exam);
+//                }
+//            }
         }
 
         return view('calendar.all', compact( 'loggedInUser', 'allExams'));

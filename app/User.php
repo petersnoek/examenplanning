@@ -115,4 +115,8 @@ class User extends Authenticatable
             $query->whereBetween('datum', [$now, $limit])->orderBy('datum');
         })->first();
     }
+
+    public function attends(){
+        return $this->slots()->with('exams')->get()->pluck('exams')->flatten();
+    }
 }

@@ -45,7 +45,6 @@
             </div>
         </div>
         <!-- END Hero Content -->
-
     @if($upcoming != null)
         <!-- Upcoming -->
             <div class="bg-white">
@@ -83,12 +82,13 @@
                                                 </div>
                                                 <div class="push-15-t text-gray-dark font-w600">
                                                     <i class="si si-envelope-open text-amethyst-light font-w700"></i>
-                                                    <a href="mailto:bedrijfsbegeleider@mail.com"
-                                                       id="begeleidersemail"> {{$upcoming->project->begeleider()->email}}</a>
+
+                                                    <a href="mailto:{{$upcoming->project->begeleider() != null ? $upcoming->project->begeleider()->email : '' }}"
+                                                       id="begeleidersemail"> {{$upcoming->project->begeleider() != null ? $upcoming->project->begeleider()->email : "Geen begeleider"}}</a>
                                                     -
                                                     <i class="si si-call-out text-amethyst-light font-w70"></i>
-                                                    <a href="tel:{{$upcoming->project->begeleider()->telefoonnummer}}"
-                                                       id="begeleidersTelnr"> {{$upcoming->project->begeleider()->telefoonnummer}}</a>
+                                                    <a href="tel:{{$upcoming->project->begeleider() != null ? $upcoming->project->begeleider()->telefoonnummer : ''}}"
+                                                       id="begeleidersTelnr"> {{$upcoming->project->begeleider() != null ? $upcoming->project->begeleider()->telefoonnummer : "Geen begeleider"}}</a>
                                                 </div>
                                             @endif
                                         </td>
@@ -121,9 +121,9 @@
                            data-toggle="appear" data-offset="-100" data-class="animated bounceIn" href="/agenda">
                             <i class="fa fa-book text-amethyst"></i>
                         </a>
-                        <div class="h1 push-5" data-toggle="countTo" data-to="{{Auth::user()->exams->count()}}"
-                             data-after="">{{Auth::user()->exams->count()}}</div>
-                        <div class="font-w6:0 text-uppercase text-muted">{{str_plural('Exam', Auth::user()->exams->count())}}</div>
+                        <div class="h1 push-5" data-toggle="countTo" data-to="{{Auth::user()->role_id == 3 ? Auth::user()->exams->count() : Auth::user()->attends()->count() }}"
+                             data-after="">{{Auth::user()->role_id == 3 ? Auth::user()->exams->count() : Auth::user()->attends()->count() }}</div>
+                        <div class="font-w6:0 text-uppercase text-muted">{{str_plural('Exam', Auth::user()->role_id == 3 ? Auth::user()->exams->count() : Auth::user()->attends()->count())}}</div>
                     </div>
                     <div class="col-xs-6 col-sm-4">
                         <a class="item item-2x item-circle bg-white border push-10 animated bounceIn cursor_hand"
