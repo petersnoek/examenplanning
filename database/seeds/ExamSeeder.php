@@ -24,7 +24,8 @@ class ExamSeeder extends Seeder
         }
         $faker = Faker::create('nl_NL');
 
-        $slots = Slot::inRandomOrder()->get();
+//        $slots = Slot::inRandomOrder()->get();
+        $slots = Slot::all()->reverse()->values();
         $statusses = Status::inRandomOrder()->get();
         $projects = Project::inRandomOrder()->get();
 
