@@ -41,11 +41,11 @@ class Pivot_slot_user_Seeder extends Seeder
                 'slot_id' => $slot->id,
             ]);
 
-            DB::table('slot_user')->insert([
-                'user_role' => 'Bedrijfsbegeleider',
-                'user_id' => $possibleBedrijfsbegeleiders->random()->id,
-                'slot_id' => $slot->id,
-            ]);
+//            DB::table('slot_user')->insert([
+//                'user_role' => 'Bedrijfsbegeleider',
+//                'user_id' => $possibleBedrijfsbegeleiders->random()->id,
+//                'slot_id' => $slot->id,
+//            ]);
         }
     }
 }

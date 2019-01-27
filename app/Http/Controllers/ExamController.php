@@ -120,14 +120,18 @@ class ExamController extends Controller
         if(request('message')){
 //        if(true){
             foreach(request('message') as $exam){
-//            foreach([1,2] as $exam){
+//            foreach([13,14] as $exam){
                 $foundExam = Exam::find($exam);
 
                 //get all invitees
+//                dd($foundExam->invitees());
+
                 foreach($foundExam->invitees() as $invitee){
+//                    $invitees = $foundExam->invitees();
                     $invitees[$invitee->id] = $invitee;
 //                    array_push($duplicates, $invitee);
                 }
+
 
 
                 //get only examinators

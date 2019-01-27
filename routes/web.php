@@ -114,7 +114,7 @@ Route::get('/employees/{company}', 'CompanyController@getEmployees');
 Route::post('/exams/invitees', 'ExamController@getInvitees');
 
 //test routes
-//Route::get('/test', '');
+Route::get('/exams/invitees', 'ExamController@getInvitees');
 
 
 

@@ -120,15 +120,25 @@ class SlotController extends Controller
 
     public function showAssignable(period $period)
     {
+        //Assign variables for easier access
         $startTime = $period->startdatum;
         $endTime = $period->einddatum;
+
+        //prepare empty array for all the weeks that have to be rendered for this period
         $calendarweeks = [];
+
+        //Add new calendarweek to the array, with the year and the week of the year
         while ($startTime < $endTime) {
             array_push($calendarweeks, [$startTime->format('Y'), $startTime->weekOfYear]);
             $startTime->addWeeks(1);
         }
+
+        //Prepare array of days to display in agendaview (numbers represent Carbon daycounts)
         $weekdays = [1, 2, 3, 4, 5]; // monday = 1;
+
+        //Prepare all the slots for the selected period
         $slots = $period->slots;
+
         $date = Carbon::now();
 
         //fetch all the data to make the modal form possible

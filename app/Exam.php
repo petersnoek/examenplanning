@@ -28,14 +28,18 @@ class Exam extends Model
         array_push($duplicates, $this->user);
         //check if exam has begeleider
 //        dd($this->user->with(''));
-//        if($this->project->begeleider()){
-//            array_push($duplicates, $this->project->begeleider());
-//        }
+        $begeleider = $this->project->begeleider();
+        if($begeleider){
+            $begeleider['user_role'] = "Bedrijfsbegeleider";
+            $duplicates[$begeleider->id] = $begeleider;
+//            array_push($duplicates, $begeleider);
+        }
         //get slot->get users-> then go again
         foreach($this->slot->users as $invitee)
         {
             $invitee['user_role'] = $invitee->pivot->user_role;
-            array_push($duplicates, $invitee);
+            $duplicates[$invitee->id] = $invitee;
+//            array_push($duplicates, $invitee);
         }
         return array_unique($duplicates);
     }
