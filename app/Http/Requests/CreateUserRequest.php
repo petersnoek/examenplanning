@@ -95,7 +95,7 @@ class CreateUserRequest extends FormRequest
             if(in_array(request('role_id'), [3]))
             {
                 $user->projects()->attach([request('project') => ['active'=> true, 'startdatum' => Carbon::now()]]);
-                $user->companies()->attach([$user->currentproject->company->id => ['bedrijfsrol'=> 'Stagiair']]);
+                $user->companies()->attach([$user->currentproject()->company->id => ['bedrijfsrol'=> 'Stagiair']]);
             }
         }
 
