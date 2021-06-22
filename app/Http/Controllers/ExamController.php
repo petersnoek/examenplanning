@@ -32,7 +32,7 @@ class ExamController extends Controller
     {
         $students = User::where('role_id', '=', '3')->get();
         $kwalificatiedossiers = Kwalificatiedossier::all();
-        return view('exams.create', compact('students', 'pvbs', 'kwalificatiedossiers'));
+        return view('exams.create', compact('students', 'kwalificatiedossiers'));
     }
 
     /**
